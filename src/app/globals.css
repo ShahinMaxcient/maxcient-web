@@ -1,26 +1,151 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ===== LIGHT MODE (default) ===== */
+:root, [data-theme="light"] {
+  --background: #f8faff;
+  --foreground: #1e293b;
+  --surface: #ffffff;
+  --surface-alt: #f1f5f9;
+  --primary: #4f46e5;
+  --primary-light: #6366f1;
+  --primary-dark: #4338ca;
+  --primary-deeper: #3730a3;
+  --accent: #0891b2;
+  --accent-light: #06b6d4;
+  --violet: #7c3aed;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --border: rgba(99, 102, 241, 0.12);
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-hover: rgba(255, 255, 255, 0.95);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(99, 102, 241, 0.15);
+  --glow-color: rgba(99, 102, 241, 0.08);
+  --hero-overlay: rgba(255, 255, 255, 0.85);
+  --nav-bg: rgba(255, 255, 255, 0.85);
+  --nav-text: #334155;
+  --nav-text-hero: #ffffff;
+  --shadow: 0 4px 30px rgba(99, 102, 241, 0.08);
+}
+
+/* ===== DARK MODE ===== */
+[data-theme="dark"] {
+  --background: #050511;
+  --foreground: #e2e8f0;
+  --surface: #0f0f2e;
+  --surface-alt: #1a1a4e;
+  --primary: #6366f1;
+  --primary-light: #818cf8;
+  --primary-dark: #4338ca;
+  --primary-deeper: #3730a3;
+  --accent: #06b6d4;
+  --accent-light: #22d3ee;
+  --violet: #8b5cf6;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border: rgba(99, 102, 241, 0.15);
+  --card-bg: rgba(15, 15, 46, 0.6);
+  --card-hover: rgba(255, 255, 255, 0.06);
+  --glass-bg: rgba(15, 15, 46, 0.6);
+  --glass-border: rgba(99, 102, 241, 0.15);
+  --glow-color: rgba(99, 102, 241, 0.15);
+  --hero-overlay: rgba(5, 5, 17, 0.85);
+  --nav-bg: rgba(15, 15, 46, 0.8);
+  --nav-text: rgba(255, 255, 255, 0.7);
+  --nav-text-hero: rgba(255, 255, 255, 0.9);
+  --shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-accent: var(--accent);
+  --color-violet: var(--violet);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-dark) transparent;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Glass effects */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-light {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+}
+
+.glass-light:hover {
+  background: var(--card-hover);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-light), var(--accent), var(--violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Theme transition on key elements */
+.glass, .glass-light, header, footer, section {
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotateX(0deg); }
+  50% { transform: translateY(-10px) rotateX(2deg); }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+
+.perspective-1000 { perspective: 1000px; }
+
+/* Theme-aware utility classes for inner pages */
+.t-heading { color: var(--text-primary); }
+.t-body { color: var(--text-muted); }
+.t-label { color: var(--text-secondary); }
+.t-bg { background: var(--background); }
+.t-bg-alt { background: var(--surface-alt); }
+.t-bg-surface { background: var(--surface); }
+.t-border { border-color: var(--border); }
+.t-input {
+  background: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+.t-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+.t-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
 }
