@@ -60,7 +60,7 @@ function ProductGlyph({ index }: { index: number }) {
       <div style={{ width: 150, height: 150, perspective: 700 }}>
         <div style={{ position: "relative", width: "100%", height: "100%", transformStyle: "preserve-3d", animation: "ed-cube-spin 20s linear infinite" }}>
           {[40, 0, -40].map((y, i) => (
-            <div key={i} style={{ position: "absolute", left: "50%", top: "50%", width: 70 - i * 14, height: 24, background: i === 1 ? "var(--primary)" : "var(--text-primary)", transform: `translate(-50%,-50%) translateY(${y}px)` }} />
+            <div key={i} style={{ position: "absolute", left: "50%", top: "50%", width: 70 - i * 14, height: 24, background: i === 1 ? "var(--primary-light)" : "var(--text-primary)", transform: `translate(-50%,-50%) translateY(${y}px)` }} />
           ))}
         </div>
       </div>
@@ -72,7 +72,7 @@ function ProductGlyph({ index }: { index: number }) {
       <div style={{ width: 150, height: 150, perspective: 700 }}>
         <div style={{ position: "relative", width: "100%", height: "100%", transformStyle: "preserve-3d", animation: "ed-cube-spin 18s linear infinite" }}>
           {[0, 12, 24, 36].map((z, i) => (
-            <div key={i} style={{ position: "absolute", left: "50%", top: "50%", width: 96, height: 96, margin: -48, borderRadius: "50%", border: "2px solid var(--text-primary)", background: i === 0 ? "var(--primary)" : "var(--surface)", transform: `rotateX(70deg) translateZ(${z}px)` }} />
+            <div key={i} style={{ position: "absolute", left: "50%", top: "50%", width: 96, height: 96, margin: -48, borderRadius: "50%", border: "2px solid var(--text-primary)", background: i === 0 ? "var(--primary-light)" : "var(--surface)", transform: `rotateX(70deg) translateZ(${z}px)` }} />
           ))}
         </div>
       </div>
@@ -85,7 +85,7 @@ function ProductGlyph({ index }: { index: number }) {
         {Array.from({ length: 25 }).map((_, i) => {
           const r = Math.floor(i / 5), c = i % 5;
           const accent = (r + c) % 3 === 0;
-          return <div key={i} style={{ position: "absolute", width: 11, height: 11, borderRadius: "50%", background: accent ? "var(--primary)" : "var(--text-primary)", left: `${(c / 4) * 100}%`, top: `${(r / 4) * 100}%`, transform: `translate(-50%,-50%) translateZ(${(r + c) * 4}px)` }} />;
+          return <div key={i} style={{ position: "absolute", width: 11, height: 11, borderRadius: "50%", background: accent ? "var(--primary-light)" : "var(--text-primary)", left: `${(c / 4) * 100}%`, top: `${(r / 4) * 100}%`, transform: `translate(-50%,-50%) translateZ(${(r + c) * 4}px)` }} />;
         })}
       </div>
     </div>

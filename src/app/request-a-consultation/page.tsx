@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ConsultationForm from "@/components/ConsultationForm";
 
 const offices = [
   { region: "MENA", locations: [
@@ -35,51 +36,7 @@ export default function RequestConsultation() {
         <section className="py-14 lg:py-16 t-bg">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16">
-              <div>
-                <h2 className="text-2xl font-bold t-heading">Get in Touch</h2>
-                <p className="mt-4 t-body">Our team will reach out within 24 hours to schedule your consultation.</p>
-
-                <div className="mt-8 space-y-6">
-                  <div>
-                    <label className="block text-sm font-medium t-label mb-2">Full Name</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-xl t-input outline-none transition-all" placeholder="Your full name" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium t-label mb-2">Email Address</label>
-                    <input type="email" className="w-full px-4 py-3 rounded-xl t-input outline-none transition-all" placeholder="you@company.com" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium t-label mb-2">Phone Number</label>
-                    <input type="tel" className="w-full px-4 py-3 rounded-xl t-input outline-none transition-all" placeholder="+971 XX XXX XXXX" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium t-label mb-2">Company</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-xl t-input outline-none transition-all" placeholder="Company name" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium t-label mb-2">Service Interest</label>
-                    <select className="w-full px-4 py-3 rounded-xl t-input outline-none transition-all t-body">
-                      <option>Select a service</option>
-                      <option>ERP & CRM</option>
-                      <option>Data Analytics</option>
-                      <option>Intelligent Automation</option>
-                      <option>Application Development</option>
-                      <option>Application Management</option>
-                      <option>Smart Teams</option>
-                      <option>RealtyAI</option>
-                      <option>SmartFees</option>
-                      <option>MaxPayroll</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium t-label mb-2">Message</label>
-                    <textarea rows={4} className="w-full px-4 py-3 rounded-xl t-input outline-none transition-all resize-none" placeholder="Tell us about your project..." />
-                  </div>
-                  <button className="w-full bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] text-white px-8 py-4 rounded-xl text-base font-semibold hover:shadow-lg transition-all">
-                    Submit Request
-                  </button>
-                </div>
-              </div>
+              <ConsultationForm />
 
               <div>
                 <h2 className="text-2xl font-bold t-heading">Our Offices</h2>

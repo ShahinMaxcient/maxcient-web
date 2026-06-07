@@ -1,14 +1,5 @@
 import Link from "next/link";
 
-const offices = [
-  { city: "Dubai", address: "Churchill Tower, Business Bay" },
-  { city: "Oman", address: "Almaktabi Building, Muscat" },
-  { city: "Saudi Arabia", address: "Olaya Towers, Riyadh" },
-  { city: "Bengaluru", address: "Indiranagar, 100 Feet Road" },
-  { city: "Kochi", address: "Crescens Tower, Monlash" },
-  { city: "U.K.", address: "Southfield Square, Bradford" },
-];
-
 const services = [
   { label: "ERP & CRM", href: "/erp-and-crm" },
   { label: "Data Analytics", href: "/data-analytics" },
@@ -17,80 +8,137 @@ const services = [
   { label: "Application Management", href: "/application-management" },
   { label: "Smart Teams", href: "/dedicated-development-team" },
 ];
+const industries = [
+  { label: "Manufacturing", href: "/manufacturing" },
+  { label: "Real Estate", href: "/real-estate" },
+  { label: "Retail", href: "/retail" },
+  { label: "Distribution", href: "/distribution" },
+  { label: "Professional Services", href: "/professional-services" },
+];
 const products = [
-  { label: "RealtyAI", href: "/realtyai-property-management-solution" },
-  { label: "SmartFees", href: "/smartfees-school-admin-solution" },
-  { label: "MaxPayroll", href: "/maxpayroll-hr-management-solution-2" },
+  { label: "RealtyAI Property App", href: "/realtyai-property-management-solution" },
+  { label: "SmartFees School Fee App", href: "/smartfees-school-admin-solution" },
+  { label: "MaxPayroll App", href: "/maxpayroll-hr-management-solution-2" },
+];
+const technologies = [
+  { label: "Microsoft Dynamics 365", href: "/microsoft-dynamics-365" },
+  { label: "Microsoft Power Platform", href: "/microsoft-power-platform" },
+  { label: "Microsoft Azure", href: "/microsoft-azure" },
+  { label: "SettleMint Blockchain", href: "/settlemint-blockchain" },
+  { label: "OpenAI", href: "/open-ai" },
+  { label: "IoT", href: "/iot-internet-of-things" },
+];
+
+const officeRegions = [
+  {
+    region: "MENA",
+    offices: [
+      { city: "Dubai", address: "Office No. 2912, Churchill Tower, Business Bay, UAE, PO Box: 118467" },
+      { city: "Oman", address: "5th Floor, Office# 517, Almaktabi Building, Watayyah, Muscat" },
+      { city: "KSA", address: "415, Tower B, Olaya Towers, MBZ Road, Riyadh" },
+    ],
+  },
+  {
+    region: "India",
+    offices: [
+      { city: "Bengaluru", address: "101 & 102, “VISIBLE”, 100 Feet Road, Indiranagar" },
+      { city: "Kochi", address: "4th Floor, Office# 101, Crescens Tower, Monlash Business Center, Ernakulam" },
+    ],
+  },
+  {
+    region: "EU",
+    offices: [
+      { city: "U.K.", address: "Southfield Square, Bradford, West Yorkshire BD8 7SN" },
+    ],
+  },
 ];
 
 function ColHead({ children }: { children: React.ReactNode }) {
   return <h3 style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)", marginBottom: "22px" }}>{children}</h3>;
 }
 
+function LinkCol({ title, links }: { title: string; links: { label: string; href: string }[] }) {
+  return (
+    <div>
+      <ColHead>{title}</ColHead>
+      <ul className="space-y-2.5">
+        {links.map((l) => (
+          <li key={l.label}>
+            <Link href={l.href} className="text-sm transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-secondary)" }}>{l.label}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export default function Footer() {
   return (
     <footer id="contact" style={{ background: "var(--background)", borderTop: "1px solid var(--border)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
-        <div className="py-16 lg:py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2.4fr_1fr_1fr_1.2fr] gap-12">
+        {/* Brand + link columns */}
+        <div className="py-16 lg:py-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-[2fr_1fr_1fr_1fr_1.2fr] gap-10 lg:gap-8">
           {/* Brand */}
-          <div>
+          <div className="col-span-2 md:col-span-3 lg:col-span-1">
             <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 flex items-center justify-center font-extrabold text-lg" style={{ background: "var(--text-primary)", color: "var(--background)", borderRadius: "2px" }}>M</div>
               <span className="text-xl font-bold tracking-tight" style={{ color: "var(--text-primary)" }}>Maxcient</span>
             </div>
             <p className="mt-5 text-sm leading-relaxed" style={{ color: "var(--text-muted)", maxWidth: "320px" }}>
-              Enterprise systems integrator. Microsoft Gold Partner. Headquartered in Dubai, operating across the UAE, GCC, India, and the UK.
+              Talk to us about how Maxcient can help you realize business value faster with end-to-end
+              solutions and cloud services. Microsoft Gold Partner, headquartered in Dubai.
             </p>
             <div className="mt-6 space-y-1" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12.5px" }}>
               <a href="mailto:hello@maxcient.com" className="block transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-primary)" }}>hello@maxcient.com →</a>
               <a href="tel:+97143293710" className="block transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-primary)" }}>+971 4 329 3710 →</a>
             </div>
-          </div>
-
-          {/* Services */}
-          <div>
-            <ColHead>Services</ColHead>
-            <ul className="space-y-2.5">
-              {services.map((s) => <li key={s.label}><Link href={s.href} className="text-sm transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-secondary)" }}>{s.label}</Link></li>)}
-            </ul>
-          </div>
-
-          {/* Products */}
-          <div>
-            <ColHead>Products</ColHead>
-            <ul className="space-y-2.5">
-              {products.map((p) => <li key={p.label}><Link href={p.href} className="text-sm transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-secondary)" }}>{p.label}</Link></li>)}
-            </ul>
-            <div className="mt-8">
-              <ColHead>About</ColHead>
-              <ul className="space-y-2.5">
-                <li><Link href="/about-us" className="text-sm transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-secondary)" }}>About Us</Link></li>
-                <li><Link href="/request-a-consultation" className="text-sm transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-secondary)" }}>Contact</Link></li>
-              </ul>
+            {/* Social */}
+            <div className="mt-6 flex items-center gap-3">
+              <a
+                href="https://www.linkedin.com/company/maxcient"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Maxcient on LinkedIn"
+                className="flex items-center justify-center transition-colors"
+                style={{ width: 36, height: 36, border: "1px solid var(--border-strong)", borderRadius: "4px", color: "var(--text-primary)" }}
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />
+                </svg>
+              </a>
             </div>
           </div>
 
-          {/* Offices */}
-          <div>
-            <ColHead>Global Offices</ColHead>
-            <ul className="grid grid-cols-2 gap-x-4 gap-y-3.5">
-              {offices.map((o) => (
-                <li key={o.city}>
-                  <div className="text-sm font-semibold" style={{ color: "var(--text-secondary)" }}>{o.city}</div>
-                  <div className="text-xs mt-0.5 leading-snug" style={{ color: "var(--text-muted)" }}>{o.address}</div>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <LinkCol title="Services" links={services} />
+          <LinkCol title="Industries" links={industries} />
+          <LinkCol title="Products" links={products} />
+          <LinkCol title="Technologies" links={technologies} />
+        </div>
+
+        {/* Office locations */}
+        <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-10" style={{ borderTop: "1px solid var(--border)" }}>
+          {officeRegions.map((r) => (
+            <div key={r.region}>
+              <ColHead>{r.region}</ColHead>
+              <ul className="space-y-4">
+                {r.offices.map((o) => (
+                  <li key={o.city}>
+                    <div className="text-sm font-semibold" style={{ color: "var(--text-secondary)" }}>{o.city}</div>
+                    <div className="text-xs mt-0.5 leading-snug" style={{ color: "var(--text-muted)", maxWidth: "320px" }}>{o.address}</div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
         {/* Bottom bar */}
         <div className="py-7 flex flex-col sm:flex-row items-center justify-between gap-4" style={{ borderTop: "1px solid var(--border)", fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.1em" }}>
           <p style={{ color: "var(--text-muted)" }}>© {new Date().getFullYear()} Maxcient Technologies</p>
           <div className="flex items-center gap-7">
-            <Link href="/terms-of-use" className="transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-muted)" }}>Terms</Link>
-            <Link href="/privacy-policy" className="transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-muted)" }}>Privacy</Link>
-            <Link href="/cookie-policy" className="transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-muted)" }}>Cookies</Link>
+            <Link href="/terms-of-use" className="transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-muted)" }}>Terms of Use</Link>
+            <Link href="/privacy-policy" className="transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-muted)" }}>Privacy Policy</Link>
+            <Link href="/cookie-policy" className="transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-muted)" }}>Cookie Policy</Link>
           </div>
         </div>
       </div>

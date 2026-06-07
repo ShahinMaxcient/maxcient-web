@@ -157,7 +157,7 @@ export default function Navbar() {
               onMouseEnter={(e) => (e.currentTarget.style.background = "var(--primary)")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "var(--text-primary)")}
             >
-              Start a Project
+              Get Started
               <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
@@ -210,7 +210,7 @@ export default function Navbar() {
                   )}
                 </div>
               ))}
-              <Link href="/request-a-consultation" className="mt-4 block w-full text-center px-6 py-3" style={{ background: "var(--text-primary)", color: "var(--background)", fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.08em", borderRadius: "4px" }} onClick={() => setMobileMenuOpen(false)}>Start a Project</Link>
+              <Link href="/request-a-consultation" className="mt-4 block w-full text-center px-6 py-3" style={{ background: "var(--text-primary)", color: "var(--background)", fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.08em", borderRadius: "4px" }} onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
             </motion.div>
           )}
         </AnimatePresence>

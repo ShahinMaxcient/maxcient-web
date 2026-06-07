@@ -19,11 +19,12 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     setMounted(true);
+    // Default to the light editorial theme for everyone. Only honor an explicit
+    // user choice from a previous visit — do NOT auto-follow system dark mode,
+    // so first-time visitors always see the intended light corporate look.
     const saved = localStorage.getItem("maxcient-theme") as Theme | null;
-    if (saved) {
+    if (saved === "light" || saved === "dark") {
       setTheme(saved);
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark");
     }
   }, []);
 

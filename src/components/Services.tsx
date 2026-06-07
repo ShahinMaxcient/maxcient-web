@@ -52,8 +52,8 @@ export default function Services() {
             const isFlagship = s.variant === "flagship";
             const isAccent = s.variant === "accent";
             const isDark = s.variant === "dark";
-            const bg = isAccent ? "var(--primary)" : isDark ? "var(--text-primary)" : "var(--surface)";
-            const fg = isAccent || isDark ? "var(--background)" : "var(--text-primary)";
+            const bg = isAccent ? "var(--primary-light)" : isDark ? "var(--text-primary)" : "var(--surface)";
+            const fg = isAccent ? "var(--foreground)" : isDark ? "var(--background)" : "var(--text-primary)";
             const shapeKind = i % 2 === 0 ? "ring" : "cube";
             return (
               <SectionReveal key={s.title} delay={i * 0.05} className={s.span}>
