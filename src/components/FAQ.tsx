@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionReveal from "./SectionReveal";
+import SectionHead from "./SectionHead";
 
 const faqs = [
   { question: "What makes Maxcient a leader in driving digital transformation?", answer: "Maxcient stands at the forefront of digital transformation by leveraging Microsoft Dynamics 365, IoT, and AI with proven expertise delivering scalable solutions." },
@@ -19,48 +20,43 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-16 lg:py-20 relative" style={{ background: "var(--surface-alt)" }}>
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="py-20 lg:py-28" style={{ background: "var(--background)" }}>
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
-          <div className="text-center mb-12">
-            <span className="text-sm font-semibold uppercase tracking-[0.2em]" style={{ color: "var(--primary-light)" }}>FAQ</span>
-            <h2 className="mt-4 text-4xl sm:text-5xl font-bold" style={{ color: "var(--text-primary)" }}>Frequently Asked Questions</h2>
-          </div>
+          <SectionHead eyebrow="FAQ" title={<>Questions,<br />answered.</>}>
+            Everything you need to know about working with Maxcient. Still curious? Reach out to a senior consultant directly.
+          </SectionHead>
         </SectionReveal>
 
-        <div className="space-y-3">
-          {faqs.map((faq, index) => (
-            <SectionReveal key={index} delay={index * 0.05}>
-              <div className={`rounded-2xl transition-all duration-500 ${openIndex === index ? "glass shadow-lg shadow-indigo-500/5" : "glass-light"}`} style={{ boxShadow: "var(--shadow)" }}>
-                <button
-                  className="w-full px-6 py-5 text-left flex items-center justify-between gap-4"
-                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                >
-                  <span className="font-semibold transition-colors" style={{ color: openIndex === index ? "var(--primary-light)" : "var(--text-secondary)" }}>
-                    {faq.question}
-                  </span>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${openIndex === index ? "bg-[var(--primary)] text-white rotate-180" : ""}`}
-                    style={openIndex !== index ? { background: "var(--surface)", color: "var(--text-muted)" } : undefined}
+        <div style={{ borderTop: "1px solid var(--border)" }}>
+          {faqs.map((faq, index) => {
+            const open = openIndex === index;
+            return (
+              <SectionReveal key={index} delay={index * 0.03}>
+                <div style={{ borderBottom: "1px solid var(--border)" }}>
+                  <button
+                    className="w-full py-6 text-left flex items-center justify-between gap-6 group"
+                    onClick={() => setOpenIndex(open ? null : index)}
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                  </div>
-                </button>
-                <AnimatePresence>
-                  {openIndex === index && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-5 leading-relaxed" style={{ color: "var(--text-muted)" }}>{faq.answer}</div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </SectionReveal>
-          ))}
+                    <span className="flex items-baseline gap-5">
+                      <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", color: "var(--primary)", fontWeight: 600 }}>{String(index + 1).padStart(2, "0")}</span>
+                      <span style={{ fontSize: "1.15rem", fontWeight: 600, letterSpacing: "-0.01em", color: open ? "var(--primary)" : "var(--text-primary)", transition: "color 0.2s" }}>{faq.question}</span>
+                    </span>
+                    <span className="shrink-0 flex items-center justify-center transition-transform duration-300" style={{ width: 30, height: 30, border: "1px solid var(--border-strong)", borderRadius: "50%", color: "var(--text-primary)", transform: open ? "rotate(45deg)" : "rotate(0)" }}>
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+                    </span>
+                  </button>
+                  <AnimatePresence>
+                    {open && (
+                      <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }} className="overflow-hidden">
+                        <div className="pb-7 leading-relaxed" style={{ color: "var(--text-muted)", fontSize: "1rem", paddingLeft: "44px", maxWidth: "760px" }}>{faq.answer}</div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </SectionReveal>
+            );
+          })}
         </div>
       </div>
     </section>

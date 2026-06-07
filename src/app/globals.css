@@ -1,61 +1,85 @@
 @import "tailwindcss";
 
-/* ===== LIGHT MODE (default) ===== */
+/* ============================================================
+   MAXCIENT — EDITORIAL 3D THEME
+   Light (cream/off-white) default + ink dark mode.
+   Single electric-ultramarine accent. Mono labels.
+   ============================================================ */
+
+/* ===== LIGHT MODE (default) — Editorial cream ===== */
 :root, [data-theme="light"] {
-  --background: #f8faff;
-  --foreground: #1e293b;
-  --surface: #ffffff;
-  --surface-alt: #f1f5f9;
-  --primary: #4f46e5;
-  --primary-light: #6366f1;
-  --primary-dark: #4338ca;
-  --primary-deeper: #3730a3;
-  --accent: #0891b2;
-  --accent-light: #06b6d4;
-  --violet: #7c3aed;
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
-  --border: rgba(99, 102, 241, 0.12);
-  --card-bg: rgba(255, 255, 255, 0.8);
-  --card-hover: rgba(255, 255, 255, 0.95);
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(99, 102, 241, 0.15);
-  --glow-color: rgba(99, 102, 241, 0.08);
-  --hero-overlay: rgba(255, 255, 255, 0.85);
-  --nav-bg: rgba(255, 255, 255, 0.85);
-  --nav-text: #334155;
-  --nav-text-hero: #ffffff;
-  --shadow: 0 4px 30px rgba(99, 102, 241, 0.08);
+  --background: #F5F2EB;        /* cream paper */
+  --foreground: #0A0A0A;        /* ink */
+  --surface: #FAF8F2;           /* lighter paper (cards) */
+  --surface-alt: #EFEBE1;       /* alt section band */
+
+  --primary: #3D54FF;           /* electric ultramarine */
+  --primary-light: #5468FF;
+  --primary-dark: #2B40E8;
+  --primary-deeper: #1E30C0;
+
+  --accent: #3D54FF;            /* single accent system */
+  --accent-light: #5468FF;
+  --violet: #3D54FF;
+
+  --text-primary: #0A0A0A;
+  --text-secondary: #1A1A18;
+  --text-muted: #6B665C;
+
+  --border: rgba(10, 10, 10, 0.10);
+  --border-strong: rgba(10, 10, 10, 0.20);
+
+  --card-bg: #FAF8F2;
+  --card-hover: #FFFFFF;
+  --glass-bg: rgba(245, 242, 235, 0.82);
+  --glass-border: rgba(10, 10, 10, 0.12);
+  --glow-color: rgba(61, 84, 255, 0.06);
+
+  --hero-overlay: rgba(245, 242, 235, 0.85);
+  --nav-bg: rgba(245, 242, 235, 0.85);
+  --nav-text: #1A1A18;
+  --nav-text-hero: #0A0A0A;
+
+  --shadow: 0 1px 0 rgba(10,10,10,0.04), 0 12px 30px rgba(10, 10, 10, 0.06);
+  --shadow-hard: 6px 6px 0 #0A0A0A;
 }
 
-/* ===== DARK MODE ===== */
+/* ===== DARK MODE — Editorial ink ===== */
 [data-theme="dark"] {
-  --background: #050511;
-  --foreground: #e2e8f0;
-  --surface: #0f0f2e;
-  --surface-alt: #1a1a4e;
-  --primary: #6366f1;
-  --primary-light: #818cf8;
-  --primary-dark: #4338ca;
-  --primary-deeper: #3730a3;
-  --accent: #06b6d4;
-  --accent-light: #22d3ee;
-  --violet: #8b5cf6;
-  --text-primary: #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --border: rgba(99, 102, 241, 0.15);
-  --card-bg: rgba(15, 15, 46, 0.6);
-  --card-hover: rgba(255, 255, 255, 0.06);
-  --glass-bg: rgba(15, 15, 46, 0.6);
-  --glass-border: rgba(99, 102, 241, 0.15);
-  --glow-color: rgba(99, 102, 241, 0.15);
-  --hero-overlay: rgba(5, 5, 17, 0.85);
-  --nav-bg: rgba(15, 15, 46, 0.8);
-  --nav-text: rgba(255, 255, 255, 0.7);
-  --nav-text-hero: rgba(255, 255, 255, 0.9);
-  --shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  --background: #0A0A0A;
+  --foreground: #F5F2EB;
+  --surface: #141413;
+  --surface-alt: #1A1A18;
+
+  --primary: #5468FF;
+  --primary-light: #7C8AFF;
+  --primary-dark: #3D54FF;
+  --primary-deeper: #2B40E8;
+
+  --accent: #5468FF;
+  --accent-light: #7C8AFF;
+  --violet: #5468FF;
+
+  --text-primary: #F5F2EB;
+  --text-secondary: #D8D3C7;
+  --text-muted: #8F897C;
+
+  --border: rgba(245, 242, 235, 0.12);
+  --border-strong: rgba(245, 242, 235, 0.22);
+
+  --card-bg: #141413;
+  --card-hover: #1C1C1A;
+  --glass-bg: rgba(10, 10, 10, 0.82);
+  --glass-border: rgba(245, 242, 235, 0.12);
+  --glow-color: rgba(84, 104, 255, 0.12);
+
+  --hero-overlay: rgba(10, 10, 10, 0.85);
+  --nav-bg: rgba(10, 10, 10, 0.82);
+  --nav-text: rgba(245, 242, 235, 0.72);
+  --nav-text-hero: rgba(245, 242, 235, 0.92);
+
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  --shadow-hard: 6px 6px 0 #5468FF;
 }
 
 @theme inline {
@@ -72,7 +96,7 @@
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--primary-dark) transparent;
+  scrollbar-color: var(--text-muted) transparent;
 }
 
 body {
@@ -80,13 +104,15 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
-/* Glass effects */
+/* ============================================================
+   EDITORIAL SURFACE TREATMENTS
+   Re-skin the original glass classes as editorial paper cards.
+   ============================================================ */
 .glass {
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
@@ -96,38 +122,93 @@ html {
 
 .glass-light {
   background: var(--card-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--border);
+  transition: transform 0.3s cubic-bezier(.34,1.2,.64,1), box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
-
 .glass-light:hover {
   background: var(--card-hover);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow);
 }
 
-/* Gradient text */
+/* Gradient text → editorial solid accent */
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary-light), var(--accent), var(--violet));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--primary);
+  -webkit-text-fill-color: var(--primary);
 }
 
-/* Theme transition on key elements */
 .glass, .glass-light, header, footer, section {
   transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* ============================================================
+   EDITORIAL: tighten rounded corners site-wide.
+   Inner pages hardcode rounded-xl/2xl/3xl — square them off
+   so all 24 pages read editorial without per-page edits.
+   (rounded-full intentionally preserved for dots/avatars/pills)
+   ============================================================ */
+.rounded-xl  { border-radius: 5px !important; }
+.rounded-2xl { border-radius: 6px !important; }
+.rounded-3xl { border-radius: 8px !important; }
+
+/* ============================================================
+   MOTION
+   ============================================================ */
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotateX(0deg); }
-  50% { transform: translateY(-10px) rotateX(2deg); }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
 }
-
 .animate-float { animation: float 6s ease-in-out infinite; }
-
 .perspective-1000 { perspective: 1000px; }
 
-/* Theme-aware utility classes for inner pages */
+@keyframes ed-float-a { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+@keyframes ed-float-b { 0%,100% { transform: translateY(0); } 50% { transform: translateY(15px); } }
+@keyframes ed-cube-spin { from { transform: rotateY(0) rotateX(0); } to { transform: rotateY(360deg) rotateX(360deg); } }
+@keyframes ed-sphere-spin { from { transform: translate(-50%,-50%) rotateY(0deg) rotateX(-12deg); } to { transform: translate(-50%,-50%) rotateY(360deg) rotateX(-12deg); } }
+@keyframes ed-pyr-spin { from { transform: rotateY(0); } to { transform: rotateY(-360deg); } }
+@keyframes ed-torus-spin { from { transform: rotateX(70deg) rotateZ(0); } to { transform: rotateX(70deg) rotateZ(360deg); } }
+@keyframes ed-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes ed-bring-spin { from { transform: rotateX(60deg) rotateZ(0); } to { transform: rotateX(60deg) rotateZ(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float, [class*="ed-"] { animation: none !important; }
+}
+
+/* ============================================================
+   EDITORIAL HELPERS
+   ============================================================ */
+.mono-label {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.mono-label::before { content: "// "; color: var(--primary); }
+
+.ed-display {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  color: var(--text-primary);
+}
+
+.ed-hard-border { border: 1px solid var(--text-primary); }
+.ed-shadow-hard { box-shadow: var(--shadow-hard); }
+
+/* 3D primitive faces (shared by Hero + CTA cubes) */
+.ed-scene { transform-style: preserve-3d; }
+.ed-face {
+  position: absolute; inset: 0;
+  border: 1.5px solid var(--text-primary);
+  background: color-mix(in srgb, var(--background) 70%, transparent);
+}
+.ed-face.accent { background: var(--primary); border-color: var(--primary); }
+
+/* ============================================================
+   THEME-AWARE UTILITY CLASSES (inner pages depend on these)
+   ============================================================ */
 .t-heading { color: var(--text-primary); }
 .t-body { color: var(--text-muted); }
 .t-label { color: var(--text-secondary); }
@@ -142,7 +223,7 @@ html {
 }
 .t-input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 0 0 3px rgba(61, 84, 255, 0.15);
 }
 .t-card {
   background: var(--card-bg);

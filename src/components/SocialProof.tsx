@@ -1,56 +1,56 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import SectionReveal from "./SectionReveal";
 
 function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true });
   const [count, setCount] = useState(0);
   useEffect(() => {
     if (!isInView) return;
     let start = 0;
-    const duration = 2000;
-    const step = (ts: number) => { if (!start) start = ts; const p = Math.min((ts - start) / duration, 1); setCount(Math.floor(p * target)); if (p < 1) requestAnimationFrame(step); };
+    const duration = 1800;
+    const step = (ts: number) => { if (!start) start = ts; const p = Math.min((ts - start) / duration, 1); setCount(Math.floor((1 - Math.pow(1 - p, 3)) * target)); if (p < 1) requestAnimationFrame(step); };
     requestAnimationFrame(step);
   }, [isInView, target]);
-  return <div ref={ref}>{count}{suffix}</div>;
+  return <span ref={ref}>{count}{suffix}</span>;
 }
+
+const stats = [
+  { eye: "01 — DELIVERY", value: 100, suffix: "%", label: "On-time project completion across all engagements since 2017." },
+  { eye: "02 — EXPERIENCE", value: 50, suffix: "+", label: "Years of combined Microsoft Dynamics expertise on the team." },
+  { eye: "03 — RATING", value: 5, suffix: "/5", label: "Average client rating across our active engagements." },
+  { eye: "04 — REACH", value: 6, suffix: "", label: "Offices across Dubai, Oman, KSA, India, and the UK." },
+];
 
 export default function SocialProof() {
   return (
-    <section id="about" className="py-16 lg:py-20 relative overflow-hidden" style={{ background: "var(--surface-alt)" }}>
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <SectionReveal>
-            <div>
-              <span className="text-sm font-semibold uppercase tracking-[0.2em]" style={{ color: "var(--primary-light)" }}>Why Choose Us</span>
-              <h2 className="mt-4 text-4xl sm:text-5xl font-bold leading-tight" style={{ color: "var(--text-primary)" }}>
-                Trusted by UAE&apos;s <span className="gradient-text">Leading Enterprises</span>
-              </h2>
-              <p className="mt-6 text-lg leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                To our happy customers we are a technology partner, not just a vendor. Collaborative growth through trusted, mutually beneficial partnerships.
-              </p>
+    <section id="about" className="py-20 lg:py-28" style={{ background: "var(--surface-alt)" }}>
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
+        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-20 items-end mb-16">
+          <div>
+            <div className="mb-4" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--text-muted)" }}>
+              <span style={{ color: "var(--primary)" }}>// </span>By the Numbers
             </div>
-          </SectionReveal>
-          <SectionReveal delay={0.2}>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { value: 100, suffix: "%", label: "On-Time Delivery" },
-                { value: 50, suffix: "+", label: "Years Experience" },
-                { value: 5, suffix: "/5", label: "Client Rating" },
-                { value: 6, suffix: "", label: "Global Offices" },
-              ].map((stat, i) => (
-                <motion.div key={stat.label} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="glass-light rounded-2xl p-6" style={{ boxShadow: "var(--shadow)" }}
-                >
-                  <div className="text-3xl font-bold gradient-text"><AnimatedCounter target={stat.value} suffix={stat.suffix} /></div>
-                  <div className="mt-2 text-sm" style={{ color: "var(--text-muted)" }}>{stat.label}</div>
-                </motion.div>
-              ))}
+            <h2 className="ed-display" style={{ fontSize: "clamp(2.25rem, 4.5vw, 4rem)" }}>Trusted across<br />the GCC.</h2>
+          </div>
+          <p className="leading-relaxed" style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: "480px" }}>
+            Nearly a decade of measurable outcomes — from implementation velocity to satisfaction
+            scores that outperform the regional average.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style={{ borderTop: "1px solid var(--border)" }}>
+          {stats.map((s, i) => (
+            <div key={s.eye} className="py-12 pr-9" style={{ borderRight: i < 3 ? "1px solid var(--border)" : "none" }}>
+              <div className="mb-7" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)" }}>{s.eye}</div>
+              <div style={{ fontSize: "clamp(3.5rem, 6vw, 5.5rem)", fontWeight: 800, letterSpacing: "-0.045em", lineHeight: 0.9, color: "var(--text-primary)" }}>
+                <AnimatedCounter target={s.value} /><span style={{ color: "var(--primary)" }}>{s.suffix}</span>
+              </div>
+              <div className="mt-4 text-sm leading-relaxed" style={{ color: "var(--text-muted)", maxWidth: "200px" }}>{s.label}</div>
             </div>
-          </SectionReveal>
+          ))}
         </div>
       </div>
     </section>

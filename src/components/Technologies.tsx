@@ -1,43 +1,49 @@
 "use client";
 
-import AnimatedCard from "./AnimatedCard";
-import SectionReveal from "./SectionReveal";
 import Link from "next/link";
+import SectionReveal from "./SectionReveal";
+import SectionHead from "./SectionHead";
 
 const technologies = [
-  { title: "Microsoft Dynamics 365", description: "Intuitive, adaptable enterprise applications that grow with you.", letter: "D365", gradient: "from-blue-500 to-blue-700", href: "/microsoft-dynamics-365" },
-  { title: "Power Platform", description: "Connect data, build apps, and automate workflows for everyone.", letter: "PP", gradient: "from-purple-500 to-purple-700", href: "/microsoft-power-platform" },
-  { title: "Microsoft Azure", description: "Endless cloud capabilities and global infrastructure.", letter: "Az", gradient: "from-sky-500 to-sky-700", href: "/microsoft-azure" },
-  { title: "Settlemint Blockchain", description: "Unmatched security and transparency for transactions.", letter: "BC", gradient: "from-emerald-500 to-emerald-700", href: "/settlemint-blockchain" },
-  { title: "OpenAI", description: "Advanced AI models to drive innovation and automate processes.", letter: "AI", gradient: "from-gray-500 to-gray-700", href: "/open-ai" },
-  { title: "IoT", description: "Real-time insights and control from the edge to the cloud.", letter: "IoT", gradient: "from-orange-500 to-orange-700", href: "/iot-internet-of-things" },
+  { title: "Microsoft Dynamics 365", description: "Intuitive, adaptable enterprise applications that grow with you.", letter: "D365", href: "/microsoft-dynamics-365" },
+  { title: "Power Platform", description: "Connect data, build apps, and automate workflows for everyone.", letter: "PP", href: "/microsoft-power-platform" },
+  { title: "Microsoft Azure", description: "Endless cloud capabilities and global infrastructure.", letter: "Az", href: "/microsoft-azure" },
+  { title: "Settlemint Blockchain", description: "Unmatched security and transparency for transactions.", letter: "BC", href: "/settlemint-blockchain" },
+  { title: "OpenAI", description: "Advanced AI models to drive innovation and automate processes.", letter: "AI", href: "/open-ai" },
+  { title: "IoT", description: "Real-time insights and control from the edge to the cloud.", letter: "IoT", href: "/iot-internet-of-things" },
 ];
 
 export default function Technologies() {
   return (
-    <section id="technologies" className="py-16 lg:py-20 relative" style={{ background: "var(--background)" }}>
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="technologies" className="py-20 lg:py-28" style={{ background: "var(--background)" }}>
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-semibold uppercase tracking-[0.2em]" style={{ color: "var(--accent)" }}>Tech Stack</span>
-            <h2 className="mt-4 text-4xl sm:text-5xl font-bold" style={{ color: "var(--text-primary)" }}>Technologies We Work With</h2>
-            <p className="mt-6 text-lg" style={{ color: "var(--text-muted)" }}>Cutting-edge platforms powering next-generation enterprise solutions.</p>
-          </div>
+          <SectionHead eyebrow="Tech Stack" title={<>Platforms<br />we master.</>}>
+            Cutting-edge platforms powering next-generation enterprise solutions across the region.
+          </SectionHead>
         </SectionReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style={{ borderTop: "1px solid var(--border)", borderLeft: "1px solid var(--border)" }}>
           {technologies.map((tech, i) => (
-            <AnimatedCard key={tech.title} delay={i * 0.1}>
-              <Link href={tech.href} className="block">
-                <div className="glass-light rounded-2xl p-8 transition-all duration-500 group text-center" style={{ boxShadow: "var(--shadow)" }}>
-                  <div className={`w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br ${tech.gradient} flex items-center justify-center text-white font-bold text-sm shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300`}>
+            <SectionReveal key={tech.title} delay={i * 0.06}>
+              <Link href={tech.href} className="group block h-full">
+                <div className="h-full p-8 transition-colors duration-300" style={{ borderRight: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "var(--surface)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                >
+                  <div className="flex items-center justify-center transition-colors duration-300"
+                    style={{ width: 56, height: 56, border: "1px solid var(--text-primary)", borderRadius: "4px", fontFamily: "var(--font-geist-mono), monospace", fontWeight: 700, fontSize: "13px", color: "var(--text-primary)" }}
+                  >
                     {tech.letter}
                   </div>
-                  <h3 className="mt-6 text-lg font-bold group-hover:text-[var(--primary-light)] transition-colors" style={{ color: "var(--text-primary)" }}>{tech.title}</h3>
-                  <p className="mt-3 text-sm" style={{ color: "var(--text-muted)" }}>{tech.description}</p>
+                  <h3 className="mt-6 text-lg font-bold transition-colors group-hover:text-[var(--primary)]" style={{ color: "var(--text-primary)", letterSpacing: "-0.01em" }}>{tech.title}</h3>
+                  <p className="mt-2.5 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>{tech.description}</p>
+                  <div className="mt-5 inline-flex items-center gap-1.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--primary)" }}>
+                    Explore <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                  </div>
                 </div>
               </Link>
-            </AnimatedCard>
+            </SectionReveal>
           ))}
         </div>
       </div>

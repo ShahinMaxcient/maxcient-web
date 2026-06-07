@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
-import { useTheme } from "./ThemeProvider";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -48,7 +47,7 @@ const navItems = [
       { label: "IoT", href: "/iot-internet-of-things" },
     ],
   },
-  { label: "About Us", href: "/about-us" },
+  { label: "About", href: "/about-us" },
 ];
 
 export default function Navbar() {
@@ -56,7 +55,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
-  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -64,33 +62,32 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isHeroArea = !scrolled;
-  const navTextClass = isHeroArea
-    ? "text-[var(--nav-text-hero)]"
-    : `text-[var(--nav-text)]`;
-
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass shadow-lg" : "bg-transparent"
-      }`}
-      style={scrolled ? { background: "var(--nav-bg)", backdropFilter: "blur(20px)", borderBottom: "1px solid var(--border)" } : {}}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={
+        scrolled
+          ? { background: "var(--nav-bg)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", borderBottom: "1px solid var(--border)" }
+          : { background: "transparent", borderBottom: "1px solid transparent" }
+      }
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-18 lg:h-20">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--primary)] via-[var(--violet)] to-[var(--accent)] flex items-center justify-center shadow-lg shadow-indigo-500/20">
-              <span className="text-white font-bold text-lg">M</span>
+      <nav className="max-w-[1400px] mx-auto px-5 sm:px-8">
+        <div className="flex items-center justify-between h-[72px]">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2.5">
+            <div className="w-8 h-8 flex items-center justify-center font-extrabold text-[17px]" style={{ background: "var(--text-primary)", color: "var(--background)", borderRadius: "2px" }}>
+              M
             </div>
-            <span className={`text-xl font-bold transition-colors ${isHeroArea ? "text-white" : "text-[var(--text-primary)]"}`}>
+            <span className="text-lg font-bold tracking-tight" style={{ color: "var(--text-primary)" }}>
               Maxcient
             </span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-6">
+          {/* Center nav */}
+          <div className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
               <div
                 key={item.label}
@@ -100,14 +97,17 @@ export default function Navbar() {
               >
                 <Link
                   href={item.href}
-                  className={`text-sm font-medium transition-colors flex items-center gap-1 py-2 ${
-                    isHeroArea ? "text-white/80 hover:text-white" : "text-[var(--text-secondary)] hover:text-[var(--primary)]"
-                  }`}
                   onClick={(e) => item.children && e.preventDefault()}
+                  className="px-4 py-2 flex items-center gap-1.5 transition-colors duration-150 hover:opacity-100"
+                  style={{
+                    fontFamily: "var(--font-geist-mono), ui-monospace, monospace",
+                    fontSize: "12px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em",
+                    color: "var(--nav-text)", borderRadius: "4px",
+                  }}
                 >
                   {item.label}
                   {item.children && (
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   )}
@@ -115,15 +115,22 @@ export default function Navbar() {
                 <AnimatePresence>
                   {item.children && openDropdown === item.label && (
                     <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 mt-0 pt-2"
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.18 }}
+                      className="absolute top-full left-0 pt-2 min-w-[230px]"
                     >
-                      <div className="glass rounded-xl py-2 min-w-[220px]" style={{ boxShadow: "var(--shadow)" }}>
+                      <div className="p-1.5" style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "6px", boxShadow: "var(--shadow)" }}>
                         {item.children.map((child) => (
-                          <Link key={child.label} href={child.href} className="block px-4 py-2.5 text-sm text-[var(--text-secondary)] hover:text-[var(--primary)] hover:bg-[var(--glow-color)] transition-colors">
+                          <Link
+                            key={child.label}
+                            href={child.href}
+                            className="block px-3 py-2 transition-colors duration-150"
+                            style={{ fontSize: "13px", color: "var(--text-secondary)", borderRadius: "4px" }}
+                            onMouseEnter={(e) => { e.currentTarget.style.background = "var(--glow-color)"; e.currentTarget.style.color = "var(--primary)"; }}
+                            onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--text-secondary)"; }}
+                          >
                             {child.label}
                           </Link>
                         ))}
@@ -135,56 +142,75 @@ export default function Navbar() {
             ))}
           </div>
 
+          {/* Right */}
           <div className="hidden lg:flex items-center gap-3">
             <ThemeToggle />
-            <a href="tel:+97143293710" className={`text-sm transition-colors ${isHeroArea ? "text-white/50" : "text-[var(--text-muted)]"}`}>
-              +971 4 329 3710
-            </a>
-            <Link href="/request-a-consultation" className="bg-gradient-to-r from-[var(--primary)] to-[var(--violet)] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:shadow-lg hover:shadow-indigo-500/25 transition-all hover:-translate-y-0.5">
-              Get Started
+            <Link
+              href="/request-a-consultation"
+              className="group inline-flex items-center gap-2 px-5 py-2.5 transition-all duration-200"
+              style={{
+                background: "var(--text-primary)", color: "var(--background)",
+                fontFamily: "var(--font-geist-mono), ui-monospace, monospace",
+                fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em",
+                borderRadius: "4px",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "var(--primary)")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "var(--text-primary)")}
+            >
+              Start a Project
+              <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </Link>
           </div>
 
+          {/* Mobile toggle */}
           <div className="flex items-center gap-2 lg:hidden">
             <ThemeToggle />
-            <button className="p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-              <svg className={`w-6 h-6 ${isHeroArea ? "text-white" : "text-[var(--text-primary)]"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button className="p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Menu">
+              <svg className="w-6 h-6" style={{ color: "var(--text-primary)" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {mobileMenuOpen ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /> : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}
               </svg>
             </button>
           </div>
         </div>
 
+        {/* Mobile menu */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden glass rounded-2xl mt-2 p-6 overflow-hidden"
+              className="lg:hidden mt-2 mb-4 p-4 overflow-hidden"
+              style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "6px" }}
             >
               {navItems.map((item) => (
                 <div key={item.label}>
                   {item.children ? (
                     <>
-                      <button onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)} className="w-full flex items-center justify-between py-3 text-sm font-medium text-[var(--text-primary)]">
+                      <button
+                        onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
+                        className="w-full flex items-center justify-between py-3"
+                        style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--text-primary)" }}
+                      >
                         {item.label}
                         <svg className={`w-4 h-4 transition-transform ${mobileExpanded === item.label ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                       </button>
                       {mobileExpanded === item.label && (
-                        <div className="pl-4 pb-2">
+                        <div className="pl-3 pb-2">
                           {item.children.map((child) => (
-                            <Link key={child.label} href={child.href} className="block py-2 text-sm text-[var(--text-muted)] hover:text-[var(--primary)]" onClick={() => setMobileMenuOpen(false)}>{child.label}</Link>
+                            <Link key={child.label} href={child.href} className="block py-2 text-sm" style={{ color: "var(--text-muted)" }} onClick={() => setMobileMenuOpen(false)}>{child.label}</Link>
                           ))}
                         </div>
                       )}
                     </>
                   ) : (
-                    <Link href={item.href} className="block py-3 text-sm font-medium text-[var(--text-primary)] hover:text-[var(--primary)]" onClick={() => setMobileMenuOpen(false)}>{item.label}</Link>
+                    <Link href={item.href} className="block py-3" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--text-primary)" }} onClick={() => setMobileMenuOpen(false)}>{item.label}</Link>
                   )}
                 </div>
               ))}
-              <Link href="/request-a-consultation" className="mt-4 block w-full text-center bg-gradient-to-r from-[var(--primary)] to-[var(--violet)] text-white px-6 py-3 rounded-full text-sm font-semibold" onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
+              <Link href="/request-a-consultation" className="mt-4 block w-full text-center px-6 py-3" style={{ background: "var(--text-primary)", color: "var(--background)", fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.08em", borderRadius: "4px" }} onClick={() => setMobileMenuOpen(false)}>Start a Project</Link>
             </motion.div>
           )}
         </AnimatePresence>

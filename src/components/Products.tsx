@@ -1,52 +1,93 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import SectionReveal from "./SectionReveal";
+import SectionHead from "./SectionHead";
 
 const products = [
-  { title: "RealtyAI", description: "Manage properties, tenants, and maintenance seamlessly with real-time analytics and AI insights.", features: ["Property Management", "Tenant Portal", "Real-time Analytics", "UAE Compliance"], href: "/realtyai-property-management-solution", gradient: "from-blue-500 via-indigo-500 to-violet-600" },
-  { title: "SmartFees", description: "Centralizes financial operations including invoicing, expenses, and payroll for schools.", features: ["Invoicing", "Expense Tracking", "Payroll", "Financial Reports"], href: "/smartfees-school-admin-solution", gradient: "from-cyan-500 via-teal-500 to-emerald-600" },
-  { title: "MaxPayroll", description: "Advanced HR functionalities ensuring smooth operations and workforce satisfaction.", features: ["HR Management", "Payroll Processing", "Employee Portal", "Compliance"], href: "/maxpayroll-hr-management-solution-2", gradient: "from-violet-500 via-purple-500 to-fuchsia-600" },
+  { num: "P/01", title: "RealtyAI", desc: "Property management for the AI-first era. Tenants, maintenance, billing, and real-time portfolio analytics — fully UAE-compliant.", tags: ["Property Management", "Tenant Portal", "AI Insights", "RERA / UAE"], href: "/realtyai-property-management-solution" },
+  { num: "P/02", title: "SmartFees", desc: "School financial operations — invoicing, expense tracking, payroll, and board-ready financial reports, in one place.", tags: ["Invoicing", "Expense Tracking", "Payroll", "Compliance"], href: "/smartfees-school-admin-solution" },
+  { num: "P/03", title: "MaxPayroll", desc: "Modern HR + payroll for UAE employers. Employee self-service, attendance, leave, EOSB, and WPS in a single workflow.", tags: ["HR Management", "Payroll", "Employee Portal", "WPS Ready"], href: "/maxpayroll-hr-management-solution-2" },
 ];
 
 export default function Products() {
   return (
-    <section id="products" className="py-16 lg:py-20 relative" style={{ background: "var(--surface-alt)" }}>
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="products" className="py-20 lg:py-28" style={{ background: "var(--background)" }}>
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-semibold uppercase tracking-[0.2em]" style={{ color: "var(--violet)" }}>Solutions</span>
-            <h2 className="mt-4 text-4xl sm:text-5xl font-bold" style={{ color: "var(--text-primary)" }}>Our Products</h2>
-            <p className="mt-6 text-lg" style={{ color: "var(--text-muted)" }}>Purpose-built solutions for real business challenges.</p>
-          </div>
+          <SectionHead eyebrow="Proprietary Products" title={<>Software<br />we built.</>}>
+            Three vertical solutions, each purpose-built for a specific industry challenge in the region.
+          </SectionHead>
         </SectionReveal>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {products.map((product, i) => (
-            <motion.div key={product.title} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.15 }}>
-              <Link href={product.href} className="block h-full">
-                <div className="glass-light rounded-2xl p-8 h-full group overflow-hidden relative" style={{ boxShadow: "var(--shadow)" }}>
-                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${product.gradient}`} />
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${product.gradient} flex items-center justify-center shadow-lg text-white font-bold text-lg`}>{product.title[0]}</div>
-                  <h3 className="mt-6 text-2xl font-bold" style={{ color: "var(--text-primary)" }}>{product.title}</h3>
-                  <p className="mt-4 leading-relaxed" style={{ color: "var(--text-muted)" }}>{product.description}</p>
-                  <ul className="mt-6 space-y-2">
-                    {product.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2 text-sm" style={{ color: "var(--text-secondary)" }}>
-                        <svg className="w-4 h-4 shrink-0" style={{ color: "var(--accent)" }} fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-8 flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all" style={{ color: "var(--primary)" }}>
-                    Learn More <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+
+        <div className="flex flex-col">
+          {products.map((p, i) => (
+            <SectionReveal key={p.title} delay={i * 0.08}>
+              <Link href={p.href} className="group block" style={{ borderTop: "1px solid var(--border)" }}>
+                <div className="grid lg:grid-cols-[120px_1fr_auto] gap-8 lg:gap-16 items-center py-12 lg:py-16">
+                  <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "13px", fontWeight: 600, color: "var(--text-muted)" }}>{p.num}</div>
+                  <div>
+                    <div className="flex items-baseline gap-4 mb-5">
+                      <h3 className="ed-display" style={{ fontSize: "clamp(2.25rem, 4vw, 3.5rem)" }}>{p.title}<span style={{ color: "var(--primary)" }}>.</span></h3>
+                      <svg className="w-7 h-7 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" style={{ color: "var(--primary)" }} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    </div>
+                    <p className="leading-relaxed mb-5" style={{ fontSize: "1rem", color: "var(--text-muted)", maxWidth: "560px" }}>{p.desc}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {p.tags.map((t) => (
+                        <span key={t} style={{ padding: "5px 11px", border: "1px solid var(--border-strong)", borderRadius: "100px", fontFamily: "var(--font-geist-mono), monospace", fontSize: "10.5px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-secondary)" }}>{t}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="hidden lg:block">
+                    <ProductGlyph index={i} />
                   </div>
                 </div>
               </Link>
-            </motion.div>
+            </SectionReveal>
           ))}
+          <div style={{ borderTop: "1px solid var(--border)" }} />
         </div>
       </div>
     </section>
+  );
+}
+
+function ProductGlyph({ index }: { index: number }) {
+  // three distinct rotating 3D primitives
+  if (index === 0) {
+    // stacked building blocks
+    return (
+      <div style={{ width: 150, height: 150, perspective: 700 }}>
+        <div style={{ position: "relative", width: "100%", height: "100%", transformStyle: "preserve-3d", animation: "ed-cube-spin 20s linear infinite" }}>
+          {[40, 0, -40].map((y, i) => (
+            <div key={i} style={{ position: "absolute", left: "50%", top: "50%", width: 70 - i * 14, height: 24, background: i === 1 ? "var(--primary)" : "var(--text-primary)", transform: `translate(-50%,-50%) translateY(${y}px)` }} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+  if (index === 1) {
+    // coin stack
+    return (
+      <div style={{ width: 150, height: 150, perspective: 700 }}>
+        <div style={{ position: "relative", width: "100%", height: "100%", transformStyle: "preserve-3d", animation: "ed-cube-spin 18s linear infinite" }}>
+          {[0, 12, 24, 36].map((z, i) => (
+            <div key={i} style={{ position: "absolute", left: "50%", top: "50%", width: 96, height: 96, margin: -48, borderRadius: "50%", border: "2px solid var(--text-primary)", background: i === 0 ? "var(--primary)" : "var(--surface)", transform: `rotateX(70deg) translateZ(${z}px)` }} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+  // wave grid
+  return (
+    <div style={{ width: 150, height: 150, perspective: 700 }}>
+      <div style={{ position: "relative", width: "100%", height: "100%", transformStyle: "preserve-3d", transform: "rotateX(62deg) rotateZ(-15deg)", animation: "ed-pyr-spin 24s linear infinite" }}>
+        {Array.from({ length: 25 }).map((_, i) => {
+          const r = Math.floor(i / 5), c = i % 5;
+          const accent = (r + c) % 3 === 0;
+          return <div key={i} style={{ position: "absolute", width: 11, height: 11, borderRadius: "50%", background: accent ? "var(--primary)" : "var(--text-primary)", left: `${(c / 4) * 100}%`, top: `${(r / 4) * 100}%`, transform: `translate(-50%,-50%) translateZ(${(r + c) * 4}px)` }} />;
+        })}
+      </div>
+    </div>
   );
 }

@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import AnimatedCard from "./AnimatedCard";
 import SectionReveal from "./SectionReveal";
+import SectionHead from "./SectionHead";
 
 const posts = [
   { title: "Build a Unified Data Platform To Enhance End-To-End Customer Experience", date: "Oct 18, 2023", category: "Data", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" },
@@ -13,31 +13,29 @@ const posts = [
 
 export default function Blog() {
   return (
-    <section id="blog" className="py-16 lg:py-20 relative" style={{ background: "var(--surface-alt)" }}>
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="blog" className="py-20 lg:py-28" style={{ background: "var(--surface-alt)" }}>
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-sm font-semibold uppercase tracking-[0.2em]" style={{ color: "var(--accent)" }}>Blog</span>
-            <h2 className="mt-4 text-4xl sm:text-5xl font-bold" style={{ color: "var(--text-primary)" }}>Latest Insights</h2>
-            <p className="mt-6 text-lg" style={{ color: "var(--text-muted)" }}>Stay ahead with our latest thoughts on technology and business.</p>
-          </div>
+          <SectionHead eyebrow="Journal" title={<>Latest<br />thinking.</>}>
+            Perspectives on enterprise technology, digital transformation, and building for the GCC.
+          </SectionHead>
         </SectionReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {posts.map((post, i) => (
-            <AnimatedCard key={post.title} delay={i * 0.1}>
-              <div className="group cursor-pointer">
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-5">
-                  <Image src={post.image} alt={post.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            <SectionReveal key={post.title} delay={i * 0.08}>
+              <article className="group cursor-pointer">
+                <div className="relative aspect-[4/3] overflow-hidden mb-5" style={{ borderRadius: "5px", border: "1px solid var(--border)" }}>
+                  <Image src={post.image} alt={post.title} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.07]" />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,10,10,0.5), transparent 60%)" }} />
                   <div className="absolute top-3 left-3">
-                    <span className="glass text-[var(--primary-light)] text-xs font-semibold px-3 py-1 rounded-full">{post.category}</span>
+                    <span style={{ background: "var(--background)", color: "var(--primary)", fontFamily: "var(--font-geist-mono), monospace", fontSize: "10px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", padding: "4px 9px", borderRadius: "3px" }}>{post.category}</span>
                   </div>
                 </div>
-                <h3 className="text-sm font-bold group-hover:text-[var(--primary-light)] transition-colors leading-snug line-clamp-2" style={{ color: "var(--text-secondary)" }}>{post.title}</h3>
-                <p className="mt-2 text-xs" style={{ color: "var(--text-muted)" }}>{post.date}</p>
-              </div>
-            </AnimatedCard>
+                <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", color: "var(--text-muted)", marginBottom: 8 }}>{post.date}</div>
+                <h3 className="text-[15px] font-bold leading-snug transition-colors group-hover:text-[var(--primary)]" style={{ color: "var(--text-primary)", letterSpacing: "-0.01em" }}>{post.title}</h3>
+              </article>
+            </SectionReveal>
           ))}
         </div>
       </div>
