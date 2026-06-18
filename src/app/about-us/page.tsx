@@ -23,7 +23,7 @@ export default function AboutUs() {
     <>
       <Navbar />
       <main>
-        <PageHero title="About Maxcient" subtitle="Technology is not an option — it's an accelerator. We are a digital enabler helping businesses adapt to and shape the future through technological innovation." image="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&q=80" />
+        <PageHero slug="about-us" title="About Maxcient" subtitle="Technology is not an option — it's an accelerator. We are a digital enabler helping businesses adapt to and shape the future through technological innovation." image="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&q=80" />
 
         <section className="py-14 lg:py-16 t-bg-surface">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

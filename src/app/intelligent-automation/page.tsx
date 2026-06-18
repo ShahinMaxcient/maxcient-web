@@ -29,14 +29,14 @@ export default function IntelligentAutomation() {
     <>
       <Navbar />
       <main>
-        <PageHero
+        <PageHero slug="intelligent-automation"
           title="Intelligent Automation"
           subtitle="Revolutionizing Business with Smart Automation. Enhance efficiency with intelligent automation, reducing errors and increasing productivity across your operations."
           image="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1920&q=80"
         />
         <FeatureGrid title="Automation Capabilities" subtitle="Comprehensive intelligent automation solutions designed for optimal efficiency." features={features} />
         <CTASection title="Accelerate Your Digital Journey" subtitle="Talk to us about how Maxcient can help transform your operations with intelligent automation." />
-        <PageFAQ faqs={faqs} />
+        <PageFAQ slug="intelligent-automation" faqs={faqs} />
       </main>
       <Footer />
     </>

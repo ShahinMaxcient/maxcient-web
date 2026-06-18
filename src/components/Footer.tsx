@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getSiteSettings } from "@/lib/settings";
 
 const services = [
   { label: "ERP & CRM", href: "/erp-and-crm" },
@@ -72,7 +73,9 @@ function LinkCol({ title, links }: { title: string; links: { label: string; href
   );
 }
 
-export default function Footer() {
+export default async function Footer() {
+  const settings = await getSiteSettings();
+  const telHref = `tel:${settings.contactPhone.replace(/[^0-9+]/g, "")}`;
   return (
     <footer id="contact" style={{ background: "var(--background)", borderTop: "1px solid var(--border)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
@@ -85,17 +88,16 @@ export default function Footer() {
               <span className="text-xl font-bold tracking-tight" style={{ color: "var(--text-primary)" }}>Maxcient</span>
             </div>
             <p className="mt-5 text-sm leading-relaxed" style={{ color: "var(--text-muted)", maxWidth: "320px" }}>
-              Talk to us about how Maxcient can help you realize business value faster with end-to-end
-              solutions and cloud services. Microsoft Gold Partner, headquartered in Dubai.
+              {settings.footerTagline}
             </p>
             <div className="mt-6 space-y-1" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12.5px" }}>
-              <a href="mailto:hello@maxcient.com" className="block transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-primary)" }}>hello@maxcient.com →</a>
-              <a href="tel:+97143293710" className="block transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-primary)" }}>+971 4 329 3710 →</a>
+              <a href={`mailto:${settings.contactEmail}`} className="block transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-primary)" }}>{settings.contactEmail} →</a>
+              <a href={telHref} className="block transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-primary)" }}>{settings.contactPhone} →</a>
             </div>
             {/* Social */}
-            <div className="mt-6 flex items-center gap-3">
+            <div className="mt-6 flex items-center gap-3" style={{ display: settings.linkedinUrl ? undefined : "none" }}>
               <a
-                href="https://www.linkedin.com/company/maxcient"
+                href={settings.linkedinUrl || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Maxcient on LinkedIn"

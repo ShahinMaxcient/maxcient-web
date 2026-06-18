@@ -29,10 +29,10 @@ export default function SmartFees() {
     <>
       <Navbar />
       <main>
-        <PageHero title="SmartFees" subtitle="Flawless Financial Operations for Schools. Powered by Microsoft Dynamics 365, centralizing invoicing, expense tracking, and payroll management for educational institutions." image="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1920&q=80" />
+        <PageHero slug="smartfees-school-admin-solution" title="SmartFees" subtitle="Flawless Financial Operations for Schools. Powered by Microsoft Dynamics 365, centralizing invoicing, expense tracking, and payroll management for educational institutions." image="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1920&q=80" />
         <FeatureGrid title="SmartFees Features" subtitle="Complete financial management platform designed for educational institutions." features={features} />
         <CTASection title="Streamline School Finances" subtitle="Discover how SmartFees can transform your school's financial operations." />
-        <PageFAQ faqs={faqs} />
+        <PageFAQ slug="smartfees-school-admin-solution" faqs={faqs} />
       </main>
       <Footer />
     </>

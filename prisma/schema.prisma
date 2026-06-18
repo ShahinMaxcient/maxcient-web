@@ -51,3 +51,83 @@ model Lead {
   @@index([status])
   @@index([createdAt])
 }
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+}
+
+// Blog / news articles managed from the admin.
+model Post {
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  title       String
+  excerpt     String?
+  content     String?    // markdown / rich text
+  category    String?
+  coverImage  String?
+  status      PostStatus @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([status])
+  @@index([publishedAt])
+}
+
+// Homepage "Services" cards.
+model Service {
+  id        String   @id @default(cuid())
+  num       String   @default("")
+  title     String
+  desc      String
+  href      String   @default("#")
+  span      String   @default("lg:col-span-2")
+  variant   String   @default("default") // default | flagship | accent | dark
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([order])
+}
+
+// Homepage "Who We Are" testimonial / value cards.
+model Testimonial {
+  id        String   @id @default(cuid())
+  tag       String
+  quote     String
+  rating    Int      @default(5)
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([order])
+}
+
+// Editable content for the service / solution / industry detail pages,
+// keyed by the page's existing route slug (e.g. "microsoft-dynamics-365").
+model Page {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  title          String
+  subtitle       String?
+  heroImage      String?
+  intro          String?
+  faqs           Json?    // [{ question, answer }]
+  seoTitle       String?
+  seoDescription String?
+  published      Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+// Flexible key/value store for global site settings and section copy
+// (e.g. "contact", "social", "footer", "home.hero", "home.servicesHead").
+model SiteSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     Json
+  updatedAt DateTime @updatedAt
+}

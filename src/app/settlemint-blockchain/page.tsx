@@ -29,10 +29,10 @@ export default function SettlemintBlockchain() {
     <>
       <Navbar />
       <main>
-        <PageHero title="SettleMint (Blockchain)" subtitle="Unifying Business Processes for Excellence. Fast, scalable, and easy-to-integrate blockchain solutions for enterprises." image="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1920&q=80" />
+        <PageHero slug="settlemint-blockchain" title="SettleMint (Blockchain)" subtitle="Unifying Business Processes for Excellence. Fast, scalable, and easy-to-integrate blockchain solutions for enterprises." image="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1920&q=80" />
         <FeatureGrid title="Blockchain Solutions" subtitle="Comprehensive blockchain services from consultation to deployment and support." features={features} />
         <CTASection title="Explore Blockchain for Your Business" subtitle="Discover how blockchain can transform your operations with security and transparency." />
-        <PageFAQ faqs={faqs} />
+        <PageFAQ slug="settlemint-blockchain" faqs={faqs} />
       </main>
       <Footer />
     </>

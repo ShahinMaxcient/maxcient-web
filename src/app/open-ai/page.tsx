@@ -30,7 +30,7 @@ export default function OpenAI() {
     <>
       <Navbar />
       <main>
-        <PageHero title="OpenAI" subtitle="Revolutionizing AI Research & Development. Leverage OpenAI's advanced AI models to drive innovation, automate processes, and engage customers like never before." image="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1920&q=80" />
+        <PageHero slug="open-ai" title="OpenAI" subtitle="Revolutionizing AI Research & Development. Leverage OpenAI's advanced AI models to drive innovation, automate processes, and engage customers like never before." image="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1920&q=80" />
 
         <section className="py-14 lg:py-16 t-bg-surface">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -67,7 +67,7 @@ export default function OpenAI() {
         </section>
 
         <CTASection title="Harness the Power of AI" subtitle="Let us help you integrate OpenAI solutions to drive innovation across your business." />
-        <PageFAQ faqs={faqs} />
+        <PageFAQ slug="open-ai" faqs={faqs} />
       </main>
       <Footer />
     </>

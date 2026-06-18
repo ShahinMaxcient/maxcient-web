@@ -29,10 +29,10 @@ export default function MicrosoftAzure() {
     <>
       <Navbar />
       <main>
-        <PageHero title="Microsoft Azure" subtitle="Cloud Computing Redefined. A comprehensive cloud computing platform offering IaaS, PaaS, and SaaS solutions with global infrastructure." image="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80" />
+        <PageHero slug="microsoft-azure" title="Microsoft Azure" subtitle="Cloud Computing Redefined. A comprehensive cloud computing platform offering IaaS, PaaS, and SaaS solutions with global infrastructure." image="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80" />
         <FeatureGrid title="Azure Services & Products" subtitle="Comprehensive cloud solutions for every business need." features={features} />
         <CTASection title="Scale with Azure" subtitle="Let our Azure experts help you leverage the full power of cloud computing." />
-        <PageFAQ faqs={faqs} />
+        <PageFAQ slug="microsoft-azure" faqs={faqs} />
       </main>
       <Footer />
     </>

@@ -11,25 +11,35 @@ import FAQ from "@/components/FAQ";
 import Blog from "@/components/Blog";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import { getPublishedPosts } from "@/lib/posts";
+import { getSiteSettings } from "@/lib/settings";
+import { getServices, getTestimonials } from "@/lib/homepage";
 
-export default function Home() {
+export default async function Home() {
+  const [posts, settings, services, testimonials] = await Promise.all([
+    getPublishedPosts(4),
+    getSiteSettings(),
+    getServices(),
+    getTestimonials(),
+  ]);
   return (
     <>
       <Navbar />
       <main>
         <Hero />
         <Marquee />
-        <Services />
+        <Services services={services} />
         <Industries />
         <Products />
         <Technologies />
         <SocialProof />
-        <Testimonials />
+        <Testimonials cards={testimonials} />
         <FAQ />
-        <Blog />
+        <Blog posts={posts} />
         <CTASection
           title="Get in touch"
           subtitle="Reach our transformation experts today. Connect with our UAE-based certified consultants specializing in CRM, ERP, and Dynamics 365 across the GCC."
+          phone={settings.contactPhone}
         />
       </main>
       <Footer />

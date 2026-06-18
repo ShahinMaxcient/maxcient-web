@@ -31,7 +31,7 @@ export default function MicrosoftDynamics365() {
     <>
       <Navbar />
       <main>
-        <PageHero title="Microsoft Dynamics 365" subtitle="Unifying Business Processes for Excellence. An integrated business application suite combining CRM and ERP capabilities, enhanced by AI and data analytics." image="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80" />
+        <PageHero slug="microsoft-dynamics-365" title="Microsoft Dynamics 365" subtitle="Unifying Business Processes for Excellence. An integrated business application suite combining CRM and ERP capabilities, enhanced by AI and data analytics." image="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80" />
 
         <section className="py-14 lg:py-16 t-bg-surface">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -75,7 +75,7 @@ export default function MicrosoftDynamics365() {
         </section>
 
         <CTASection title="Transform with Dynamics 365" subtitle="Let our certified experts guide your Dynamics 365 implementation journey." />
-        <PageFAQ faqs={faqs} />
+        <PageFAQ slug="microsoft-dynamics-365" faqs={faqs} />
       </main>
       <Footer />
     </>

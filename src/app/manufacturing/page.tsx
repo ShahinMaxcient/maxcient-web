@@ -29,14 +29,14 @@ export default function Manufacturing() {
     <>
       <Navbar />
       <main>
-        <PageHero
+        <PageHero slug="manufacturing"
           title="Manufacturing"
           subtitle="Emerging Trends In Manufacturing. Enhance productivity through intelligent manufacturing solutions powered by IoT, AI, and Microsoft Dynamics 365."
           image="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&q=80"
         />
         <FeatureGrid title="Manufacturing Solutions" subtitle="Smart factory solutions driving the next generation of manufacturing excellence." features={features} />
         <CTASection title="Transform Your Manufacturing" subtitle="Connect with our manufacturing technology experts to explore intelligent solutions." />
-        <PageFAQ faqs={faqs} />
+        <PageFAQ slug="manufacturing" faqs={faqs} />
       </main>
       <Footer />
     </>

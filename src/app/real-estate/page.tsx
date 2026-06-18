@@ -29,14 +29,14 @@ export default function RealEstate() {
     <>
       <Navbar />
       <main>
-        <PageHero
+        <PageHero slug="real-estate"
           title="Real Estate"
           subtitle="Emerging Trends in Real Estate. The real estate sector undergoes transformation through societal shifts, technological innovations, and evolving buyer preferences."
           image="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920&q=80"
         />
         <FeatureGrid title="Real Estate Solutions" subtitle="Digital transformation solutions for modern real estate operations." features={features} />
         <CTASection title="Upgrade Your Real Estate Operations" subtitle="Partner with us to implement cutting-edge property technology solutions." />
-        <PageFAQ faqs={faqs} />
+        <PageFAQ slug="real-estate" faqs={faqs} />
       </main>
       <Footer />
     </>

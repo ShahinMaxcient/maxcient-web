@@ -29,10 +29,10 @@ export default function Retail() {
     <>
       <Navbar />
       <main>
-        <PageHero title="Retail" subtitle="Emerging Trends In Retail. The retail sector undergoes significant transformation through evolving technology and changing consumer behaviors." image="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=80" />
+        <PageHero slug="retail" title="Retail" subtitle="Emerging Trends In Retail. The retail sector undergoes significant transformation through evolving technology and changing consumer behaviors." image="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=80" />
         <FeatureGrid title="Retail Solutions" subtitle="Innovative technology solutions for modern retail operations." features={features} />
         <CTASection title="Elevate Your Retail Experience" subtitle="Partner with us to implement next-generation retail technology solutions." />
-        <PageFAQ faqs={faqs} />
+        <PageFAQ slug="retail" faqs={faqs} />
       </main>
       <Footer />
     </>

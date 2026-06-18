@@ -29,10 +29,10 @@ export default function Distribution() {
     <>
       <Navbar />
       <main>
-        <PageHero title="Distribution" subtitle="Emerging Trends In Distribution. The wholesale sector is undergoing digital transformation with focus on transparency, predictive analytics, and direct-to-consumer models." image="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80" />
+        <PageHero slug="distribution" title="Distribution" subtitle="Emerging Trends In Distribution. The wholesale sector is undergoing digital transformation with focus on transparency, predictive analytics, and direct-to-consumer models." image="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80" />
         <FeatureGrid title="Distribution Solutions" subtitle="Intelligent systems for optimizing distribution channels and operations." features={features} />
         <CTASection title="Optimize Your Distribution" subtitle="Connect with our experts to transform your distribution operations." />
-        <PageFAQ faqs={faqs} />
+        <PageFAQ slug="distribution" faqs={faqs} />
       </main>
       <Footer />
     </>

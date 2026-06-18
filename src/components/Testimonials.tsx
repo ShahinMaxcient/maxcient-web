@@ -3,18 +3,7 @@
 import SectionReveal from "./SectionReveal";
 import SectionHead from "./SectionHead";
 
-const cards = [
-  {
-    tag: "Trusted by customers",
-    quote: "To our happy customers, we are a technology partner — not just a vendor.",
-    rating: 5,
-  },
-  {
-    tag: "Customer success",
-    quote: "Collaborative growth through trusted, mutually beneficial partnerships.",
-    rating: 5,
-  },
-];
+type TestimonialCard = { tag: string; quote: string; rating: number };
 
 function Stars({ n }: { n: number }) {
   return (
@@ -28,7 +17,7 @@ function Stars({ n }: { n: number }) {
   );
 }
 
-export default function Testimonials() {
+export default function Testimonials({ cards }: { cards: TestimonialCard[] }) {
   return (
     <section id="who-we-are" className="py-20 lg:py-28" style={{ background: "var(--background)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">

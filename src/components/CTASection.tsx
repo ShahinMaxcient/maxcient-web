@@ -19,7 +19,8 @@ function CTACube({ pos, size = 80, anim }: { pos: React.CSSProperties; size?: nu
   );
 }
 
-export default function CTASection({ title, subtitle }: { title: string; subtitle: string }) {
+export default function CTASection({ title, subtitle, phone = "+971 4 329 3710" }: { title: string; subtitle: string; phone?: string }) {
+  const telHref = `tel:${phone.replace(/[^0-9+]/g, "")}`;
   return (
     <section className="relative overflow-hidden" style={{ background: "linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%)", padding: "120px 0" }}>
       {/* grid */}
@@ -46,10 +47,10 @@ export default function CTASection({ title, subtitle }: { title: string; subtitl
             Book a consultation
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </Link>
-          <a href="tel:+97143293710" className="inline-flex items-center justify-center px-9 py-4 transition-all duration-200"
+          <a href={telHref} className="inline-flex items-center justify-center px-9 py-4 transition-all duration-200"
             style={{ background: "transparent", color: "#FFFFFF", border: "1px solid rgba(255,255,255,0.35)", fontWeight: 600, fontSize: "15px", borderRadius: "4px", fontFamily: "var(--font-geist-mono), monospace", letterSpacing: "0.04em" }}
           >
-            +971 4 329 3710
+            {phone}
           </a>
         </div>
       </div>

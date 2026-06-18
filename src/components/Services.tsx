@@ -4,15 +4,7 @@ import SectionReveal from "./SectionReveal";
 import SectionHead from "./SectionHead";
 import Link from "next/link";
 
-const services = [
-  { num: "01 — FLAGSHIP", title: "ERP & CRM Implementation on Microsoft Dynamics 365", desc: "Streamline operations and unify your customer view with end-to-end D365 implementations, configured for UAE compliance and tailored to your industry workflows.", href: "/erp-and-crm", span: "lg:col-span-3 lg:row-span-2", variant: "flagship" },
-  { num: "02", title: "Intelligent Automation", desc: "Smart automation across Power Platform, AI agents, and IoT triggers.", href: "/intelligent-automation", span: "lg:col-span-3", variant: "accent" },
-  { num: "03", title: "Data Analytics", desc: "Unified dashboards, real-time KPIs.", href: "/data-analytics", span: "lg:col-span-2", variant: "default" },
-  { num: "04", title: "Application Development", desc: "Custom systems with React, .NET, and Azure.", href: "/application-development", span: "lg:col-span-2", variant: "dark" },
-  { num: "05", title: "Application Management", desc: "24/7 managed services and SRE.", href: "/application-management", span: "lg:col-span-2", variant: "default" },
-  { num: "06", title: "Smart Teams", desc: "Dedicated offshore engineering pods.", href: "/dedicated-development-team", span: "lg:col-span-3", variant: "default" },
-  { num: "+", title: "Cloud & IoT", desc: "Azure architecture, edge compute, telemetry.", href: "/iot-internet-of-things", span: "lg:col-span-3", variant: "default" },
-];
+type ServiceCard = { num: string; title: string; desc: string; href: string; span: string; variant: string };
 
 function CardShape({ kind }: { kind: "ring" | "cube" }) {
   if (kind === "ring") {
@@ -36,7 +28,7 @@ function CardShape({ kind }: { kind: "ring" | "cube" }) {
   );
 }
 
-export default function Services() {
+export default function Services({ services }: { services: ServiceCard[] }) {
   return (
     <section id="services" className="py-20 lg:py-28" style={{ background: "var(--background)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">

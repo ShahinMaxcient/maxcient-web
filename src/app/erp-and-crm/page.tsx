@@ -47,7 +47,7 @@ export default function ERPAndCRM() {
     <>
       <Navbar />
       <main>
-        <PageHero
+        <PageHero slug="erp-and-crm"
           title="ERP and CRM"
           subtitle="Setting the stage for your exponential growth. Navigating the ERP & CRM landscape can be daunting. With our expertise, we guide businesses through the selection and implementation process."
           image="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80"
@@ -102,7 +102,7 @@ export default function ERPAndCRM() {
         </section>
 
         <CTASection title="Start Your Digital Transformation Journey" subtitle="Reach our transformation experts today for a comprehensive ERP & CRM evaluation." />
-        <PageFAQ faqs={faqs} />
+        <PageFAQ slug="erp-and-crm" faqs={faqs} />
       </main>
       <Footer />
     </>

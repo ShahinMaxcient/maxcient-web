@@ -29,10 +29,10 @@ export default function ProfessionalServices() {
     <>
       <Navbar />
       <main>
-        <PageHero title="Professional Services" subtitle="Emerging Trends In Professional Services. The sector is undergoing a paradigm shift driven by digital transformation and evolving client expectations." image="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&q=80" />
+        <PageHero slug="professional-services" title="Professional Services" subtitle="Emerging Trends In Professional Services. The sector is undergoing a paradigm shift driven by digital transformation and evolving client expectations." image="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&q=80" />
         <FeatureGrid title="Professional Services Solutions" subtitle="Technology solutions designed for dynamic service environments." features={features} />
         <CTASection title="Reimagine Service Excellence" subtitle="Partner with us to transform your professional services operations." />
-        <PageFAQ faqs={faqs} />
+        <PageFAQ slug="professional-services" faqs={faqs} />
       </main>
       <Footer />
     </>

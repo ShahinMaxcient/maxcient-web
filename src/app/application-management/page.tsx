@@ -30,14 +30,14 @@ export default function ApplicationManagement() {
     <>
       <Navbar />
       <main>
-        <PageHero
+        <PageHero slug="application-management"
           title="Application Management"
           subtitle="Ensuring Optimal Performance & Continuous Improvement. Reliable application management services ensuring your applications perform at their best."
           image="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&q=80"
         />
         <FeatureGrid title="Management Capabilities" subtitle="End-to-end application management powered by Microsoft Dynamics 365." features={features} />
         <CTASection title="Optimize Your Applications" subtitle="Connect with our AMS team for a comprehensive application performance evaluation." />
-        <PageFAQ faqs={faqs} />
+        <PageFAQ slug="application-management" faqs={faqs} />
       </main>
       <Footer />
     </>

@@ -29,14 +29,14 @@ export default function DataAnalytics() {
     <>
       <Navbar />
       <main>
-        <PageHero
+        <PageHero slug="data-analytics"
           title="Data Analytics"
           subtitle="Transforming Data into Business Intelligence. In the realm of big data, extracting meaningful information is crucial. Not leveraging your data can keep you in the dark, missing out on game-changing opportunities."
           image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80"
         />
         <FeatureGrid title="Our Data Analytics Capabilities" subtitle="Comprehensive analytics solutions powered by Microsoft Power BI and Azure." features={features} />
         <CTASection title="Tailored Insights, Tangible Growth" subtitle="Connect with our data experts to unlock the full potential of your business data." />
-        <PageFAQ faqs={faqs} />
+        <PageFAQ slug="data-analytics" faqs={faqs} />
       </main>
       <Footer />
     </>
