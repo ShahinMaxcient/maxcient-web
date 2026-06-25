@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 
@@ -55,12 +56,21 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // The homepage hero is a dark image; when the navbar is transparent over it
+  // (top of home, not scrolled), force light text regardless of theme.
+  const overHero = pathname === "/" && !scrolled;
+  const linkColor = overHero ? "rgba(255,255,255,0.88)" : "var(--nav-text)";
+  const strongColor = overHero ? "#FFFFFF" : "var(--text-primary)";
+  const markBg = overHero ? "#FFFFFF" : "var(--text-primary)";
+  const markFg = overHero ? "#14101F" : "var(--background)";
 
   return (
     <motion.header
@@ -78,10 +88,10 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-[72px]">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 flex items-center justify-center font-extrabold text-[17px]" style={{ background: "var(--text-primary)", color: "var(--background)", borderRadius: "2px" }}>
+            <div className="w-8 h-8 flex items-center justify-center font-extrabold text-[17px]" style={{ background: markBg, color: markFg, borderRadius: "2px" }}>
               M
             </div>
-            <span className="text-lg font-bold tracking-tight" style={{ color: "var(--text-primary)" }}>
+            <span className="text-lg font-bold tracking-tight" style={{ color: strongColor }}>
               Maxcient
             </span>
           </Link>
@@ -102,7 +112,7 @@ export default function Navbar() {
                   style={{
                     fontFamily: "var(--font-geist-mono), ui-monospace, monospace",
                     fontSize: "12px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em",
-                    color: "var(--nav-text)", borderRadius: "4px",
+                    color: linkColor, borderRadius: "4px",
                   }}
                 >
                   {item.label}
@@ -144,18 +154,18 @@ export default function Navbar() {
 
           {/* Right */}
           <div className="hidden lg:flex items-center gap-3">
-            <ThemeToggle />
+            <ThemeToggle onHero={overHero} />
             <Link
               href="/request-a-consultation"
               className="group inline-flex items-center gap-2 px-5 py-2.5 transition-all duration-200"
               style={{
-                background: "var(--text-primary)", color: "var(--background)",
+                background: markBg, color: markFg,
                 fontFamily: "var(--font-geist-mono), ui-monospace, monospace",
                 fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em",
                 borderRadius: "4px",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.background = "var(--primary)")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "var(--text-primary)")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = markBg)}
             >
               Get Started
               <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -166,9 +176,9 @@ export default function Navbar() {
 
           {/* Mobile toggle */}
           <div className="flex items-center gap-2 lg:hidden">
-            <ThemeToggle />
+            <ThemeToggle onHero={overHero && !mobileMenuOpen} />
             <button className="p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Menu">
-              <svg className="w-6 h-6" style={{ color: "var(--text-primary)" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" style={{ color: overHero && !mobileMenuOpen ? "#FFFFFF" : "var(--text-primary)" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {mobileMenuOpen ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /> : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}
               </svg>
             </button>

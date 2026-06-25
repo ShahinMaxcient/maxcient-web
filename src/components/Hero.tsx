@@ -4,122 +4,146 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+const stats = [
+  { n: "06", l: "Global Offices" },
+  { n: "120+", l: "Projects Delivered" },
+  { n: "5/5", l: "Client Rating" },
+  { n: "98%", l: "Satisfaction" },
+];
+
 export default function Hero() {
   return (
     <section
-      className="relative overflow-hidden"
-      style={{ background: "var(--background)", paddingTop: "120px", paddingBottom: "80px" }}
+      className="relative w-full overflow-hidden"
+      style={{ minHeight: "min(92vh, 900px)", background: "#100c20" }}
     >
-      {/* faint grid */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        backgroundImage: "linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)",
-        backgroundSize: "80px 80px",
-        maskImage: "radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 75%)",
-        WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 75%)",
-        opacity: 0.6,
-      }} />
+      {/* Full-bleed background image */}
+      <Image
+        src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=2400&q=80"
+        alt="Dubai skyline — Maxcient, a digital enabler for the UAE & GCC"
+        fill
+        priority
+        className="object-cover"
+        sizes="100vw"
+      />
 
-      <div className="relative max-w-[1400px] mx-auto px-5 sm:px-8 grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
-        {/* Left */}
-        <div>
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+      {/* Tinted gradient overlay for legibility (lavender-leaning to match brand) */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(100deg, rgba(16,12,32,0.94) 0%, rgba(18,13,38,0.82) 38%, rgba(40,26,80,0.45) 70%, rgba(124,58,237,0.25) 100%)",
+        }}
+      />
+
+      {/* faint editorial grid on top */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
+          maskImage: "radial-gradient(ellipse 90% 80% at 30% 40%, black 30%, transparent 85%)",
+          WebkitMaskImage: "radial-gradient(ellipse 90% 80% at 30% 40%, black 30%, transparent 85%)",
+        }}
+      />
+
+      {/* Content */}
+      <div className="relative max-w-[1400px] mx-auto px-5 sm:px-8 flex flex-col justify-center" style={{ minHeight: "min(92vh, 900px)", paddingTop: "120px", paddingBottom: "64px" }}>
+        <div className="max-w-[760px]">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-3 mb-7"
-            style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-secondary)" }}
+            style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255,255,255,0.72)" }}
           >
-            <span style={{ display: "block", width: 36, height: 1, background: "var(--text-primary)" }} />
+            <span style={{ display: "block", width: 36, height: 1, background: "rgba(255,255,255,0.9)" }} />
             EST · 2017 — DUBAI · UAE
           </motion.div>
 
-          <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
             className="ed-display"
-            style={{ fontSize: "clamp(2.75rem, 6vw, 5.25rem)" }}
+            style={{ fontSize: "clamp(2.85rem, 6.5vw, 5.75rem)", color: "#FFFFFF", lineHeight: 1.04 }}
           >
             Maximize{" "}
             <span style={{ position: "relative", display: "inline-block" }}>
               <span style={{ position: "relative", zIndex: 1 }}>Tech</span>
-              <span style={{ position: "absolute", left: 0, right: 0, bottom: "10%", height: "26%", background: "var(--primary-light)", transform: "skewX(-3deg)", zIndex: 0 }} />
+              <span style={{ position: "absolute", left: 0, right: 0, bottom: "10%", height: "26%", background: "var(--primary-light)", transform: "skewX(-3deg)", zIndex: 0, opacity: 0.85 }} />
             </span>{" "}
-            ROI<span style={{ color: "var(--primary)" }}>.</span>
+            ROI<span style={{ color: "var(--primary-light)" }}>.</span>
           </motion.h1>
 
-          <motion.p initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-7 leading-relaxed" style={{ fontSize: "1.1rem", color: "var(--text-muted)", maxWidth: "520px" }}
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="mt-7 leading-relaxed"
+            style={{ fontSize: "1.15rem", color: "rgba(255,255,255,0.82)", maxWidth: "560px" }}
           >
             A digital enabler for the UAE &amp; GCC. We build enterprise systems with Microsoft
             Dynamics 365, Power Platform, Azure, AI, and blockchain — delivered by a senior team
             across 6 global offices.
           </motion.p>
 
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
             className="mt-10 flex items-center gap-7 flex-wrap"
           >
-            <Link href="/request-a-consultation" className="group relative inline-flex items-center gap-3 overflow-hidden px-8 py-4 transition-colors duration-200"
-              style={{ background: "var(--text-primary)", color: "var(--background)", fontWeight: 600, fontSize: "15px", borderRadius: "4px" }}
+            <Link
+              href="/request-a-consultation"
+              className="group inline-flex items-center gap-3 px-8 py-4 transition-transform duration-200 hover:-translate-y-0.5"
+              style={{ background: "#FFFFFF", color: "#100c20", fontWeight: 600, fontSize: "15px", borderRadius: "4px" }}
             >
-              <span className="relative z-10">Book a consultation</span>
-              <svg className="relative z-10 w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              <span>Book a consultation</span>
+              <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
-            <Link href="#services" className="inline-flex items-center gap-2"
-              style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--text-secondary)" }}
+            <Link
+              href="#services"
+              className="inline-flex items-center gap-2"
+              style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.85)" }}
             >
               See our work
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
             </Link>
-          </motion.div>
 
-          {/* meta stats */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-14 flex gap-12 flex-wrap"
-          >
-            {[{ n: "06", l: "Global Offices" }, { n: "5/5", l: "Client Rating" }, { n: "98%", l: "Satisfaction" }].map((s) => (
-              <div key={s.l}>
-                <div style={{ fontSize: "1.75rem", fontWeight: 800, letterSpacing: "-0.02em", color: "var(--text-primary)" }}>{s.n}</div>
-                <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--text-muted)", marginTop: 4 }}>{s.l}</div>
-              </div>
-            ))}
+            <span
+              className="inline-flex items-center gap-2.5 px-4 py-2.5"
+              style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)", borderRadius: "5px", backdropFilter: "blur(6px)" }}
+            >
+              {/* Official Microsoft four-square logo */}
+              <svg width="16" height="16" viewBox="0 0 23 23" aria-hidden="true" className="shrink-0">
+                <rect x="0" y="0" width="10.5" height="10.5" fill="#F25022" />
+                <rect x="12.5" y="0" width="10.5" height="10.5" fill="#7FBA00" />
+                <rect x="0" y="12.5" width="10.5" height="10.5" fill="#00A4EF" />
+                <rect x="12.5" y="12.5" width="10.5" height="10.5" fill="#FFB900" />
+              </svg>
+              <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "#fff" }}>
+                Microsoft Gold Partner
+              </span>
+            </span>
           </motion.div>
         </div>
 
-        {/* Right — professional image with editorial frame + static cards */}
-        <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative" style={{ aspectRatio: "4/3.4" }}
+        {/* Stats bar */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-px overflow-hidden"
+          style={{ background: "rgba(255,255,255,0.14)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: "8px", maxWidth: "760px" }}
         >
-          {/* offset accent frame */}
-          <div className="absolute hidden sm:block" style={{ inset: 0, border: "1px solid var(--text-primary)", transform: "translate(18px, 18px)", borderRadius: "6px" }} />
-
-          {/* image */}
-          <div className="relative w-full h-full overflow-hidden" style={{ border: "1px solid var(--border)", borderRadius: "6px" }}>
-            <Image
-              src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80"
-              alt="Maxcient enterprise technology team"
-              fill
-              priority
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
-
-          {/* trust badge — Microsoft Gold Partner */}
-          <div className="absolute -top-4 -left-4 sm:-left-5 flex items-center gap-2.5 px-4 py-3"
-            style={{ background: "var(--surface)", border: "1px solid var(--border-strong)", borderRadius: "5px", boxShadow: "var(--shadow-hard)" }}
-          >
-            <span className="flex items-center justify-center" style={{ width: 22, height: 22, borderRadius: "50%", background: "#00C781", color: "#fff" }}>
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-            </span>
-            <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--text-primary)" }}>
-              Microsoft Gold Partner
-            </span>
-          </div>
-
-          {/* stat card — projects delivered */}
-          <div className="absolute -bottom-5 -right-3 sm:-right-5 px-5 py-4"
-            style={{ background: "var(--primary-light)", color: "var(--foreground)", borderRadius: "5px", boxShadow: "var(--shadow)" }}
-          >
-            <div style={{ fontSize: "1.9rem", fontWeight: 800, letterSpacing: "-0.02em", lineHeight: 1 }}>120<span style={{ opacity: 0.7 }}>+</span></div>
-            <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", marginTop: 5, opacity: 0.85 }}>
-              Projects Delivered
+          {stats.map((s) => (
+            <div key={s.l} className="px-5 py-5" style={{ background: "rgba(16,12,32,0.55)", backdropFilter: "blur(4px)" }}>
+              <div style={{ fontSize: "1.85rem", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>{s.n}</div>
+              <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10.5px", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.62)", marginTop: 7 }}>{s.l}</div>
             </div>
-          </div>
+          ))}
         </motion.div>
       </div>
     </section>

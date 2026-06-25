@@ -98,9 +98,15 @@
   --font-mono: var(--font-geist-mono, 'JetBrains Mono');
 }
 
+/* Hide scrollbars everywhere (keep scroll functionality), no reserved gutter */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: var(--text-muted) transparent;
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE / old Edge */
+}
+*::-webkit-scrollbar {          /* Chrome / Safari / Edge */
+  width: 0;
+  height: 0;
+  display: none;
 }
 
 body {
@@ -176,6 +182,28 @@ html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-float, [class*="ed-"] { animation: none !important; }
+}
+
+/* ============================================================
+   PREMIUM CARD INTERACTIONS
+   ============================================================ */
+.ed-service-card {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.ed-service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px -18px rgba(20, 16, 40, 0.28);
+}
+.ed-service-arrow {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.group:hover .ed-service-arrow {
+  transform: translate(3px, -3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ed-service-card, .ed-service-arrow { transition: none !important; }
+  .ed-service-card:hover { transform: none; }
 }
 
 /* ============================================================
