@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getSiteSettings } from "@/lib/settings";
 
 const services = [
@@ -83,16 +84,18 @@ export default async function Footer() {
         <div className="py-16 lg:py-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-[2fr_1fr_1fr_1fr_1.2fr] gap-10 lg:gap-8">
           {/* Brand */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 flex items-center justify-center font-extrabold text-lg" style={{ background: "var(--text-primary)", color: "var(--background)", borderRadius: "2px" }}>M</div>
-              <span className="text-xl font-bold tracking-tight" style={{ color: "var(--text-primary)" }}>Maxcient</span>
-            </div>
+            <Image src="/maxcient-logo-blue.png" alt="Maxcient" width={236} height={32} style={{ height: 32, width: "auto" }} />
             <p className="mt-5 text-sm leading-relaxed" style={{ color: "var(--text-muted)", maxWidth: "320px" }}>
               {settings.footerTagline}
             </p>
             <div className="mt-6 space-y-1" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12.5px" }}>
               <a href={`mailto:${settings.contactEmail}`} className="block transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-primary)" }}>{settings.contactEmail} →</a>
               <a href={telHref} className="block transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-primary)" }}>{settings.contactPhone} →</a>
+            </div>
+            {/* Working hours */}
+            <div className="mt-5">
+              <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)", marginBottom: 4 }}>Call us</div>
+              <div className="text-sm" style={{ color: "var(--text-secondary)" }}>Monday – Friday · 9:00 AM – 6:00 PM</div>
             </div>
             {/* Social */}
             <div className="mt-6 flex items-center gap-3" style={{ display: settings.linkedinUrl ? undefined : "none" }}>

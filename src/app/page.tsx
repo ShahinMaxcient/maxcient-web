@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
+import TrustedBy from "@/components/TrustedBy";
 import Services from "@/components/Services";
 import Industries from "@/components/Industries";
 import Products from "@/components/Products";
@@ -28,6 +29,7 @@ export default async function Home() {
       <main>
         <Hero />
         <Marquee />
+        <TrustedBy />
         <Services services={services} />
         <Industries />
         <Products />

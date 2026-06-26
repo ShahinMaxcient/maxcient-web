@@ -67,7 +67,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="ed-display"
-            style={{ fontSize: "clamp(2.85rem, 6.5vw, 5.75rem)", color: "#FFFFFF", lineHeight: 1.04 }}
+            style={{ fontSize: "clamp(2.85rem, 6.5vw, 5.75rem)", color: "#FFFFFF", lineHeight: 1.04, fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}
           >
             Maximize{" "}
             <span style={{ position: "relative", display: "inline-block" }}>
@@ -111,6 +111,19 @@ export default function Hero() {
               See our work
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
             </Link>
+
+            {/* Call us */}
+            <a href="tel:+97143293710" className="group inline-flex items-center gap-3">
+              <span className="flex items-center justify-center shrink-0 transition-colors" style={{ width: 44, height: 44, borderRadius: "50%", border: "1px solid rgba(255,255,255,0.3)", color: "#fbbf24" }}>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+              </span>
+              <span className="leading-tight">
+                <span className="block" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255,255,255,0.65)" }}>Call us</span>
+                <span className="block" style={{ fontWeight: 600, fontSize: "15px", color: "#FFFFFF" }}>+971 4 329 3710</span>
+              </span>
+            </a>
 
             <span
               className="inline-flex items-center gap-2.5 px-4 py-2.5"

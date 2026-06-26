@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
@@ -68,7 +69,6 @@ export default function Navbar() {
   // (top of home, not scrolled), force light text regardless of theme.
   const overHero = pathname === "/" && !scrolled;
   const linkColor = overHero ? "rgba(255,255,255,0.88)" : "var(--nav-text)";
-  const strongColor = overHero ? "#FFFFFF" : "var(--text-primary)";
   const markBg = overHero ? "#FFFFFF" : "var(--text-primary)";
   const markFg = overHero ? "#14101F" : "var(--background)";
 
@@ -87,13 +87,15 @@ export default function Navbar() {
       <nav className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <div className="flex items-center justify-between h-[72px]">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 flex items-center justify-center font-extrabold text-[17px]" style={{ background: markBg, color: markFg, borderRadius: "2px" }}>
-              M
-            </div>
-            <span className="text-lg font-bold tracking-tight" style={{ color: strongColor }}>
-              Maxcient
-            </span>
+          <Link href="/" className="flex items-center" aria-label="Maxcient home">
+            <Image
+              src="/maxcient-logo-blue.png"
+              alt="Maxcient"
+              width={206}
+              height={28}
+              priority
+              style={{ height: 28, width: "auto" }}
+            />
           </Link>
 
           {/* Center nav */}
@@ -110,7 +112,7 @@ export default function Navbar() {
                   onClick={(e) => item.children && e.preventDefault()}
                   className="px-4 py-2 flex items-center gap-1.5 transition-colors duration-150 hover:opacity-100"
                   style={{
-                    fontFamily: "var(--font-geist-mono), ui-monospace, monospace",
+                    fontFamily: "var(--font-geist-sans), system-ui, sans-serif",
                     fontSize: "12px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em",
                     color: linkColor, borderRadius: "4px",
                   }}
@@ -160,7 +162,7 @@ export default function Navbar() {
               className="group inline-flex items-center gap-2 px-5 py-2.5 transition-all duration-200"
               style={{
                 background: markBg, color: markFg,
-                fontFamily: "var(--font-geist-mono), ui-monospace, monospace",
+                fontFamily: "var(--font-geist-sans), system-ui, sans-serif",
                 fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em",
                 borderRadius: "4px",
               }}
@@ -202,7 +204,7 @@ export default function Navbar() {
                       <button
                         onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
                         className="w-full flex items-center justify-between py-3"
-                        style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--text-primary)" }}
+                        style={{ fontFamily: "var(--font-geist-sans), system-ui, sans-serif", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--text-primary)" }}
                       >
                         {item.label}
                         <svg className={`w-4 h-4 transition-transform ${mobileExpanded === item.label ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
@@ -216,11 +218,11 @@ export default function Navbar() {
                       )}
                     </>
                   ) : (
-                    <Link href={item.href} className="block py-3" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--text-primary)" }} onClick={() => setMobileMenuOpen(false)}>{item.label}</Link>
+                    <Link href={item.href} className="block py-3" style={{ fontFamily: "var(--font-geist-sans), system-ui, sans-serif", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--text-primary)" }} onClick={() => setMobileMenuOpen(false)}>{item.label}</Link>
                   )}
                 </div>
               ))}
-              <Link href="/request-a-consultation" className="mt-4 block w-full text-center px-6 py-3" style={{ background: "var(--text-primary)", color: "var(--background)", fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.08em", borderRadius: "4px" }} onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
+              <Link href="/request-a-consultation" className="mt-4 block w-full text-center px-6 py-3" style={{ background: "var(--text-primary)", color: "var(--background)", fontFamily: "var(--font-geist-sans), system-ui, sans-serif", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.08em", borderRadius: "4px" }} onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
             </motion.div>
           )}
         </AnimatePresence>
