@@ -4,16 +4,9 @@ import Link from "next/link";
 import SectionReveal from "./SectionReveal";
 import SectionHead from "./SectionHead";
 
-const technologies = [
-  { title: "Microsoft Dynamics 365", description: "Intuitive, adaptable enterprise applications that grow with you.", letter: "D365", href: "/microsoft-dynamics-365" },
-  { title: "Power Platform", description: "Connect data, build apps, and automate workflows for everyone.", letter: "PP", href: "/microsoft-power-platform" },
-  { title: "Microsoft Azure", description: "Endless cloud capabilities and global infrastructure.", letter: "Az", href: "/microsoft-azure" },
-  { title: "Settlemint Blockchain", description: "Unmatched security and transparency for transactions.", letter: "BC", href: "/settlemint-blockchain" },
-  { title: "OpenAI", description: "Advanced AI models to drive innovation and automate processes.", letter: "AI", href: "/open-ai" },
-  { title: "IoT", description: "Real-time insights and control from the edge to the cloud.", letter: "IoT", href: "/iot-internet-of-things" },
-];
+type TechnologyItem = { title: string; description: string; letter: string; href: string };
 
-export default function Technologies() {
+export default function Technologies({ technologies }: { technologies: TechnologyItem[] }) {
   return (
     <section id="technologies" className="py-20 lg:py-28" style={{ background: "var(--background)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">

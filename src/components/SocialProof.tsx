@@ -17,14 +17,9 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
-const stats = [
-  { eye: "01 — DELIVERY", value: 100, suffix: "%", label: "On-time project completion across all engagements since 2017." },
-  { eye: "02 — EXPERIENCE", value: 50, suffix: "+", label: "Years of combined Microsoft Dynamics expertise on the team." },
-  { eye: "03 — RATING", value: 5, suffix: "/5", label: "Average client rating across our active engagements." },
-  { eye: "04 — REACH", value: 6, suffix: "", label: "Offices across Dubai, Oman, KSA, India, and the UK." },
-];
+type StatItem = { eyebrow: string; value: number; suffix: string; label: string };
 
-export default function SocialProof() {
+export default function SocialProof({ stats }: { stats: StatItem[] }) {
   return (
     <section id="about" className="py-20 lg:py-28" style={{ background: "var(--surface-alt)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
@@ -43,8 +38,8 @@ export default function SocialProof() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style={{ borderTop: "1px solid var(--border)" }}>
           {stats.map((s, i) => (
-            <div key={s.eye} className="py-12 pr-9" style={{ borderRight: i < 3 ? "1px solid var(--border)" : "none" }}>
-              <div className="mb-7" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)" }}>{s.eye}</div>
+            <div key={s.eyebrow || i} className="py-12 pr-9" style={{ borderRight: i < 3 ? "1px solid var(--border)" : "none" }}>
+              <div className="mb-7" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)" }}>{s.eyebrow}</div>
               <div style={{ fontSize: "clamp(3.5rem, 6vw, 5.5rem)", fontWeight: 800, letterSpacing: "-0.045em", lineHeight: 0.9, color: "var(--text-primary)" }}>
                 <AnimatedCounter target={s.value} /><span style={{ color: "var(--primary)" }}>{s.suffix}</span>
               </div>

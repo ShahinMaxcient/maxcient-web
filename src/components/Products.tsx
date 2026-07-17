@@ -5,13 +5,9 @@ import Link from "next/link";
 import SectionReveal from "./SectionReveal";
 import SectionHead from "./SectionHead";
 
-const products = [
-  { num: "P/01", title: "RealtyAI", desc: "Property management for the AI-first era. Tenants, maintenance, billing, and real-time portfolio analytics — fully UAE-compliant.", tags: ["Property Management", "Tenant Portal", "AI Insights", "RERA / UAE"], href: "/realtyai-property-management-solution", image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=900&q=80" },
-  { num: "P/02", title: "SmartFees", desc: "School financial operations — invoicing, expense tracking, payroll, and board-ready financial reports, in one place.", tags: ["Invoicing", "Expense Tracking", "Payroll", "Compliance"], href: "/smartfees-school-admin-solution", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80" },
-  { num: "P/03", title: "MaxPayroll", desc: "Modern HR + payroll for UAE employers. Employee self-service, attendance, leave, EOSB, and WPS in a single workflow.", tags: ["HR Management", "Payroll", "Employee Portal", "WPS Ready"], href: "/maxpayroll-hr-management-solution-2", image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=900&q=80" },
-];
+type ProductItem = { num: string; title: string; desc: string; tags: string[]; href: string; image: string };
 
-export default function Products() {
+export default function Products({ products }: { products: ProductItem[] }) {
   return (
     <section id="products" className="py-20 lg:py-28" style={{ background: "var(--background)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">

@@ -131,3 +131,106 @@ model SiteSetting {
   value     Json
   updatedAt DateTime @updatedAt
 }
+
+// Homepage "Industries" bento cards.
+model Industry {
+  id        String   @id @default(cuid())
+  title     String
+  num       String   @default("")
+  href      String   @default("#")
+  image     String   @default("")
+  span      String   @default("lg:col-span-4")
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([order])
+}
+
+// Homepage "Technologies" cards.
+model Technology {
+  id          String   @id @default(cuid())
+  title       String
+  description String   @default("")
+  letter      String   @default("")
+  href        String   @default("#")
+  order       Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([order])
+}
+
+// Homepage "Products" rows.
+model Product {
+  id        String   @id @default(cuid())
+  num       String   @default("")
+  title     String
+  desc      String   @default("")
+  tags      String[] @default([])
+  href      String   @default("#")
+  image     String   @default("")
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([order])
+}
+
+// "Trusted by" client logos.
+model Client {
+  id        String   @id @default(cuid())
+  name      String
+  logo      String
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([order])
+}
+
+// Homepage FAQ items.
+model Faq {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([order])
+}
+
+// Homepage "By the numbers" stats.
+model Stat {
+  id        String   @id @default(cuid())
+  value     Int      @default(0)
+  suffix    String   @default("")
+  eyebrow   String   @default("")
+  label     String
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([order])
+}
+
+// Footer office locations.
+model Office {
+  id        String   @id @default(cuid())
+  region    String
+  city      String
+  address   String
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([order])
+}

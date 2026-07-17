@@ -15,28 +15,37 @@ import Footer from "@/components/Footer";
 import { getPublishedPosts } from "@/lib/posts";
 import { getSiteSettings } from "@/lib/settings";
 import { getServices, getTestimonials } from "@/lib/homepage";
+import { getCollectionItems } from "@/lib/content";
 
 export default async function Home() {
-  const [posts, settings, services, testimonials] = await Promise.all([
-    getPublishedPosts(4),
-    getSiteSettings(),
-    getServices(),
-    getTestimonials(),
-  ]);
+  const [posts, settings, services, testimonials, industries, products, technologies, clients, stats, faqs] =
+    await Promise.all([
+      getPublishedPosts(4),
+      getSiteSettings(),
+      getServices(),
+      getTestimonials(),
+      getCollectionItems<{ title: string; num: string; href: string; image: string; span: string }>("industries"),
+      getCollectionItems<{ num: string; title: string; desc: string; tags: string[]; href: string; image: string }>("products"),
+      getCollectionItems<{ title: string; description: string; letter: string; href: string }>("technologies"),
+      getCollectionItems<{ name: string; logo: string }>("clients"),
+      getCollectionItems<{ eyebrow: string; value: number; suffix: string; label: string }>("stats"),
+      getCollectionItems<{ question: string; answer: string }>("faqs"),
+    ]);
+
   return (
     <>
       <Navbar />
       <main>
         <Hero />
         <Marquee />
-        <TrustedBy />
+        <TrustedBy clients={clients} />
         <Services services={services} />
-        <Industries />
-        <Products />
-        <Technologies />
-        <SocialProof />
+        <Industries industries={industries} />
+        <Products products={products} />
+        <Technologies technologies={technologies} />
+        <SocialProof stats={stats} />
         <Testimonials cards={testimonials} />
-        <FAQ />
+        <FAQ faqs={faqs} />
         <Blog posts={posts} />
         <CTASection
           title="Get in touch"

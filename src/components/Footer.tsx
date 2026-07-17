@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getSiteSettings } from "@/lib/settings";
+import { getCollectionItems } from "@/lib/content";
 
 const services = [
   { label: "ERP & CRM", href: "/erp-and-crm" },
@@ -31,29 +32,16 @@ const technologies = [
   { label: "IoT", href: "/iot-internet-of-things" },
 ];
 
-const officeRegions = [
-  {
-    region: "MENA",
-    offices: [
-      { city: "Dubai", address: "Office No. 2912, Churchill Tower, Business Bay, UAE, PO Box: 118467" },
-      { city: "Oman", address: "5th Floor, Office# 517, Almaktabi Building, Watayyah, Muscat" },
-      { city: "KSA", address: "415, Tower B, Olaya Towers, MBZ Road, Riyadh" },
-    ],
-  },
-  {
-    region: "India",
-    offices: [
-      { city: "Bengaluru", address: "101 & 102, “VISIBLE”, 100 Feet Road, Indiranagar" },
-      { city: "Kochi", address: "4th Floor, Office# 101, Crescens Tower, Monlash Business Center, Ernakulam" },
-    ],
-  },
-  {
-    region: "EU",
-    offices: [
-      { city: "U.K.", address: "Southfield Square, Bradford, West Yorkshire BD8 7SN" },
-    ],
-  },
-];
+type OfficeRow = { region: string; city: string; address: string };
+
+function groupOffices(rows: OfficeRow[]) {
+  const map = new Map<string, { region: string; offices: { city: string; address: string }[] }>();
+  for (const o of rows) {
+    if (!map.has(o.region)) map.set(o.region, { region: o.region, offices: [] });
+    map.get(o.region)!.offices.push({ city: o.city, address: o.address });
+  }
+  return Array.from(map.values());
+}
 
 function ColHead({ children }: { children: React.ReactNode }) {
   return <h3 style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)", marginBottom: "22px" }}>{children}</h3>;
@@ -75,7 +63,11 @@ function LinkCol({ title, links }: { title: string; links: { label: string; href
 }
 
 export default async function Footer() {
-  const settings = await getSiteSettings();
+  const [settings, officeRows] = await Promise.all([
+    getSiteSettings(),
+    getCollectionItems<OfficeRow>("offices"),
+  ]);
+  const officeRegions = groupOffices(officeRows);
   const telHref = `tel:${settings.contactPhone.replace(/[^0-9+]/g, "")}`;
   return (
     <footer id="contact" style={{ background: "var(--background)", borderTop: "1px solid var(--border)" }}>

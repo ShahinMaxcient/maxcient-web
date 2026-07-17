@@ -5,18 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import SectionReveal from "./SectionReveal";
 import SectionHead from "./SectionHead";
 
-const faqs = [
-  { question: "What makes Maxcient a leader in driving digital transformation?", answer: "Maxcient stands at the forefront of digital transformation by leveraging Microsoft Dynamics 365, IoT, and AI with proven expertise delivering scalable solutions." },
-  { question: "What are the core benefits of partnering with Maxcient?", answer: "Access to cutting-edge technology, bespoke solutions tailored to industry-specific needs, operational efficiency gains, enhanced analytics, robust cybersecurity, and dedicated support." },
-  { question: "How does Maxcient empower businesses with technology?", answer: "We provide comprehensive solutions that simplify complex processes, automate routine tasks, and enhance data analytics, converting data into actionable insights." },
-  { question: "What innovation does Maxcient bring to data-driven decision-making?", answer: "We integrate AI and machine learning into analytics, offering predictive and prescriptive insights for strategic advantage." },
-  { question: "What strategies does Maxcient use to ensure data security?", answer: "Implementation includes encryption, secure access controls, and regular audits, adhering to international standards for compliance." },
-  { question: "Can Maxcient support cloud service transitions?", answer: "We specialize in smooth transitions to cloud services, leveraging Microsoft Azure with meticulous planning and phased rollouts." },
-  { question: "How does Maxcient utilize Blockchain technology?", answer: "We use Settlemint for decentralized applications that streamline supply chain management, smart contracts, and transactions." },
-  { question: "Can Maxcient help with custom application development?", answer: "We excel in custom development, creating solutions tailor-made for your unique business challenges using cutting-edge technology." },
-];
+type FaqItem = { question: string; answer: string };
 
-export default function FAQ() {
+export default function FAQ({ faqs }: { faqs: FaqItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
