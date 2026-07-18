@@ -3,23 +3,19 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import type { HeroSettings } from "@/lib/settings";
+import { DEFAULT_HERO } from "@/lib/settings";
 
-const stats = [
-  { n: "06", l: "Global Offices" },
-  { n: "120+", l: "Projects Delivered" },
-  { n: "5/5", l: "Client Rating" },
-  { n: "98%", l: "Satisfaction" },
-];
+export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
+  const telHref = `tel:${data.phone.replace(/[^0-9+]/g, "")}`;
 
-export default function Hero() {
   return (
     <section
       className="relative w-full overflow-hidden"
       style={{ minHeight: "min(92vh, 900px)", background: "#100c20" }}
     >
-      {/* Full-bleed background image */}
       <Image
-        src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=2400&q=80"
+        src={data.image}
         alt="Dubai skyline — Maxcient, a digital enabler for the UAE & GCC"
         fill
         priority
@@ -27,7 +23,6 @@ export default function Hero() {
         sizes="100vw"
       />
 
-      {/* Tinted gradient overlay for legibility (lavender-leaning to match brand) */}
       <div
         className="absolute inset-0"
         style={{
@@ -36,7 +31,6 @@ export default function Hero() {
         }}
       />
 
-      {/* faint editorial grid on top */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -48,7 +42,6 @@ export default function Hero() {
         }}
       />
 
-      {/* Content */}
       <div className="relative max-w-[1400px] mx-auto px-5 sm:px-8 flex flex-col justify-center" style={{ minHeight: "min(92vh, 900px)", paddingTop: "120px", paddingBottom: "64px" }}>
         <div className="max-w-[760px]">
           <motion.div
@@ -59,7 +52,7 @@ export default function Hero() {
             style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255,255,255,0.72)" }}
           >
             <span style={{ display: "block", width: 36, height: 1, background: "rgba(255,255,255,0.9)" }} />
-            EST · 2017 — DUBAI · UAE
+            {data.tagline}
           </motion.div>
 
           <motion.h1
@@ -69,12 +62,11 @@ export default function Hero() {
             className="ed-display"
             style={{ fontSize: "clamp(2.85rem, 6.5vw, 5.75rem)", color: "#FFFFFF", lineHeight: 1.04, fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}
           >
-            Maximize{" "}
-            <span style={{ position: "relative", display: "inline-block" }}>
-              <span style={{ position: "relative", zIndex: 1 }}>Tech</span>
-              <span style={{ position: "absolute", left: 0, right: 0, bottom: "10%", height: "26%", background: "var(--primary-light)", transform: "skewX(-3deg)", zIndex: 0, opacity: 0.85 }} />
-            </span>{" "}
-            ROI<span style={{ color: "var(--primary-light)" }}>.</span>
+            {data.headline.includes("Tech ROI") ? (
+              <>Maximize{" "}<span style={{ position: "relative", display: "inline-block" }}><span style={{ position: "relative", zIndex: 1 }}>Tech</span><span style={{ position: "absolute", left: 0, right: 0, bottom: "10%", height: "26%", background: "var(--primary-light)", transform: "skewX(-3deg)", zIndex: 0, opacity: 0.85 }} /></span>{" "}ROI<span style={{ color: "var(--primary-light)" }}>.</span></>
+            ) : (
+              <>{data.headline}</>
+            )}
           </motion.h1>
 
           <motion.p
@@ -84,9 +76,7 @@ export default function Hero() {
             className="mt-7 leading-relaxed"
             style={{ fontSize: "1.15rem", color: "rgba(255,255,255,0.82)", maxWidth: "560px" }}
           >
-            A digital enabler for the UAE &amp; GCC. We build enterprise systems with Microsoft
-            Dynamics 365, Power Platform, Azure, AI, and blockchain — delivered by a senior team
-            across 6 global offices.
+            {data.subtitle}
           </motion.p>
 
           <motion.div
@@ -100,7 +90,7 @@ export default function Hero() {
               className="group inline-flex items-center gap-3 px-8 py-4 transition-transform duration-200 hover:-translate-y-0.5"
               style={{ background: "#FFFFFF", color: "#100c20", fontWeight: 600, fontSize: "15px", borderRadius: "4px" }}
             >
-              <span>Book a consultation</span>
+              <span>{data.ctaText}</span>
               <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
             <Link
@@ -108,12 +98,11 @@ export default function Hero() {
               className="inline-flex items-center gap-2"
               style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.85)" }}
             >
-              See our work
+              {data.ctaSecondary}
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
             </Link>
 
-            {/* Call us */}
-            <a href="tel:+97143293710" className="group inline-flex items-center gap-3">
+            <a href={telHref} className="group inline-flex items-center gap-3">
               <span className="flex items-center justify-center shrink-0 transition-colors" style={{ width: 44, height: 44, borderRadius: "50%", border: "1px solid rgba(255,255,255,0.3)", color: "#fbbf24" }}>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
@@ -121,29 +110,29 @@ export default function Hero() {
               </span>
               <span className="leading-tight">
                 <span className="block" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255,255,255,0.65)" }}>Call us</span>
-                <span className="block" style={{ fontWeight: 600, fontSize: "15px", color: "#FFFFFF" }}>+971 4 329 3710</span>
+                <span className="block" style={{ fontWeight: 600, fontSize: "15px", color: "#FFFFFF" }}>{data.phone}</span>
               </span>
             </a>
 
-            <span
-              className="inline-flex items-center gap-2.5 px-4 py-2.5"
-              style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)", borderRadius: "5px", backdropFilter: "blur(6px)" }}
-            >
-              {/* Official Microsoft four-square logo */}
-              <svg width="16" height="16" viewBox="0 0 23 23" aria-hidden="true" className="shrink-0">
-                <rect x="0" y="0" width="10.5" height="10.5" fill="#F25022" />
-                <rect x="12.5" y="0" width="10.5" height="10.5" fill="#7FBA00" />
-                <rect x="0" y="12.5" width="10.5" height="10.5" fill="#00A4EF" />
-                <rect x="12.5" y="12.5" width="10.5" height="10.5" fill="#FFB900" />
-              </svg>
-              <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "#fff" }}>
-                Microsoft Gold Partner
+            {data.badge && (
+              <span
+                className="inline-flex items-center gap-2.5 px-4 py-2.5"
+                style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.18)", borderRadius: "5px", backdropFilter: "blur(6px)" }}
+              >
+                <svg width="16" height="16" viewBox="0 0 23 23" aria-hidden="true" className="shrink-0">
+                  <rect x="0" y="0" width="10.5" height="10.5" fill="#F25022" />
+                  <rect x="12.5" y="0" width="10.5" height="10.5" fill="#7FBA00" />
+                  <rect x="0" y="12.5" width="10.5" height="10.5" fill="#00A4EF" />
+                  <rect x="12.5" y="12.5" width="10.5" height="10.5" fill="#FFB900" />
+                </svg>
+                <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "#fff" }}>
+                  {data.badge}
+                </span>
               </span>
-            </span>
+            )}
           </motion.div>
         </div>
 
-        {/* Stats bar */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -151,7 +140,7 @@ export default function Hero() {
           className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-px overflow-hidden"
           style={{ background: "rgba(255,255,255,0.14)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: "8px", maxWidth: "760px" }}
         >
-          {stats.map((s) => (
+          {data.stats.map((s) => (
             <div key={s.l} className="px-5 py-5" style={{ background: "rgba(16,12,32,0.55)", backdropFilter: "blur(4px)" }}>
               <div style={{ fontSize: "1.85rem", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>{s.n}</div>
               <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10.5px", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.62)", marginTop: 7 }}>{s.l}</div>

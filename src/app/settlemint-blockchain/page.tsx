@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import NavbarServer from "@/components/NavbarServer";
 import PageHero from "@/components/PageHero";
 import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
@@ -27,7 +27,7 @@ const faqs = [
 export default function SettlemintBlockchain() {
   return (
     <>
-      <Navbar />
+      <NavbarServer />
       <main>
         <PageHero slug="settlemint-blockchain" title="SettleMint (Blockchain)" subtitle="Unifying Business Processes for Excellence. Fast, scalable, and easy-to-integrate blockchain solutions for enterprises." image="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1920&q=80" />
         <FeatureGrid title="Blockchain Solutions" subtitle="Comprehensive blockchain services from consultation to deployment and support." features={features} />

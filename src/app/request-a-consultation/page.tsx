@@ -1,26 +1,35 @@
-import Navbar from "@/components/Navbar";
+import NavbarServer from "@/components/NavbarServer";
 import Footer from "@/components/Footer";
 import ConsultationForm from "@/components/ConsultationForm";
+import { getCollectionItems } from "@/lib/content";
+import { getSiteSettings } from "@/lib/settings";
+import { getServices } from "@/lib/homepage";
 
-const offices = [
-  { region: "MENA", locations: [
-    { city: "Dubai", address: "Churchill Tower, Business Bay, PO Box 118467" },
-    { city: "Oman", address: "Almaktabi Building, Watayyah, Muscat" },
-    { city: "Saudi Arabia", address: "Olaya Towers, MBZ Road, Riyadh" },
-  ]},
-  { region: "India", locations: [
-    { city: "Bengaluru", address: "VISIBLE, Indiranagar, 100 Feet Road" },
-    { city: "Kochi", address: "Crescens Tower, Eranakulam" },
-  ]},
-  { region: "UK", locations: [
-    { city: "Bradford", address: "Southfield Square, West Yorkshire BD8 7SN" },
-  ]},
-];
+type OfficeRow = { region: string; city: string; address: string };
 
-export default function RequestConsultation() {
+function groupOffices(rows: OfficeRow[]) {
+  const map = new Map<string, { region: string; locations: { city: string; address: string }[] }>();
+  for (const o of rows) {
+    if (!map.has(o.region)) map.set(o.region, { region: o.region, locations: [] });
+    map.get(o.region)!.locations.push({ city: o.city, address: o.address });
+  }
+  return Array.from(map.values());
+}
+
+export default async function RequestConsultation() {
+  const [officeRows, settings, services] = await Promise.all([
+    getCollectionItems<OfficeRow>("offices"),
+    getSiteSettings(),
+    getServices(),
+  ]);
+
+  const offices = groupOffices(officeRows);
+  const serviceNames = services.map((s) => s.title);
+  const telHref = `tel:${settings.contactPhone.replace(/[^0-9+]/g, "")}`;
+
   return (
     <>
-      <Navbar />
+      <NavbarServer />
       <main>
         <section className="pt-28 lg:pt-36 pb-20 lg:pb-28 bg-gradient-to-br from-[var(--primary-dark)] to-[var(--primary)]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,7 +45,7 @@ export default function RequestConsultation() {
         <section className="py-14 lg:py-16 t-bg">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16">
-              <ConsultationForm />
+              <ConsultationForm serviceOptions={serviceNames} />
 
               <div>
                 {/* Call us card */}
@@ -49,7 +58,7 @@ export default function RequestConsultation() {
                     </span>
                     <div>
                       <div style={{ fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.85)", marginBottom: 2 }}>Call us</div>
-                      <a href="tel:+97143293710" className="block font-bold text-white" style={{ fontSize: "1.9rem", letterSpacing: "-0.01em" }}>+971 4 329 3710</a>
+                      <a href={telHref} className="block font-bold text-white" style={{ fontSize: "1.9rem", letterSpacing: "-0.01em" }}>{settings.contactPhone}</a>
                     </div>
                   </div>
                   <div style={{ height: 1, background: "rgba(255,255,255,0.22)", margin: "24px 0" }} />
@@ -81,7 +90,7 @@ export default function RequestConsultation() {
                 <div className="mt-8 p-6 bg-[var(--primary)]/5 rounded-2xl border border-[var(--primary)]/10">
                   <h3 className="font-semibold t-heading">Direct Contact</h3>
                   <div className="mt-4 space-y-2">
-                    <a href="mailto:hello@maxcient.com" className="block text-sm text-[var(--primary)] hover:underline">hello@maxcient.com</a>
+                    <a href={`mailto:${settings.contactEmail}`} className="block text-sm text-[var(--primary)] hover:underline">{settings.contactEmail}</a>
                   </div>
                 </div>
               </div>

@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import { updateSettings, type SettingsFormState } from "./actions";
 import type { SiteSettings } from "@/lib/settings";
+import type { CTASettings } from "@/lib/settings";
 
 const labelStyle: React.CSSProperties = {
   display: "block",
@@ -23,7 +24,7 @@ const inputStyle: React.CSSProperties = {
   outline: "none",
 };
 
-export default function SettingsForm({ initial }: { initial: SiteSettings }) {
+export default function SettingsForm({ initial, cta }: { initial: SiteSettings; cta: CTASettings }) {
   const [state, formAction, pending] = useActionState<SettingsFormState, FormData>(updateSettings, undefined);
 
   return (
@@ -39,26 +40,51 @@ export default function SettingsForm({ initial }: { initial: SiteSettings }) {
         </div>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <div>
-          <label style={labelStyle} htmlFor="contactEmail">Contact email</label>
-          <input id="contactEmail" name="contactEmail" type="email" defaultValue={initial.contactEmail} style={inputStyle} />
+      <fieldset className="p-5 rounded-xl" style={{ border: "1px solid var(--border)" }}>
+        <legend className="px-2 text-sm font-bold" style={{ color: "var(--primary)" }}>Contact &amp; Footer</legend>
+        <div className="space-y-4 mt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label style={labelStyle} htmlFor="contactEmail">Contact email</label>
+              <input id="contactEmail" name="contactEmail" type="email" defaultValue={initial.contactEmail} style={inputStyle} />
+            </div>
+            <div>
+              <label style={labelStyle} htmlFor="contactPhone">Contact phone</label>
+              <input id="contactPhone" name="contactPhone" defaultValue={initial.contactPhone} style={inputStyle} />
+            </div>
+          </div>
+          <div>
+            <label style={labelStyle} htmlFor="linkedinUrl">LinkedIn URL</label>
+            <input id="linkedinUrl" name="linkedinUrl" defaultValue={initial.linkedinUrl} style={inputStyle} placeholder="https://www.linkedin.com/company/…" />
+          </div>
+          <div>
+            <label style={labelStyle} htmlFor="footerTagline">Footer tagline</label>
+            <textarea id="footerTagline" name="footerTagline" rows={3} defaultValue={initial.footerTagline} style={inputStyle} />
+          </div>
         </div>
-        <div>
-          <label style={labelStyle} htmlFor="contactPhone">Contact phone</label>
-          <input id="contactPhone" name="contactPhone" defaultValue={initial.contactPhone} style={inputStyle} />
+      </fieldset>
+
+      <fieldset className="p-5 rounded-xl" style={{ border: "1px solid var(--border)" }}>
+        <legend className="px-2 text-sm font-bold" style={{ color: "var(--primary)" }}>Homepage CTA Section</legend>
+        <div className="space-y-4 mt-2">
+          <div>
+            <label style={labelStyle} htmlFor="ctaTitle">CTA title</label>
+            <input id="ctaTitle" name="ctaTitle" defaultValue={cta.title} style={inputStyle} />
+          </div>
+          <div>
+            <label style={labelStyle} htmlFor="ctaSubtitle">CTA subtitle</label>
+            <textarea id="ctaSubtitle" name="ctaSubtitle" rows={2} defaultValue={cta.subtitle} style={inputStyle} />
+          </div>
+          <div>
+            <label style={labelStyle} htmlFor="ctaImage">CTA background image URL</label>
+            <input id="ctaImage" name="ctaImage" defaultValue={cta.image} style={inputStyle} />
+          </div>
+          <div>
+            <label style={labelStyle} htmlFor="ctaButtonText">CTA button text</label>
+            <input id="ctaButtonText" name="ctaButtonText" defaultValue={cta.ctaText} style={inputStyle} />
+          </div>
         </div>
-      </div>
-
-      <div>
-        <label style={labelStyle} htmlFor="linkedinUrl">LinkedIn URL</label>
-        <input id="linkedinUrl" name="linkedinUrl" defaultValue={initial.linkedinUrl} style={inputStyle} placeholder="https://www.linkedin.com/company/…" />
-      </div>
-
-      <div>
-        <label style={labelStyle} htmlFor="footerTagline">Footer tagline</label>
-        <textarea id="footerTagline" name="footerTagline" rows={3} defaultValue={initial.footerTagline} style={inputStyle} />
-      </div>
+      </fieldset>
 
       <div className="pt-2">
         <button

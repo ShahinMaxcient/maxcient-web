@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import NavbarServer from "@/components/NavbarServer";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import TrustedBy from "@/components/TrustedBy";
@@ -13,15 +13,18 @@ import Blog from "@/components/Blog";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import { getPublishedPosts } from "@/lib/posts";
-import { getSiteSettings } from "@/lib/settings";
+import { getSiteSettings, getHeroSettings, getSectionHeaders, getCTASettings } from "@/lib/settings";
 import { getServices, getTestimonials } from "@/lib/homepage";
 import { getCollectionItems } from "@/lib/content";
 
 export default async function Home() {
-  const [posts, settings, services, testimonials, industries, products, technologies, clients, stats, faqs] =
+  const [posts, settings, hero, sections, cta, services, testimonials, industries, products, technologies, clients, stats, faqs, marqueeItems] =
     await Promise.all([
       getPublishedPosts(4),
       getSiteSettings(),
+      getHeroSettings(),
+      getSectionHeaders(),
+      getCTASettings(),
       getServices(),
       getTestimonials(),
       getCollectionItems<{ title: string; num: string; href: string; image: string; span: string }>("industries"),
@@ -30,27 +33,30 @@ export default async function Home() {
       getCollectionItems<{ name: string; logo: string }>("clients"),
       getCollectionItems<{ eyebrow: string; value: number; suffix: string; label: string }>("stats"),
       getCollectionItems<{ question: string; answer: string }>("faqs"),
+      getCollectionItems<{ text: string }>("marquee"),
     ]);
 
   return (
     <>
-      <Navbar />
+      <NavbarServer />
       <main>
-        <Hero />
-        <Marquee />
-        <TrustedBy clients={clients} />
-        <Services services={services} />
-        <Industries industries={industries} />
-        <Products products={products} />
-        <Technologies technologies={technologies} />
-        <SocialProof stats={stats} />
-        <Testimonials cards={testimonials} />
-        <FAQ faqs={faqs} />
-        <Blog posts={posts} />
+        <Hero data={hero} />
+        <Marquee items={marqueeItems.map((m) => m.text)} />
+        <TrustedBy clients={clients} header={sections.trustedBy} />
+        <Services services={services} header={sections.services} />
+        <Industries industries={industries} header={sections.industries} />
+        <Products products={products} header={sections.products} />
+        <Technologies technologies={technologies} header={sections.technologies} />
+        <SocialProof stats={stats} header={sections.stats} />
+        <Testimonials cards={testimonials} header={sections.testimonials} />
+        <FAQ faqs={faqs} header={sections.faq} />
+        <Blog posts={posts} header={sections.blog} />
         <CTASection
-          title="Get in touch"
-          subtitle="Reach our transformation experts today. Connect with our UAE-based certified consultants specializing in CRM, ERP, and Dynamics 365 across the GCC."
+          title={cta.title}
+          subtitle={cta.subtitle}
           phone={settings.contactPhone}
+          image={cta.image}
+          ctaText={cta.ctaText}
         />
       </main>
       <Footer />

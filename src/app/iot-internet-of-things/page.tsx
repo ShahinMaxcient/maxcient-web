@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import NavbarServer from "@/components/NavbarServer";
 import PageHero from "@/components/PageHero";
 import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
@@ -27,7 +27,7 @@ const faqs = [
 export default function IoT() {
   return (
     <>
-      <Navbar />
+      <NavbarServer />
       <main>
         <PageHero slug="iot-internet-of-things" title="IoT (Internet of Things)" subtitle="Connecting Devices, Transforming Lives. Transform your operations with IoT solutions — gain real-time insights and control from the edge to the cloud." image="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=80" />
         <FeatureGrid title="IoT Solutions" subtitle="End-to-end IoT services from consultation to deployment and analytics." features={features} />

@@ -17,14 +17,15 @@ function Stars({ n }: { n: number }) {
   );
 }
 
-export default function Testimonials({ cards }: { cards: TestimonialCard[] }) {
+type SectionHeaderProps = { eyebrow?: string; title?: string; body?: string };
+
+export default function Testimonials({ cards, header }: { cards: TestimonialCard[]; header?: SectionHeaderProps }) {
   return (
     <section id="who-we-are" className="py-20 lg:py-28" style={{ background: "var(--background)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
-          <SectionHead eyebrow="Who We Are" title={<>Powered by values<br />and experience.</>}>
-            We know the tech world inside out. Trust us to bring top-notch solutions backed by solid
-            experience and real values — for our customers, we are a partner, not just a vendor.
+          <SectionHead eyebrow={header?.eyebrow || "Who We Are"} title={header?.title || "Powered by values and experience."}>
+            {header?.body || "We know the tech world inside out. Trust us to bring top-notch solutions backed by solid experience and real values — for our customers, we are a partner, not just a vendor."}
           </SectionHead>
         </SectionReveal>
 

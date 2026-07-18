@@ -3,13 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function CTASection({ title, subtitle, phone = "+971 4 329 3710" }: { title: string; subtitle: string; phone?: string }) {
+export default function CTASection({ title, subtitle, phone = "+971 4 329 3710", image, ctaText }: { title: string; subtitle: string; phone?: string; image?: string; ctaText?: string }) {
   const telHref = `tel:${phone.replace(/[^0-9+]/g, "")}`;
   return (
     <section className="relative overflow-hidden" style={{ background: "#100c20", padding: "128px 0" }}>
-      {/* full-bleed background image */}
       <Image
-        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2400&q=80"
+        src={image || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2400&q=80"}
         alt=""
         fill
         className="object-cover"
@@ -46,7 +45,7 @@ export default function CTASection({ title, subtitle, phone = "+971 4 329 3710" 
             className="inline-flex items-center justify-center gap-3 px-9 py-4 transition-transform duration-200 hover:-translate-y-0.5"
             style={{ background: "#FFFFFF", color: "#100c20", fontWeight: 600, fontSize: "15px", borderRadius: "4px" }}
           >
-            Book a consultation
+            {ctaText || "Book a consultation"}
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </Link>
           <a

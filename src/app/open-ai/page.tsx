@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import NavbarServer from "@/components/NavbarServer";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
@@ -28,7 +28,7 @@ const faqs = [
 export default function OpenAI() {
   return (
     <>
-      <Navbar />
+      <NavbarServer />
       <main>
         <PageHero slug="open-ai" title="OpenAI" subtitle="Revolutionizing AI Research & Development. Leverage OpenAI's advanced AI models to drive innovation, automate processes, and engage customers like never before." image="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1920&q=80" />
 

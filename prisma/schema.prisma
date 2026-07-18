@@ -234,3 +234,55 @@ model Office {
 
   @@index([order])
 }
+
+// Marquee scrolling band items.
+model MarqueeItem {
+  id        String   @id @default(cuid())
+  text      String
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([order])
+}
+
+// About page — company values.
+model CompanyValue {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  order       Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([order])
+}
+
+// About page — at-a-glance stats.
+model AboutStat {
+  id        String   @id @default(cuid())
+  label     String
+  value     String
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([order])
+}
+
+// Per-page feature items (service/solution/industry pages).
+model PageFeature {
+  id          String   @id @default(cuid())
+  pageSlug    String
+  title       String
+  description String
+  order       Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([pageSlug, order])
+}

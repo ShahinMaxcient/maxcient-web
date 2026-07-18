@@ -6,16 +6,17 @@ import SectionReveal from "./SectionReveal";
 import SectionHead from "./SectionHead";
 
 type FaqItem = { question: string; answer: string };
+type SectionHeaderProps = { eyebrow?: string; title?: string; body?: string };
 
-export default function FAQ({ faqs }: { faqs: FaqItem[] }) {
+export default function FAQ({ faqs, header }: { faqs: FaqItem[]; header?: SectionHeaderProps }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
     <section id="faq" className="py-20 lg:py-28" style={{ background: "var(--background)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
-          <SectionHead eyebrow="FAQ" title={<>Questions,<br />answered.</>}>
-            Everything you need to know about working with Maxcient. Still curious? Reach out to a senior consultant directly.
+          <SectionHead eyebrow={header?.eyebrow || "FAQ"} title={header?.title || "Questions, answered."}>
+            {header?.body || "Everything you need to know about working with Maxcient. Still curious? Reach out to a senior consultant directly."}
           </SectionHead>
         </SectionReveal>
 

@@ -7,13 +7,15 @@ import SectionHead from "./SectionHead";
 
 type ProductItem = { num: string; title: string; desc: string; tags: string[]; href: string; image: string };
 
-export default function Products({ products }: { products: ProductItem[] }) {
+type SectionHeaderProps = { eyebrow?: string; title?: string; body?: string };
+
+export default function Products({ products, header }: { products: ProductItem[]; header?: SectionHeaderProps }) {
   return (
     <section id="products" className="py-20 lg:py-28" style={{ background: "var(--background)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
-          <SectionHead eyebrow="Proprietary Products" title={<>Software<br />we built.</>}>
-            Three vertical solutions, each purpose-built for a specific industry challenge in the region.
+          <SectionHead eyebrow={header?.eyebrow || "Proprietary Products"} title={header?.title || "Software we built."}>
+            {header?.body || "Three vertical solutions, each purpose-built for a specific industry challenge in the region."}
           </SectionHead>
         </SectionReveal>
 

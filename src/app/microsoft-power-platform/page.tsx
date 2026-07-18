@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import NavbarServer from "@/components/NavbarServer";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
@@ -26,7 +26,7 @@ const faqs = [
 export default function MicrosoftPowerPlatform() {
   return (
     <>
-      <Navbar />
+      <NavbarServer />
       <main>
         <PageHero slug="microsoft-power-platform" title="Microsoft Power Platform" subtitle="Empowering Businesses Through Agile Solutions. Connect data, build apps, automate workflows, and create chatbots — all with low-code tools." image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1920&q=80" />
 

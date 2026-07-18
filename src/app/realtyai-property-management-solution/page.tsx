@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import NavbarServer from "@/components/NavbarServer";
 import PageHero from "@/components/PageHero";
 import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
@@ -27,7 +27,7 @@ const faqs = [
 export default function RealtyAI() {
   return (
     <>
-      <Navbar />
+      <NavbarServer />
       <main>
         <PageHero slug="realtyai-property-management-solution" title="RealtyAI" subtitle="Property Management, Simplified. Comprehensive property management for UAE real estate professionals, built on Microsoft Dynamics 365." image="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=1920&q=80" />
         <FeatureGrid title="Core Capabilities" subtitle="End-to-end property management tailored for the UAE real estate market." features={features} />

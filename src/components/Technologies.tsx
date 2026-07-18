@@ -6,13 +6,15 @@ import SectionHead from "./SectionHead";
 
 type TechnologyItem = { title: string; description: string; letter: string; href: string };
 
-export default function Technologies({ technologies }: { technologies: TechnologyItem[] }) {
+type SectionHeaderProps = { eyebrow?: string; title?: string; body?: string };
+
+export default function Technologies({ technologies, header }: { technologies: TechnologyItem[]; header?: SectionHeaderProps }) {
   return (
     <section id="technologies" className="py-20 lg:py-28" style={{ background: "var(--background)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
-          <SectionHead eyebrow="Tech Stack" title={<>Platforms<br />we master.</>}>
-            Cutting-edge platforms powering next-generation enterprise solutions across the region.
+          <SectionHead eyebrow={header?.eyebrow || "Tech Stack"} title={header?.title || "Platforms we master."}>
+            {header?.body || "Cutting-edge platforms powering next-generation enterprise solutions across the region."}
           </SectionHead>
         </SectionReveal>
 

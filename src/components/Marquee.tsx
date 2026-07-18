@@ -1,12 +1,8 @@
 "use client";
 
-/**
- * Marquee — angled scrolling tech-stack band.
- * Pure CSS animation; respects prefers-reduced-motion via globals.
- */
-const items = ["DYNAMICS 365", "POWER PLATFORM", "AZURE", "OPENAI", "SETTLEMINT", "IoT"];
+const DEFAULT_ITEMS = ["DYNAMICS 365", "POWER PLATFORM", "AZURE", "OPENAI", "SETTLEMINT", "IoT"];
 
-export default function Marquee() {
+export default function Marquee({ items = DEFAULT_ITEMS }: { items?: string[] }) {
   const doubled = [...items, ...items];
   return (
     <div style={{ background: "var(--primary-light)", color: "var(--foreground)", padding: "26px 0", overflow: "hidden", transform: "rotate(-1.5deg)", margin: "-12px 0" }}>

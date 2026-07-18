@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const SERVICES = [
+const DEFAULT_SERVICES = [
   "ERP & CRM",
   "Data Analytics",
   "Intelligent Automation",
@@ -16,7 +16,7 @@ const SERVICES = [
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export default function ConsultationForm() {
+export default function ConsultationForm({ serviceOptions = DEFAULT_SERVICES }: { serviceOptions?: string[] }) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
 
@@ -101,7 +101,7 @@ export default function ConsultationForm() {
           <label htmlFor="service" className="block text-sm font-medium t-label mb-2">Service Interest</label>
           <select id="service" name="service" defaultValue="" className="w-full px-4 py-3 rounded-xl t-input outline-none transition-all t-body">
             <option value="">Select a service</option>
-            {SERVICES.map((s) => (
+            {serviceOptions.map((s) => (
               <option key={s} value={s}>{s}</option>
             ))}
           </select>

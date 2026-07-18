@@ -36,6 +36,76 @@ const SPAN_OPTIONS = [
 ];
 
 export const COLLECTIONS: Record<string, CollectionConfig> = {
+  marquee: {
+    key: "marquee",
+    model: "marqueeItem",
+    label: "Marquee Items",
+    singular: "marquee item",
+    listColumns: ["order", "text"],
+    fields: [
+      { name: "text", label: "Text", type: "text", required: true, placeholder: "DYNAMICS 365" },
+    ],
+    defaults: [
+      { text: "DYNAMICS 365", order: 0 },
+      { text: "POWER PLATFORM", order: 1 },
+      { text: "AZURE", order: 2 },
+      { text: "OPENAI", order: 3 },
+      { text: "SETTLEMINT", order: 4 },
+      { text: "IoT", order: 5 },
+    ],
+  },
+
+  companyValues: {
+    key: "companyValues",
+    model: "companyValue",
+    label: "Company Values",
+    singular: "value",
+    listColumns: ["order", "title"],
+    fields: [
+      { name: "title", label: "Title", type: "text", required: true },
+      { name: "description", label: "Description", type: "textarea", required: true },
+    ],
+    defaults: [
+      { title: "Integrity", description: "Maintaining highest standards in actions and decisions, building trust through transparency and accountability.", order: 0 },
+      { title: "Innovation", description: "Creating forward-thinking solutions for emerging challenges, staying ahead of the technology curve.", order: 1 },
+      { title: "Collaboration", description: "Leveraging teamwork for enhanced outcomes, partnering closely with clients to achieve shared goals.", order: 2 },
+    ],
+  },
+
+  aboutStats: {
+    key: "aboutStats",
+    model: "aboutStat",
+    label: "About Stats",
+    singular: "stat",
+    listColumns: ["order", "label", "value"],
+    fields: [
+      { name: "label", label: "Label", type: "text", required: true, placeholder: "Founded" },
+      { name: "value", label: "Value", type: "text", required: true, placeholder: "2017" },
+    ],
+    defaults: [
+      { label: "Founded", value: "2017", order: 0 },
+      { label: "Countries", value: "3", order: 1 },
+      { label: "Degree Holders", value: "100%", order: 2 },
+      { label: "2+ Year Tenure", value: "70%", order: 3 },
+      { label: "Senior Specialists", value: "86%", order: 4 },
+      { label: "Client Rating", value: "5/5", order: 5 },
+    ],
+  },
+
+  pageFeatures: {
+    key: "pageFeatures",
+    model: "pageFeature",
+    label: "Page Features",
+    singular: "feature",
+    listColumns: ["pageSlug", "order", "title"],
+    fields: [
+      { name: "pageSlug", label: "Page slug", type: "text", required: true, placeholder: "erp-and-crm", help: "The URL path without leading slash, e.g. microsoft-dynamics-365" },
+      { name: "title", label: "Title", type: "text", required: true },
+      { name: "description", label: "Description", type: "textarea", required: true },
+    ],
+    defaults: [],
+  },
+
   industries: {
     key: "industries",
     model: "industry",

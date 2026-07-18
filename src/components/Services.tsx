@@ -30,14 +30,15 @@ function pickIcon(title: string) {
   return ICONS.default;
 }
 
-export default function Services({ services }: { services: ServiceCard[] }) {
+type SectionHeaderProps = { eyebrow?: string; title?: string; body?: string };
+
+export default function Services({ services, header }: { services: ServiceCard[]; header?: SectionHeaderProps }) {
   return (
     <section id="services" className="py-20 lg:py-28" style={{ background: "var(--background)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
-          <SectionHead eyebrow="Our Services" title={<>Six capabilities,<br />one partner.</>}>
-            We cover the full lifecycle of enterprise systems — from strategy and platform
-            selection through implementation, integration, and ongoing managed services.
+          <SectionHead eyebrow={header?.eyebrow || "Our Services"} title={header?.title || "Six capabilities, one partner."}>
+            {header?.body || "We cover the full lifecycle of enterprise systems — from strategy and platform selection through implementation, integration, and ongoing managed services."}
           </SectionHead>
         </SectionReveal>
 

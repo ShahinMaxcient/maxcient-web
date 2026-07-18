@@ -7,13 +7,15 @@ import SectionHead from "./SectionHead";
 
 type IndustryItem = { title: string; num: string; href: string; image: string; span: string };
 
-export default function Industries({ industries }: { industries: IndustryItem[] }) {
+type SectionHeaderProps = { eyebrow?: string; title?: string; body?: string };
+
+export default function Industries({ industries, header }: { industries: IndustryItem[]; header?: SectionHeaderProps }) {
   return (
     <section id="industries" className="py-20 lg:py-28" style={{ background: "var(--surface-alt)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
-          <SectionHead eyebrow="Industries" title={<>Sectors we<br />know cold.</>}>
-            Deep domain expertise across the verticals that drive the UAE and GCC economy.
+          <SectionHead eyebrow={header?.eyebrow || "Industries"} title={header?.title || "Sectors we know cold."}>
+            {header?.body || "Deep domain expertise across the verticals that drive the UAE and GCC economy."}
           </SectionHead>
         </SectionReveal>
 

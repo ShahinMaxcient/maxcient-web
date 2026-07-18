@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Navbar from "@/components/Navbar";
+import NavbarServer from "@/components/NavbarServer";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
 import { getPostBySlug } from "@/lib/posts";
@@ -43,7 +43,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      <Navbar />
+      <NavbarServer />
       <main>
         <article className="pt-32 lg:pt-40" style={{ background: "var(--background)" }}>
           <div className="max-w-3xl mx-auto px-5 sm:px-8">

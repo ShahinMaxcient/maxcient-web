@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import NavbarServer from "@/components/NavbarServer";
 import PageHero from "@/components/PageHero";
 import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
@@ -27,7 +27,7 @@ const faqs = [
 export default function Distribution() {
   return (
     <>
-      <Navbar />
+      <NavbarServer />
       <main>
         <PageHero slug="distribution" title="Distribution" subtitle="Emerging Trends In Distribution. The wholesale sector is undergoing digital transformation with focus on transparency, predictive analytics, and direct-to-consumer models." image="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80" />
         <FeatureGrid title="Distribution Solutions" subtitle="Intelligent systems for optimizing distribution channels and operations." features={features} />

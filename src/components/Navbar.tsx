@@ -7,52 +7,42 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 
-const navItems = [
+type NavItem = { label: string; href: string; children?: { label: string; href: string }[] };
+
+const DEFAULT_NAV: NavItem[] = [
   { label: "Home", href: "/" },
-  {
-    label: "Services", href: "#",
-    children: [
-      { label: "ERP & CRM", href: "/erp-and-crm" },
-      { label: "Data Analytics", href: "/data-analytics" },
-      { label: "Intelligent Automation", href: "/intelligent-automation" },
-      { label: "Application Development", href: "/application-development" },
-      { label: "Application Management", href: "/application-management" },
-      { label: "Smart Teams", href: "/dedicated-development-team" },
-    ],
-  },
-  {
-    label: "Industries", href: "#",
-    children: [
-      { label: "Manufacturing", href: "/manufacturing" },
-      { label: "Real Estate", href: "/real-estate" },
-      { label: "Retail", href: "/retail" },
-      { label: "Distribution", href: "/distribution" },
-      { label: "Professional Services", href: "/professional-services" },
-    ],
-  },
-  {
-    label: "Products", href: "#",
-    children: [
-      { label: "RealtyAI", href: "/realtyai-property-management-solution" },
-      { label: "SmartFees", href: "/smartfees-school-admin-solution" },
-      { label: "MaxPayroll", href: "/maxpayroll-hr-management-solution-2" },
-    ],
-  },
-  {
-    label: "Technologies", href: "#",
-    children: [
-      { label: "Microsoft Dynamics 365", href: "/microsoft-dynamics-365" },
-      { label: "Power Platform", href: "/microsoft-power-platform" },
-      { label: "Microsoft Azure", href: "/microsoft-azure" },
-      { label: "Settlemint Blockchain", href: "/settlemint-blockchain" },
-      { label: "OpenAI", href: "/open-ai" },
-      { label: "IoT", href: "/iot-internet-of-things" },
-    ],
-  },
+  { label: "Services", href: "#", children: [
+    { label: "ERP & CRM", href: "/erp-and-crm" },
+    { label: "Data Analytics", href: "/data-analytics" },
+    { label: "Intelligent Automation", href: "/intelligent-automation" },
+    { label: "Application Development", href: "/application-development" },
+    { label: "Application Management", href: "/application-management" },
+    { label: "Smart Teams", href: "/dedicated-development-team" },
+  ]},
+  { label: "Industries", href: "#", children: [
+    { label: "Manufacturing", href: "/manufacturing" },
+    { label: "Real Estate", href: "/real-estate" },
+    { label: "Retail", href: "/retail" },
+    { label: "Distribution", href: "/distribution" },
+    { label: "Professional Services", href: "/professional-services" },
+  ]},
+  { label: "Products", href: "#", children: [
+    { label: "RealtyAI", href: "/realtyai-property-management-solution" },
+    { label: "SmartFees", href: "/smartfees-school-admin-solution" },
+    { label: "MaxPayroll", href: "/maxpayroll-hr-management-solution-2" },
+  ]},
+  { label: "Technologies", href: "#", children: [
+    { label: "Microsoft Dynamics 365", href: "/microsoft-dynamics-365" },
+    { label: "Power Platform", href: "/microsoft-power-platform" },
+    { label: "Microsoft Azure", href: "/microsoft-azure" },
+    { label: "Settlemint Blockchain", href: "/settlemint-blockchain" },
+    { label: "OpenAI", href: "/open-ai" },
+    { label: "IoT", href: "/iot-internet-of-things" },
+  ]},
   { label: "About", href: "/about-us" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[] }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);

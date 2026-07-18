@@ -27,13 +27,26 @@ export async function updateSettings(
     return { error: parsed.error.issues[0]?.message ?? "Invalid data." };
   }
 
-  await prisma.siteSetting.upsert({
-    where: { key: SETTINGS_KEY },
-    update: { value: parsed.data },
-    create: { key: SETTINGS_KEY, value: parsed.data },
-  });
+  const ctaValue = {
+    title: String(formData.get("ctaTitle") ?? "").trim(),
+    subtitle: String(formData.get("ctaSubtitle") ?? "").trim(),
+    image: String(formData.get("ctaImage") ?? "").trim(),
+    ctaText: String(formData.get("ctaButtonText") ?? "").trim(),
+  };
 
-  // Footer/contact appear on every page.
+  await Promise.all([
+    prisma.siteSetting.upsert({
+      where: { key: SETTINGS_KEY },
+      update: { value: parsed.data },
+      create: { key: SETTINGS_KEY, value: parsed.data },
+    }),
+    prisma.siteSetting.upsert({
+      where: { key: "cta" },
+      update: { value: ctaValue },
+      create: { key: "cta", value: ctaValue },
+    }),
+  ]);
+
   revalidatePath("/", "layout");
   return { ok: true };
 }

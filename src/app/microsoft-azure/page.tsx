@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import NavbarServer from "@/components/NavbarServer";
 import PageHero from "@/components/PageHero";
 import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
@@ -27,7 +27,7 @@ const faqs = [
 export default function MicrosoftAzure() {
   return (
     <>
-      <Navbar />
+      <NavbarServer />
       <main>
         <PageHero slug="microsoft-azure" title="Microsoft Azure" subtitle="Cloud Computing Redefined. A comprehensive cloud computing platform offering IaaS, PaaS, and SaaS solutions with global infrastructure." image="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80" />
         <FeatureGrid title="Azure Services & Products" subtitle="Comprehensive cloud solutions for every business need." features={features} />

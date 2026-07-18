@@ -31,15 +31,17 @@ function Card({ post }: { post: BlogPost }) {
   );
 }
 
-export default function Blog({ posts }: { posts: BlogPost[] }) {
+type SectionHeaderProps = { eyebrow?: string; title?: string; body?: string };
+
+export default function Blog({ posts, header }: { posts: BlogPost[]; header?: SectionHeaderProps }) {
   if (!posts || posts.length === 0) return null;
 
   return (
     <section id="blog" className="py-20 lg:py-28" style={{ background: "var(--surface-alt)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
-          <SectionHead eyebrow="Journal" title={<>Latest<br />thinking.</>}>
-            Perspectives on enterprise technology, digital transformation, and building for the GCC.
+          <SectionHead eyebrow={header?.eyebrow || "Journal"} title={header?.title || "Latest thinking."}>
+            {header?.body || "Perspectives on enterprise technology, digital transformation, and building for the GCC."}
           </SectionHead>
         </SectionReveal>
 

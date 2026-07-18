@@ -2,35 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getSiteSettings } from "@/lib/settings";
 import { getCollectionItems } from "@/lib/content";
-
-const services = [
-  { label: "ERP & CRM", href: "/erp-and-crm" },
-  { label: "Data Analytics", href: "/data-analytics" },
-  { label: "Intelligent Automation", href: "/intelligent-automation" },
-  { label: "Application Development", href: "/application-development" },
-  { label: "Application Management", href: "/application-management" },
-  { label: "Smart Teams", href: "/dedicated-development-team" },
-];
-const industries = [
-  { label: "Manufacturing", href: "/manufacturing" },
-  { label: "Real Estate", href: "/real-estate" },
-  { label: "Retail", href: "/retail" },
-  { label: "Distribution", href: "/distribution" },
-  { label: "Professional Services", href: "/professional-services" },
-];
-const products = [
-  { label: "RealtyAI Property App", href: "/realtyai-property-management-solution" },
-  { label: "SmartFees School Fee App", href: "/smartfees-school-admin-solution" },
-  { label: "MaxPayroll App", href: "/maxpayroll-hr-management-solution-2" },
-];
-const technologies = [
-  { label: "Microsoft Dynamics 365", href: "/microsoft-dynamics-365" },
-  { label: "Microsoft Power Platform", href: "/microsoft-power-platform" },
-  { label: "Microsoft Azure", href: "/microsoft-azure" },
-  { label: "SettleMint Blockchain", href: "/settlemint-blockchain" },
-  { label: "OpenAI", href: "/open-ai" },
-  { label: "IoT", href: "/iot-internet-of-things" },
-];
+import { getServices } from "@/lib/homepage";
 
 type OfficeRow = { region: string; city: string; address: string };
 
@@ -63,12 +35,23 @@ function LinkCol({ title, links }: { title: string; links: { label: string; href
 }
 
 export default async function Footer() {
-  const [settings, officeRows] = await Promise.all([
+  const [settings, officeRows, services, industries, products, technologies] = await Promise.all([
     getSiteSettings(),
     getCollectionItems<OfficeRow>("offices"),
+    getServices(),
+    getCollectionItems<{ title: string; href: string }>("industries"),
+    getCollectionItems<{ title: string; href: string }>("products"),
+    getCollectionItems<{ title: string; href: string }>("technologies"),
   ]);
+
   const officeRegions = groupOffices(officeRows);
   const telHref = `tel:${settings.contactPhone.replace(/[^0-9+]/g, "")}`;
+
+  const serviceLinks = services.map((s) => ({ label: s.title, href: s.href }));
+  const industryLinks = industries.map((i) => ({ label: i.title, href: i.href }));
+  const productLinks = products.map((p) => ({ label: p.title, href: p.href }));
+  const technologyLinks = technologies.map((t) => ({ label: t.title, href: t.href }));
+
   return (
     <footer id="contact" style={{ background: "var(--background)", borderTop: "1px solid var(--border)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
@@ -106,10 +89,10 @@ export default async function Footer() {
             </div>
           </div>
 
-          <LinkCol title="Services" links={services} />
-          <LinkCol title="Industries" links={industries} />
-          <LinkCol title="Products" links={products} />
-          <LinkCol title="Technologies" links={technologies} />
+          <LinkCol title="Services" links={serviceLinks} />
+          <LinkCol title="Industries" links={industryLinks} />
+          <LinkCol title="Products" links={productLinks} />
+          <LinkCol title="Technologies" links={technologyLinks} />
         </div>
 
         {/* Office locations */}

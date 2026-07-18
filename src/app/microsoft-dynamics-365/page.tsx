@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import NavbarServer from "@/components/NavbarServer";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
@@ -29,7 +29,7 @@ const faqs = [
 export default function MicrosoftDynamics365() {
   return (
     <>
-      <Navbar />
+      <NavbarServer />
       <main>
         <PageHero slug="microsoft-dynamics-365" title="Microsoft Dynamics 365" subtitle="Unifying Business Processes for Excellence. An integrated business application suite combining CRM and ERP capabilities, enhanced by AI and data analytics." image="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80" />
 

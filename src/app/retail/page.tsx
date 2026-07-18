@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import NavbarServer from "@/components/NavbarServer";
 import PageHero from "@/components/PageHero";
 import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
@@ -27,7 +27,7 @@ const faqs = [
 export default function Retail() {
   return (
     <>
-      <Navbar />
+      <NavbarServer />
       <main>
         <PageHero slug="retail" title="Retail" subtitle="Emerging Trends In Retail. The retail sector undergoes significant transformation through evolving technology and changing consumer behaviors." image="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&q=80" />
         <FeatureGrid title="Retail Solutions" subtitle="Innovative technology solutions for modern retail operations." features={features} />

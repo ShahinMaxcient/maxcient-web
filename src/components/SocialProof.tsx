@@ -18,21 +18,21 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
 }
 
 type StatItem = { eyebrow: string; value: number; suffix: string; label: string };
+type SectionHeaderProps = { eyebrow?: string; title?: string; body?: string };
 
-export default function SocialProof({ stats }: { stats: StatItem[] }) {
+export default function SocialProof({ stats, header }: { stats: StatItem[]; header?: SectionHeaderProps }) {
   return (
     <section id="about" className="py-20 lg:py-28" style={{ background: "var(--surface-alt)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-20 items-end mb-16">
           <div>
             <div className="mb-4" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--text-muted)" }}>
-              <span style={{ color: "var(--primary)" }}>// </span>By the Numbers
+              <span style={{ color: "var(--primary)" }}>// </span>{header?.eyebrow || "By the Numbers"}
             </div>
-            <h2 className="ed-display" style={{ fontSize: "clamp(2.25rem, 4.5vw, 4rem)" }}>Trusted across<br />the GCC.</h2>
+            <h2 className="ed-display" style={{ fontSize: "clamp(2.25rem, 4.5vw, 4rem)" }}>{header?.title || "Trusted across the GCC."}</h2>
           </div>
           <p className="leading-relaxed" style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: "480px" }}>
-            Nearly a decade of measurable outcomes — from implementation velocity to satisfaction
-            scores that outperform the regional average.
+            {header?.body || "Nearly a decade of measurable outcomes — from implementation velocity to satisfaction scores that outperform the regional average."}
           </p>
         </div>
 

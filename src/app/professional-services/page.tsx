@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import NavbarServer from "@/components/NavbarServer";
 import PageHero from "@/components/PageHero";
 import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
@@ -27,7 +27,7 @@ const faqs = [
 export default function ProfessionalServices() {
   return (
     <>
-      <Navbar />
+      <NavbarServer />
       <main>
         <PageHero slug="professional-services" title="Professional Services" subtitle="Emerging Trends In Professional Services. The sector is undergoing a paradigm shift driven by digital transformation and evolving client expectations." image="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&q=80" />
         <FeatureGrid title="Professional Services Solutions" subtitle="Technology solutions designed for dynamic service environments." features={features} />

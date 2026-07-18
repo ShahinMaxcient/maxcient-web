@@ -1,10 +1,10 @@
-import Navbar from "@/components/Navbar";
+import NavbarServer from "@/components/NavbarServer";
 import Footer from "@/components/Footer";
 
 export default function TermsOfUse() {
   return (
     <>
-      <Navbar />
+      <NavbarServer />
       <main className="pt-28 pb-20 t-bg">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold t-heading">Terms of Use</h1>

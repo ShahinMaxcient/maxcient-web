@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import Navbar from "@/components/Navbar";
+import NavbarServer from "@/components/NavbarServer";
 import Footer from "@/components/Footer";
 import { getPublishedPosts } from "@/lib/posts";
 
@@ -17,7 +17,7 @@ export default async function BlogIndex() {
 
   return (
     <>
-      <Navbar />
+      <NavbarServer />
       <main>
         <section className="pt-32 pb-12 lg:pt-40 lg:pb-16" style={{ background: "var(--background)" }}>
           <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
