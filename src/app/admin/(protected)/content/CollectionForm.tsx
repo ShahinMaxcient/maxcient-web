@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import Link from "next/link";
 import { saveItem, type ContentFormState } from "./actions";
 import type { Field } from "@/lib/collections";
+import ImageUpload from "../ImageUpload";
 
 const labelStyle: React.CSSProperties = { display: "block", fontSize: 13, fontWeight: 600, marginBottom: 6, color: "var(--text-secondary)" };
 const inputStyle: React.CSSProperties = { width: "100%", padding: "10px 12px", borderRadius: 8, border: "1px solid var(--border)", background: "var(--surface)", color: "var(--text-primary)", fontSize: 14, outline: "none" };
@@ -44,19 +45,30 @@ export default function CollectionForm({
 
       {fields.map((f) => (
         <div key={f.name}>
-          <label style={labelStyle} htmlFor={f.name}>{f.label}{f.required ? " *" : ""}</label>
-          {f.type === "textarea" ? (
-            <textarea id={f.name} name={f.name} rows={3} defaultValue={initialValue(f, initial)} style={inputStyle} placeholder={f.placeholder} />
-          ) : f.type === "select" ? (
-            <select id={f.name} name={f.name} defaultValue={initialValue(f, initial) || (f.options?.[0]?.value ?? "")} style={inputStyle}>
-              {f.options?.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
-            </select>
-          ) : f.type === "number" ? (
-            <input id={f.name} name={f.name} type="number" defaultValue={initialValue(f, initial)} style={inputStyle} placeholder={f.placeholder} />
+          {f.type === "image" ? (
+            <ImageUpload
+              name={f.name}
+              value={initialValue(f, initial)}
+              label={`${f.label}${f.required ? " *" : ""}`}
+              help={f.help}
+            />
           ) : (
-            <input id={f.name} name={f.name} defaultValue={initialValue(f, initial)} style={inputStyle} placeholder={f.placeholder} />
+            <>
+              <label style={labelStyle} htmlFor={f.name}>{f.label}{f.required ? " *" : ""}</label>
+              {f.type === "textarea" ? (
+                <textarea id={f.name} name={f.name} rows={3} defaultValue={initialValue(f, initial)} style={inputStyle} placeholder={f.placeholder} />
+              ) : f.type === "select" ? (
+                <select id={f.name} name={f.name} defaultValue={initialValue(f, initial) || (f.options?.[0]?.value ?? "")} style={inputStyle}>
+                  {f.options?.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
+                </select>
+              ) : f.type === "number" ? (
+                <input id={f.name} name={f.name} type="number" defaultValue={initialValue(f, initial)} style={inputStyle} placeholder={f.placeholder} />
+              ) : (
+                <input id={f.name} name={f.name} defaultValue={initialValue(f, initial)} style={inputStyle} placeholder={f.placeholder} />
+              )}
+              {f.help && <p className="text-xs mt-1" style={{ color: "var(--text-muted)" }}>{f.help}</p>}
+            </>
           )}
-          {f.help && <p className="text-xs mt-1" style={{ color: "var(--text-muted)" }}>{f.help}</p>}
         </div>
       ))}
 

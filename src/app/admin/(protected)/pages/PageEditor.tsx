@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import Link from "next/link";
 import { savePage, type PageEditState } from "./actions";
+import ImageUpload from "../ImageUpload";
 
 type Initial = { title: string; subtitle: string; heroImage: string; faqsJson: string };
 
@@ -31,10 +32,7 @@ export default function PageEditor({ slug, initial }: { slug: string; initial: I
         <label style={labelStyle} htmlFor="subtitle">Hero subtitle</label>
         <textarea id="subtitle" name="subtitle" rows={3} defaultValue={initial.subtitle} style={inputStyle} placeholder="Overrides the hero paragraph" />
       </div>
-      <div>
-        <label style={labelStyle} htmlFor="heroImage">Hero image URL</label>
-        <input id="heroImage" name="heroImage" defaultValue={initial.heroImage} style={inputStyle} placeholder="https://…" />
-      </div>
+      <ImageUpload name="heroImage" value={initial.heroImage} label="Hero image" />
       <div>
         <label style={labelStyle} htmlFor="faqsJson">FAQs (JSON)</label>
         <textarea

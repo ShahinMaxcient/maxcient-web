@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { updateSettings, type SettingsFormState } from "./actions";
 import type { SiteSettings } from "@/lib/settings";
 import type { CTASettings } from "@/lib/settings";
+import ImageUpload from "../ImageUpload";
 
 const labelStyle: React.CSSProperties = {
   display: "block",
@@ -75,10 +76,7 @@ export default function SettingsForm({ initial, cta }: { initial: SiteSettings; 
             <label style={labelStyle} htmlFor="ctaSubtitle">CTA subtitle</label>
             <textarea id="ctaSubtitle" name="ctaSubtitle" rows={2} defaultValue={cta.subtitle} style={inputStyle} />
           </div>
-          <div>
-            <label style={labelStyle} htmlFor="ctaImage">CTA background image URL</label>
-            <input id="ctaImage" name="ctaImage" defaultValue={cta.image} style={inputStyle} />
-          </div>
+          <ImageUpload name="ctaImage" value={cta.image} label="CTA background image" />
           <div>
             <label style={labelStyle} htmlFor="ctaButtonText">CTA button text</label>
             <input id="ctaButtonText" name="ctaButtonText" defaultValue={cta.ctaText} style={inputStyle} />

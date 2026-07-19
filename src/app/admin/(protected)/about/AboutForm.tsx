@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import { saveAboutSettings, type AboutFormState } from "./actions";
 import type { AboutSettings } from "@/lib/settings";
+import ImageUpload from "../ImageUpload";
 
 const labelStyle: React.CSSProperties = { display: "block", fontSize: 13, fontWeight: 600, marginBottom: 6, color: "var(--text-secondary)" };
 const inputStyle: React.CSSProperties = { width: "100%", padding: "10px 12px", borderRadius: 8, border: "1px solid var(--border)", background: "var(--surface)", color: "var(--text-primary)", fontSize: 14, outline: "none" };
@@ -20,7 +21,7 @@ export default function AboutForm({ initial }: { initial: AboutSettings }) {
         <div className="space-y-3 mt-2">
           <div><label style={labelStyle} htmlFor="heroTitle">Title</label><input id="heroTitle" name="heroTitle" defaultValue={initial.heroTitle} style={inputStyle} /></div>
           <div><label style={labelStyle} htmlFor="heroSubtitle">Subtitle</label><textarea id="heroSubtitle" name="heroSubtitle" rows={2} defaultValue={initial.heroSubtitle} style={inputStyle} /></div>
-          <div><label style={labelStyle} htmlFor="heroImage">Image URL</label><input id="heroImage" name="heroImage" defaultValue={initial.heroImage} style={inputStyle} /></div>
+          <ImageUpload name="heroImage" value={initial.heroImage} label="Hero image" />
         </div>
       </fieldset>
 
@@ -31,7 +32,7 @@ export default function AboutForm({ initial }: { initial: AboutSettings }) {
           <div><label style={labelStyle} htmlFor="missionTitle">Title</label><input id="missionTitle" name="missionTitle" defaultValue={initial.missionTitle} style={inputStyle} /></div>
           <div><label style={labelStyle} htmlFor="missionBody">Body paragraph 1</label><textarea id="missionBody" name="missionBody" rows={3} defaultValue={initial.missionBody} style={inputStyle} /></div>
           <div><label style={labelStyle} htmlFor="missionBody2">Body paragraph 2</label><textarea id="missionBody2" name="missionBody2" rows={3} defaultValue={initial.missionBody2} style={inputStyle} /></div>
-          <div><label style={labelStyle} htmlFor="missionImage">Image URL</label><input id="missionImage" name="missionImage" defaultValue={initial.missionImage} style={inputStyle} /></div>
+          <ImageUpload name="missionImage" value={initial.missionImage} label="Mission image" />
         </div>
       </fieldset>
 

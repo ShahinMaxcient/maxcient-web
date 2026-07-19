@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import Link from "next/link";
 import type { PostFormState } from "./actions";
+import ImageUpload from "../ImageUpload";
 
 type PostInitial = {
   title: string;
@@ -91,10 +92,7 @@ export default function PostForm({
         </div>
       </div>
 
-      <div>
-        <label style={labelStyle} htmlFor="coverImage">Cover image URL</label>
-        <input id="coverImage" name="coverImage" defaultValue={data.coverImage} style={inputStyle} placeholder="https://…" />
-      </div>
+      <ImageUpload name="coverImage" value={data.coverImage} label="Cover image" />
 
       <div>
         <label style={labelStyle} htmlFor="excerpt">Excerpt</label>
