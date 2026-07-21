@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import NavbarServer from "@/components/NavbarServer";
-import PageHero from "@/components/PageHero";
+import MaxMarinaHero from "@/components/MaxMarinaHero";
 import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
 import Footer from "@/components/Footer";
+import { getPageOverride } from "@/lib/pages";
 
 export const metadata: Metadata = {
   title: "MaxMarina | Smart Marina Management Solution | Maxcient",
@@ -69,16 +70,16 @@ function BrochureSection() {
   );
 }
 
-export default function MaxMarina() {
+export default async function MaxMarina() {
+  const override = await getPageOverride("maxmarina-marina-management-solution");
   return (
     <>
       <NavbarServer />
       <main>
-        <PageHero
-          slug="maxmarina-marina-management-solution"
-          title="MaxMarina"
-          subtitle="Smooth sailing marina operations. Berth management, boat sales, billing, and guest experiences — unified on Microsoft Dynamics 365 with AI-powered optimization."
-          image="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1920&q=80"
+        <MaxMarinaHero
+          title={override?.title || "MaxMarina"}
+          subtitle={override?.subtitle || undefined}
+          image={override?.heroImage || "/maxmarina/hero-marina.jpg"}
         />
         <FeatureGrid
           title="Key Functionalities"
@@ -86,7 +87,11 @@ export default function MaxMarina() {
           features={features}
         />
         <BrochureSection />
-        <CTASection title="Let's Elevate Every Voyage" subtitle="Schedule a personalized demo and chart a successful course for your marina with MaxMarina." />
+        <CTASection
+          title="Let's Elevate Every Voyage"
+          subtitle="Schedule a personalized demo and chart a successful course for your marina with MaxMarina."
+          image="/maxmarina/cta-voyage.jpg"
+        />
         <PageFAQ slug="maxmarina-marina-management-solution" faqs={faqs} />
       </main>
       <Footer />
