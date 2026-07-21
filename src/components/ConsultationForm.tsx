@@ -12,6 +12,7 @@ const DEFAULT_SERVICES = [
   "RealtyAI",
   "SmartFees",
   "MaxPayroll",
+  "MaxMarina",
 ];
 
 type Status = "idle" | "submitting" | "success" | "error";

@@ -30,6 +30,7 @@ const DEFAULT_NAV: NavItem[] = [
     { label: "RealtyAI", href: "/realtyai-property-management-solution" },
     { label: "SmartFees", href: "/smartfees-school-admin-solution" },
     { label: "MaxPayroll", href: "/maxpayroll-hr-management-solution-2" },
+    { label: "MaxMarina", href: "/maxmarina-marina-management-solution" },
   ]},
   { label: "Technologies", href: "#", children: [
     { label: "Microsoft Dynamics 365", href: "/microsoft-dynamics-365" },
