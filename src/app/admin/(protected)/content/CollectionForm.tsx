@@ -12,6 +12,11 @@ const inputStyle: React.CSSProperties = { width: "100%", padding: "10px 12px", b
 function initialValue(field: Field, initial: Record<string, unknown>): string {
   const v = initial[field.name];
   if (v == null) return "";
+  if (field.type === "sublinks" && Array.isArray(v)) {
+    return (v as { label?: string; href?: string }[])
+      .map((s) => `${s.label ?? ""} | ${s.href ?? ""}`)
+      .join("\n");
+  }
   if (Array.isArray(v)) return v.join(", ");
   return String(v);
 }
@@ -57,6 +62,8 @@ export default function CollectionForm({
               <label style={labelStyle} htmlFor={f.name}>{f.label}{f.required ? " *" : ""}</label>
               {f.type === "textarea" ? (
                 <textarea id={f.name} name={f.name} rows={3} defaultValue={initialValue(f, initial)} style={inputStyle} placeholder={f.placeholder} />
+              ) : f.type === "sublinks" ? (
+                <textarea id={f.name} name={f.name} rows={4} defaultValue={initialValue(f, initial)} style={{ ...inputStyle, fontFamily: "var(--font-geist-mono), monospace", fontSize: 13 }} placeholder={"Metering & Billing | /maxutility-facility-utility-management-solution#functionalities\nBook a Demo | /request-a-consultation"} />
               ) : f.type === "select" ? (
                 <select id={f.name} name={f.name} defaultValue={initialValue(f, initial) || (f.options?.[0]?.value ?? "")} style={inputStyle}>
                   {f.options?.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}

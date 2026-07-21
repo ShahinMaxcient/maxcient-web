@@ -82,6 +82,7 @@ export default async function MaxMarina() {
           image={override?.heroImage || "/maxmarina/hero-marina.jpg"}
         />
         <FeatureGrid
+          id="functionalities"
           title="Key Functionalities"
           subtitle="MaxMarina connects core functions, eliminates data silos, and transforms marina management from reactive to strategic."
           features={features}

@@ -4,7 +4,7 @@
 // admin CRUD UI + the public fallback/seed data.
 // ─────────────────────────────────────────────────────────────
 
-export type FieldType = "text" | "textarea" | "number" | "image" | "select" | "tags";
+export type FieldType = "text" | "textarea" | "number" | "image" | "select" | "tags" | "sublinks";
 
 export type Field = {
   name: string;
@@ -161,6 +161,7 @@ export const COLLECTIONS: Record<string, CollectionConfig> = {
       { name: "tags", label: "Tags (comma-separated)", type: "tags", placeholder: "Property Management, Tenant Portal" },
       { name: "href", label: "Link", type: "text" },
       { name: "image", label: "Image URL", type: "image" },
+      { name: "subItems", label: "Sub-menu links", type: "sublinks", help: "Shown as a nested fly-out under this product in the navbar. One per line as: Label | /link" },
     ],
     defaults: [
       { num: "P/01", title: "RealtyAI", desc: "Property management for the AI-first era. Tenants, maintenance, billing, and real-time portfolio analytics — fully UAE-compliant.", tags: ["Property Management", "Tenant Portal", "AI Insights", "RERA / UAE"], href: "/realtyai-property-management-solution", image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=900&q=80", order: 0 },

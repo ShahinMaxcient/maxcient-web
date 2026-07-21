@@ -1,17 +1,21 @@
 import { getCollectionItems } from "./content";
 import { getServices } from "./homepage";
 
+export type NavChild = { label: string; href: string; children?: { label: string; href: string }[] };
+
 export type NavItem = {
   label: string;
   href: string;
-  children?: { label: string; href: string }[];
+  children?: NavChild[];
 };
+
+type ProductNav = { title: string; href: string; subItems?: { label: string; href: string }[] | null };
 
 export async function getNavItems(): Promise<NavItem[]> {
   const [services, industries, products, technologies] = await Promise.all([
     getServices(),
     getCollectionItems<{ title: string; href: string }>("industries"),
-    getCollectionItems<{ title: string; href: string }>("products"),
+    getCollectionItems<ProductNav>("products"),
     getCollectionItems<{ title: string; href: string }>("technologies"),
   ]);
 
@@ -30,7 +34,12 @@ export async function getNavItems(): Promise<NavItem[]> {
     {
       label: "Products",
       href: "#",
-      children: products.map((p) => ({ label: p.title, href: p.href })),
+      children: products.map((p) => {
+        const subs = Array.isArray(p.subItems) ? p.subItems.filter((s) => s?.label) : [];
+        return subs.length > 0
+          ? { label: p.title, href: p.href, children: subs }
+          : { label: p.title, href: p.href };
+      }),
     },
     {
       label: "Technologies",

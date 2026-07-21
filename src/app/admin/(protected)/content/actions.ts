@@ -8,7 +8,9 @@ import { delegate } from "@/lib/content";
 
 export type ContentFormState = { error?: string } | undefined;
 
-function coerce(field: Field, formData: FormData): string | number | string[] {
+type SubLink = { label: string; href: string };
+
+function coerce(field: Field, formData: FormData): string | number | string[] | SubLink[] {
   const raw = formData.get(field.name);
   if (field.type === "number") {
     const n = parseInt(String(raw ?? ""), 10);
@@ -19,6 +21,18 @@ function coerce(field: Field, formData: FormData): string | number | string[] {
       .split(",")
       .map((s) => s.trim())
       .filter(Boolean);
+  }
+  if (field.type === "sublinks") {
+    // One per line as "Label | /href"
+    return String(raw ?? "")
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .map((line) => {
+        const [label, href] = line.split("|").map((s) => s.trim());
+        return { label: label ?? "", href: href ?? "#" };
+      })
+      .filter((s) => s.label);
   }
   return String(raw ?? "").trim();
 }

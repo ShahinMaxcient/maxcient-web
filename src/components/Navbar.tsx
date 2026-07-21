@@ -7,7 +7,8 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 
-type NavItem = { label: string; href: string; children?: { label: string; href: string }[] };
+type NavChild = { label: string; href: string; children?: { label: string; href: string }[] };
+type NavItem = { label: string; href: string; children?: NavChild[] };
 
 const DEFAULT_NAV: NavItem[] = [
   { label: "Home", href: "/" },
@@ -42,6 +43,61 @@ const DEFAULT_NAV: NavItem[] = [
   ]},
   { label: "About", href: "/about-us" },
 ];
+
+function DropdownChild({ child }: { child: NavChild }) {
+  const [subOpen, setSubOpen] = useState(false);
+  const hasSub = !!child.children && child.children.length > 0;
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => hasSub && setSubOpen(true)}
+      onMouseLeave={() => setSubOpen(false)}
+    >
+      <Link
+        href={child.href}
+        className="flex items-center justify-between gap-3 px-3 py-2 transition-colors duration-150"
+        style={{ fontSize: "13px", color: "var(--text-secondary)", borderRadius: "4px" }}
+        onMouseEnter={(e) => { e.currentTarget.style.background = "var(--glow-color)"; e.currentTarget.style.color = "var(--primary)"; }}
+        onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--text-secondary)"; }}
+      >
+        {child.label}
+        {hasSub && (
+          <svg className="w-3 h-3 opacity-50 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        )}
+      </Link>
+
+      <AnimatePresence>
+        {hasSub && subOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: -6 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -6 }}
+            transition={{ duration: 0.15 }}
+            className="absolute top-0 left-full pl-1.5 min-w-[210px]"
+          >
+            <div className="p-1.5" style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "6px", boxShadow: "var(--shadow)" }}>
+              {child.children!.map((sub) => (
+                <Link
+                  key={sub.label}
+                  href={sub.href}
+                  className="block px-3 py-2 transition-colors duration-150"
+                  style={{ fontSize: "12.5px", color: "var(--text-secondary)", borderRadius: "4px" }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = "var(--glow-color)"; e.currentTarget.style.color = "var(--primary)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--text-secondary)"; }}
+                >
+                  {sub.label}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[] }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -126,16 +182,7 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
                     >
                       <div className="p-1.5" style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "6px", boxShadow: "var(--shadow)" }}>
                         {item.children.map((child) => (
-                          <Link
-                            key={child.label}
-                            href={child.href}
-                            className="block px-3 py-2 transition-colors duration-150"
-                            style={{ fontSize: "13px", color: "var(--text-secondary)", borderRadius: "4px" }}
-                            onMouseEnter={(e) => { e.currentTarget.style.background = "var(--glow-color)"; e.currentTarget.style.color = "var(--primary)"; }}
-                            onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--text-secondary)"; }}
-                          >
-                            {child.label}
-                          </Link>
+                          <DropdownChild key={child.label} child={child} />
                         ))}
                       </div>
                     </motion.div>
@@ -203,7 +250,16 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
                       {mobileExpanded === item.label && (
                         <div className="pl-3 pb-2">
                           {item.children.map((child) => (
-                            <Link key={child.label} href={child.href} className="block py-2 text-sm" style={{ color: "var(--text-muted)" }} onClick={() => setMobileMenuOpen(false)}>{child.label}</Link>
+                            <div key={child.label}>
+                              <Link href={child.href} className="block py-2 text-sm" style={{ color: "var(--text-muted)" }} onClick={() => setMobileMenuOpen(false)}>{child.label}</Link>
+                              {child.children && child.children.length > 0 && (
+                                <div className="pl-3 border-l" style={{ borderColor: "var(--border)" }}>
+                                  {child.children.map((sub) => (
+                                    <Link key={sub.label} href={sub.href} className="block py-1.5 text-[13px]" style={{ color: "var(--text-muted)", opacity: 0.85 }} onClick={() => setMobileMenuOpen(false)}>{sub.label}</Link>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
                           ))}
                         </div>
                       )}

@@ -88,6 +88,7 @@ export default async function MaxUtility() {
           image={override?.heroImage || "/maxutility/hero-utility.jpg"}
         />
         <FeatureGrid
+          id="functionalities"
           title="Key Functionalities"
           subtitle="MaxUtility connects core functions, eliminates data silos, and transforms utility management from reactive to strategic."
           features={features}
