@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { put } from "@vercel/blob";
+import { createClient } from "@supabase/supabase-js";
 import { auth } from "@/auth";
+
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+);
+
+const BUCKET = "uploads";
 
 export async function POST(req: NextRequest) {
   const session = await auth();
@@ -14,7 +21,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "No file provided" }, { status: 400 });
   }
 
-  const maxSize = 4.5 * 1024 * 1024; // 4.5 MB
+  const maxSize = 4.5 * 1024 * 1024;
   if (file.size > maxSize) {
     return NextResponse.json({ error: "File too large (max 4.5 MB)" }, { status: 400 });
   }
@@ -24,10 +31,18 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid file type" }, { status: 400 });
   }
 
-  const blob = await put(file.name, file, {
-    access: "public",
-    addRandomSuffix: true,
-  });
+  const ext = file.name.split(".").pop() || "jpg";
+  const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
 
-  return NextResponse.json({ url: blob.url });
+  const { error } = await supabase.storage
+    .from(BUCKET)
+    .upload(path, file, { contentType: file.type, upsert: false });
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  const { data } = supabase.storage.from(BUCKET).getPublicUrl(path);
+
+  return NextResponse.json({ url: data.publicUrl });
 }
