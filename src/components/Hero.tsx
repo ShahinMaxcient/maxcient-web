@@ -16,7 +16,7 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
     >
       <Image
         src={data.image}
-        alt="Dubai skyline — Maxcient, a digital enabler for the UAE & GCC"
+        alt="Maxcient — enterprise technology, delivered"
         fill
         priority
         className="object-cover"

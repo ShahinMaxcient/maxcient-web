@@ -67,7 +67,7 @@ export const DEFAULT_HERO: HeroSettings = {
   phone: "+971 4 329 3710",
   badge: "Microsoft Gold Partner",
   image:
-    "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=2400&q=80",
+    "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=2400&q=80",
   tagline: "EST · 2017 — DUBAI · UAE",
   stats: [
     { n: "06", l: "Global Offices" },
