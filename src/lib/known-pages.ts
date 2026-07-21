@@ -20,6 +20,7 @@ export const KNOWN_PAGES: KnownPage[] = [
   { slug: "smartfees-school-admin-solution", name: "SmartFees", group: "Products" },
   { slug: "maxpayroll-hr-management-solution-2", name: "MaxPayroll", group: "Products" },
   { slug: "maxmarina-marina-management-solution", name: "MaxMarina", group: "Products" },
+  { slug: "maxutility-facility-utility-management-solution", name: "MaxUtility", group: "Products" },
   // Technologies
   { slug: "microsoft-dynamics-365", name: "Microsoft Dynamics 365", group: "Technologies" },
   { slug: "microsoft-power-platform", name: "Microsoft Power Platform", group: "Technologies" },
