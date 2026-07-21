@@ -23,7 +23,6 @@ export const KNOWN_PAGES: KnownPage[] = [
   { slug: "microsoft-dynamics-365", name: "Microsoft Dynamics 365", group: "Technologies" },
   { slug: "microsoft-power-platform", name: "Microsoft Power Platform", group: "Technologies" },
   { slug: "microsoft-azure", name: "Microsoft Azure", group: "Technologies" },
-  { slug: "settlemint-blockchain", name: "SettleMint Blockchain", group: "Technologies" },
   { slug: "open-ai", name: "OpenAI", group: "Technologies" },
   { slug: "iot-internet-of-things", name: "IoT", group: "Technologies" },
   // Company

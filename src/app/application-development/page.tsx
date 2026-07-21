@@ -19,7 +19,7 @@ const features = [
 const faqs = [
   { question: "How long does application development typically take?", answer: "Average medium-sized applications take approximately 3-4 months from conception to deployment, depending on complexity and requirements." },
   { question: "Do you provide post-deployment support?", answer: "Yes, we provide ongoing support and maintenance services, with continuous monitoring, regular updates, and immediate troubleshooting." },
-  { question: "What technologies do you use?", answer: "Our proficiency includes Microsoft Dynamics 365, Power Platform, Settlemint Blockchain, OpenAI, and IoT solutions, among other modern technologies." },
+  { question: "What technologies do you use?", answer: "Our proficiency includes Microsoft Dynamics 365, Power Platform, OpenAI, and IoT solutions, among other modern technologies." },
   { question: "How do you ensure application security?", answer: "We implement multiple layers of security, including data encryption, secure coding practices, and regular security audits throughout the development lifecycle." },
   { question: "Can clients be involved in the development process?", answer: "Absolutely! We believe in a collaborative approach and ensure our clients are involved at every stage of the development process." },
 ];

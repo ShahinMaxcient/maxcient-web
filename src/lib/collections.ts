@@ -50,8 +50,7 @@ export const COLLECTIONS: Record<string, CollectionConfig> = {
       { text: "POWER PLATFORM", order: 1 },
       { text: "AZURE", order: 2 },
       { text: "OPENAI", order: 3 },
-      { text: "SETTLEMINT", order: 4 },
-      { text: "IoT", order: 5 },
+      { text: "IoT", order: 4 },
     ],
   },
 
@@ -144,9 +143,8 @@ export const COLLECTIONS: Record<string, CollectionConfig> = {
       { title: "Microsoft Dynamics 365", description: "Intuitive, adaptable enterprise applications that grow with you.", letter: "D365", href: "/microsoft-dynamics-365", order: 0 },
       { title: "Power Platform", description: "Connect data, build apps, and automate workflows for everyone.", letter: "PP", href: "/microsoft-power-platform", order: 1 },
       { title: "Microsoft Azure", description: "Endless cloud capabilities and global infrastructure.", letter: "Az", href: "/microsoft-azure", order: 2 },
-      { title: "Settlemint Blockchain", description: "Unmatched security and transparency for transactions.", letter: "BC", href: "/settlemint-blockchain", order: 3 },
-      { title: "OpenAI", description: "Advanced AI models to drive innovation and automate processes.", letter: "AI", href: "/open-ai", order: 4 },
-      { title: "IoT", description: "Real-time insights and control from the edge to the cloud.", letter: "IoT", href: "/iot-internet-of-things", order: 5 },
+      { title: "OpenAI", description: "Advanced AI models to drive innovation and automate processes.", letter: "AI", href: "/open-ai", order: 3 },
+      { title: "IoT", description: "Real-time insights and control from the edge to the cloud.", letter: "IoT", href: "/iot-internet-of-things", order: 4 },
     ],
   },
 
@@ -208,8 +206,7 @@ export const COLLECTIONS: Record<string, CollectionConfig> = {
       { question: "What innovation does Maxcient bring to data-driven decision-making?", answer: "We integrate AI and machine learning into analytics, offering predictive and prescriptive insights for strategic advantage.", order: 3 },
       { question: "What strategies does Maxcient use to ensure data security?", answer: "Implementation includes encryption, secure access controls, and regular audits, adhering to international standards for compliance.", order: 4 },
       { question: "Can Maxcient support cloud service transitions?", answer: "We specialize in smooth transitions to cloud services, leveraging Microsoft Azure with meticulous planning and phased rollouts.", order: 5 },
-      { question: "How does Maxcient utilize Blockchain technology?", answer: "We use Settlemint for decentralized applications that streamline supply chain management, smart contracts, and transactions.", order: 6 },
-      { question: "Can Maxcient help with custom application development?", answer: "We excel in custom development, creating solutions tailor-made for your unique business challenges using cutting-edge technology.", order: 7 },
+      { question: "Can Maxcient help with custom application development?", answer: "We excel in custom development, creating solutions tailor-made for your unique business challenges using cutting-edge technology.", order: 6 },
     ],
   },
 

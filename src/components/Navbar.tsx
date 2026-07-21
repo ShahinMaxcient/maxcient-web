@@ -35,7 +35,6 @@ const DEFAULT_NAV: NavItem[] = [
     { label: "Microsoft Dynamics 365", href: "/microsoft-dynamics-365" },
     { label: "Power Platform", href: "/microsoft-power-platform" },
     { label: "Microsoft Azure", href: "/microsoft-azure" },
-    { label: "Settlemint Blockchain", href: "/settlemint-blockchain" },
     { label: "OpenAI", href: "/open-ai" },
     { label: "IoT", href: "/iot-internet-of-things" },
   ]},
