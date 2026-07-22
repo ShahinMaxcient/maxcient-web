@@ -27,22 +27,9 @@ export default function MaxMarinaHero({
         priority
         className="object-cover"
         sizes="100vw"
-        style={{ filter: "brightness(1.25) saturate(1.05)" }}
       />
 
-      {/* Soft gradient — keeps text legible on the left, lets the photo shine on the right */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(95deg, rgba(8,8,18,0.72) 0%, rgba(12,10,28,0.52) 34%, rgba(20,16,44,0.18) 62%, rgba(124,58,237,0.08) 100%)",
-        }}
-      />
-      {/* bottom fade for legibility */}
-      <div
-        className="absolute inset-x-0 bottom-0"
-        style={{ height: "30%", background: "linear-gradient(to top, rgba(8,8,18,0.55), transparent)" }}
-      />
+      {/* No overlay — the photo shows at full strength. Text stays legible via drop-shadows. */}
 
       <div
         className="relative max-w-[1400px] mx-auto px-5 sm:px-8 flex flex-col justify-center"
@@ -54,7 +41,7 @@ export default function MaxMarinaHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-3 mb-7"
-            style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.14em", color: "rgba(255,255,255,0.7)" }}
+            style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.14em", color: "rgba(255,255,255,0.9)", textShadow: "0 1px 10px rgba(0,0,0,0.7)" }}
           >
             <span style={{ display: "block", width: 34, height: 1, background: "rgba(255,255,255,0.85)" }} />
             Maxcient — Proprietary Product
@@ -65,7 +52,7 @@ export default function MaxMarinaHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="ed-display"
-            style={{ fontSize: "clamp(3rem, 7vw, 6rem)", lineHeight: 1.02, fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}
+            style={{ fontSize: "clamp(3rem, 7vw, 6rem)", lineHeight: 1.02, fontFamily: "var(--font-geist-sans), system-ui, sans-serif", filter: "drop-shadow(0 3px 16px rgba(0,0,0,0.55))" }}
           >
             {title === "MaxMarina" ? (
               <span
@@ -89,7 +76,7 @@ export default function MaxMarinaHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-6 leading-relaxed"
-            style={{ fontSize: "1.15rem", color: "rgba(255,255,255,0.82)", maxWidth: "560px" }}
+            style={{ fontSize: "1.15rem", color: "rgba(255,255,255,0.95)", maxWidth: "560px", textShadow: "0 1px 12px rgba(0,0,0,0.85)" }}
           >
             {subtitle}
           </motion.p>
@@ -113,7 +100,7 @@ export default function MaxMarinaHero({
               href="/brochures/maxmarina-brochure.pdf"
               download="MaxMarina-Brochure.pdf"
               className="inline-flex items-center gap-2.5"
-              style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.09em", color: "rgba(255,255,255,0.9)" }}
+              style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.09em", color: "#fff", textShadow: "0 1px 10px rgba(0,0,0,0.8)" }}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3" /></svg>
               Download brochure
