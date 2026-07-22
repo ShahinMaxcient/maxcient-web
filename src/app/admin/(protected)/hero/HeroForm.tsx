@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { saveHeroSettings, type HeroFormState } from "./actions";
 import type { HeroSettings } from "@/lib/settings";
 import ImageUpload from "../ImageUpload";
+import StatsEditor from "./StatsEditor";
 
 const labelStyle: React.CSSProperties = { display: "block", fontSize: 13, fontWeight: 600, marginBottom: 6, color: "var(--text-secondary)" };
 const inputStyle: React.CSSProperties = { width: "100%", padding: "10px 12px", borderRadius: 8, border: "1px solid var(--border)", background: "var(--surface)", color: "var(--text-primary)", fontSize: 14, outline: "none" };
@@ -56,9 +57,9 @@ export default function HeroForm({ initial }: { initial: HeroSettings }) {
       <ImageUpload name="image" value={initial.image} label="Background image" />
 
       <div>
-        <label style={labelStyle}>Stats bar (JSON array)</label>
-        <p className="text-xs mb-2" style={{ color: "var(--text-muted)" }}>Format: [{"{"}&quot;n&quot;:&quot;06&quot;, &quot;l&quot;:&quot;Global Offices&quot;{"}"}]</p>
-        <textarea id="stats" name="stats" rows={4} defaultValue={JSON.stringify(initial.stats, null, 2)} style={inputStyle} />
+        <label style={labelStyle}>Stats bar</label>
+        <p className="text-xs mb-2" style={{ color: "var(--text-muted)" }}>The four numbers shown at the bottom of the hero.</p>
+        <StatsEditor name="stats" initial={initial.stats} />
       </div>
 
       <div className="pt-2">
