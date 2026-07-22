@@ -31,6 +31,10 @@ export const metadata: Metadata = {
     "Unlock business value with Maxcient's enterprise-grade solutions tailored for UAE and GCC markets.",
 };
 
+// Render every page fresh from the database on each request — admin edits
+// (from any environment) appear on the live site immediately, no cache.
+export const dynamic = "force-dynamic";
+
 export default function RootLayout({
   children,
 }: Readonly<{
