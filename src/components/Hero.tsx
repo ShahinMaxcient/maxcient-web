@@ -21,14 +21,13 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
         priority
         className="object-cover"
         sizes="100vw"
-        style={{ filter: "brightness(1.1)" }}
       />
 
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(100deg, rgba(16,12,32,0.93) 0%, rgba(18,13,38,0.78) 38%, rgba(40,26,80,0.30) 70%, rgba(124,58,237,0.12) 100%)",
+            "linear-gradient(100deg, rgba(16,12,32,0.88) 0%, rgba(18,13,38,0.62) 42%, rgba(24,16,52,0.22) 72%, rgba(16,12,32,0.05) 100%)",
         }}
       />
 

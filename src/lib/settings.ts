@@ -66,7 +66,7 @@ export const DEFAULT_HERO: HeroSettings = {
   ctaSecondary: "See our work",
   phone: "+971 4 329 3710",
   badge: "Microsoft Solutions Partner",
-  image: "/hero-code.jpg",
+  image: "/hero-gradient.jpg",
   tagline: "EST · 2017 — DUBAI · UAE",
   stats: [
     { n: "06", l: "Global Offices" },
