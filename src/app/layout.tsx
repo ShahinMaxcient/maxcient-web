@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider";
+import ScrollToTop from "@/components/ScrollToTop";
 
 // Matches www.maxcient.com typography: Poppins for headings, Inter for body.
 // Inter is aliased to --font-geist-sans so existing components pick it up;
@@ -57,6 +58,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col">
+        <ScrollToTop />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

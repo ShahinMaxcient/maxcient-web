@@ -117,7 +117,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+/* scroll-padding keeps anchor targets clear of the fixed navbar.
+   NOTE: `scroll-behavior: smooth` on <html> breaks the App Router's
+   scroll-to-top on navigation (pages open scrolled to the bottom), so it is
+   intentionally NOT set here. In-page anchor smoothing is handled in JS. */
+html { scroll-padding-top: 88px; }
 
 /* ============================================================
    EDITORIAL SURFACE TREATMENTS

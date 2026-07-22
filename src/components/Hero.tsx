@@ -27,8 +27,13 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(100deg, rgba(16,12,32,0.88) 0%, rgba(18,13,38,0.62) 42%, rgba(24,16,52,0.22) 72%, rgba(16,12,32,0.05) 100%)",
+            "linear-gradient(100deg, rgba(16,12,32,0.93) 0%, rgba(18,13,38,0.80) 38%, rgba(30,20,60,0.48) 70%, rgba(124,58,237,0.22) 100%)",
         }}
+      />
+      {/* Top-down darkening so the transparent navbar stays readable over the sky */}
+      <div
+        className="absolute inset-x-0 top-0 pointer-events-none"
+        style={{ height: "160px", background: "linear-gradient(to bottom, rgba(16,12,32,0.55), transparent)" }}
       />
 
       <div
