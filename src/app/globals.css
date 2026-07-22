@@ -123,6 +123,13 @@ body {
    intentionally NOT set here. In-page anchor smoothing is handled in JS. */
 html { scroll-padding-top: 88px; }
 
+/* Navbar logo: blue wordmark in light theme, white wordmark in dark theme.
+   (When the navbar floats over a hero, the white logo is rendered directly.) */
+.nav-logo-light { display: block; }
+.nav-logo-dark { display: none; }
+:root[data-theme="dark"] .nav-logo-light { display: none; }
+:root[data-theme="dark"] .nav-logo-dark { display: block; }
+
 /* Client logos: white backgrounds are dropped via multiply on the light section.
    In dark mode multiply would hide them, so give them a small white chip instead. */
 :root[data-theme="dark"] .ed-client-logo {

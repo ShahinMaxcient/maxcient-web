@@ -112,10 +112,14 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // The homepage hero is a dark image; when the navbar is transparent over it
-  // (top of home, not scrolled), force light text regardless of theme.
-  const overHero = pathname === "/" && !scrolled;
-  const linkColor = overHero ? "rgba(255,255,255,0.88)" : "var(--nav-text)";
+  // Most pages open with a dark/colored hero (homepage image, violet PageHero,
+  // product heroes, consultation gradient) — while the navbar is transparent
+  // over those, force light text + the white logo regardless of theme.
+  // Only these routes have a plain light top in light mode:
+  const PLAIN_TOPS = ["/blog", "/terms-of-use", "/privacy-policy", "/cookie-policy"];
+  const plainTop = PLAIN_TOPS.some((p) => pathname === p || pathname.startsWith(p + "/"));
+  const overHero = !plainTop && !scrolled;
+  const linkColor = overHero ? "rgba(255,255,255,0.92)" : "var(--nav-text)";
   const markBg = overHero ? "#FFFFFF" : "var(--text-primary)";
   const markFg = overHero ? "#14101F" : "var(--background)";
 
@@ -135,14 +139,35 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
         <div className="flex items-center justify-between h-[72px]">
           {/* Logo */}
           <Link href="/" className="flex items-center" aria-label="Maxcient home">
-            <Image
-              src="/maxcient-logo-blue.png"
-              alt="Maxcient"
-              width={206}
-              height={28}
-              priority
-              className="h-[22px] sm:h-[23px] w-auto"
-            />
+            {overHero ? (
+              <Image
+                src="/maxcient-logo-white.png"
+                alt="Maxcient"
+                width={206}
+                height={28}
+                priority
+                className="h-[22px] sm:h-[23px] w-auto"
+              />
+            ) : (
+              <>
+                <Image
+                  src="/maxcient-logo-blue.png"
+                  alt="Maxcient"
+                  width={206}
+                  height={28}
+                  priority
+                  className="nav-logo-light h-[22px] sm:h-[23px] w-auto"
+                />
+                <Image
+                  src="/maxcient-logo-white.png"
+                  alt="Maxcient"
+                  width={206}
+                  height={28}
+                  priority
+                  className="nav-logo-dark h-[22px] sm:h-[23px] w-auto"
+                />
+              </>
+            )}
           </Link>
 
           {/* Center nav */}
