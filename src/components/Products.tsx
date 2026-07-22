@@ -51,6 +51,19 @@ export default function Products({ products, header }: { products: ProductItem[]
           ))}
           <div style={{ borderTop: "1px solid var(--border)" }} />
         </div>
+
+        <SectionReveal>
+          <div className="mt-12 flex justify-center">
+            <Link
+              href="/request-a-consultation"
+              className="group inline-flex items-center gap-3 px-8 py-4 transition-transform duration-200 hover:-translate-y-0.5"
+              style={{ background: "var(--text-primary)", color: "var(--background)", fontWeight: 600, fontSize: "15px", borderRadius: "6px" }}
+            >
+              See more projects
+              <svg className="w-[18px] h-[18px] group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </Link>
+          </div>
+        </SectionReveal>
       </div>
     </section>
   );

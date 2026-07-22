@@ -16,16 +16,17 @@ export default function TrustedBy({ clients, header }: { clients: ClientItem[]; 
           </p>
         </SectionReveal>
 
-        <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8">
           {clients.map((c, i) => (
             <SectionReveal key={c.name} delay={i * 0.05}>
-              <div className="flex items-center justify-center" style={{ height: 104, padding: "0 18px", background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 12 }}>
+              <div className="flex items-center justify-center" style={{ height: 72, padding: "0 12px" }}>
                 <Image
                   src={c.logo}
                   alt={c.name}
                   width={170}
                   height={85}
-                  style={{ width: "auto", height: "auto", maxHeight: 56, maxWidth: "100%", objectFit: "contain" }}
+                  className="ed-client-logo"
+                  style={{ width: "auto", height: "auto", maxHeight: 48, maxWidth: "100%", objectFit: "contain", mixBlendMode: "multiply", opacity: 0.85 }}
                 />
               </div>
             </SectionReveal>

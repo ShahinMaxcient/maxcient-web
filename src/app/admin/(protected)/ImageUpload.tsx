@@ -115,14 +115,26 @@ export default function ImageUpload({ name, value, onChange, label, help }: Prop
       {help && <p className="text-xs mt-1" style={{ color: "var(--text-muted)" }}>{help}</p>}
 
       {url && (
-        <button
-          type="button"
-          onClick={(e) => { e.stopPropagation(); setUrl(""); onChange?.(""); }}
-          className="text-xs mt-1.5 font-medium hover:underline"
-          style={{ color: "var(--text-muted)" }}
-        >
-          Remove image
-        </button>
+        <div className="flex items-center gap-2 mt-2">
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); inputRef.current?.click(); }}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-md transition-colors"
+            style={{ border: "1px solid var(--border)", color: "var(--text-primary)" }}
+          >
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4 4v6h6M20 20v-6h-6M20 4l-8 8M4 20l8-8" /></svg>
+            Change image
+          </button>
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); setUrl(""); onChange?.(""); }}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-md transition-colors"
+            style={{ border: "1px solid #fecaca", color: "#dc2626" }}
+          >
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" /></svg>
+            Delete image
+          </button>
+        </div>
       )}
     </div>
   );

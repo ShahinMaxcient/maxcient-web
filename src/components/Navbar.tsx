@@ -141,7 +141,7 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
               width={206}
               height={28}
               priority
-              style={{ height: 28, width: "auto" }}
+              className="h-[22px] sm:h-[23px] w-auto"
             />
           </Link>
 

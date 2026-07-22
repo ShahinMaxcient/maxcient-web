@@ -62,7 +62,7 @@ export default async function Footer() {
         <div className="py-16 lg:py-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-[2fr_1fr_1fr_1fr_1.2fr] gap-10 lg:gap-8">
           {/* Brand */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
-            <Image src="/maxcient-logo-blue.png" alt="Maxcient" width={236} height={32} style={{ height: 32, width: "auto" }} />
+            <Image src="/maxcient-logo-blue.png" alt="Maxcient" width={236} height={32} className="h-[26px] w-auto" />
             <p className="mt-5 text-sm leading-relaxed" style={{ color: "var(--text-muted)", maxWidth: "320px" }}>
               {settings.footerTagline}
             </p>
