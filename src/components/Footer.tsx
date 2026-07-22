@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getSiteSettings } from "@/lib/settings";
 import { getCollectionItems } from "@/lib/content";
 import { getServices } from "@/lib/homepage";
+import { getHiddenSlugs } from "@/lib/pages";
 
 type OfficeRow = { region: string; city: string; address: string };
 
@@ -35,22 +36,24 @@ function LinkCol({ title, links }: { title: string; links: { label: string; href
 }
 
 export default async function Footer() {
-  const [settings, officeRows, services, industries, products, technologies] = await Promise.all([
+  const [settings, officeRows, services, industries, products, technologies, hidden] = await Promise.all([
     getSiteSettings(),
     getCollectionItems<OfficeRow>("offices"),
     getServices(),
     getCollectionItems<{ title: string; href: string }>("industries"),
     getCollectionItems<{ title: string; href: string }>("products"),
     getCollectionItems<{ title: string; href: string }>("technologies"),
+    getHiddenSlugs(),
   ]);
 
   const officeRegions = groupOffices(officeRows);
   const telHref = `tel:${settings.contactPhone.replace(/[^0-9+]/g, "")}`;
 
-  const serviceLinks = services.map((s) => ({ label: s.title, href: s.href }));
-  const industryLinks = industries.map((i) => ({ label: i.title, href: i.href }));
-  const productLinks = products.map((p) => ({ label: p.title, href: p.href }));
-  const technologyLinks = technologies.map((t) => ({ label: t.title, href: t.href }));
+  const visible = (href: string) => !hidden.has(href.replace(/^\//, "").split("#")[0]);
+  const serviceLinks = services.filter((s) => visible(s.href)).map((s) => ({ label: s.title, href: s.href }));
+  const industryLinks = industries.filter((i) => visible(i.href)).map((i) => ({ label: i.title, href: i.href }));
+  const productLinks = products.filter((p) => visible(p.href)).map((p) => ({ label: p.title, href: p.href }));
+  const technologyLinks = technologies.filter((t) => visible(t.href)).map((t) => ({ label: t.title, href: t.href }));
 
   return (
     <footer id="contact" style={{ background: "var(--background)", borderTop: "1px solid var(--border)" }}>

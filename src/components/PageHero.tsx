@@ -1,5 +1,6 @@
+import { notFound } from "next/navigation";
 import PageHeroView from "./PageHeroView";
-import { getPageOverride } from "@/lib/pages";
+import { getPageOverride, isPageHidden } from "@/lib/pages";
 
 interface PageHeroProps {
   title: string;
@@ -10,6 +11,7 @@ interface PageHeroProps {
 }
 
 export default async function PageHero({ title, subtitle, image, slug }: PageHeroProps) {
+  if (slug && (await isPageHidden(slug))) notFound();
   const override = slug ? await getPageOverride(slug) : null;
   return (
     <PageHeroView

@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { KNOWN_PAGES } from "@/lib/known-pages";
-import { resetPage } from "./actions";
+import { resetPage, setPageVisibility } from "./actions";
 
 export const dynamic = "force-dynamic";
 
 export default async function PagesAdmin() {
-  const overrides = await prisma.page.findMany({ select: { slug: true } });
+  const overrides = await prisma.page.findMany({ select: { slug: true, published: true } });
   const customized = new Set(overrides.map((o) => o.slug));
+  const hidden = new Set(overrides.filter((o) => o.published === false).map((o) => o.slug));
 
   const groups = Array.from(new Set(KNOWN_PAGES.map((p) => p.group)));
 
@@ -29,28 +30,40 @@ export default async function PagesAdmin() {
                 <tbody>
                   {KNOWN_PAGES.filter((p) => p.group === group).map((p) => {
                     const isCustom = customized.has(p.slug);
+                    const isHidden = hidden.has(p.slug);
                     return (
-                      <tr key={p.slug} style={{ borderTop: "1px solid var(--border)", background: "var(--card-bg)", color: "var(--text-primary)" }}>
+                      <tr key={p.slug} style={{ borderTop: "1px solid var(--border)", background: "var(--card-bg)", color: "var(--text-primary)", opacity: isHidden ? 0.6 : 1 }}>
                         <td className="px-4 py-3">
                           <div className="font-semibold">{p.name}</div>
                           <div className="text-xs mt-0.5" style={{ color: "var(--text-muted)" }}>/{p.slug}</div>
                         </td>
                         <td className="px-4 py-3">
-                          <span
-                            className="text-xs font-semibold px-2 py-1 rounded-md"
-                            style={isCustom ? { background: "#eef2ff", color: "var(--primary)" } : { background: "var(--surface-alt)", color: "var(--text-muted)" }}
-                          >
-                            {isCustom ? "Customized" : "Default"}
-                          </span>
+                          {isHidden ? (
+                            <span className="text-xs font-semibold px-2 py-1 rounded-md" style={{ background: "#fef2f2", color: "#dc2626" }}>Hidden</span>
+                          ) : (
+                            <span
+                              className="text-xs font-semibold px-2 py-1 rounded-md"
+                              style={isCustom ? { background: "#eef2ff", color: "var(--primary)" } : { background: "var(--surface-alt)", color: "var(--text-muted)" }}
+                            >
+                              {isCustom ? "Customized" : "Default"}
+                            </span>
+                          )}
                         </td>
                         <td className="px-4 py-3">
                           <div className="flex items-center justify-end gap-3">
                             <a href={`/${p.slug}`} target="_blank" rel="noopener noreferrer" className="font-medium" style={{ color: "var(--text-muted)" }}>View ↗</a>
                             <Link href={`/admin/pages/${p.slug}/edit`} className="font-medium" style={{ color: "var(--primary)" }}>Edit</Link>
+                            <form action={setPageVisibility}>
+                              <input type="hidden" name="slug" value={p.slug} />
+                              <input type="hidden" name="published" value={isHidden ? "true" : "false"} />
+                              <button type="submit" className="font-medium" style={{ color: isHidden ? "#059669" : "#dc2626" }}>
+                                {isHidden ? "Show" : "Hide"}
+                              </button>
+                            </form>
                             {isCustom && (
                               <form action={resetPage}>
                                 <input type="hidden" name="slug" value={p.slug} />
-                                <button type="submit" className="font-medium" style={{ color: "#dc2626" }}>Reset</button>
+                                <button type="submit" className="font-medium" style={{ color: "var(--text-muted)" }}>Reset</button>
                               </form>
                             )}
                           </div>

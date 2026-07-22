@@ -45,11 +45,14 @@ export async function savePage(slug: string, _prev: PageEditState, formData: For
     }
   }
 
+  const published = formData.get("published") === "on";
+
   const data = {
     title: d.title || "",
     subtitle: d.subtitle || null,
     heroImage: d.heroImage || null,
     faqs,
+    published,
   };
 
   await prisma.page.upsert({
@@ -59,8 +62,28 @@ export async function savePage(slug: string, _prev: PageEditState, formData: For
   });
 
   revalidatePath("/admin/pages");
+  revalidatePath("/", "layout");
   revalidatePath(`/${slug}`);
   redirect("/admin/pages");
+}
+
+/** Quick hide/show from the Pages list — upserts a Page row so hidden pages 404. */
+export async function setPageVisibility(formData: FormData) {
+  const session = await auth();
+  if (!session?.user) throw new Error("Unauthorized");
+  const slug = formData.get("slug");
+  const published = formData.get("published") === "true";
+  if (typeof slug !== "string" || !KNOWN_PAGE_SLUGS.has(slug)) throw new Error("Unknown page.");
+
+  await prisma.page.upsert({
+    where: { slug },
+    update: { published },
+    create: { slug, title: "", published },
+  });
+
+  revalidatePath("/admin/pages");
+  revalidatePath("/", "layout");
+  revalidatePath(`/${slug}`);
 }
 
 export async function resetPage(formData: FormData) {

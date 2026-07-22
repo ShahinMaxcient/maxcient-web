@@ -5,7 +5,8 @@ import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
 import Footer from "@/components/Footer";
-import { getPageOverride } from "@/lib/pages";
+import { notFound } from "next/navigation";
+import { getPageOverride, isPageHidden } from "@/lib/pages";
 
 export const metadata: Metadata = {
   title: "MaxMarina | Smart Marina Management Solution | Maxcient",
@@ -71,7 +72,9 @@ function BrochureSection() {
 }
 
 export default async function MaxMarina() {
-  const override = await getPageOverride("maxmarina-marina-management-solution");
+  const slug = "maxmarina-marina-management-solution";
+  if (await isPageHidden(slug)) notFound();
+  const override = await getPageOverride(slug);
   return (
     <>
       <NavbarServer />

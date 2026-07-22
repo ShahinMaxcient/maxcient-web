@@ -5,7 +5,7 @@ import Link from "next/link";
 import { savePage, type PageEditState } from "./actions";
 import ImageUpload from "../ImageUpload";
 
-type Initial = { title: string; subtitle: string; heroImage: string; faqsJson: string };
+type Initial = { title: string; subtitle: string; heroImage: string; faqsJson: string; published: boolean };
 
 const labelStyle: React.CSSProperties = { display: "block", fontSize: 13, fontWeight: 600, marginBottom: 6, color: "var(--text-secondary)" };
 const inputStyle: React.CSSProperties = { width: "100%", padding: "10px 12px", borderRadius: 8, border: "1px solid var(--border)", background: "var(--surface)", color: "var(--text-primary)", fontSize: 14, outline: "none" };
@@ -33,6 +33,17 @@ export default function PageEditor({ slug, initial }: { slug: string; initial: I
         <textarea id="subtitle" name="subtitle" rows={3} defaultValue={initial.subtitle} style={inputStyle} placeholder="Overrides the hero paragraph" />
       </div>
       <ImageUpload name="heroImage" value={initial.heroImage} label="Hero image" />
+
+      <div className="flex items-start gap-3 p-4 rounded-lg" style={{ border: "1px solid var(--border)", background: "var(--card-bg)" }}>
+        <input id="published" name="published" type="checkbox" defaultChecked={initial.published} style={{ marginTop: 3, width: 16, height: 16 }} />
+        <label htmlFor="published" className="cursor-pointer">
+          <span className="block text-sm font-semibold" style={{ color: "var(--text-primary)" }}>Visible on site</span>
+          <span className="block text-xs mt-0.5" style={{ color: "var(--text-muted)" }}>
+            Uncheck to take this page off the live site — it will return 404 and disappear from the navbar. Reversible anytime.
+          </span>
+        </label>
+      </div>
+
       <div>
         <label style={labelStyle} htmlFor="faqsJson">FAQs (JSON)</label>
         <textarea

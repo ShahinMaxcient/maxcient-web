@@ -35,6 +35,7 @@ export default async function EditPagePage({ params }: { params: Promise<{ slug:
           subtitle: row?.subtitle ?? "",
           heroImage: row?.heroImage ?? "",
           faqsJson,
+          published: row?.published ?? true,
         }}
       />
     </div>

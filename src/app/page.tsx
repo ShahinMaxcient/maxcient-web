@@ -16,9 +16,10 @@ import { getPublishedPosts } from "@/lib/posts";
 import { getSiteSettings, getHeroSettings, getSectionHeaders, getCTASettings } from "@/lib/settings";
 import { getServices, getTestimonials } from "@/lib/homepage";
 import { getCollectionItems } from "@/lib/content";
+import { getHiddenSlugs } from "@/lib/pages";
 
 export default async function Home() {
-  const [posts, settings, hero, sections, cta, services, testimonials, industries, products, technologies, clients, stats, faqs, marqueeItems] =
+  const [posts, settings, hero, sections, cta, servicesAll, testimonials, industriesAll, productsAll, technologiesAll, clients, stats, faqs, marqueeItems, hidden] =
     await Promise.all([
       getPublishedPosts(4),
       getSiteSettings(),
@@ -34,7 +35,15 @@ export default async function Home() {
       getCollectionItems<{ eyebrow: string; value: number; suffix: string; label: string }>("stats"),
       getCollectionItems<{ question: string; answer: string }>("faqs"),
       getCollectionItems<{ text: string }>("marquee"),
+      getHiddenSlugs(),
     ]);
+
+  // Drop cards whose detail page has been hidden in Admin → Pages.
+  const visible = (href: string) => !hidden.has(href.replace(/^\//, "").split("#")[0]);
+  const services = servicesAll.filter((s) => visible(s.href));
+  const industries = industriesAll.filter((i) => visible(i.href));
+  const products = productsAll.filter((p) => visible(p.href));
+  const technologies = technologiesAll.filter((t) => visible(t.href));
 
   return (
     <>

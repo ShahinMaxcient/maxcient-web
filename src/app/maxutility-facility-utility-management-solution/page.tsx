@@ -5,7 +5,8 @@ import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
 import Footer from "@/components/Footer";
-import { getPageOverride } from "@/lib/pages";
+import { notFound } from "next/navigation";
+import { getPageOverride, isPageHidden } from "@/lib/pages";
 
 export const metadata: Metadata = {
   title: "MaxUtility | Facility & Utility Management Solution | Maxcient",
@@ -77,7 +78,9 @@ function BrochureSection() {
 }
 
 export default async function MaxUtility() {
-  const override = await getPageOverride("maxutility-facility-utility-management-solution");
+  const slug = "maxutility-facility-utility-management-solution";
+  if (await isPageHidden(slug)) notFound();
+  const override = await getPageOverride(slug);
   return (
     <>
       <NavbarServer />

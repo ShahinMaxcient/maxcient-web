@@ -5,6 +5,7 @@ import Link from "next/link";
 import { saveItem, type ContentFormState } from "./actions";
 import type { Field } from "@/lib/collections";
 import ImageUpload from "../ImageUpload";
+import SubLinksEditor from "./SubLinksEditor";
 
 const labelStyle: React.CSSProperties = { display: "block", fontSize: 13, fontWeight: 600, marginBottom: 6, color: "var(--text-secondary)" };
 const inputStyle: React.CSSProperties = { width: "100%", padding: "10px 12px", borderRadius: 8, border: "1px solid var(--border)", background: "var(--surface)", color: "var(--text-primary)", fontSize: 14, outline: "none" };
@@ -57,13 +58,17 @@ export default function CollectionForm({
               label={`${f.label}${f.required ? " *" : ""}`}
               help={f.help}
             />
+          ) : f.type === "sublinks" ? (
+            <>
+              <label style={labelStyle}>{f.label}</label>
+              <SubLinksEditor name={f.name} initialValue={initialValue(f, initial)} />
+              {f.help && <p className="text-xs mt-2" style={{ color: "var(--text-muted)" }}>{f.help}</p>}
+            </>
           ) : (
             <>
               <label style={labelStyle} htmlFor={f.name}>{f.label}{f.required ? " *" : ""}</label>
               {f.type === "textarea" ? (
                 <textarea id={f.name} name={f.name} rows={3} defaultValue={initialValue(f, initial)} style={inputStyle} placeholder={f.placeholder} />
-              ) : f.type === "sublinks" ? (
-                <textarea id={f.name} name={f.name} rows={4} defaultValue={initialValue(f, initial)} style={{ ...inputStyle, fontFamily: "var(--font-geist-mono), monospace", fontSize: 13 }} placeholder={"Metering & Billing | /maxutility-facility-utility-management-solution#functionalities\nBook a Demo | /request-a-consultation"} />
               ) : f.type === "select" ? (
                 <select id={f.name} name={f.name} defaultValue={initialValue(f, initial) || (f.options?.[0]?.value ?? "")} style={inputStyle}>
                   {f.options?.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
