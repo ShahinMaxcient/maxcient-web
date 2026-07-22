@@ -12,7 +12,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   contactPhone: "+971 4 329 3710",
   linkedinUrl: "https://www.linkedin.com/company/maxcient",
   footerTagline:
-    "Talk to us about how Maxcient can help you realize business value faster with end-to-end solutions and cloud services. Microsoft Gold Partner, headquartered in Dubai.",
+    "Talk to us about how Maxcient can help you realize business value faster with end-to-end solutions and cloud services. Microsoft Solutions Partner, headquartered in Dubai.",
 };
 
 const SETTINGS_KEY = "site";
@@ -65,9 +65,8 @@ export const DEFAULT_HERO: HeroSettings = {
   ctaText: "Book a consultation",
   ctaSecondary: "See our work",
   phone: "+971 4 329 3710",
-  badge: "Microsoft Gold Partner",
-  image:
-    "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=2400&q=80",
+  badge: "Microsoft Solutions Partner",
+  image: "/hero-code.jpg",
   tagline: "EST · 2017 — DUBAI · UAE",
   stats: [
     { n: "06", l: "Global Offices" },

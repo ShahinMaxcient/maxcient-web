@@ -27,20 +27,21 @@ export default function MaxMarinaHero({
         priority
         className="object-cover"
         sizes="100vw"
+        style={{ filter: "brightness(1.25) saturate(1.05)" }}
       />
 
-      {/* Cinematic dark gradient — brand violet bleeding from the left */}
+      {/* Soft gradient — keeps text legible on the left, lets the photo shine on the right */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(95deg, rgba(8,8,18,0.92) 0%, rgba(12,10,28,0.80) 34%, rgba(20,16,44,0.42) 62%, rgba(124,58,237,0.20) 100%)",
+            "linear-gradient(95deg, rgba(8,8,18,0.72) 0%, rgba(12,10,28,0.52) 34%, rgba(20,16,44,0.18) 62%, rgba(124,58,237,0.08) 100%)",
         }}
       />
       {/* bottom fade for legibility */}
       <div
         className="absolute inset-x-0 bottom-0"
-        style={{ height: "40%", background: "linear-gradient(to top, rgba(8,8,18,0.85), transparent)" }}
+        style={{ height: "30%", background: "linear-gradient(to top, rgba(8,8,18,0.55), transparent)" }}
       />
 
       <div
