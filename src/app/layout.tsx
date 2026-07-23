@@ -31,9 +31,9 @@ export const metadata: Metadata = {
     "Unlock business value with Maxcient's enterprise-grade solutions tailored for UAE and GCC markets.",
 };
 
-// Render every page fresh from the database on each request — admin edits
-// (from any environment) appear on the live site immediately, no cache.
-export const dynamic = "force-dynamic";
+// Pages are statically cached and served instantly from the CDN. Every admin
+// save calls revalidatePath(...), which rebuilds the affected pages with fresh
+// database content immediately — fast for visitors, current for editors.
 
 export default function RootLayout({
   children,

@@ -26,7 +26,7 @@ export default function TrustedBy({ clients, header }: { clients: ClientItem[]; 
                   width={170}
                   height={85}
                   className="ed-client-logo"
-                  style={{ width: "auto", height: "auto", maxHeight: 48, maxWidth: "100%", objectFit: "contain", mixBlendMode: "multiply", opacity: 0.85 }}
+                  style={{ width: "auto", height: "auto", maxHeight: 48, maxWidth: "100%", objectFit: "contain" }}
                 />
               </div>
             </SectionReveal>

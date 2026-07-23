@@ -130,14 +130,10 @@ html { scroll-padding-top: 88px; }
 :root[data-theme="dark"] .nav-logo-light { display: none; }
 :root[data-theme="dark"] .nav-logo-dark { display: block; }
 
-/* Client logos: white backgrounds are dropped via multiply on the light section.
-   In dark mode multiply would hide them, so give them a small white chip instead. */
+/* Client logos are transparent PNGs; keep them readable on the dark surface. */
 :root[data-theme="dark"] .ed-client-logo {
-  mix-blend-mode: normal !important;
-  background: #ffffff;
-  padding: 8px 14px;
-  border-radius: 8px;
-  opacity: 1 !important;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
 }
 
 /* ============================================================
