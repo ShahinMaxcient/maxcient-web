@@ -48,26 +48,43 @@ function DropdownChild({ child }: { child: NavChild }) {
   const [subOpen, setSubOpen] = useState(false);
   const hasSub = !!child.children && child.children.length > 0;
 
+  const rowStyle: React.CSSProperties = { fontSize: "13px", color: "var(--text-secondary)", borderRadius: "4px" };
+  const hoverIn = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.background = "var(--glow-color)"; e.currentTarget.style.color = "var(--primary)"; };
+  const hoverOut = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--text-secondary)"; };
+  const chevron = (
+    <svg className="w-3 h-3 opacity-50 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+    </svg>
+  );
+
   return (
     <div
       className="relative"
       onMouseEnter={() => hasSub && setSubOpen(true)}
       onMouseLeave={() => setSubOpen(false)}
     >
-      <Link
-        href={child.href}
-        className="flex items-center justify-between gap-3 px-3 py-2 transition-colors duration-150"
-        style={{ fontSize: "13px", color: "var(--text-secondary)", borderRadius: "4px" }}
-        onMouseEnter={(e) => { e.currentTarget.style.background = "var(--glow-color)"; e.currentTarget.style.color = "var(--primary)"; }}
-        onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--text-secondary)"; }}
-      >
-        {child.label}
-        {hasSub && (
-          <svg className="w-3 h-3 opacity-50 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        )}
-      </Link>
+      {hasSub ? (
+        // Parent that only groups sub-items — a header, not a link.
+        <div
+          className="flex items-center justify-between gap-3 px-3 py-2 cursor-default transition-colors duration-150 select-none"
+          style={rowStyle}
+          onMouseEnter={hoverIn}
+          onMouseLeave={hoverOut}
+        >
+          {child.label}
+          {chevron}
+        </div>
+      ) : (
+        <Link
+          href={child.href}
+          className="flex items-center justify-between gap-3 px-3 py-2 transition-colors duration-150"
+          style={rowStyle}
+          onMouseEnter={hoverIn}
+          onMouseLeave={hoverOut}
+        >
+          {child.label}
+        </Link>
+      )}
 
       <AnimatePresence>
         {hasSub && subOpen && (
@@ -276,13 +293,17 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
                         <div className="pl-3 pb-2">
                           {item.children.map((child) => (
                             <div key={child.label}>
-                              <Link href={child.href} className="block py-2 text-sm" style={{ color: "var(--text-muted)" }} onClick={() => setMobileMenuOpen(false)}>{child.label}</Link>
-                              {child.children && child.children.length > 0 && (
-                                <div className="pl-3 border-l" style={{ borderColor: "var(--border)" }}>
-                                  {child.children.map((sub) => (
-                                    <Link key={sub.label} href={sub.href} className="block py-1.5 text-[13px]" style={{ color: "var(--text-muted)", opacity: 0.85 }} onClick={() => setMobileMenuOpen(false)}>{sub.label}</Link>
-                                  ))}
-                                </div>
+                              {child.children && child.children.length > 0 ? (
+                                <>
+                                  <div className="py-2 text-sm font-semibold" style={{ color: "var(--text-secondary)" }}>{child.label}</div>
+                                  <div className="pl-3 border-l" style={{ borderColor: "var(--border)" }}>
+                                    {child.children.map((sub) => (
+                                      <Link key={sub.label} href={sub.href} className="block py-1.5 text-[13px]" style={{ color: "var(--text-muted)", opacity: 0.85 }} onClick={() => setMobileMenuOpen(false)}>{sub.label}</Link>
+                                    ))}
+                                  </div>
+                                </>
+                              ) : (
+                                <Link href={child.href} className="block py-2 text-sm" style={{ color: "var(--text-muted)" }} onClick={() => setMobileMenuOpen(false)}>{child.label}</Link>
                               )}
                             </div>
                           ))}
