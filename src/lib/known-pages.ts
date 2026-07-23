@@ -17,6 +17,7 @@ export const KNOWN_PAGES: KnownPage[] = [
   { slug: "professional-services", name: "Professional Services", group: "Industries" },
   // Products
   { slug: "realtyai-property-management-solution", name: "RealtyAI", group: "Products" },
+  { slug: "realtyai-sales", name: "RealtyAI Sales", group: "Products" },
   { slug: "smartfees-school-admin-solution", name: "SmartFees", group: "Products" },
   { slug: "maxpayroll-hr-management-solution-2", name: "MaxPayroll", group: "Products" },
   { slug: "maxsphere-one", name: "MaxSphere One", group: "Products" },
