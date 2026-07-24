@@ -65,8 +65,7 @@ export async function createPost(
   });
 
   revalidatePath("/admin/blog");
-  revalidatePath("/blog");
-  revalidatePath("/");
+  revalidatePath("/", "layout");
   redirect("/admin/blog");
 }
 
@@ -103,9 +102,8 @@ export async function updatePost(
   });
 
   revalidatePath("/admin/blog");
-  revalidatePath("/blog");
   revalidatePath(`/blog/${slug}`);
-  revalidatePath("/");
+  revalidatePath("/", "layout");
   redirect("/admin/blog");
 }
 
@@ -115,6 +113,5 @@ export async function deletePost(formData: FormData) {
   if (typeof id !== "string") throw new Error("Missing id.");
   await prisma.post.delete({ where: { id } });
   revalidatePath("/admin/blog");
-  revalidatePath("/blog");
-  revalidatePath("/");
+  revalidatePath("/", "layout");
 }
