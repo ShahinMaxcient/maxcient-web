@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import Link from "next/link";
 import { savePage, type PageEditState } from "./actions";
 import ImageUpload from "../ImageUpload";
+import FaqEditor from "./FaqEditor";
 
 type Initial = { title: string; subtitle: string; heroImage: string; faqsJson: string; published: boolean };
 
@@ -45,18 +46,8 @@ export default function PageEditor({ slug, initial }: { slug: string; initial: I
       </div>
 
       <div>
-        <label style={labelStyle} htmlFor="faqsJson">FAQs (JSON)</label>
-        <textarea
-          id="faqsJson"
-          name="faqsJson"
-          rows={10}
-          defaultValue={initial.faqsJson}
-          style={{ ...inputStyle, fontFamily: "var(--font-geist-mono), monospace", lineHeight: 1.6 }}
-          placeholder={'[\n  { "question": "…", "answer": "…" }\n]'}
-        />
-        <p className="text-xs mt-1.5" style={{ color: "var(--text-muted)" }}>
-          A JSON array of {"{ question, answer }"} objects. Leave blank to use the page&apos;s default FAQs.
-        </p>
+        <label style={labelStyle}>FAQs</label>
+        <FaqEditor name="faqsJson" initialValue={initial.faqsJson} />
       </div>
 
       <div className="flex items-center gap-3 pt-2">

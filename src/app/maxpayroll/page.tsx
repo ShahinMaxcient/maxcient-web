@@ -5,7 +5,7 @@ import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
 import Footer from "@/components/Footer";
-import { isPageHidden } from "@/lib/pages";
+import { getPageOverride, isPageHidden } from "@/lib/pages";
 import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
@@ -36,15 +36,18 @@ const faqs = [
 
 export default async function MaxPayroll() {
   if (await isPageHidden("maxpayroll")) notFound();
+  const override = await getPageOverride("maxpayroll");
+  // Default renders the two-tone "Max|Payroll" wordmark; a custom title replaces it whole.
+  const customTitle = override?.title && override.title !== "MaxPayroll" ? override.title : null;
   return (
     <>
       <NavbarServer />
       <main>
         <ProductHero
-          title="Max"
-          accentWord="Payroll"
-          subtitle="Seamless & smart HR operations. Powered by Microsoft Dynamics 365, MaxPayroll centralizes onboarding, leave management and payroll processing for diverse workforces — driving operations with precision and assurance."
-          image="/products/maxpayroll-hero.jpg"
+          title={customTitle ?? "Max"}
+          accentWord={customTitle ? undefined : "Payroll"}
+          subtitle={override?.subtitle || "Seamless & smart HR operations. Powered by Microsoft Dynamics 365, MaxPayroll centralizes onboarding, leave management and payroll processing for diverse workforces — driving operations with precision and assurance."}
+          image={override?.heroImage || "/products/maxpayroll-hero.jpg"}
           stats={[
             { n: "D365", l: "Powered by Microsoft" },
             { n: "WPS", l: "UAE payroll ready" },

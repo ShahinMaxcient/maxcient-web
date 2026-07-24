@@ -5,7 +5,7 @@ import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
 import Footer from "@/components/Footer";
-import { isPageHidden } from "@/lib/pages";
+import { getPageOverride, isPageHidden } from "@/lib/pages";
 import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
@@ -60,11 +60,12 @@ function BrochureSection() {
 
 export default async function MaxSphereOne() {
   if (await isPageHidden("maxsphere-one")) notFound();
+  const override = await getPageOverride("maxsphere-one");
   return (
     <>
       <NavbarServer />
       <main>
-        <MaxSphereHero />
+        <MaxSphereHero title={override?.title || undefined} subtitle={override?.subtitle || undefined} />
         <FeatureGrid
           id="functionalities"
           title="Twelve modules, one product."

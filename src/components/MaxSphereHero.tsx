@@ -5,7 +5,13 @@ import { motion } from "framer-motion";
 
 const GOLD = "#c9a24b";
 
-export default function MaxSphereHero() {
+interface Props {
+  title?: string; // admin override; default renders the two-tone "MaxSphere One" wordmark
+  subtitle?: string;
+}
+
+export default function MaxSphereHero({ title, subtitle }: Props = {}) {
+  const customTitle = title && title !== "MaxSphere One" ? title : null;
   return (
     <section className="relative w-full overflow-hidden" style={{ minHeight: "100svh", background: "#0b1020" }}>
       {/* Deep navy base with a warm gold glow on the right — mirrors the brochure cover. */}
@@ -37,7 +43,7 @@ export default function MaxSphereHero() {
             className="ed-display"
             style={{ fontSize: "clamp(2.85rem, 6.5vw, 5.75rem)", lineHeight: 1.02, fontFamily: "var(--font-geist-sans), system-ui, sans-serif", color: "#fff" }}
           >
-            MaxSphere <span style={{ color: GOLD }}>One</span>
+            {customTitle ?? (<>MaxSphere <span style={{ color: GOLD }}>One</span></>)}
           </motion.h1>
 
           <motion.p
@@ -45,7 +51,7 @@ export default function MaxSphereHero() {
             className="mt-6 leading-relaxed"
             style={{ fontSize: "1.15rem", color: "rgba(255,255,255,0.82)", maxWidth: "580px" }}
           >
-            The super app for real estate — a deployment-ready mobile and web platform that unifies discovery, sales, tenancy, ownership, payments, facilities and community, over the systems you already run.
+            {subtitle || "The super app for real estate — a deployment-ready mobile and web platform that unifies discovery, sales, tenancy, ownership, payments, facilities and community, over the systems you already run."}
           </motion.p>
 
           <motion.div
