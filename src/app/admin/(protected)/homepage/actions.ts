@@ -15,7 +15,7 @@ async function ensureAuth() {
 
 function revalidateHome() {
   revalidatePath("/admin/homepage");
-  revalidatePath("/");
+  revalidatePath("/", "layout");
 }
 
 /* ---------------- Services ---------------- */
