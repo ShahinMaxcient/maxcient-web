@@ -18,7 +18,7 @@ export default function MaxMarinaHero({
   return (
     <section
       className="relative w-full overflow-hidden"
-      style={{ minHeight: "min(90vh, 820px)", background: "#0a0a12" }}
+      style={{ minHeight: "100svh", background: "#0a0a12" }}
     >
       <Image
         src={image}
@@ -33,7 +33,7 @@ export default function MaxMarinaHero({
 
       <div
         className="relative max-w-[1400px] mx-auto px-5 sm:px-8 flex flex-col justify-center"
-        style={{ minHeight: "min(90vh, 820px)", paddingTop: "128px", paddingBottom: "72px" }}
+        style={{ minHeight: "100svh", paddingTop: "128px", paddingBottom: "72px" }}
       >
         <div className="max-w-[720px]">
           <motion.div

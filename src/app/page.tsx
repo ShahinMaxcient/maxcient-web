@@ -18,6 +18,11 @@ import { getServices, getTestimonials } from "@/lib/homepage";
 import { getCollectionItems } from "@/lib/content";
 import { getHiddenSlugs } from "@/lib/pages";
 
+// The homepage is CMS-driven (hero image, sections, products). Render it fresh
+// on each request so admin edits always show and never fall back to a stale,
+// build-time-cached default.
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const [posts, settings, hero, sections, cta, servicesAll, testimonials, industriesAll, productsAll, technologiesAll, clients, stats, faqs, marqueeItems, hidden] =
     await Promise.all([

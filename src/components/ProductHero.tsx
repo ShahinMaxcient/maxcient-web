@@ -7,25 +7,35 @@ import { motion } from "framer-motion";
 type Stat = { n: string; l: string };
 
 interface Props {
-  variant: string; // e.g. "Sales", "Leasing", "FM"
-  title?: string; // full override; when set, replaces the "RealtyAI {variant}" wordmark
+  eyebrow?: string;
+  title: string; // rendered white
+  accentWord?: string; // appended, colored with accentColor
+  accentColor?: string;
   subtitle: string;
   image: string;
-  brochureHref: string;
-  brochureName: string;
   stats: Stat[];
-  eyebrow?: string;
+  brochureHref?: string;
+  brochureName?: string;
 }
 
-export default function RealtyAiHero({ variant, title, subtitle, image, brochureHref, brochureName, stats, eyebrow = "Maxcient — RealtyAI Suite" }: Props) {
-  const useWordmark = !title;
+export default function ProductHero({
+  eyebrow = "Maxcient — Proprietary Product",
+  title,
+  accentWord,
+  accentColor = "var(--primary-light)",
+  subtitle,
+  image,
+  stats,
+  brochureHref,
+  brochureName,
+}: Props) {
   return (
     <section className="relative w-full overflow-hidden" style={{ minHeight: "100svh", background: "#0a0a12" }}>
-      <Image src={image} alt={`RealtyAI ${variant} — real estate`} fill priority className="object-cover" sizes="100vw" />
+      <Image src={image} alt={title} fill priority className="object-cover" sizes="100vw" />
 
       <div
         className="absolute inset-0"
-        style={{ background: "linear-gradient(100deg, rgba(10,10,18,0.90) 0%, rgba(12,10,28,0.72) 40%, rgba(20,16,44,0.34) 68%, rgba(124,58,237,0.12) 100%)" }}
+        style={{ background: "linear-gradient(100deg, rgba(10,10,18,0.92) 0%, rgba(12,10,28,0.78) 40%, rgba(20,16,44,0.40) 68%, rgba(124,58,237,0.14) 100%)" }}
       />
 
       <div className="relative max-w-[1400px] mx-auto px-5 sm:px-8 flex flex-col justify-center" style={{ minHeight: "100svh", paddingTop: "128px", paddingBottom: "72px" }}>
@@ -44,17 +54,13 @@ export default function RealtyAiHero({ variant, title, subtitle, image, brochure
             className="ed-display"
             style={{ fontSize: "clamp(2.75rem, 6.5vw, 5.5rem)", lineHeight: 1.03, fontFamily: "var(--font-geist-sans), system-ui, sans-serif", color: "#fff", filter: "drop-shadow(0 3px 16px rgba(0,0,0,0.5))" }}
           >
-            {useWordmark ? (
-              <>Realty<span style={{ color: "var(--primary-light)" }}>AI</span>{" "}<span style={{ color: "#fff" }}>{variant}</span></>
-            ) : (
-              <span style={{ color: "#fff" }}>{title}</span>
-            )}
+            {title}{accentWord && <span style={{ color: accentColor }}>{accentWord}</span>}
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-6 leading-relaxed"
-            style={{ fontSize: "1.15rem", color: "rgba(255,255,255,0.9)", maxWidth: "560px", textShadow: "0 1px 12px rgba(0,0,0,0.6)" }}
+            style={{ fontSize: "1.15rem", color: "rgba(255,255,255,0.92)", maxWidth: "560px", textShadow: "0 1px 12px rgba(0,0,0,0.6)" }}
           >
             {subtitle}
           </motion.p>
@@ -68,10 +74,12 @@ export default function RealtyAiHero({ variant, title, subtitle, image, brochure
               <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
 
-            <a href={brochureHref} download={brochureName} className="inline-flex items-center gap-2.5" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.09em", color: "rgba(255,255,255,0.95)", textShadow: "0 1px 10px rgba(0,0,0,0.6)" }}>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3" /></svg>
-              Download brochure
-            </a>
+            {brochureHref && (
+              <a href={brochureHref} download={brochureName} className="inline-flex items-center gap-2.5" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.09em", color: "rgba(255,255,255,0.95)", textShadow: "0 1px 10px rgba(0,0,0,0.6)" }}>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3" /></svg>
+                Download brochure
+              </a>
+            )}
 
             <span className="inline-flex items-center gap-2.5 px-4 py-2.5" style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.22)", borderRadius: "5px", backdropFilter: "blur(6px)" }}>
               <svg width="16" height="16" viewBox="0 0 23 23" aria-hidden="true" className="shrink-0">
