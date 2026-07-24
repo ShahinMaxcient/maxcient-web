@@ -4,6 +4,10 @@ import Link from "next/link";
 import { auth, signOut } from "@/auth";
 import AdminNav from "./AdminNav";
 
+// Every admin route reads live data and must never be statically cached.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function ProtectedAdminLayout({ children }: { children: ReactNode }) {
   const session = await auth();
   if (!session?.user) {
