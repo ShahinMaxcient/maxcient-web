@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import sharp from "sharp";
 import { auth } from "@/auth";
 
 const supabase = createClient(
@@ -21,9 +22,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "No file provided" }, { status: 400 });
   }
 
-  const maxSize = 4.5 * 1024 * 1024;
+  const maxSize = 10 * 1024 * 1024; // generous input cap — we compress before storing
   if (file.size > maxSize) {
-    return NextResponse.json({ error: "File too large (max 4.5 MB)" }, { status: 400 });
+    return NextResponse.json({ error: "File too large (max 10 MB)" }, { status: 400 });
   }
 
   const allowed = ["image/jpeg", "image/png", "image/webp", "image/svg+xml", "image/gif"];
@@ -31,12 +32,38 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid file type" }, { status: 400 });
   }
 
-  const ext = file.name.split(".").pop() || "jpg";
-  const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+  const stamp = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+
+  let body: Buffer | File = file;
+  let contentType = file.type;
+  let path: string;
+
+  if (file.type === "image/svg+xml" || file.type === "image/gif") {
+    // Vector / animated formats pass through untouched.
+    const ext = file.type === "image/svg+xml" ? "svg" : "gif";
+    path = `${stamp}.${ext}`;
+  } else {
+    // Photos: auto-rotate, cap at 2400px wide, re-encode as WebP.
+    // Typically shrinks a 4–8 MB photo to a few hundred KB with no visible loss.
+    try {
+      const input = Buffer.from(await file.arrayBuffer());
+      body = await sharp(input)
+        .rotate()
+        .resize({ width: 2400, withoutEnlargement: true })
+        .webp({ quality: 82 })
+        .toBuffer();
+      contentType = "image/webp";
+      path = `${stamp}.webp`;
+    } catch {
+      // Corrupt or unsupported image data — store the original rather than failing.
+      const ext = file.name.split(".").pop() || "jpg";
+      path = `${stamp}.${ext}`;
+    }
+  }
 
   const { error } = await supabase.storage
     .from(BUCKET)
-    .upload(path, file, { contentType: file.type, upsert: false });
+    .upload(path, body, { contentType, upsert: false });
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
