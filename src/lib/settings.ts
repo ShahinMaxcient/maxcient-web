@@ -53,7 +53,8 @@ export type HeroSettings = {
   ctaSecondary: string;
   phone: string;
   badge: string;
-  image: string;
+  image: string; // primary / fallback image
+  images: string[]; // up to 4 background images; animated slideshow when >1
   tagline: string;
   stats: { n: string; l: string }[];
 };
@@ -67,6 +68,7 @@ export const DEFAULT_HERO: HeroSettings = {
   phone: "+971 4 329 3710",
   badge: "Microsoft Solutions Partner",
   image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-skyline.webp",
+  images: ["https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-skyline.webp"],
   tagline: "EST · 2017 — DUBAI · UAE",
   stats: [
     { n: "06", l: "Global Offices" },
@@ -77,7 +79,12 @@ export const DEFAULT_HERO: HeroSettings = {
 };
 
 export async function getHeroSettings(): Promise<HeroSettings> {
-  return getSettingValue("hero", DEFAULT_HERO);
+  const hero = await getSettingValue("hero", DEFAULT_HERO);
+  // Back-compat: rows saved before multi-image only have `image`.
+  if (!Array.isArray(hero.images) || hero.images.length === 0) {
+    hero.images = hero.image ? [hero.image] : [];
+  }
+  return hero;
 }
 
 // ─── Section headers ──────────────────────────────────────────────────────────

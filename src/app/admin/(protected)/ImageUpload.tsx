@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 
 type Props = {
-  name: string;
+  name?: string;
   value: string;
   onChange?: (url: string) => void;
   label?: string;
@@ -56,7 +56,7 @@ export default function ImageUpload({ name, value, onChange, label, help }: Prop
         </label>
       )}
 
-      <input type="hidden" name={name} value={url} />
+      {name && <input type="hidden" name={name} value={url} />}
 
       <div
         onDrop={handleDrop}

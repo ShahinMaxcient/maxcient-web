@@ -1,27 +1,50 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import type { HeroSettings } from "@/lib/settings";
 import { DEFAULT_HERO } from "@/lib/settings";
 
 export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
   const telHref = `tel:${data.phone.replace(/[^0-9+]/g, "")}`;
 
+  // Background image(s): animated cross-fade slideshow when more than one.
+  const images = (data.images?.length ? data.images : data.image ? [data.image] : []).filter(Boolean);
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    if (images.length < 2) return;
+    const t = setInterval(() => setIdx((i) => (i + 1) % images.length), 6000);
+    return () => clearInterval(t);
+  }, [images.length]);
+
   return (
     <section
       className="relative w-full overflow-hidden"
       style={{ minHeight: "min(92vh, 900px)", background: "#100c20" }}
     >
-      <Image
-        src={data.image}
-        alt="Maxcient — enterprise technology, delivered"
-        fill
-        priority
-        className="object-cover"
-        sizes="100vw"
-      />
+      {/* Cross-fading Ken-Burns slideshow */}
+      <AnimatePresence>
+        <motion.div
+          key={idx}
+          className="absolute inset-0"
+          initial={{ opacity: 0, scale: 1.08 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ opacity: { duration: 1.4, ease: "easeInOut" }, scale: { duration: 7, ease: "linear" } }}
+        >
+          <Image
+            src={images[idx] ?? data.image}
+            alt="Maxcient — enterprise technology, delivered"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        </motion.div>
+      </AnimatePresence>
 
       <div
         className="absolute inset-0"

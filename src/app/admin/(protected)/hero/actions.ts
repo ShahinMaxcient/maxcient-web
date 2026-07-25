@@ -21,6 +21,14 @@ export async function saveHeroSettings(
     return { error: "Stats must be a valid JSON array." };
   }
 
+  let images: string[] = [];
+  try {
+    const parsed = JSON.parse(String(formData.get("images") ?? "[]"));
+    if (Array.isArray(parsed)) images = parsed.filter((x): x is string => typeof x === "string" && x.length > 0).slice(0, 4);
+  } catch {
+    images = [];
+  }
+
   const value = {
     headline: String(formData.get("headline") ?? "").trim(),
     subtitle: String(formData.get("subtitle") ?? "").trim(),
@@ -28,7 +36,8 @@ export async function saveHeroSettings(
     ctaSecondary: String(formData.get("ctaSecondary") ?? "").trim(),
     phone: String(formData.get("phone") ?? "").trim(),
     badge: String(formData.get("badge") ?? "").trim(),
-    image: String(formData.get("image") ?? "").trim(),
+    images,
+    image: images[0] ?? "", // keep single-image field in sync for any legacy reader
     tagline: String(formData.get("tagline") ?? "").trim(),
     stats,
   };

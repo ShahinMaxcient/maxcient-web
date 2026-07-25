@@ -3,7 +3,7 @@
 import { useActionState } from "react";
 import { saveHeroSettings, type HeroFormState } from "./actions";
 import type { HeroSettings } from "@/lib/settings";
-import ImageUpload from "../ImageUpload";
+import MultiImageUpload from "./MultiImageUpload";
 import StatsEditor from "./StatsEditor";
 
 const labelStyle: React.CSSProperties = { display: "block", fontSize: 13, fontWeight: 600, marginBottom: 6, color: "var(--text-secondary)" };
@@ -54,7 +54,10 @@ export default function HeroForm({ initial }: { initial: HeroSettings }) {
         <input id="tagline" name="tagline" defaultValue={initial.tagline} style={inputStyle} />
       </div>
 
-      <ImageUpload name="image" value={initial.image} label="Background image" />
+      <div>
+        <label style={labelStyle}>Background images</label>
+        <MultiImageUpload name="images" value={initial.images?.length ? initial.images : (initial.image ? [initial.image] : [])} max={4} />
+      </div>
 
       <div>
         <label style={labelStyle}>Stats bar</label>
