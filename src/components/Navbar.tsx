@@ -28,7 +28,7 @@ const DEFAULT_NAV: NavItem[] = [
     { label: "Professional Services", href: "/professional-services" },
   ]},
   { label: "Products", href: "#", children: [
-    { label: "RealtyAI", href: "/realtyai-property-management-solution" },
+    { label: "RealtyAI", href: "/realtyai-sales" },
     { label: "SmartFees", href: "/smartfees-school-admin-solution" },
     { label: "MaxPayroll", href: "/maxpayroll-hr-management-solution-2" },
     { label: "MaxMarina", href: "/maxmarina-marina-management-solution" },

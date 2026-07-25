@@ -16,7 +16,6 @@ export const KNOWN_PAGES: KnownPage[] = [
   { slug: "distribution", name: "Distribution", group: "Industries" },
   { slug: "professional-services", name: "Professional Services", group: "Industries" },
   // Products
-  { slug: "realtyai-property-management-solution", name: "RealtyAI", group: "Products" },
   { slug: "realtyai-sales", name: "RealtyAI Sales", group: "Products" },
   { slug: "realtyai-leasing", name: "RealtyAI Leasing", group: "Products" },
   { slug: "realtyai-fm", name: "RealtyAI FM", group: "Products" },
