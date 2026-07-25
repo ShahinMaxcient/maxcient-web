@@ -8,7 +8,7 @@ export default function CTASection({ title, subtitle, phone = "+971 4 329 3710",
   return (
     <section className="relative overflow-hidden" style={{ background: "#100c20", padding: "128px 0" }}>
       <Image
-        src={image || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2400&q=80"}
+        src={image || "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1451187580459-43490279c0fa.webp"}
         alt=""
         fill
         className="object-cover"

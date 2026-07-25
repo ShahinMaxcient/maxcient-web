@@ -32,7 +32,7 @@ export default function ApplicationDevelopment() {
         <PageHero slug="application-development"
           title="Application Development"
           subtitle="Bespoke application solutions tailored to your unique business needs. Custom application development to meet unique business needs with cutting-edge technology."
-          image="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1920&q=80"
+          image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1498050108023-c5249f4df085.webp"
         />
         <FeatureGrid title="Development Capabilities" subtitle="End-to-end application development powered by Microsoft Dynamics 365." features={features} />
         <CTASection title="Let's Build Something Great" subtitle="Connect with our development team to discuss your custom application needs." />

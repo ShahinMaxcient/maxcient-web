@@ -13,7 +13,7 @@ interface Props {
 export default function MaxMarinaHero({
   title = "MaxMarina",
   subtitle = "A smooth sailing marina operations platform. Berth management, boat sales, billing, and guest experiences — unified on Microsoft Dynamics 365 with AI-powered optimization.",
-  image = "/maxmarina/hero-marina.jpg",
+  image = "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/maxmarina-hero-marina.webp",
 }: Props) {
   return (
     <section

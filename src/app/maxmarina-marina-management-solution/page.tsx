@@ -82,7 +82,7 @@ export default async function MaxMarina() {
         <MaxMarinaHero
           title={override?.title || "MaxMarina"}
           subtitle={override?.subtitle || undefined}
-          image={override?.heroImage || "/maxmarina/hero-marina.jpg"}
+          image={override?.heroImage || "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/maxmarina-hero-marina.webp"}
         />
         <FeatureGrid
           id="functionalities"
@@ -94,7 +94,7 @@ export default async function MaxMarina() {
         <CTASection
           title="Let's Elevate Every Voyage"
           subtitle="Schedule a personalized demo and chart a successful course for your marina with MaxMarina."
-          image="/maxmarina/cta-voyage.jpg"
+          image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/maxmarina-cta-voyage.webp"
         />
         <PageFAQ slug="maxmarina-marina-management-solution" faqs={faqs} />
       </main>

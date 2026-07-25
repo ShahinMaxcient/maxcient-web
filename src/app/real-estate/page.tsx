@@ -32,7 +32,7 @@ export default function RealEstate() {
         <PageHero slug="real-estate"
           title="Real Estate"
           subtitle="Emerging Trends in Real Estate. The real estate sector undergoes transformation through societal shifts, technological innovations, and evolving buyer preferences."
-          image="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920&q=80"
+          image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1560518883-ce09059eeffa.webp"
         />
         <FeatureGrid title="Real Estate Solutions" subtitle="Digital transformation solutions for modern real estate operations." features={features} />
         <CTASection title="Upgrade Your Real Estate Operations" subtitle="Partner with us to implement cutting-edge property technology solutions." />

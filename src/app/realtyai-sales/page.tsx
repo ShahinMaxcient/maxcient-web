@@ -79,7 +79,7 @@ export default async function RealtyAiSales() {
         <RealtyAiSalesHero
           title={override?.title || "RealtyAI Sales"}
           subtitle={override?.subtitle || undefined}
-          image={override?.heroImage || "/products/realtyai-sales-hero.jpg"}
+          image={override?.heroImage || "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-realtyai-sales-hero.webp"}
         />
         <FeatureGrid
           id="functionalities"
@@ -91,7 +91,7 @@ export default async function RealtyAiSales() {
         <CTASection
           title="Close more, faster."
           subtitle="See how RealtyAI Sales takes your team from lead to contract in 40 days. Book a personalized demo with our real-estate specialists."
-          image="/products/realtyai-sales-hero.jpg"
+          image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-realtyai-sales-hero.webp"
         />
         <PageFAQ slug={slug} faqs={faqs} />
       </main>

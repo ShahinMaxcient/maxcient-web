@@ -18,7 +18,7 @@ export default function RealtyAiFm() {
           slug="realtyai-fm"
           title="RealtyAI FM"
           subtitle="AI-driven facility management — assets, maintenance, service requests, and community engagement, unified on Microsoft Dynamics 365."
-          image="/products/realtyai-sales-hero.jpg"
+          image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-realtyai-sales-hero.webp"
         />
         <ComingSoon product="RealtyAI FM" />
       </main>

@@ -13,7 +13,7 @@ interface Props {
 export default function RealtyAiSalesHero({
   title = "RealtyAI Sales",
   subtitle = "The AI-driven sales engine for real estate — from lead capture to booking, handover, and broker commissions, unified on Microsoft Dynamics 365.",
-  image = "/products/realtyai-sales-hero.jpg",
+  image = "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-realtyai-sales-hero.webp",
 }: Props) {
   return (
     <section

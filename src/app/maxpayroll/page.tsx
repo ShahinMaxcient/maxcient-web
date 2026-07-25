@@ -47,7 +47,7 @@ export default async function MaxPayroll() {
           title={customTitle ?? "Max"}
           accentWord={customTitle ? undefined : "Payroll"}
           subtitle={override?.subtitle || "Seamless & smart HR operations. Powered by Microsoft Dynamics 365, MaxPayroll centralizes onboarding, leave management and payroll processing for diverse workforces — driving operations with precision and assurance."}
-          image={override?.heroImage || "/products/maxpayroll-hero.jpg"}
+          image={override?.heroImage || "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-maxpayroll-hero.webp"}
           stats={[
             { n: "D365", l: "Powered by Microsoft" },
             { n: "WPS", l: "UAE payroll ready" },
@@ -63,7 +63,7 @@ export default async function MaxPayroll() {
         <CTASection
           title="Run payroll with confidence."
           subtitle="See how MaxPayroll streamlines onboarding, leave and payroll on Microsoft Dynamics 365. Book a walkthrough with our HR-tech specialists."
-          image="/products/maxpayroll-hero.jpg"
+          image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-maxpayroll-hero.webp"
         />
         <PageFAQ slug="maxpayroll" faqs={faqs} />
       </main>

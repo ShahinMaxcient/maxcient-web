@@ -29,7 +29,7 @@ export default function IoT() {
     <>
       <NavbarServer />
       <main>
-        <PageHero slug="iot-internet-of-things" title="IoT (Internet of Things)" subtitle="Connecting Devices, Transforming Lives. Transform your operations with IoT solutions — gain real-time insights and control from the edge to the cloud." image="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=80" />
+        <PageHero slug="iot-internet-of-things" title="IoT (Internet of Things)" subtitle="Connecting Devices, Transforming Lives. Transform your operations with IoT solutions — gain real-time insights and control from the edge to the cloud." image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1518770660439-4636190af475.webp" />
         <FeatureGrid title="IoT Solutions" subtitle="End-to-end IoT services from consultation to deployment and analytics." features={features} />
         <CTASection title="Connect Your Business" subtitle="Explore how IoT can transform your operations with real-time intelligence." />
         <PageFAQ slug="iot-internet-of-things" faqs={faqs} />

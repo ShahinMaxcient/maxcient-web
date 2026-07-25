@@ -32,7 +32,7 @@ export default function DedicatedDevelopmentTeam() {
         <PageHero slug="dedicated-development-team"
           title="Smart Teams"
           subtitle="Building Specialized Teams for Your Unique Goals. Empower your business with our Smart Teams, bringing expertise and innovation to every project."
-          image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80"
+          image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1522071820081-009f0129c71c.webp"
         />
         <FeatureGrid title="Smart Team Services" subtitle="Flexible team engagement models tailored to your project needs." features={features} />
         <CTASection title="Build Your Dream Team" subtitle="Connect with us to assemble the perfect team for your next project." />

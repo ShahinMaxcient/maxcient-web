@@ -29,7 +29,7 @@ export default function RealtyAI() {
     <>
       <NavbarServer />
       <main>
-        <PageHero slug="realtyai-property-management-solution" title="RealtyAI" subtitle="Property Management, Simplified. Comprehensive property management for UAE real estate professionals, built on Microsoft Dynamics 365." image="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=1920&q=80" />
+        <PageHero slug="realtyai-property-management-solution" title="RealtyAI" subtitle="Property Management, Simplified. Comprehensive property management for UAE real estate professionals, built on Microsoft Dynamics 365." image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1560520653-9e0e4c89eb11.webp" />
         <FeatureGrid title="Core Capabilities" subtitle="End-to-end property management tailored for the UAE real estate market." features={features} />
         <CTASection title="Simplify Your Property Management" subtitle="See how RealtyAI can streamline your real estate operations." />
         <PageFAQ slug="realtyai-property-management-solution" faqs={faqs} />

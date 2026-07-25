@@ -13,7 +13,7 @@ interface Props {
 export default function MaxUtilityHero({
   title = "MaxUtility",
   subtitle = "Facility & utility management on Microsoft Dynamics 365. Automate the full lifecycle — onboarding, metering, billing, service, and collections — with 360° real-time visibility across assets, meters, and finance.",
-  image = "/maxutility/hero-utility.jpg",
+  image = "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/maxutility-hero-utility.webp",
 }: Props) {
   return (
     <section

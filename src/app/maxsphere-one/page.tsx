@@ -76,7 +76,7 @@ export default async function MaxSphereOne() {
         <CTASection
           title="Rebrand it. Configure it. Launch it."
           subtitle="Bring your brand and your systems — Maxcient brings a proven real-estate super app foundation and the team to make it yours."
-          image="/products/maxsphere-one.jpg"
+          image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-maxsphere-one.webp"
         />
         <PageFAQ slug="maxsphere-one" faqs={faqs} />
       </main>

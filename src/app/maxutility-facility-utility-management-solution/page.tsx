@@ -88,7 +88,7 @@ export default async function MaxUtility() {
         <MaxUtilityHero
           title={override?.title || "MaxUtility"}
           subtitle={override?.subtitle || undefined}
-          image={override?.heroImage || "/maxutility/hero-utility.jpg"}
+          image={override?.heroImage || "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/maxutility-hero-utility.webp"}
         />
         <FeatureGrid
           id="functionalities"
@@ -100,7 +100,7 @@ export default async function MaxUtility() {
         <CTASection
           title="Let's Elevate Every Process"
           subtitle="Get in touch with our expert consultants and chart a successful course for your facilities and utilities with MaxUtility."
-          image="/maxutility/cta-dam.jpg"
+          image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/maxutility-cta-dam.webp"
         />
         <PageFAQ slug="maxutility-facility-utility-management-solution" faqs={faqs} />
       </main>

@@ -9,27 +9,27 @@ import Image from "next/image";
 const industries = [
   {
     name: "Manufacturing",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80",
+    image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1581091226825-a6a2a5aee158.webp",
     features: ["Warehouse management", "Order processing", "Inventory tracking", "Vendor management", "Logistics planning", "Returns management", "Pricing strategies", "Customer support"],
   },
   {
     name: "Real Estate",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80",
+    image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1560518883-ce09059eeffa.webp",
     features: ["Property portfolio management", "Lease management", "Facility scheduling", "Tenant relations", "Investment analytics", "Document management", "Listing management", "Financial reporting"],
   },
   {
     name: "Retail",
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80",
+    image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1441986300917-64674bd600d8.webp",
     features: ["Inventory management", "POS integration", "CRM", "E-commerce optimization", "Sales analytics", "Promotions management", "Digital marketing", "Sales reporting"],
   },
   {
     name: "Distribution",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80",
+    image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1586528116311-ad8dd3c8310d.webp",
     features: ["Warehouse management", "Order processing", "Inventory forecasting", "Vendor management", "Transportation planning", "Returns management", "Pricing management", "Customer support"],
   },
   {
     name: "Professional Services",
-    image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&q=80",
+    image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1521737711867-e3b97375f902.webp",
     features: ["Client relationship management", "Project tracking", "Resource allocation", "Billing management", "Performance analytics", "Collaboration tools", "Contract management", "Feedback tools"],
   },
 ];
@@ -50,7 +50,7 @@ export default function ERPAndCRM() {
         <PageHero slug="erp-and-crm"
           title="ERP and CRM"
           subtitle="Setting the stage for your exponential growth. Navigating the ERP & CRM landscape can be daunting. With our expertise, we guide businesses through the selection and implementation process."
-          image="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80"
+          image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1460925895917-afdab827c52f.webp"
         />
 
         <section className="py-14 lg:py-16 t-bg-surface">

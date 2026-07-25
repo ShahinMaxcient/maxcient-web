@@ -28,7 +28,7 @@ export default function MicrosoftPowerPlatform() {
     <>
       <NavbarServer />
       <main>
-        <PageHero slug="microsoft-power-platform" title="Microsoft Power Platform" subtitle="Empowering Businesses Through Agile Solutions. Connect data, build apps, automate workflows, and create chatbots — all with low-code tools." image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1920&q=80" />
+        <PageHero slug="microsoft-power-platform" title="Microsoft Power Platform" subtitle="Empowering Businesses Through Agile Solutions. Connect data, build apps, automate workflows, and create chatbots — all with low-code tools." image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1519389950473-47ba0277781c.webp" />
 
         <section className="py-14 lg:py-16 t-bg-surface">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

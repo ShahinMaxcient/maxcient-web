@@ -66,7 +66,7 @@ export const DEFAULT_HERO: HeroSettings = {
   ctaSecondary: "See our work",
   phone: "+971 4 329 3710",
   badge: "Microsoft Solutions Partner",
-  image: "/hero-skyline.jpg",
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-skyline.webp",
   tagline: "EST · 2017 — DUBAI · UAE",
   stats: [
     { n: "06", l: "Global Offices" },
@@ -162,7 +162,7 @@ export const DEFAULT_CTA: CTASettings = {
   subtitle:
     "Reach our transformation experts today. Connect with our UAE-based certified consultants specializing in CRM, ERP, and Dynamics 365 across the GCC.",
   image:
-    "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2400&q=80",
+    "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1451187580459-43490279c0fa.webp",
   ctaText: "Book a consultation",
 };
 
@@ -191,14 +191,14 @@ export const DEFAULT_ABOUT: AboutSettings = {
   heroTitle: "About Maxcient",
   heroSubtitle:
     "Technology is not an option — it's an accelerator. We are a digital enabler helping businesses adapt to and shape the future through technological innovation.",
-  heroImage: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&q=80",
+  heroImage: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1600880292203-757bb62b4baf.webp",
   missionEyebrow: "Our Mission",
   missionTitle: "Empowering Digital Transformation",
   missionBody:
     "Maxcient is a digital enabler that helps businesses adapt to and shape the future through technological innovation. We leverage cutting-edge platforms including Microsoft Dynamics 365, Power Platform, Azure, Blockchain, AI, and IoT to deliver enterprise-grade solutions.",
   missionBody2:
     "Serving industries from manufacturing and real estate to retail and professional services, we bring deep domain expertise and a commitment to delivering measurable business value.",
-  missionImage: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80",
+  missionImage: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1522071820081-009f0129c71c.webp",
   statsEyebrow: "Numbers",
   statsTitle: "Maxcient at a Glance",
   valuesEyebrow: "Values",

@@ -66,7 +66,7 @@ export default async function RealtyAiLeasing() {
           variant="Leasing"
           title={override?.title || undefined}
           subtitle={override?.subtitle || "AI-driven leasing and rent operations — from lead to contract, renewals, collections, and the customer service portal, unified on Microsoft Dynamics 365."}
-          image={override?.heroImage || "/products/realtyai-leasing-hero.jpg"}
+          image={override?.heroImage || "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-realtyai-leasing-hero.webp"}
           brochureHref="/brochures/realtyai-leasing-brochure.pdf"
           brochureName="RealtyAI-Leasing-Brochure.pdf"
           stats={[
@@ -85,7 +85,7 @@ export default async function RealtyAiLeasing() {
         <CTASection
           title="Keep every lease current."
           subtitle="See how RealtyAI Leasing automates renewals, collections, and financial recognition. Book a personalized demo with our real-estate specialists."
-          image="/products/realtyai-leasing-hero.jpg"
+          image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-realtyai-leasing-hero.webp"
         />
         <PageFAQ slug={slug} faqs={faqs} />
       </main>

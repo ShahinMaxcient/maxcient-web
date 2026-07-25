@@ -32,7 +32,7 @@ export default function Manufacturing() {
         <PageHero slug="manufacturing"
           title="Manufacturing"
           subtitle="Emerging Trends In Manufacturing. Enhance productivity through intelligent manufacturing solutions powered by IoT, AI, and Microsoft Dynamics 365."
-          image="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&q=80"
+          image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1581091226825-a6a2a5aee158.webp"
         />
         <FeatureGrid title="Manufacturing Solutions" subtitle="Smart factory solutions driving the next generation of manufacturing excellence." features={features} />
         <CTASection title="Transform Your Manufacturing" subtitle="Connect with our manufacturing technology experts to explore intelligent solutions." />

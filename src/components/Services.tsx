@@ -9,14 +9,14 @@ type ServiceCard = { num: string; title: string; desc: string; href: string; spa
 
 /* ---- Icon set (Lucide-style line icons) + a color per service theme ---- */
 const ICONS: Record<string, { color: string; img: string; path: React.ReactNode }> = {
-  crm: { color: "#7c3aed", img: "/services/crm.jpg", path: (<><rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" /><rect x="3" y="14" width="7" height="7" rx="1.5" /></>) },
-  automation: { color: "#db2777", img: "/services/automation.jpg", path: <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" /> },
-  analytics: { color: "#2563eb", img: "/services/analytics.jpg", path: (<><path d="M3 3v18h18" /><rect x="7" y="11" width="3" height="6" rx="0.5" /><rect x="12" y="7" width="3" height="10" rx="0.5" /><rect x="17" y="13" width="3" height="4" rx="0.5" /></>) },
-  development: { color: "#0891b2", img: "/services/development.jpg", path: (<><path d="m16 18 6-6-6-6" /><path d="m8 6-6 6 6 6" /></>) },
-  management: { color: "#059669", img: "/services/management.jpg", path: (<><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></>) },
-  team: { color: "#d97706", img: "/services/team.jpg", path: (<><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></>) },
-  cloud: { color: "#0284c7", img: "/services/cloud.jpg", path: <path d="M17.5 19a4.5 4.5 0 0 0 .5-9h-1.26A7 7 0 1 0 5 15.5" /> },
-  default: { color: "#7c3aed", img: "/services/crm.jpg", path: (<><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M9 9h6v6H9z" /></>) },
+  crm: { color: "#7c3aed", img: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/services-crm.webp", path: (<><rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" /><rect x="3" y="14" width="7" height="7" rx="1.5" /></>) },
+  automation: { color: "#db2777", img: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/services-automation.webp", path: <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" /> },
+  analytics: { color: "#2563eb", img: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/services-analytics.webp", path: (<><path d="M3 3v18h18" /><rect x="7" y="11" width="3" height="6" rx="0.5" /><rect x="12" y="7" width="3" height="10" rx="0.5" /><rect x="17" y="13" width="3" height="4" rx="0.5" /></>) },
+  development: { color: "#0891b2", img: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/services-development.webp", path: (<><path d="m16 18 6-6-6-6" /><path d="m8 6-6 6 6 6" /></>) },
+  management: { color: "#059669", img: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/services-management.webp", path: (<><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></>) },
+  team: { color: "#d97706", img: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/services-team.webp", path: (<><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></>) },
+  cloud: { color: "#0284c7", img: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/services-cloud.webp", path: <path d="M17.5 19a4.5 4.5 0 0 0 .5-9h-1.26A7 7 0 1 0 5 15.5" /> },
+  default: { color: "#7c3aed", img: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/services-crm.webp", path: (<><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M9 9h6v6H9z" /></>) },
 };
 
 function pickIcon(title: string) {
