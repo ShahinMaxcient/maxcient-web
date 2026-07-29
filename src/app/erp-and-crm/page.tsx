@@ -1,6 +1,5 @@
 import NavbarServer from "@/components/NavbarServer";
 import PageHero from "@/components/PageHero";
-import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
 import Footer from "@/components/Footer";
@@ -32,14 +31,6 @@ const industries = [
     image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1521737711867-e3b97375f902.webp",
     features: ["Client relationship management", "Project tracking", "Resource allocation", "Billing management", "Performance analytics", "Collaboration tools", "Contract management", "Feedback tools"],
   },
-];
-
-const faqs = [
-  { question: "What is the main advantage of integrating ERP & CRM systems?", answer: "Integration offers a unified platform that consolidates departmental data, enabling informed decision-making, streamlined operations, and enhanced customer relationships by removing data silos." },
-  { question: "How does Microsoft Dynamics 365 differ from other ERP & CRM solutions?", answer: "Microsoft Dynamics 365 stands out due to its seamless combination of both ERP and CRM functionalities within a single platform, with flexibility to choose specific modules, Microsoft product integration, and AI-driven insights." },
-  { question: "Is the transition to Microsoft Dynamics 365 disruptive to current operations?", answer: "The transition is designed for minimal operational disruption, with dedicated team support, migration assistance, training sessions, and ongoing support to address challenges." },
-  { question: "How does integrating ERP & CRM systems impact customer experience?", answer: "Integration provides a 360-degree customer view, enabling personalized services, prompt inquiry response, and future need prediction — resulting in smoother customer journeys." },
-  { question: "What kind of businesses benefit the most from ERP & CRM integration?", answer: "Businesses of all sizes and across various industries benefit, from startups streamlining operations to large corporations pursuing excellence across manufacturing, retail, healthcare, and finance." },
 ];
 
 export default function ERPAndCRM() {
@@ -102,7 +93,7 @@ export default function ERPAndCRM() {
         </section>
 
         <CTASection title="Start Your Digital Transformation Journey" subtitle="Reach our transformation experts today for a comprehensive ERP & CRM evaluation." />
-        <PageFAQ slug="erp-and-crm" faqs={faqs} />
+        <PageFAQ slug="erp-and-crm" />
       </main>
       <Footer />
     </>

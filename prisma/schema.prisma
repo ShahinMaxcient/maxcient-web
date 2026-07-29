@@ -116,6 +116,10 @@ model Page {
   heroImage      String?
   intro          String?
   faqs           Json?    // [{ question, answer }]
+  reasons        Json?    // WhyChoose band: [{ title, body }]
+  features       Json?    // FeatureGrid: [{ title, description, bullets: string[] }]
+  featuresTitle    String?  // FeatureGrid section heading
+  featuresSubtitle String?  // FeatureGrid section sub-heading
   seoTitle       String?
   seoDescription String?
   published      Boolean  @default(true)

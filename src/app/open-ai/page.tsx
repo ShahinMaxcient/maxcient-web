@@ -17,14 +17,6 @@ const services = [
   { title: "Training & Support", desc: "Dedicated training sessions and ongoing platform support for your teams to maximize AI potential." },
 ];
 
-const faqs = [
-  { question: "What distinguishes OpenAI from other AI platforms?", answer: "OpenAI leads in cutting-edge research, ethical AI commitment, and versatile tools like GPT for language processing, DALL-E for image generation, and Codex for programming assistance." },
-  { question: "How does the GPT series work?", answer: "GPT models use transformer architecture trained on vast datasets to understand and generate human-like text, enabling applications from content creation to complex analysis." },
-  { question: "Can OpenAI generate visual content?", answer: "Yes, DALL-E can generate original images from text descriptions, and CLIP connects visual and textual understanding for advanced image analysis." },
-  { question: "How do you ensure AI safety?", answer: "We implement responsible AI practices including bias testing, safety evaluations, human oversight, and ethical guidelines aligned with OpenAI's safety research." },
-  { question: "How can businesses benefit from OpenAI?", answer: "Businesses can automate content creation, enhance customer service with AI chatbots, accelerate development with Codex, and gain insights through advanced language analysis." },
-];
-
 export default function OpenAI() {
   return (
     <>
@@ -67,7 +59,7 @@ export default function OpenAI() {
         </section>
 
         <CTASection title="Harness the Power of AI" subtitle="Let us help you integrate OpenAI solutions to drive innovation across your business." />
-        <PageFAQ slug="open-ai" faqs={faqs} />
+        <PageFAQ slug="open-ai" />
       </main>
       <Footer />
     </>

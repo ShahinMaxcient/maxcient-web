@@ -1,6 +1,8 @@
 import { prisma } from "./prisma";
 
 export type FaqItem = { question: string; answer: string };
+export type ReasonItem = { title: string; body: string };
+export type FeatureItem = { title: string; description: string; bullets?: string[] };
 
 export type PageOverride = {
   title: string | null;
@@ -8,6 +10,10 @@ export type PageOverride = {
   heroImage: string | null;
   intro: string | null;
   faqs: FaqItem[] | null;
+  reasons: ReasonItem[] | null;
+  features: FeatureItem[] | null;
+  featuresTitle: string | null;
+  featuresSubtitle: string | null;
   seoTitle: string | null;
   seoDescription: string | null;
   published: boolean;
@@ -19,6 +25,28 @@ function coerceFaqs(value: unknown): FaqItem[] | null {
     .filter((v): v is Record<string, unknown> => !!v && typeof v === "object")
     .map((v) => ({ question: String(v.question ?? ""), answer: String(v.answer ?? "") }))
     .filter((v) => v.question && v.answer);
+  return items.length ? items : null;
+}
+
+function coerceReasons(value: unknown): ReasonItem[] | null {
+  if (!Array.isArray(value)) return null;
+  const items = value
+    .filter((v): v is Record<string, unknown> => !!v && typeof v === "object")
+    .map((v) => ({ title: String(v.title ?? ""), body: String(v.body ?? "") }))
+    .filter((v) => v.title && v.body);
+  return items.length ? items : null;
+}
+
+function coerceFeatures(value: unknown): FeatureItem[] | null {
+  if (!Array.isArray(value)) return null;
+  const items = value
+    .filter((v): v is Record<string, unknown> => !!v && typeof v === "object")
+    .map((v) => ({
+      title: String(v.title ?? ""),
+      description: String(v.description ?? ""),
+      bullets: Array.isArray(v.bullets) ? v.bullets.map((b) => String(b)).filter(Boolean) : undefined,
+    }))
+    .filter((v) => v.title);
   return items.length ? items : null;
 }
 
@@ -67,6 +95,10 @@ export async function getPageOverride(slug: string): Promise<PageOverride | null
       heroImage: row.heroImage,
       intro: row.intro,
       faqs: coerceFaqs(row.faqs),
+      reasons: coerceReasons(row.reasons),
+      features: coerceFeatures(row.features),
+      featuresTitle: row.featuresTitle,
+      featuresSubtitle: row.featuresSubtitle,
       seoTitle: row.seoTitle,
       seoDescription: row.seoDescription,
       published: row.published,

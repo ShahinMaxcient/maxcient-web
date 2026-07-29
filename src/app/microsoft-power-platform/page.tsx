@@ -15,14 +15,6 @@ const products = [
   { name: "Connectors", desc: "Integration with hundreds of external services and platforms for seamless data flow.", color: "from-orange-500 to-orange-700" },
 ];
 
-const faqs = [
-  { question: "What is Microsoft Power Platform?", answer: "It's a comprehensive suite of business application tools empowering organizations with customized app development, data analytics, and process automation through low-code solutions." },
-  { question: "How does Power BI differ from competitors?", answer: "Power BI offers seamless Microsoft ecosystem integration, AI-driven insights, real-time collaboration, and enterprise-grade security at a competitive price point." },
-  { question: "Can it integrate with existing systems?", answer: "Yes, Power Platform offers hundreds of connectors to integrate with existing business systems, third-party services, and custom APIs for seamless data flow." },
-  { question: "What are the business process automation benefits?", answer: "Power Automate reduces manual tasks, eliminates errors, speeds up processes, ensures consistency, and frees employees to focus on higher-value strategic work." },
-  { question: "What can Power Virtual Agents do?", answer: "It enables creation of intelligent chatbots without coding, handling customer inquiries, employee support, and automated workflows through conversational AI." },
-];
-
 export default function MicrosoftPowerPlatform() {
   return (
     <>
@@ -51,7 +43,7 @@ export default function MicrosoftPowerPlatform() {
         </section>
 
         <CTASection title="Empower Your Team with Power Platform" subtitle="Let us help you build custom solutions that drive innovation across your organization." />
-        <PageFAQ slug="microsoft-power-platform" faqs={faqs} />
+        <PageFAQ slug="microsoft-power-platform" />
       </main>
       <Footer />
     </>

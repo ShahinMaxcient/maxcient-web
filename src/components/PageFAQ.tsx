@@ -6,8 +6,9 @@ interface FAQItem {
   answer: string;
 }
 
-export default async function PageFAQ({ faqs, slug }: { faqs: FAQItem[]; slug?: string }) {
+export default async function PageFAQ({ faqs, slug }: { faqs?: FAQItem[]; slug?: string }) {
   const override = slug ? await getPageOverride(slug) : null;
-  const items = override?.faqs && override.faqs.length > 0 ? override.faqs : faqs;
+  const items = override?.faqs && override.faqs.length > 0 ? override.faqs : (faqs ?? []);
+  if (items.length === 0) return null;
   return <PageFAQView faqs={items} />;
 }

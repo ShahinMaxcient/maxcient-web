@@ -13,10 +13,11 @@ export default async function EditPagePage({ params }: { params: Promise<{ slug:
 
   const row = await prisma.page.findUnique({ where: { slug } });
 
-  const faqsJson =
-    row?.faqs && Array.isArray(row.faqs) && row.faqs.length > 0
-      ? JSON.stringify(row.faqs, null, 2)
-      : "";
+  const jsonOf = (v: unknown) =>
+    v && Array.isArray(v) && v.length > 0 ? JSON.stringify(v) : "";
+  const faqsJson = jsonOf(row?.faqs);
+  const reasonsJson = jsonOf(row?.reasons);
+  const featuresJson = jsonOf(row?.features);
 
   return (
     <div>
@@ -35,6 +36,10 @@ export default async function EditPagePage({ params }: { params: Promise<{ slug:
           subtitle: row?.subtitle ?? "",
           heroImage: row?.heroImage ?? "",
           faqsJson,
+          reasonsJson,
+          featuresJson,
+          featuresTitle: row?.featuresTitle ?? "",
+          featuresSubtitle: row?.featuresSubtitle ?? "",
           published: row?.published ?? true,
         }}
       />

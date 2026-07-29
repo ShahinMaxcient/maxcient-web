@@ -15,11 +15,44 @@ const pageSchema = z.object({
   subtitle: z.string().trim().optional(),
   heroImage: z.string().trim().optional(),
   faqsJson: z.string().optional(),
+  reasonsJson: z.string().optional(),
+  featuresJson: z.string().optional(),
+  featuresTitle: z.string().trim().optional(),
+  featuresSubtitle: z.string().trim().optional(),
 });
 
 const faqArraySchema = z.array(
   z.object({ question: z.string().trim().min(1), answer: z.string().trim().min(1) }),
 );
+
+const reasonArraySchema = z.array(
+  z.object({ title: z.string().trim().min(1), body: z.string().trim().min(1) }),
+);
+
+const featureArraySchema = z.array(
+  z.object({
+    title: z.string().trim().min(1),
+    description: z.string().trim().default(""),
+    bullets: z.array(z.string().trim().min(1)).optional(),
+  }),
+);
+
+/** Parse a hidden JSON field into a validated array, or JsonNull when empty. */
+function parseJsonArray<T>(
+  raw: string | undefined,
+  schema: z.ZodType<T>,
+  label: string,
+): { value: T | typeof Prisma.JsonNull } | { error: string } {
+  if (!raw || !raw.trim()) return { value: Prisma.JsonNull };
+  try {
+    const json = JSON.parse(raw);
+    const result = schema.safeParse(json);
+    if (!result.success) return { error: `${label} has invalid entries.` };
+    return { value: result.data as T };
+  } catch {
+    return { error: `${label} is not valid JSON.` };
+  }
+}
 
 export async function savePage(slug: string, _prev: PageEditState, formData: FormData): Promise<PageEditState> {
   const session = await auth();
@@ -31,19 +64,12 @@ export async function savePage(slug: string, _prev: PageEditState, formData: For
   const d = parsed.data;
 
   // Prisma needs JsonNull (not raw null) to clear a nullable Json column.
-  let faqs: Prisma.InputJsonValue | typeof Prisma.JsonNull = Prisma.JsonNull;
-  if (d.faqsJson && d.faqsJson.trim()) {
-    try {
-      const json = JSON.parse(d.faqsJson);
-      const result = faqArraySchema.safeParse(json);
-      if (!result.success) {
-        return { error: 'FAQs must be a JSON array of { "question": "…", "answer": "…" } objects.' };
-      }
-      faqs = result.data;
-    } catch {
-      return { error: "FAQs is not valid JSON." };
-    }
-  }
+  const faqsParsed = parseJsonArray(d.faqsJson, faqArraySchema, "FAQs");
+  if ("error" in faqsParsed) return { error: faqsParsed.error };
+  const reasonsParsed = parseJsonArray(d.reasonsJson, reasonArraySchema, "Why-choose reasons");
+  if ("error" in reasonsParsed) return { error: reasonsParsed.error };
+  const featuresParsed = parseJsonArray(d.featuresJson, featureArraySchema, "Features");
+  if ("error" in featuresParsed) return { error: featuresParsed.error };
 
   const published = formData.get("published") === "on";
 
@@ -51,7 +77,11 @@ export async function savePage(slug: string, _prev: PageEditState, formData: For
     title: d.title || "",
     subtitle: d.subtitle || null,
     heroImage: d.heroImage || null,
-    faqs,
+    faqs: faqsParsed.value,
+    reasons: reasonsParsed.value,
+    features: featuresParsed.value,
+    featuresTitle: d.featuresTitle || null,
+    featuresSubtitle: d.featuresSubtitle || null,
     published,
   };
 

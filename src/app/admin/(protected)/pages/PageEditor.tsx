@@ -5,8 +5,20 @@ import Link from "next/link";
 import { savePage, type PageEditState } from "./actions";
 import ImageUpload from "../ImageUpload";
 import FaqEditor from "./FaqEditor";
+import ReasonsEditor from "./ReasonsEditor";
+import FeaturesEditor from "./FeaturesEditor";
 
-type Initial = { title: string; subtitle: string; heroImage: string; faqsJson: string; published: boolean };
+type Initial = {
+  title: string;
+  subtitle: string;
+  heroImage: string;
+  faqsJson: string;
+  reasonsJson: string;
+  featuresJson: string;
+  featuresTitle: string;
+  featuresSubtitle: string;
+  published: boolean;
+};
 
 const labelStyle: React.CSSProperties = { display: "block", fontSize: 13, fontWeight: 600, marginBottom: 6, color: "var(--text-secondary)" };
 const inputStyle: React.CSSProperties = { width: "100%", padding: "10px 12px", borderRadius: 8, border: "1px solid var(--border)", background: "var(--surface)", color: "var(--text-primary)", fontSize: 14, outline: "none" };
@@ -22,7 +34,9 @@ export default function PageEditor({ slug, initial }: { slug: string; initial: I
       )}
 
       <p className="text-sm px-4 py-3 rounded-lg" style={{ background: "var(--surface-alt)", color: "var(--text-muted)" }}>
-        Leave a field blank to use the page&apos;s built-in default. Only the fields you fill in here will override the live page.
+        Hero fields: leave blank to keep the page&apos;s built-in default. Content
+        sections below (reasons, features, FAQs) show exactly what you set here —
+        clearing a section hides it on the live page.
       </p>
 
       <div>
@@ -45,8 +59,30 @@ export default function PageEditor({ slug, initial }: { slug: string; initial: I
         </label>
       </div>
 
-      <div>
-        <label style={labelStyle}>FAQs</label>
+      <div className="pt-2" style={{ borderTop: "1px solid var(--border)" }}>
+        <label style={{ ...labelStyle, fontSize: 15, marginTop: 8 }}>Why-choose reasons</label>
+        <p className="text-xs mb-3" style={{ color: "var(--text-muted)" }}>The value band near the top of the page. Leave empty to hide it.</p>
+        <ReasonsEditor name="reasonsJson" initialValue={initial.reasonsJson} />
+      </div>
+
+      <div className="pt-2" style={{ borderTop: "1px solid var(--border)" }}>
+        <label style={{ ...labelStyle, fontSize: 15, marginTop: 8 }}>Features section</label>
+        <div className="mt-1">
+          <label style={labelStyle} htmlFor="featuresTitle">Section heading</label>
+          <input id="featuresTitle" name="featuresTitle" defaultValue={initial.featuresTitle} style={inputStyle} placeholder="e.g. Key Functionalities" />
+        </div>
+        <div className="mt-3">
+          <label style={labelStyle} htmlFor="featuresSubtitle">Section sub-heading</label>
+          <textarea id="featuresSubtitle" name="featuresSubtitle" rows={2} defaultValue={initial.featuresSubtitle} style={inputStyle} placeholder="One line under the heading" />
+        </div>
+        <div className="mt-4">
+          <label style={labelStyle}>Feature cards</label>
+          <FeaturesEditor name="featuresJson" initialValue={initial.featuresJson} />
+        </div>
+      </div>
+
+      <div className="pt-2" style={{ borderTop: "1px solid var(--border)" }}>
+        <label style={{ ...labelStyle, fontSize: 15, marginTop: 8 }}>FAQs</label>
         <FaqEditor name="faqsJson" initialValue={initial.faqsJson} />
       </div>
 

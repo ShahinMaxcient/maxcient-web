@@ -18,14 +18,6 @@ const modules = [
   { name: "Customer Insights", desc: "Real-time customer data platform with AI-powered analytics." },
 ];
 
-const faqs = [
-  { question: "How does Dynamics 365 differ from competitors?", answer: "Dynamics 365 uniquely combines CRM and ERP in a single platform with seamless Microsoft ecosystem integration, modular flexibility, and built-in AI capabilities." },
-  { question: "Is it scalable for growing businesses?", answer: "Absolutely. The modular architecture allows businesses to start with what they need and add capabilities as they grow, with cloud-based scalability handling any workload." },
-  { question: "What about migration challenges?", answer: "We provide comprehensive migration support with dedicated teams, data mapping, testing, training, and phased rollouts designed to minimize disruption to operations." },
-  { question: "How is data security handled?", answer: "Dynamics 365 leverages Microsoft's enterprise-grade security including encryption, compliance certifications, role-based access, and advanced threat protection." },
-  { question: "Does it integrate with other Microsoft products?", answer: "Yes, it integrates seamlessly with Microsoft 365, Teams, Power Platform, Azure, and other Microsoft services for a unified business ecosystem." },
-];
-
 export default function MicrosoftDynamics365() {
   return (
     <>
@@ -75,7 +67,7 @@ export default function MicrosoftDynamics365() {
         </section>
 
         <CTASection title="Transform with Dynamics 365" subtitle="Let our certified experts guide your Dynamics 365 implementation journey." />
-        <PageFAQ slug="microsoft-dynamics-365" faqs={faqs} />
+        <PageFAQ slug="microsoft-dynamics-365" />
       </main>
       <Footer />
     </>
