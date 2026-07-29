@@ -43,21 +43,27 @@ export default function Services({ services, header }: { services: ServiceCard[]
           </SectionHead>
         </SectionReveal>
 
-        {/* Mobile: horizontal snap-scroll carousel. sm+: standard grid.
-            The negative margin lets cards bleed to the screen edge while the
-            section keeps its padding; a peek of the next card hints at scroll. */}
-        <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto sm:overflow-visible snap-x snap-mandatory -mx-5 px-5 sm:mx-0 sm:px-0 pb-4 sm:pb-0 [scrollbar-width:none]">
+        {/* Mobile: horizontal snap-scroll carousel (one card per swipe, next
+            card peeks). sm+: standard grid.
+            - items-start on mobile: each card is its own content height, so
+              short cards don't stretch and leave blank space.
+            - overflow-y-hidden: kills the implicit vertical scroll that
+              overflow-x:auto would otherwise create.
+            - sm:items-stretch + sm:overflow-visible: restore equal-height grid. */}
+        <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto overflow-y-hidden sm:overflow-visible snap-x snap-mandatory -mx-5 px-5 sm:mx-0 sm:px-0 pb-1 sm:pb-0 [scrollbar-width:none]">
           {services.map((s, i) => {
             const ico = pickIcon(s.title);
             return (
-              <SectionReveal key={s.title} delay={(i % 3) * 0.06} className="snap-start shrink-0 basis-[82%] sm:basis-auto sm:shrink">
+              <SectionReveal key={s.title} delay={(i % 3) * 0.06} className="snap-start shrink-0 basis-[85%] sm:basis-auto sm:shrink">
                 <Link href={s.href} className="block h-full">
                   <div
                     className="ed-service-card group relative h-full overflow-hidden flex flex-col"
                     style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "12px" }}
                   >
-                    {/* image header */}
-                    <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16 / 9" }}>
+                    {/* image header. Mobile: flex-1 so the image absorbs any
+                        extra card height (equal-height cards, no blank space).
+                        sm+: fixed 16/9 aspect for a uniform grid. */}
+                    <div className="relative w-full overflow-hidden flex-1 min-h-[170px] sm:flex-none sm:min-h-0 sm:aspect-[16/9]">
                       <Image
                         src={ico.img}
                         alt={s.title}
@@ -84,8 +90,8 @@ export default function Services({ services, header }: { services: ServiceCard[]
                       </span>
                     </div>
 
-                    {/* body */}
-                    <div className="flex flex-col flex-1" style={{ padding: "22px 24px 24px" }}>
+                    {/* body — natural height; the image above flexes to fill */}
+                    <div className="flex flex-col" style={{ padding: "22px 24px 24px" }}>
                       <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)", marginBottom: 8 }}>{s.num}</div>
                       <h3 style={{ fontSize: "1.3rem", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: 10, color: "var(--text-primary)" }}>{s.title}</h3>
                       <p style={{ fontSize: "15px", lineHeight: 1.6, color: "var(--text-muted)" }}>{s.desc}</p>

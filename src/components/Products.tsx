@@ -19,8 +19,9 @@ function ProductCard({ p }: { p: ProductItem }) {
         className="ed-service-card relative h-full overflow-hidden flex flex-col"
         style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "12px" }}
       >
-        {/* image header */}
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16 / 10" }}>
+        {/* image header. Mobile: flex-1 so the image absorbs any extra card
+            height (equal-height cards, no blank space). sm+: fixed 16/10. */}
+        <div className="relative w-full overflow-hidden flex-1 min-h-[180px] sm:flex-none sm:min-h-0 sm:aspect-[16/10]">
           <Image
             src={p.image}
             alt={p.title}
@@ -45,12 +46,12 @@ function ProductCard({ p }: { p: ProductItem }) {
           </span>
         </div>
 
-        {/* body */}
-        <div className="flex flex-col flex-1" style={{ padding: "22px 24px 24px" }}>
+        {/* body — natural height; the image above flexes to fill */}
+        <div className="flex flex-col" style={{ padding: "22px 24px 24px" }}>
           <h3 style={{ fontSize: "1.5rem", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 10, color: "var(--text-primary)" }}>
             {p.title}<span style={{ color: "var(--primary)" }}>.</span>
           </h3>
-          <p className="flex-1" style={{ fontSize: "15px", lineHeight: 1.6, color: "var(--text-muted)", marginBottom: 16 }}>{p.desc}</p>
+          <p style={{ fontSize: "15px", lineHeight: 1.6, color: "var(--text-muted)", marginBottom: 16 }}>{p.desc}</p>
           <div className="flex flex-wrap gap-2">
             {p.tags.slice(0, 4).map((t) => (
               <span key={t} style={{ padding: "5px 11px", border: "1px solid var(--border-strong)", borderRadius: "100px", fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--text-secondary)" }}>{t}</span>
@@ -78,10 +79,12 @@ export default function Products({ products, header }: { products: ProductItem[]
           </SectionHead>
         </SectionReveal>
 
-        {/* Mobile: horizontal snap-scroll carousel. sm+: responsive grid. */}
-        <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto sm:overflow-visible snap-x snap-mandatory -mx-5 px-5 sm:mx-0 sm:px-0 pb-4 sm:pb-0 [scrollbar-width:none]">
+        {/* Mobile: horizontal snap-scroll carousel (one card per swipe, next
+            card peeks). sm+: responsive grid. See Services.tsx for the
+            items-start / overflow-y-hidden rationale. */}
+        <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto overflow-y-hidden sm:overflow-visible snap-x snap-mandatory -mx-5 px-5 sm:mx-0 sm:px-0 pb-1 sm:pb-0 [scrollbar-width:none]">
           {visible.map((p, i) => (
-            <SectionReveal key={p.title} delay={(i % 3) * 0.06} className="snap-start shrink-0 basis-[82%] sm:basis-auto sm:shrink">
+            <SectionReveal key={p.title} delay={(i % 3) * 0.06} className="snap-start shrink-0 basis-[85%] sm:basis-auto sm:shrink">
               <ProductCard p={p} />
             </SectionReveal>
           ))}
