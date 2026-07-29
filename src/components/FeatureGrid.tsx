@@ -5,6 +5,7 @@ import SectionReveal from "./SectionReveal";
 interface Feature {
   title: string;
   description: string;
+  bullets?: string[];
 }
 
 export default function FeatureGrid({ id, title, subtitle, features }: { id?: string; title: string; subtitle: string; features: Feature[] }) {
@@ -33,6 +34,18 @@ export default function FeatureGrid({ id, title, subtitle, features }: { id?: st
                 <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 700, color: "var(--primary)" }}>{String(i + 1).padStart(2, "0")}</div>
                 <h3 className="mt-4 font-bold" style={{ color: "var(--text-primary)", fontSize: "1.05rem", letterSpacing: "-0.01em" }}>{feature.title}</h3>
                 <p className="mt-2.5 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>{feature.description}</p>
+                {feature.bullets && feature.bullets.length > 0 && (
+                  <ul className="mt-3.5 space-y-1.5">
+                    {feature.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2 text-[13px] leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                        <svg className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: "var(--primary)" }} fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </SectionReveal>
           ))}

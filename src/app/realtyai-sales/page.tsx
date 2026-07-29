@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import NavbarServer from "@/components/NavbarServer";
 import RealtyAiSalesHero from "@/components/RealtyAiSalesHero";
+import WhyChoose from "@/components/WhyChoose";
 import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
@@ -14,15 +15,21 @@ export const metadata: Metadata = {
     "RealtyAI Sales unifies lead management, the sales process, post-sales, handover, and broker commissions for real estate — on Microsoft Dynamics 365. $3B+ transactions closed.",
 };
 
+const reasons = [
+  { title: "Proven at scale", body: "$3B+ in transactions closed with RealtyAI, 20+ implementations delivered, 3,000+ support hours, and 25+ dedicated subject-matter experts behind every rollout across the region." },
+  { title: "Live in 40 days", body: "The out-of-the-box Lead-to-Contract module goes live in about 40 days through a four-phase delivery — Planning & Initiation, Definition, Solution Build & Transition, and Go-Live & Support." },
+  { title: "AI-first on Dynamics 365", body: "100+ advanced analytical models and 70+ out-of-the-box intelligent dashboards today — with role-specific copilots, autonomous process agents, and multilingual support on the roadmap." },
+];
+
 const features = [
-  { title: "Lead Management", description: "Capture leads from social media and ads, auto-assign them to the right agent, and manage every lead communication in one place." },
-  { title: "Sales Process", description: "Inventory allocation, offer & booking management, and opportunity management keep every deal moving forward." },
-  { title: "Post-Sales Process", description: "Offer creation, SPA printing, and unit transfer or cancellation — handled end-to-end without leaving the platform." },
-  { title: "Handover Process", description: "A customer communication portal plus collection management make unit handover smooth and transparent." },
-  { title: "Broker & Commission Management", description: "Revenue recognition, centralized documentation, and a broker portal app with built-in commission management." },
-  { title: "Community Management", description: "Enhances communication and engagement between property managers and residents." },
-  { title: "Broker Portal", description: "Centralizes lead management and automates routine tasks for brokers." },
-  { title: "Customer Portal", description: "Provides 24/7 access to property listings and secure communication for clients." },
+  { title: "Lead Management", description: "Every lead captured, routed, and followed up — automatically.", bullets: ["Capture from social media and ad campaigns", "Automatic lead assignment to the right agent", "Tracked lead communication in one timeline"] },
+  { title: "Sales Process", description: "From available unit to confirmed booking without friction.", bullets: ["Inventory allocation across projects and units", "Offer and booking management", "Opportunity management for every deal"] },
+  { title: "Post-Sales Process", description: "Everything after the booking, handled end-to-end.", bullets: ["Offer creation and revisions", "SPA printing straight from the platform", "Unit transfer and cancellation workflows"] },
+  { title: "Handover Process", description: "Smooth, transparent handover for every unit.", bullets: ["Customer communication portal", "Collection management and payment tracking", "Handover milestones visible to all sides"] },
+  { title: "Broker & Commission Management", description: "Brokers, commissions, and revenue in one system.", bullets: ["Revenue recognition built in", "Centralized documentation", "Broker portal app with commission management"] },
+  { title: "Community Management", description: "Keeps property managers and residents connected.", bullets: ["Announcements and community engagement", "Two-way communication with residents"] },
+  { title: "Broker Portal", description: "A dedicated workspace for broker productivity.", bullets: ["Centralized lead management for agencies", "Routine broker tasks automated"] },
+  { title: "Customer Portal", description: "Self-service for clients, around the clock.", bullets: ["24/7 access to property listings", "Secure client communication and documents"] },
 ];
 
 const faqs = [
@@ -31,6 +38,8 @@ const faqs = [
   { question: "What AI is built in?", answer: "Today RealtyAI applies AI across Sales & Customer Service (lead management, client proposals, customer query resolution), Finance & Operations, and low-code development. Coming next: role-specific copilots, autonomous process agents, and multilingual support." },
   { question: "What results has RealtyAI delivered?", answer: "$3B+ in transactions closed with RealtyAI, 20+ implementations, 3000+ support hours, and 25+ dedicated subject-matter experts across the region." },
   { question: "Does it cover the full property lifecycle?", answer: "RealtyAI Sales is one part of the RealtyAI suite, which also spans Leasing & Rent Operations, Development Management, and Facility Management — all on a single Dynamics 365 platform." },
+  { question: "What portals are included?", answer: "Three: a customer portal with 24/7 access to property listings and secure communication, a broker portal that centralizes lead management and automates routine broker tasks, and community management tools that keep property managers and residents engaged." },
+  { question: "What analytics and reporting do we get?", answer: "100+ advanced analytical models and 70+ out-of-the-box intelligent dashboards give sales leadership a real-time view of the pipeline — from lead sources and conversion rates to collections, commissions, and revenue recognition." },
 ];
 
 function BrochureSection() {
@@ -81,6 +90,7 @@ export default async function RealtyAiSales() {
           subtitle={override?.subtitle || undefined}
           image={override?.heroImage || "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-realtyai-sales-hero.webp"}
         />
+        <WhyChoose product="RealtyAI Sales" reasons={reasons} />
         <FeatureGrid
           id="functionalities"
           title="The RealtyAI Sales lifecycle"

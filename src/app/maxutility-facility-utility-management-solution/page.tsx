@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import NavbarServer from "@/components/NavbarServer";
 import MaxUtilityHero from "@/components/MaxUtilityHero";
+import WhyChoose from "@/components/WhyChoose";
 import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
@@ -14,21 +15,27 @@ export const metadata: Metadata = {
     "MaxUtility unifies onboarding, metering, billing, service, and collections for facilities and utilities on Microsoft Dynamics 365 — with BTU/IoT meter automation and 360° real-time visibility.",
 };
 
+const reasons = [
+  { title: "Ends the manual OPEX drain", body: "Manual meter readings, error-prone billing, and disconnected systems inflate OPEX and hide revenue leakage. MaxUtility automates the full lifecycle — onboarding, metering, billing, service, and collections." },
+  { title: "360° visibility, real time", body: "Real-time Power BI dashboards with alerts over SMS, WhatsApp, and email give operations and finance one live view across assets, meters, and money — no more waiting on compliance reports." },
+  { title: "12 weeks, then 24×7", body: "Tailored, tested, and live in about 12 weeks — then backed by a named engagement manager, a 24×7 SLA-driven helpdesk, and quarterly health checks and business reviews." },
+];
+
 const features = [
-  { title: "Customer & Tenant Onboarding", description: "Streamline customer and tenant onboarding with guided e-signature workflows — no more clunky paperwork frustrating owners and tenants." },
-  { title: "Contract & Tariff Management", description: "Manage contracts and tariffs with auto-numbering and version control, so every agreement and rate change is tracked and audit-ready." },
-  { title: "Meter Reading Automation (BTU / IoT)", description: "Integrate meter readings on-demand and on schedule via BTU and IoT — eliminating manual reads and error-prone billing that inflate OPEX." },
-  { title: "Billing & Invoice Automation", description: "Automate invoicing, receipts, and ERP posting for Dynamics 365 Finance & Operations — recovering the revenue leakage hidden by disconnected systems." },
-  { title: "Payment & ERP Synchronization", description: "Collect payments and synchronize them straight into your ERP, keeping finance and operations in perfect lockstep." },
-  { title: "Disconnection / Reconnection Workflow", description: "Manage disconnections and reconnections with built-in penalty logic — enforced consistently and automatically." },
-  { title: "Asset & Meter Management", description: "Track every asset and meter across your portfolio with a single source of truth for status, history, and utilization." },
-  { title: "Reporting & Analytics Dashboards", description: "Real-time Power BI dashboards and alerts via SMS, WhatsApp, and email deliver 360° visibility across assets, meters, and finance." },
-  { title: "Mobile & Self-Service Portal", description: "A React web portal and mobile app let owners, tenants, and staff self-serve and act from anywhere." },
-  { title: "Real-Time Notifications & Alerts", description: "Pre-configured triggers for billing, service requests, contract expiry, and NPS surveys keep everyone informed automatically." },
-  { title: "Customer Support & Help Desk", description: "Built-in ticketing with out-of-the-box connectors that feed into your existing ITSM or Zendesk for unified issue tracking." },
-  { title: "Regulatory Compliance & VAT", description: "Automated VAT handling and compliance reporting that reclaim the staff hours consumed by manual regulatory work." },
-  { title: "Integration & Scalability", description: "RESTful APIs and Azure DevOps pipelines integrate MaxUtility with your stack and scale with your operational growth." },
-  { title: "Data Migration & Full Auditing", description: "Structured data migration with complete audit trails — nothing lost, everything traceable." },
+  { title: "Customer & Tenant Onboarding", description: "New customers live in minutes, not days.", bullets: ["Guided onboarding workflows", "E-signature built in", "No paperwork bottlenecks"] },
+  { title: "Contract & Tariff Management", description: "Every agreement and rate change tracked.", bullets: ["Auto-numbering and version control", "Tariff structures per utility and segment", "Audit-ready contract history"] },
+  { title: "Meter Reading Automation (BTU / IoT)", description: "No manual reads, no billing errors.", bullets: ["On-demand and scheduled readings", "BTU and IoT meter integration", "Exception flagging for anomalies"] },
+  { title: "Billing & Invoice Automation", description: "Recover the revenue leakage hidden by silos.", bullets: ["Automated invoicing and receipts", "ERP posting for Dynamics 365 F&O", "Consolidated billing across services"] },
+  { title: "Payment & ERP Synchronization", description: "Finance and operations in lockstep.", bullets: ["Payment collection and reconciliation", "Straight-through sync to the ERP"] },
+  { title: "Disconnection / Reconnection Workflow", description: "Policy enforced consistently, automatically.", bullets: ["Built-in penalty logic", "Automated disconnection and reconnection"] },
+  { title: "Asset & Meter Management", description: "One source of truth for every asset.", bullets: ["Status, history, and utilization per meter", "Portfolio-wide asset registry"] },
+  { title: "Reporting & Analytics Dashboards", description: "360° visibility across the operation.", bullets: ["Real-time Power BI dashboards", "Alerts via SMS, WhatsApp, and email"] },
+  { title: "Mobile & Self-Service Portal", description: "Owners, tenants, and staff self-serve.", bullets: ["React web portal and mobile app", "Act from anywhere, any time"] },
+  { title: "Real-Time Notifications & Alerts", description: "Everyone informed, automatically.", bullets: ["Billing and service-request triggers", "Contract expiry and NPS surveys"] },
+  { title: "Customer Support & Help Desk", description: "Unified issue tracking, your tools.", bullets: ["Built-in ticketing", "Out-of-the-box ITSM / Zendesk connectors"] },
+  { title: "Regulatory Compliance & VAT", description: "Reclaim the hours lost to reporting.", bullets: ["Automated VAT handling", "Compliance reporting built in"] },
+  { title: "Integration & Scalability", description: "Fits your stack, grows with you.", bullets: ["RESTful APIs", "Azure DevOps pipelines"] },
+  { title: "Data Migration & Full Auditing", description: "Nothing lost, everything traceable.", bullets: ["Structured data migration", "Complete audit trails"] },
 ];
 
 const faqs = [
@@ -37,6 +44,8 @@ const faqs = [
   { question: "How long does implementation take?", answer: "In just 12 weeks MaxUtility is tailored, tested, and ready — across four phases: Discovery & Scoping, Configuration & Integration, Testing & Training, and Go-Live & Support, ensuring a smooth transition with minimal downtime." },
   { question: "What support is included?", answer: "A dedicated account team with a named engagement manager and technical consultant, 24×7 SLA-driven global helpdesk with guaranteed response and resolution targets, quarterly health checks and business reviews, continuous feature updates and on-demand training, plus help desk integration into your existing ITSM." },
   { question: "Is MaxUtility compliant and does it integrate with our systems?", answer: "Yes. MaxUtility handles regulatory compliance and VAT out of the box, provides full data migration and auditing, and exposes RESTful APIs with pre-built connectors so it integrates cleanly with your ERP, ITSM, and notification channels." },
+  { question: "Which notification channels are supported?", answer: "Reporting dashboards and alerts reach customers and staff over SMS, WhatsApp, and email — pre-configured triggers cover billing, service requests, contract expiry, and NPS surveys." },
+  { question: "How does MaxUtility reduce revenue leakage?", answer: "By closing the gaps that cause it: automated BTU/IoT meter readings eliminate manual errors, billing posts straight to Dynamics 365 F&O, disconnection penalty logic is enforced consistently, and full audit trails make every dirham traceable." },
 ];
 
 function BrochureSection() {
@@ -90,6 +99,7 @@ export default async function MaxUtility() {
           subtitle={override?.subtitle || undefined}
           image={override?.heroImage || "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/maxutility-hero-utility.webp"}
         />
+        <WhyChoose product="MaxUtility" reasons={reasons} />
         <FeatureGrid
           id="functionalities"
           title="Key Functionalities"

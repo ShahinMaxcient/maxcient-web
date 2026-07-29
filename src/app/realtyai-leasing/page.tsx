@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import NavbarServer from "@/components/NavbarServer";
 import RealtyAiHero from "@/components/RealtyAiHero";
+import WhyChoose from "@/components/WhyChoose";
 import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
@@ -14,15 +15,21 @@ export const metadata: Metadata = {
     "RealtyAI Leasing unifies lead management, contracts, renewals & termination, the customer service portal, and financial recognition for real estate — on Microsoft Dynamics 365.",
 };
 
+const reasons = [
+  { title: "Nothing slips through", body: "Automated renewal notices, PDC and receipt management, and legal / bounced-cheque handling keep every lease current and every dirham collected — without manual chasing." },
+  { title: "Live in 40 days", body: "The out-of-the-box Lead-to-Contract module goes live in about 40 days, backed by 20+ successful implementations and a four-phase delivery from planning to go-live support." },
+  { title: "Finance-grade on Dynamics 365", body: "A clean financial flow to your ERP with advanced analytics on the financial modules — plus 100+ analytical models and 70+ dashboards for occupancy, renewals, and collections." },
+];
+
 const features = [
-  { title: "Lead Management", description: "Capture leads from social media and ads, auto-assign them, and manage every lead communication in one pipeline." },
-  { title: "Contract Management", description: "Inventory allocation, payment-plan management, and opportunity management take every lease from interest to signature." },
-  { title: "Renewal & Termination", description: "PDC and receipt management plus automated notices handle renewals and terminations with no gaps." },
-  { title: "Customer Service Portal", description: "Service requests, statements of account, renewal notices, and legal / bounced-cheque management — all self-serve in one portal." },
-  { title: "Financial Recognition", description: "Automated notices, streamlined communication, and a financial flow to ERP with advanced analytics on the financial modules." },
-  { title: "Community Management", description: "Enhances communication and engagement between property managers and residents." },
-  { title: "Broker Portal", description: "Centralizes lead management and automates routine tasks for brokers." },
-  { title: "Customer Portal", description: "Provides 24/7 access to property listings and secure communication for clients." },
+  { title: "Lead Management", description: "Every prospective tenant captured and followed up.", bullets: ["Capture from social media and ad campaigns", "Automatic lead assignment", "Tracked lead communication in one pipeline"] },
+  { title: "Contract Management", description: "From interest to signed lease without friction.", bullets: ["Inventory allocation across the portfolio", "Payment-plan management", "Opportunity management for every lease"] },
+  { title: "Renewal & Termination", description: "Renewals and exits handled with no gaps.", bullets: ["PDC and receipt management", "Automated renewal notices and management", "Structured termination workflows"] },
+  { title: "Customer Service Portal", description: "Tenants self-serve; your team stays in control.", bullets: ["Service requests and statements of account", "Legal and bounced-cheque management", "Automated notices at every step"] },
+  { title: "Financial Recognition", description: "Leasing revenue lands cleanly in your books.", bullets: ["Financial flow straight to the ERP", "Advanced analytics on financial modules", "Streamlined communication with finance"] },
+  { title: "Community Management", description: "Keeps property managers and residents connected.", bullets: ["Announcements and community engagement", "Two-way communication with residents"] },
+  { title: "Broker Portal", description: "A dedicated workspace for broker productivity.", bullets: ["Centralized lead management for agencies", "Routine broker tasks automated"] },
+  { title: "Customer Portal", description: "Self-service for clients, around the clock.", bullets: ["24/7 access to property listings", "Secure client communication and documents"] },
 ];
 
 const faqs = [
@@ -31,6 +38,8 @@ const faqs = [
   { question: "How does it handle renewals and collections?", answer: "Automated renewal notices, PDC and receipt management, legal and bounced-cheque handling, and a customer service portal for service requests and statements of account keep every lease current and cash flowing." },
   { question: "What AI is built in?", answer: "Today RealtyAI applies AI across Sales & Customer Service (lead management, client proposals, customer query resolution), Finance & Operations, and low-code development. Coming next: role-specific copilots, autonomous process agents, and multilingual support." },
   { question: "Does it cover the full property lifecycle?", answer: "RealtyAI Leasing is one part of the RealtyAI suite, which also spans Sales, Development Management, and Facility Management — all on a single Dynamics 365 platform. $3B+ in transactions have been closed with RealtyAI." },
+  { question: "What can tenants do on their own?", answer: "Through the customer service portal tenants raise service requests, download statements of account, receive renewal notices, and communicate securely — while automated notices keep them informed at every step of the lease without your team lifting a finger." },
+  { question: "How does leasing revenue reach our ERP?", answer: "Financial recognition flows straight from RealtyAI Leasing into your ERP, with advanced analytics on the financial modules — so finance sees occupancy, collections, and receivables in real time, in the system they already use." },
 ];
 
 function BrochureSection() {
@@ -75,6 +84,7 @@ export default async function RealtyAiLeasing() {
             { n: "70+", l: "Intelligent dashboards" },
           ]}
         />
+        <WhyChoose product="RealtyAI Leasing" reasons={reasons} />
         <FeatureGrid
           id="functionalities"
           title="The RealtyAI Leasing lifecycle"

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import NavbarServer from "@/components/NavbarServer";
 import ProductHero from "@/components/ProductHero";
+import WhyChoose from "@/components/WhyChoose";
 import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
@@ -14,15 +15,21 @@ export const metadata: Metadata = {
     "MaxPayroll by Maxcient, powered by Microsoft Dynamics 365 — an HR and payroll solution for diverse workforces, centralizing onboarding, leave management and payroll processing.",
 };
 
+const reasons = [
+  { title: "Intuitive Onboarding", body: "Streamlines administrative processes and sets the tone for a positive work experience — from documentation to training schedules, everything organized and accessible from day one." },
+  { title: "Precision in Payroll", body: "Detailed, real-time reports on opportunities, tenancies, and payments — with built-in validation and error-checking that preempts discrepancies before each payroll cycle runs." },
+  { title: "Automated Workflows", body: "Automated approvals and certificate requests reduce manual intervention across HR — freeing your team to focus on people, not paperwork." },
+];
+
 const features = [
-  { title: "Onboarding Excellence", description: "Streamlined onboarding, customizable alternate-calendar setups, efficient leave management, and quick certificate-request automation." },
-  { title: "Advanced Payroll Processing", description: "A tailored payroll-formula designer with advances, deductions and off-cycles, air-ticket management for global teams, and built-in validation for error-free payroll." },
-  { title: "Leave Management", description: "Policy-driven leave management with alternate-calendar support tuned for diverse, multi-country workforces." },
-  { title: "Payroll Formula Designer", description: "Design payroll formulas tailored to your organization, then apply them consistently across every run." },
-  { title: "Workflow Approvals", description: "Transparent, automated workflow approvals that cut manual intervention across requests and requests-for-change." },
-  { title: "Medical Insurance", description: "Simplified medical-insurance handling for your employees, integrated directly into the HR record." },
-  { title: "Air Ticket Management", description: "Manage air-ticket entitlements and payouts for global and expatriate teams within payroll." },
-  { title: "Reports & Analytics", description: "Insightful, real-time report analytics that turn HR and payroll data into informed decisions." },
+  { title: "Onboarding Excellence", description: "New hires integrated swiftly and smoothly.", bullets: ["Streamlined onboarding processes", "Customizable alternate calendar setups", "Efficient leave management", "Quick certificate request automation"] },
+  { title: "Advanced Payroll Processing", description: "Complex payroll handled with precision.", bullets: ["Tailored payroll formula designer", "Advances, deductions, and off-cycles", "Air ticket management for global teams", "Built-in validation for error-free payroll"] },
+  { title: "Comprehensive Management Tools", description: "Everything HR needs to run the function.", bullets: ["Transparent workflow approvals", "Simplified medical insurance handling", "Special off-cycle payouts", "Insightful report analytics"] },
+  { title: "Leave Management", description: "Requests, balances, and approvals in one flow.", bullets: ["Self-service leave requests", "Alternate calendars per team or region"] },
+  { title: "Employee Self-Service", description: "Employees help themselves, HR stays informed.", bullets: ["Certificate requests in a click", "Personal records and payslips"] },
+  { title: "Compliance & Security", description: "Enterprise-grade protection on Dynamics 365.", bullets: ["State-of-the-art encryption", "Customizable access permissions", "Regular security audits"] },
+  { title: "Multi-Currency & Global Teams", description: "Built for international workforces.", bullets: ["Multi-currency support", "Region-specific compliance checks"] },
+  { title: "Reporting & Analytics", description: "Decisions backed by live workforce data.", bullets: ["Real-time payroll and HR reports", "Insightful analytics dashboards"] },
 ];
 
 const faqs = [
@@ -32,6 +39,7 @@ const faqs = [
   { question: "Is MaxPayroll suitable for international organizations?", answer: "Yes, MaxPayroll caters to the intricate demands of diverse workforces, including features like air ticket management, making it suitable for international organizations. Its multi-currency support and region-specific compliance checks ensure that global businesses operate without hitches. Moreover, its ability to integrate with various country-specific HR tools ensures seamless operations across borders." },
   { question: "How secure is the data in MaxPayroll?", answer: "MaxPayroll, built on the Microsoft Dynamics 365 platform, prioritizes data security. All employee and organizational data is stored with state-of-the-art encryption, ensuring confidentiality and peace of mind. Regular security audits and updates reinforce its commitment to data protection. Plus, customizable access permissions ensure that sensitive data is only accessible to authorized personnel." },
   { question: "Can I integrate MaxPayroll with other HR tools?", answer: "Given MaxPayroll's foundation on Microsoft Dynamics 365, it offers broad integration capabilities, allowing you to seamlessly incorporate it with other HR tools, enhancing its versatility and utility. Its open architecture facilitates easy connections with a range of HR software, from recruitment platforms to performance management systems. This ensures a holistic HR management experience, where all tools communicate efficiently for optimal results." },
+  { question: "What are the key advantages of MaxPayroll?", answer: "Three stand out: intuitive onboarding that streamlines administration and sets a positive tone from day one, precision in payroll with detailed real-time reporting for informed decisions, and automated workflows that cut manual effort across approvals and certificate requests." },
 ];
 
 export default async function MaxPayroll() {
@@ -54,6 +62,7 @@ export default async function MaxPayroll() {
             { n: "360°", l: "Workforce visibility" },
           ]}
         />
+        <WhyChoose product="MaxPayroll" reasons={reasons} />
         <FeatureGrid
           id="functionalities"
           title="Everything HR & payroll, in one place."

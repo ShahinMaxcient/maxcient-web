@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import NavbarServer from "@/components/NavbarServer";
 import MaxMarinaHero from "@/components/MaxMarinaHero";
+import WhyChoose from "@/components/WhyChoose";
 import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
@@ -14,15 +15,21 @@ export const metadata: Metadata = {
     "MaxMarina unifies berth management, boat sales, billing, and guest experiences on Microsoft Dynamics 365 — 30% faster berth assignments and 18% revenue growth.",
 };
 
+const reasons = [
+  { title: "Measurable results", body: "Marinas on MaxMarina see 30% faster berth assignments and an average 18% revenue increase from automated billing, dynamic pricing, and uncovered revenue streams." },
+  { title: "12 weeks to go-live", body: "In just 12 weeks MaxMarina is tailored, tested, and ready — through discovery & scoping, configuration & integration, testing & training, and go-live with ongoing support." },
+  { title: "Enterprise-grade platform", body: "Microsoft Dynamics 365 on Azure with .NET Core microservices, a React web portal and mobile app, Azure SQL, and Power BI — with secure authentication and geo-replicated data." },
+];
+
 const features = [
-  { title: "Berth Management", description: "Berth reservation and availability management with AI-powered allocation and utility tracking — 30% faster berth assignments." },
-  { title: "Boat Sales & Services", description: "Track leads, manage the sales pipeline, and coordinate service operations — from concierge and pump-out requests to full service history." },
-  { title: "Billing & Payment Automation", description: "Automated invoicing, dynamic pricing, and payment collection that uncover hidden revenue streams — an average 18% revenue increase." },
-  { title: "Enhanced Guest Experiences", description: "Personalized service and automated communications keep every boat owner informed, from booking updates to contract-expiry reminders." },
-  { title: "Marina Navigation & Interactive Map", description: "Interactive marina maps with real-time berth status and slip-level visibility for staff and guests." },
-  { title: "Reporting & Analytics", description: "Unified Power BI dashboards and real-time KPIs deliver 360° operational visibility across the entire marina." },
-  { title: "Mobile Access", description: "A React web portal and mobile app with real-time notifications and alerts — manage the marina from anywhere." },
-  { title: "Events & Community", description: "Ratings and reviews, events, and community engagement tools that turn your marina into a destination." },
+  { title: "Berth Management", description: "Every berth allocated intelligently, tracked precisely.", bullets: ["AI-powered berth allocation — 30% faster assignments", "Reservation and availability management", "Utility tracking per berth"] },
+  { title: "Boat Sales & Services", description: "Sales pipeline and service operations in one place.", bullets: ["Lead tracking and sales pipeline management", "Concierge and pump-out request coordination", "Full service history per vessel"] },
+  { title: "Billing & Payment Automation", description: "Revenue captured automatically, nothing missed.", bullets: ["Automated invoicing and payment collection", "Dynamic pricing engine", "Uncovers hidden revenue — average 18% increase"] },
+  { title: "Enhanced Guest Experiences", description: "Every boat owner informed and looked after.", bullets: ["Personalized service and communications", "Booking updates and contract-expiry reminders", "Automated notifications end to end"] },
+  { title: "Marina Navigation & Interactive Map", description: "The whole marina, visible at a glance.", bullets: ["Interactive maps with real-time berth status", "Slip-level visibility for staff and guests"] },
+  { title: "Reporting & Analytics", description: "360° operational visibility for management.", bullets: ["Unified Power BI dashboards", "Real-time KPIs across the marina"] },
+  { title: "Mobile Access", description: "Run the marina from anywhere.", bullets: ["React web portal and mobile app", "Real-time notifications and alerts"] },
+  { title: "Events & Community", description: "Turn your marina into a destination.", bullets: ["Ratings, reviews, and events", "Community engagement tools"] },
 ];
 
 const faqs = [
@@ -31,6 +38,8 @@ const faqs = [
   { question: "Can MaxMarina adapt to our marina's unique workflows?", answer: "Yes. MaxMarina is designed to adapt to each marina's workflows, branding, and operational needs — easily configure menus, automate processes, and personalize dashboards so the platform evolves with your business." },
   { question: "What support is included?", answer: "A dedicated account team with a named engagement manager, 24×7 SLA-driven global helpdesk, quarterly health checks and business reviews, plus continuous feature updates and on-demand staff training." },
   { question: "Does it integrate with our existing systems?", answer: "MaxMarina exposes RESTful APIs and ships with out-of-the-box connectors that feed ticketing into your existing ITSM or Zendesk system, plus pre-configured email/SMS triggers for booking updates, service alerts, and NPS surveys." },
+  { question: "What results can we expect?", answer: "Marinas running MaxMarina report 30% faster berth assignments, an average 18% revenue increase from billing automation and dynamic pricing, and 360° operational visibility through unified Power BI dashboards and real-time KPIs." },
+  { question: "Can guests and boat owners self-serve?", answer: "Yes — a React web portal and mobile app give owners and guests real-time notifications, booking updates, service requests, and contract-expiry reminders, while interactive marina maps show slip-level status to staff and guests alike." },
 ];
 
 function BrochureSection() {
@@ -84,6 +93,7 @@ export default async function MaxMarina() {
           subtitle={override?.subtitle || undefined}
           image={override?.heroImage || "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/maxmarina-hero-marina.webp"}
         />
+        <WhyChoose product="MaxMarina" reasons={reasons} />
         <FeatureGrid
           id="functionalities"
           title="Key Functionalities"
