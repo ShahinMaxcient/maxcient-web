@@ -30,6 +30,11 @@ export const metadata: Metadata = {
     "Unlock business value with Maxcient's enterprise-grade solutions tailored for UAE and GCC markets.",
 };
 
+// Render every route dynamically (server-rendered on each request) so admin
+// edits always show instantly and the build never queries the database — which
+// also keeps Vercel deploys fast. Applies to all nested segments.
+export const dynamic = "force-dynamic";
+
 // Pages are statically cached and served instantly from the CDN. Every admin
 // save calls revalidatePath(...), which rebuilds the affected pages with fresh
 // database content immediately — fast for visitors, current for editors.
