@@ -63,12 +63,46 @@ function ProductCard({ p }: { p: ProductItem }) {
   );
 }
 
+/** "See more" / "Show less" rendered as a card tile inside the same grid /
+ *  carousel so it reads as part of the product wall rather than a stray button. */
+function MoreCard({ showAll, remaining, onClick }: { showAll: boolean; remaining: number; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={showAll ? "Show fewer products" : "See more products"}
+      className="ed-service-card group w-full h-full min-h-[240px] sm:min-h-0 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 text-center transition-colors"
+      style={{ background: "var(--surface-alt)", border: "1px dashed var(--border-strong)", borderRadius: "12px", padding: "32px" }}
+    >
+      <span
+        className="flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-105"
+        style={{ width: 56, height: 56, borderRadius: "50%", background: "var(--text-primary)", color: "var(--background)" }}
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+          {showAll
+            ? <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+            : <path strokeLinecap="round" strokeLinejoin="round" d="M12 5v14M5 12h14" />}
+        </svg>
+      </span>
+      <span className="flex flex-col items-center sm:items-start gap-1">
+        <span style={{ fontFamily: "var(--font-poppins), sans-serif", fontWeight: 700, fontSize: "1.35rem", letterSpacing: "-0.01em", color: "var(--text-primary)" }}>
+          {showAll ? "Show less" : "See more"}
+        </span>
+        <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--text-muted)" }}>
+          {showAll ? "Collapse the list" : `${remaining} more solution${remaining > 1 ? "s" : ""}`}
+        </span>
+      </span>
+    </button>
+  );
+}
+
 export default function Products({ products, header }: { products: ProductItem[]; header?: SectionHeaderProps }) {
   const [showAll, setShowAll] = useState(false);
   const hasMore = products.length > INITIAL_COUNT;
   // Order is admin-controlled (products arrive pre-sorted by `order`). Show the
-  // first three by default; "See more" reveals the rest.
+  // first three by default; the "See more" card reveals the rest.
   const visible = showAll ? products : products.slice(0, INITIAL_COUNT);
+  const remaining = products.length - INITIAL_COUNT;
 
   return (
     <section id="products" className="pt-20 lg:pt-28 pb-12 lg:pb-16" style={{ background: "var(--background)" }}>
@@ -80,33 +114,24 @@ export default function Products({ products, header }: { products: ProductItem[]
         </SectionReveal>
 
         {/* Mobile: horizontal snap-scroll carousel (one card per swipe, next
-            card peeks). sm+: responsive grid. See Services.tsx for the
-            items-start / overflow-y-hidden rationale. */}
+            card peeks). sm+: responsive grid. Cards render plainly (no per-card
+            reveal) so no card is ever left blank / vertically scrollable
+            (see Services.tsx). */}
         <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto overflow-y-hidden sm:overflow-visible snap-x snap-mandatory -mx-5 px-5 sm:mx-0 sm:px-0 pb-1 sm:pb-0 [scrollbar-width:none]">
-          {visible.map((p, i) => (
-            <SectionReveal key={p.title} delay={(i % 3) * 0.06} className="snap-start shrink-0 basis-[85%] sm:basis-auto sm:shrink">
+          {visible.map((p) => (
+            <div key={p.title} className="snap-start shrink-0 basis-[85%] sm:basis-auto sm:shrink">
               <ProductCard p={p} />
-            </SectionReveal>
+            </div>
           ))}
+          {hasMore && (
+            /* Mobile: a full card in the carousel. sm+: a full-width band
+               spanning all columns below the grid, so it never sits as a
+               lonely part-width tile. */
+            <div className="snap-start shrink-0 basis-[85%] sm:basis-auto sm:shrink sm:col-span-2 lg:col-span-3">
+              <MoreCard showAll={showAll} remaining={remaining} onClick={() => setShowAll((v) => !v)} />
+            </div>
+          )}
         </div>
-
-        {hasMore && (
-          <div className="mt-8 flex justify-center">
-            <button
-              type="button"
-              onClick={() => setShowAll((v) => !v)}
-              className="group inline-flex items-center gap-3 px-8 py-4 transition-transform duration-200 hover:-translate-y-0.5"
-              style={{ background: "var(--text-primary)", color: "var(--background)", fontWeight: 600, fontSize: "15px", borderRadius: "6px" }}
-            >
-              {showAll ? "Show less" : "See more"}
-              <svg className={`w-[18px] h-[18px] transition-transform ${showAll ? "rotate-180" : "group-hover:translate-x-0.5"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {showAll
-                  ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                  : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />}
-              </svg>
-            </button>
-          </div>
-        )}
       </div>
     </section>
   );

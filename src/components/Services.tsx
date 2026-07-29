@@ -45,16 +45,17 @@ export default function Services({ services, header }: { services: ServiceCard[]
 
         {/* Mobile: horizontal snap-scroll carousel (one card per swipe, next
             card peeks). sm+: standard grid.
-            - items-start on mobile: each card is its own content height, so
-              short cards don't stretch and leave blank space.
             - overflow-y-hidden: kills the implicit vertical scroll that
               overflow-x:auto would otherwise create.
-            - sm:items-stretch + sm:overflow-visible: restore equal-height grid. */}
+            - Cards are equal-height (image flexes to fill); sm+ restores the grid.
+            Cards are rendered plainly (no per-card reveal): a per-card reveal
+            leaves off-screen carousel cards at opacity:0 (blank) and its
+            translateY adds vertical overflow that can be touch-scrolled. */}
         <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto overflow-y-hidden sm:overflow-visible snap-x snap-mandatory -mx-5 px-5 sm:mx-0 sm:px-0 pb-1 sm:pb-0 [scrollbar-width:none]">
-          {services.map((s, i) => {
+          {services.map((s) => {
             const ico = pickIcon(s.title);
             return (
-              <SectionReveal key={s.title} delay={(i % 3) * 0.06} className="snap-start shrink-0 basis-[85%] sm:basis-auto sm:shrink">
+              <div key={s.title} className="snap-start shrink-0 basis-[85%] sm:basis-auto sm:shrink">
                 <Link href={s.href} className="block h-full">
                   <div
                     className="ed-service-card group relative h-full overflow-hidden flex flex-col"
@@ -98,7 +99,7 @@ export default function Services({ services, header }: { services: ServiceCard[]
                     </div>
                   </div>
                 </Link>
-              </SectionReveal>
+              </div>
             );
           })}
         </div>
