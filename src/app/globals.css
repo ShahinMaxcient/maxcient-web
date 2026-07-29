@@ -184,7 +184,7 @@ html { scroll-padding-top: 88px; }
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-muted);
 }

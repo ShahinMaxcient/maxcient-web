@@ -17,7 +17,7 @@ function groupOffices(rows: OfficeRow[]) {
 }
 
 function ColHead({ children }: { children: React.ReactNode }) {
-  return <h3 style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)", marginBottom: "22px" }}>{children}</h3>;
+  return <h3 style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)", marginBottom: "22px" }}>{children}</h3>;
 }
 
 function LinkCol({ title, links }: { title: string; links: { label: string; href: string }[] }) {
@@ -66,13 +66,13 @@ export default async function Footer() {
             <p className="mt-5 text-sm leading-relaxed" style={{ color: "var(--text-muted)", maxWidth: "320px" }}>
               {settings.footerTagline}
             </p>
-            <div className="mt-6 space-y-1" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12.5px" }}>
+            <div className="mt-6 space-y-1" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "13px" }}>
               <a href={`mailto:${settings.contactEmail}`} className="block transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-primary)" }}>{settings.contactEmail} →</a>
               <a href={telHref} className="block transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-primary)" }}>{settings.contactPhone} →</a>
             </div>
             {/* Working hours */}
             <div className="mt-5">
-              <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)", marginBottom: 4 }}>Call us</div>
+              <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)", marginBottom: 4 }}>Call us</div>
               <div className="text-sm" style={{ color: "var(--text-secondary)" }}>Monday – Friday · 9:00 AM – 6:00 PM</div>
             </div>
             {/* Social */}
@@ -107,7 +107,7 @@ export default async function Footer() {
                 {r.offices.map((o) => (
                   <li key={o.city}>
                     <div className="text-sm font-semibold" style={{ color: "var(--text-secondary)" }}>{o.city}</div>
-                    <div className="text-xs mt-0.5 leading-snug" style={{ color: "var(--text-muted)", maxWidth: "320px" }}>{o.address}</div>
+                    <div className="text-[13px] mt-0.5 leading-snug" style={{ color: "var(--text-muted)", maxWidth: "320px" }}>{o.address}</div>
                   </li>
                 ))}
               </ul>
@@ -116,7 +116,7 @@ export default async function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="py-7 flex flex-col sm:flex-row items-center justify-between gap-4" style={{ borderTop: "1px solid var(--border)", fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+        <div className="py-7 flex flex-col sm:flex-row items-center justify-between gap-4" style={{ borderTop: "1px solid var(--border)", fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.1em" }}>
           <p style={{ color: "var(--text-muted)" }}>© {new Date().getFullYear()} Maxcient Technologies</p>
           <div className="flex items-center gap-7">
             <Link href="/terms-of-use" className="transition-colors hover:text-[var(--primary)]" style={{ color: "var(--text-muted)" }}>Terms of Use</Link>

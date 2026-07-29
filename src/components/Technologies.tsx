@@ -10,7 +10,7 @@ type SectionHeaderProps = { eyebrow?: string; title?: string; body?: string };
 
 export default function Technologies({ technologies, header }: { technologies: TechnologyItem[]; header?: SectionHeaderProps }) {
   return (
-    <section id="technologies" className="py-20 lg:py-28" style={{ background: "var(--background)" }}>
+    <section id="technologies" className="pt-12 lg:pt-16 pb-20 lg:pb-28" style={{ background: "var(--background)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
           <SectionHead eyebrow={header?.eyebrow || "Tech Stack"} title={header?.title || "Platforms we master."}>
@@ -33,7 +33,7 @@ export default function Technologies({ technologies, header }: { technologies: T
                   </div>
                   <h3 className="mt-6 text-lg font-bold transition-colors group-hover:text-[var(--primary)]" style={{ color: "var(--text-primary)", letterSpacing: "-0.01em" }}>{tech.title}</h3>
                   <p className="mt-2.5 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>{tech.description}</p>
-                  <div className="mt-5 inline-flex items-center gap-1.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--primary)" }}>
+                  <div className="mt-5 inline-flex items-center gap-1.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--primary)" }}>
                     Explore <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                   </div>
                 </div>

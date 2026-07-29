@@ -52,7 +52,7 @@ function BrochureSection() {
           style={{ background: "var(--card-bg)", border: "1px solid var(--border)" }}
         >
           <div>
-            <p className="mb-2" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--primary)" }}>
+            <p className="mb-2" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--primary)" }}>
               // Product Brochure
             </p>
             <h2 className="text-2xl sm:text-3xl font-bold t-heading">Take RealtyAI Sales with you.</h2>
@@ -70,7 +70,7 @@ function BrochureSection() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3" />
             </svg>
             Download brochure
-            <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", opacity: 0.65 }}>PDF · 5 MB</span>
+            <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "13px", opacity: 0.65 }}>PDF · 5 MB</span>
           </a>
         </div>
       </div>

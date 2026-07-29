@@ -29,7 +29,7 @@ export default function Industries({ industries, header }: { industries: Industr
                   <Image src={ind.image} alt={ind.title} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.07]" />
                   <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,10,10,0.78) 0%, transparent 60%)" }} />
                   <div className="absolute bottom-0 left-0 p-7">
-                    <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: big ? "13px" : "11px", textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(245,242,235,0.7)", marginBottom: 8 }}>{ind.num}</div>
+                    <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: big ? "13px" : "12px", textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(245,242,235,0.7)", marginBottom: 8 }}>{ind.num}</div>
                     <div style={{ fontSize: big ? "2.5rem" : "1.5rem", fontWeight: 700, letterSpacing: "-0.025em", color: "#F5F2EB", lineHeight: 1 }}>{ind.title}</div>
                   </div>
                 </div>

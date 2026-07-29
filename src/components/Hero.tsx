@@ -137,7 +137,7 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
                 </svg>
               </span>
               <span className="leading-tight">
-                <span className="block" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255,255,255,0.65)" }}>Call us</span>
+                <span className="block" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255,255,255,0.65)" }}>Call us</span>
                 <span className="block" style={{ fontWeight: 600, fontSize: "15px", color: "#FFFFFF" }}>{data.phone}</span>
               </span>
             </a>
@@ -153,7 +153,7 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
                   <rect x="0" y="12.5" width="10.5" height="10.5" fill="#00A4EF" />
                   <rect x="12.5" y="12.5" width="10.5" height="10.5" fill="#FFB900" />
                 </svg>
-                <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "#fff" }}>
+                <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "#fff" }}>
                   {data.badge}
                 </span>
               </span>
@@ -171,7 +171,7 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
           {data.stats.map((s) => (
             <div key={s.l} className="px-5 py-5" style={{ background: "rgba(16,12,32,0.55)", backdropFilter: "blur(4px)" }}>
               <div style={{ fontSize: "1.85rem", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>{s.n}</div>
-              <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10.5px", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.62)", marginTop: 7 }}>{s.l}</div>
+              <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.62)", marginTop: 7 }}>{s.l}</div>
             </div>
           ))}
         </motion.div>

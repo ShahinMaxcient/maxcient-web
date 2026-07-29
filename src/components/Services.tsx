@@ -43,11 +43,14 @@ export default function Services({ services, header }: { services: ServiceCard[]
           </SectionHead>
         </SectionReveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* Mobile: horizontal snap-scroll carousel. sm+: standard grid.
+            The negative margin lets cards bleed to the screen edge while the
+            section keeps its padding; a peek of the next card hints at scroll. */}
+        <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto sm:overflow-visible snap-x snap-mandatory -mx-5 px-5 sm:mx-0 sm:px-0 pb-4 sm:pb-0 [scrollbar-width:none]">
           {services.map((s, i) => {
             const ico = pickIcon(s.title);
             return (
-              <SectionReveal key={s.title} delay={(i % 3) * 0.06}>
+              <SectionReveal key={s.title} delay={(i % 3) * 0.06} className="snap-start shrink-0 basis-[82%] sm:basis-auto sm:shrink">
                 <Link href={s.href} className="block h-full">
                   <div
                     className="ed-service-card group relative h-full overflow-hidden flex flex-col"
@@ -83,9 +86,9 @@ export default function Services({ services, header }: { services: ServiceCard[]
 
                     {/* body */}
                     <div className="flex flex-col flex-1" style={{ padding: "22px 24px 24px" }}>
-                      <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)", marginBottom: 8 }}>{s.num}</div>
+                      <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)", marginBottom: 8 }}>{s.num}</div>
                       <h3 style={{ fontSize: "1.3rem", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: 10, color: "var(--text-primary)" }}>{s.title}</h3>
-                      <p style={{ fontSize: "13.5px", lineHeight: 1.6, color: "var(--text-muted)" }}>{s.desc}</p>
+                      <p style={{ fontSize: "15px", lineHeight: 1.6, color: "var(--text-muted)" }}>{s.desc}</p>
                     </div>
                   </div>
                 </Link>

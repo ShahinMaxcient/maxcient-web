@@ -4,7 +4,7 @@ export default function ComingSoon({ product }: { product: string }) {
   return (
     <section className="py-24 lg:py-32" style={{ background: "var(--background)" }}>
       <div className="max-w-[720px] mx-auto px-5 sm:px-8 text-center">
-        <p style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--primary)" }}>
+        <p style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--primary)" }}>
           // Coming Soon
         </p>
         <h2 className="ed-display mt-4" style={{ fontSize: "clamp(1.9rem, 4vw, 2.75rem)", color: "var(--text-primary)" }}>

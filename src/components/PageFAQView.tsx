@@ -15,7 +15,7 @@ export default function PageFAQView({ faqs }: { faqs: FAQItem[] }) {
     <section className="py-20 lg:py-24" style={{ background: "var(--surface-alt)" }}>
       <div className="max-w-[1100px] mx-auto px-5 sm:px-8">
         <div className="mb-12">
-          <div className="mb-4" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--text-muted)" }}>
+          <div className="mb-4" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--text-muted)" }}>
             <span style={{ color: "var(--primary)" }}>// </span>FAQ
           </div>
           <h2 className="ed-display" style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}>Frequently asked.</h2>

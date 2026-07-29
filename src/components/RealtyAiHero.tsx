@@ -77,7 +77,7 @@ export default function RealtyAiHero({ variant, title, subtitle, image, brochure
               <svg width="16" height="16" viewBox="0 0 23 23" aria-hidden="true" className="shrink-0">
                 <rect x="0" y="0" width="10.5" height="10.5" fill="#F25022" /><rect x="12.5" y="0" width="10.5" height="10.5" fill="#7FBA00" /><rect x="0" y="12.5" width="10.5" height="10.5" fill="#00A4EF" /><rect x="12.5" y="12.5" width="10.5" height="10.5" fill="#FFB900" />
               </svg>
-              <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "#fff" }}>Microsoft Solutions Partner</span>
+              <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "#fff" }}>Microsoft Solutions Partner</span>
             </span>
           </motion.div>
 
@@ -89,7 +89,7 @@ export default function RealtyAiHero({ variant, title, subtitle, image, brochure
             {stats.map((s) => (
               <div key={s.l} className="px-5 py-5" style={{ background: "rgba(8,8,18,0.6)", backdropFilter: "blur(4px)" }}>
                 <div style={{ fontSize: "1.7rem", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>{s.n}</div>
-                <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.09em", color: "rgba(255,255,255,0.62)", marginTop: 7 }}>{s.l}</div>
+                <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.09em", color: "rgba(255,255,255,0.62)", marginTop: 7 }}>{s.l}</div>
               </div>
             ))}
           </motion.div>

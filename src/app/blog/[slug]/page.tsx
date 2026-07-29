@@ -47,8 +47,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <main>
         <article className="pt-32 lg:pt-40" style={{ background: "var(--background)" }}>
           <div className="max-w-3xl mx-auto px-5 sm:px-8">
-            <Link href="/blog" className="text-sm" style={{ color: "var(--text-muted)" }}>← All posts</Link>
-            <div className="mt-6 flex items-center gap-3" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--text-muted)" }}>
+            <Link href="/blog" className="text-[15px]" style={{ color: "var(--text-muted)" }}>← All posts</Link>
+            <div className="mt-6 flex items-center gap-3" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--text-muted)" }}>
               {post.category && <span style={{ color: "var(--primary)" }}>{post.category}</span>}
               <span>{post.date}</span>
             </div>

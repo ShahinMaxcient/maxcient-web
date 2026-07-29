@@ -34,7 +34,7 @@ export default function Testimonials({ cards, header }: { cards: TestimonialCard
             <SectionReveal key={c.tag} delay={i * 0.08}>
               <div className="h-full p-8 lg:p-10 flex flex-col justify-between" style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "6px" }}>
                 <div>
-                  <div className="mb-5" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)" }}>
+                  <div className="mb-5" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)" }}>
                     <span style={{ color: "var(--primary)" }}>// </span>{c.tag}
                   </div>
                   <p className="leading-relaxed" style={{ fontSize: "1.35rem", fontWeight: 600, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>
@@ -43,7 +43,7 @@ export default function Testimonials({ cards, header }: { cards: TestimonialCard
                 </div>
                 <div className="mt-8 flex items-center gap-3">
                   <Stars n={c.rating} />
-                  <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--text-muted)" }}>
+                  <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--text-muted)" }}>
                     Rated {c.rating}/5
                   </span>
                 </div>

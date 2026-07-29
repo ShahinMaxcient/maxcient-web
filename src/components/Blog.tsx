@@ -21,11 +21,11 @@ function Card({ post }: { post: BlogPost }) {
         <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,10,10,0.5), transparent 60%)" }} />
         {post.category && (
           <div className="absolute top-3 left-3">
-            <span style={{ background: "var(--background)", color: "var(--primary)", fontFamily: "var(--font-geist-mono), monospace", fontSize: "10px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", padding: "4px 9px", borderRadius: "3px" }}>{post.category}</span>
+            <span style={{ background: "var(--background)", color: "var(--primary)", fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", padding: "4px 9px", borderRadius: "3px" }}>{post.category}</span>
           </div>
         )}
       </div>
-      <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", color: "var(--text-muted)", marginBottom: 8 }}>{post.date}</div>
+      <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "13px", color: "var(--text-muted)", marginBottom: 8 }}>{post.date}</div>
       <h3 className="text-[15px] font-bold leading-snug transition-colors group-hover:text-[var(--primary)]" style={{ color: "var(--text-primary)", letterSpacing: "-0.01em" }}>{post.title}</h3>
     </article>
   );

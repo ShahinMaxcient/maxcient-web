@@ -15,7 +15,7 @@ export default function FeatureGrid({ id, title, subtitle, features }: { id?: st
         <SectionReveal>
           <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-20 items-end mb-16">
             <div>
-              <div className="mb-4" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11.5px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--text-muted)" }}>
+              <div className="mb-4" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--text-muted)" }}>
                 <span style={{ color: "var(--primary)" }}>// </span>Capabilities
               </div>
               <h2 className="ed-display" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>{title}</h2>
@@ -37,7 +37,7 @@ export default function FeatureGrid({ id, title, subtitle, features }: { id?: st
                 {feature.bullets && feature.bullets.length > 0 && (
                   <ul className="mt-3.5 space-y-1.5">
                     {feature.bullets.map((b) => (
-                      <li key={b} className="flex items-start gap-2 text-[13px] leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                      <li key={b} className="flex items-start gap-2 text-[14px] leading-relaxed" style={{ color: "var(--text-secondary)" }}>
                         <svg className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: "var(--primary)" }} fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>

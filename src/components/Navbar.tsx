@@ -47,7 +47,7 @@ function DropdownChild({ child }: { child: NavChild }) {
   const [subOpen, setSubOpen] = useState(false);
   const hasSub = !!child.children && child.children.length > 0;
 
-  const rowStyle: React.CSSProperties = { fontSize: "13px", color: "var(--text-secondary)", borderRadius: "4px" };
+  const rowStyle: React.CSSProperties = { fontSize: "14px", color: "var(--text-secondary)", borderRadius: "4px" };
   const hoverIn = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.background = "var(--glow-color)"; e.currentTarget.style.color = "var(--primary)"; };
   const hoverOut = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--text-secondary)"; };
   const chevron = (
@@ -100,7 +100,7 @@ function DropdownChild({ child }: { child: NavChild }) {
                   key={sub.label}
                   href={sub.href}
                   className="block px-3 py-2 transition-colors duration-150"
-                  style={{ fontSize: "12.5px", color: "var(--text-secondary)", borderRadius: "4px" }}
+                  style={{ fontSize: "14px", color: "var(--text-secondary)", borderRadius: "4px" }}
                   onMouseEnter={(e) => { e.currentTarget.style.background = "var(--glow-color)"; e.currentTarget.style.color = "var(--primary)"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--text-secondary)"; }}
                 >
@@ -295,7 +295,7 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
                                   <div className="py-2 text-sm font-semibold" style={{ color: "var(--text-secondary)" }}>{child.label}</div>
                                   <div className="pl-3 border-l" style={{ borderColor: "var(--border)" }}>
                                     {child.children.map((sub) => (
-                                      <Link key={sub.label} href={sub.href} className="block py-1.5 text-[13px]" style={{ color: "var(--text-muted)", opacity: 0.85 }} onClick={() => setMobileMenuOpen(false)}>{sub.label}</Link>
+                                      <Link key={sub.label} href={sub.href} className="block py-1.5 text-[14px]" style={{ color: "var(--text-muted)", opacity: 0.85 }} onClick={() => setMobileMenuOpen(false)}>{sub.label}</Link>
                                     ))}
                                   </div>
                                 </>

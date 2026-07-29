@@ -53,14 +53,14 @@ function BrochureSection() {
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 p-8 sm:p-10 rounded-2xl" style={{ background: "var(--card-bg)", border: "1px solid var(--border)" }}>
           <div>
-            <p className="mb-2" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--primary)" }}>// Capability Overview</p>
+            <p className="mb-2" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--primary)" }}>// Capability Overview</p>
             <h2 className="text-2xl sm:text-3xl font-bold t-heading">Take MaxSphere One with you.</h2>
             <p className="mt-2 t-body max-w-[520px]">The full capability overview — the twelve modules, the nine personas, AI governance, architecture, and the live GCC case study.</p>
           </div>
           <a href="/brochures/maxsphere-one-brochure.pdf" download="MaxSphere-One-Brochure.pdf" className="group inline-flex items-center gap-3 px-7 py-4 shrink-0 transition-transform duration-200 hover:-translate-y-0.5" style={{ background: "var(--text-primary)", color: "var(--background)", fontWeight: 600, fontSize: "15px", borderRadius: "6px" }}>
             <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3" /></svg>
             Download brochure
-            <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "11px", opacity: 0.65 }}>PDF</span>
+            <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "13px", opacity: 0.65 }}>PDF</span>
           </a>
         </div>
       </div>
