@@ -6,6 +6,7 @@ import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
 import Footer from "@/components/Footer";
+import ProductExtras from "@/components/ProductExtras";
 import { getPageOverride, isPageHidden } from "@/lib/pages";
 import { notFound } from "next/navigation";
 
@@ -89,6 +90,7 @@ export default async function MaxSphereOne() {
           image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-maxsphere-one.webp"
         />
         <PageFAQ slug="maxsphere-one" faqs={faqs} />
+        <ProductExtras />
       </main>
       <Footer />
     </>

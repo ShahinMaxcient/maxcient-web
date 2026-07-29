@@ -6,6 +6,7 @@ import FeatureGrid from "@/components/FeatureGrid";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
 import Footer from "@/components/Footer";
+import ProductExtras from "@/components/ProductExtras";
 import { notFound } from "next/navigation";
 import { getPageOverride, isPageHidden } from "@/lib/pages";
 
@@ -113,6 +114,7 @@ export default async function MaxUtility() {
           image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/maxutility-cta-dam.webp"
         />
         <PageFAQ slug="maxutility-facility-utility-management-solution" faqs={faqs} />
+        <ProductExtras />
       </main>
       <Footer />
     </>

@@ -3,6 +3,7 @@ import NavbarServer from "@/components/NavbarServer";
 import PageHero from "@/components/PageHero";
 import ComingSoon from "@/components/ComingSoon";
 import Footer from "@/components/Footer";
+import ProductExtras from "@/components/ProductExtras";
 
 export const metadata: Metadata = {
   title: "E-Invoice Connector | Maxcient",
@@ -21,6 +22,7 @@ export default function EInvoiceConnector() {
           image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-e-invoice-connector.webp"
         />
         <ComingSoon product="the E-Invoice Connector" />
+        <ProductExtras />
       </main>
       <Footer />
     </>
