@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Poppins, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import ThemeProvider from "@/components/ThemeProvider";
 import ScrollToTop from "@/components/ScrollToTop";
 
 // Matches www.maxcient.com typography: Poppins for headings, Inter for body.
@@ -43,27 +42,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-theme="light"
       className={`${inter.variable} ${poppins.variable} ${jetbrainsMono.variable} antialiased`}
       suppressHydrationWarning
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var theme = localStorage.getItem('maxcient-theme');
-                if (!theme) {
-                  theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                }
-                document.documentElement.setAttribute('data-theme', theme);
-              })();
-            `,
-          }}
-        />
-      </head>
       <body className="min-h-screen flex flex-col">
         <ScrollToTop />
-        <ThemeProvider>{children}</ThemeProvider>
+        {children}
       </body>
     </html>
   );

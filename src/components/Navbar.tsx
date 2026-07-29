@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import ThemeToggle from "./ThemeToggle";
 
 type NavChild = { label: string; href: string; children?: { label: string; href: string }[] };
 type NavItem = { label: string; href: string; children?: NavChild[] };
@@ -236,7 +235,6 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
 
           {/* Right */}
           <div className="hidden lg:flex items-center gap-3">
-            <ThemeToggle onHero={overHero} />
             <Link
               href="/request-a-consultation"
               className="group inline-flex items-center gap-2 px-5 py-2.5 transition-all duration-200"
@@ -258,7 +256,6 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
 
           {/* Mobile toggle */}
           <div className="flex items-center gap-2 lg:hidden">
-            <ThemeToggle onHero={overHero && !mobileMenuOpen} />
             <button className="p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Menu">
               <svg className="w-6 h-6" style={{ color: overHero && !mobileMenuOpen ? "#FFFFFF" : "var(--text-primary)" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {mobileMenuOpen ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /> : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}

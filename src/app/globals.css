@@ -48,44 +48,6 @@
   --shadow-hard: 6px 6px 0 #14101F;
 }
 
-/* ===== DARK MODE — Editorial aubergine ===== */
-[data-theme="dark"] {
-  --background: #0E0A1A;
-  --foreground: #F3F0FB;
-  --surface: #181228;
-  --surface-alt: #1E1733;
-
-  --primary: #a78bfa;
-  --primary-light: #c4b5fd;
-  --primary-dark: #8b5cf6;
-  --primary-deeper: #7c3aed;
-
-  --accent: #a78bfa;
-  --accent-light: #c4b5fd;
-  --violet: #a78bfa;
-
-  --text-primary: #F3F0FB;
-  --text-secondary: #D8D0EE;
-  --text-muted: #9A93B0;
-
-  --border: rgba(167, 139, 250, 0.16);
-  --border-strong: rgba(167, 139, 250, 0.30);
-
-  --card-bg: #181228;
-  --card-hover: #221A38;
-  --glass-bg: rgba(14, 10, 26, 0.82);
-  --glass-border: rgba(167, 139, 250, 0.16);
-  --glow-color: rgba(167, 139, 250, 0.14);
-
-  --hero-overlay: rgba(14, 10, 26, 0.85);
-  --nav-bg: rgba(14, 10, 26, 0.82);
-  --nav-text: rgba(243, 240, 251, 0.72);
-  --nav-text-hero: rgba(243, 240, 251, 0.92);
-
-  --shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-  --shadow-hard: 6px 6px 0 #a78bfa;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -123,18 +85,10 @@ body {
    intentionally NOT set here. In-page anchor smoothing is handled in JS. */
 html { scroll-padding-top: 88px; }
 
-/* Navbar logo: blue wordmark in light theme, white wordmark in dark theme.
-   (When the navbar floats over a hero, the white logo is rendered directly.) */
+/* Navbar logo: blue wordmark on light pages; the white logo is rendered
+   directly when the navbar floats over a hero. */
 .nav-logo-light { display: block; }
 .nav-logo-dark { display: none; }
-:root[data-theme="dark"] .nav-logo-light { display: none; }
-:root[data-theme="dark"] .nav-logo-dark { display: block; }
-
-/* Client logos are transparent PNGs; keep them readable on the dark surface. */
-:root[data-theme="dark"] .ed-client-logo {
-  filter: brightness(0) invert(1);
-  opacity: 0.85;
-}
 
 /* ============================================================
    EDITORIAL SURFACE TREATMENTS
