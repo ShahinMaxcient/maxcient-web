@@ -88,7 +88,7 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="ed-display"
-            style={{ fontSize: "clamp(2.85rem, 6.5vw, 5.75rem)", color: "#FFFFFF", lineHeight: 1.04, fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}
+            style={{ fontSize: "clamp(2.4rem, 5.2vw, 4.4rem)", color: "#FFFFFF", lineHeight: 1.04, fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}
           >
             {data.headline.includes("Tech ROI") ? (
               <>Maximize{" "}<span style={{ position: "relative", display: "inline-block" }}><span style={{ position: "relative", zIndex: 1 }}>Tech</span><span style={{ position: "absolute", left: 0, right: 0, bottom: "10%", height: "26%", background: "var(--primary-light)", transform: "skewX(-3deg)", zIndex: 0, opacity: 0.85 }} /></span>{" "}ROI<span style={{ color: "var(--primary-light)" }}>.</span></>
@@ -102,7 +102,7 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-7 leading-relaxed"
-            style={{ fontSize: "1.15rem", color: "rgba(255,255,255,0.82)", maxWidth: "560px" }}
+            style={{ fontSize: "1.02rem", color: "rgba(255,255,255,0.82)", maxWidth: "560px" }}
           >
             {data.subtitle}
           </motion.p>
@@ -116,7 +116,7 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
             <Link
               href="/request-a-consultation"
               className="group inline-flex items-center gap-3 px-8 py-4 transition-transform duration-200 hover:-translate-y-0.5"
-              style={{ background: "#FFFFFF", color: "#100c20", fontWeight: 600, fontSize: "15px", borderRadius: "4px" }}
+              style={{ background: "#FFFFFF", color: "#100c20", fontWeight: 600, fontSize: "14px", borderRadius: "4px" }}
             >
               <span>{data.ctaText}</span>
               <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
@@ -138,7 +138,7 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
               </span>
               <span className="leading-tight">
                 <span className="block" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255,255,255,0.65)" }}>Call us</span>
-                <span className="block" style={{ fontWeight: 600, fontSize: "15px", color: "#FFFFFF" }}>{data.phone}</span>
+                <span className="block" style={{ fontWeight: 600, fontSize: "14px", color: "#FFFFFF" }}>{data.phone}</span>
               </span>
             </a>
 
@@ -170,7 +170,7 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
         >
           {data.stats.map((s) => (
             <div key={s.l} className="px-5 py-5" style={{ background: "rgba(16,12,32,0.55)", backdropFilter: "blur(4px)" }}>
-              <div style={{ fontSize: "1.85rem", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>{s.n}</div>
+              <div style={{ fontSize: "1.55rem", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>{s.n}</div>
               <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.62)", marginTop: 7 }}>{s.l}</div>
             </div>
           ))}

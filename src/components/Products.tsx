@@ -45,10 +45,10 @@ function ProductCard({ p }: { p: ProductItem }) {
 
         {/* body — natural height; the image above flexes to fill */}
         <div className="flex flex-col" style={{ padding: "22px 24px 24px" }}>
-          <h3 style={{ fontSize: "1.5rem", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 10, color: "var(--text-primary)" }}>
+          <h3 style={{ fontSize: "1.3rem", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 10, color: "var(--text-primary)" }}>
             {p.title}<span style={{ color: "var(--primary)" }}>.</span>
           </h3>
-          <p style={{ fontSize: "15px", lineHeight: 1.6, color: "var(--text-muted)", marginBottom: 16 }}>{p.desc}</p>
+          <p style={{ fontSize: "14px", lineHeight: 1.6, color: "var(--text-muted)", marginBottom: 16 }}>{p.desc}</p>
           <div className="flex flex-wrap gap-2">
             {p.tags.slice(0, 4).map((t) => (
               <span key={t} style={{ padding: "5px 11px", border: "1px solid var(--border-strong)", borderRadius: "100px", fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--text-secondary)" }}>{t}</span>

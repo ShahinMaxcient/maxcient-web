@@ -29,9 +29,9 @@ export default function SocialProof({ stats, header }: { stats: StatItem[]; head
             <div className="mb-4" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--text-muted)" }}>
               <span style={{ color: "var(--primary)" }}>// </span>{header?.eyebrow || "By the Numbers"}
             </div>
-            <h2 className="ed-display" style={{ fontSize: "clamp(2.25rem, 4.5vw, 4rem)" }}>{header?.title || "Trusted across the GCC."}</h2>
+            <h2 className="ed-display" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.9rem)" }}>{header?.title || "Trusted across the GCC."}</h2>
           </div>
-          <p className="leading-relaxed" style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: "480px" }}>
+          <p className="leading-relaxed" style={{ fontSize: "0.95rem", color: "var(--text-muted)", maxWidth: "480px" }}>
             {header?.body || "Nearly a decade of measurable outcomes — from implementation velocity to satisfaction scores that outperform the regional average."}
           </p>
         </div>
@@ -40,7 +40,7 @@ export default function SocialProof({ stats, header }: { stats: StatItem[]; head
           {stats.map((s, i) => (
             <div key={s.eyebrow || i} className="py-12 pr-9" style={{ borderRight: i < 3 ? "1px solid var(--border)" : "none" }}>
               <div className="mb-7" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)" }}>{s.eyebrow}</div>
-              <div style={{ fontSize: "clamp(3.5rem, 6vw, 5.5rem)", fontWeight: 800, letterSpacing: "-0.045em", lineHeight: 0.9, color: "var(--text-primary)" }}>
+              <div style={{ fontSize: "clamp(2.6rem, 4.6vw, 4rem)", fontWeight: 800, letterSpacing: "-0.045em", lineHeight: 0.9, color: "var(--text-primary)" }}>
                 <AnimatedCounter target={s.value} /><span style={{ color: "var(--primary)" }}>{s.suffix}</span>
               </div>
               <div className="mt-4 text-sm leading-relaxed" style={{ color: "var(--text-muted)", maxWidth: "200px" }}>{s.label}</div>

@@ -52,7 +52,7 @@ export default function ProductHero({
           <motion.h1
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
             className="ed-display"
-            style={{ fontSize: "clamp(2.75rem, 6.5vw, 5.5rem)", lineHeight: 1.03, fontFamily: "var(--font-geist-sans), system-ui, sans-serif", color: "#fff", filter: "drop-shadow(0 3px 16px rgba(0,0,0,0.5))" }}
+            style={{ fontSize: "clamp(2.3rem, 5vw, 4.2rem)", lineHeight: 1.03, fontFamily: "var(--font-geist-sans), system-ui, sans-serif", color: "#fff", filter: "drop-shadow(0 3px 16px rgba(0,0,0,0.5))" }}
           >
             {title}{accentWord && <span style={{ color: accentColor }}>{accentWord}</span>}
           </motion.h1>
@@ -60,7 +60,7 @@ export default function ProductHero({
           <motion.p
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-6 leading-relaxed"
-            style={{ fontSize: "1.15rem", color: "rgba(255,255,255,0.92)", maxWidth: "560px", textShadow: "0 1px 12px rgba(0,0,0,0.6)" }}
+            style={{ fontSize: "1.02rem", color: "rgba(255,255,255,0.92)", maxWidth: "560px", textShadow: "0 1px 12px rgba(0,0,0,0.6)" }}
           >
             {subtitle}
           </motion.p>
@@ -69,7 +69,7 @@ export default function ProductHero({
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
             className="mt-10 flex items-center gap-6 flex-wrap"
           >
-            <Link href="/request-a-consultation" className="group inline-flex items-center gap-3 px-8 py-4 transition-transform duration-200 hover:-translate-y-0.5" style={{ background: "#FFFFFF", color: "#0a0a12", fontWeight: 600, fontSize: "15px", borderRadius: "4px" }}>
+            <Link href="/request-a-consultation" className="group inline-flex items-center gap-3 px-8 py-4 transition-transform duration-200 hover:-translate-y-0.5" style={{ background: "#FFFFFF", color: "#0a0a12", fontWeight: 600, fontSize: "14px", borderRadius: "4px" }}>
               <span>Book a demo</span>
               <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
@@ -96,7 +96,7 @@ export default function ProductHero({
           >
             {stats.map((s) => (
               <div key={s.l} className="px-5 py-5" style={{ background: "rgba(8,8,18,0.6)", backdropFilter: "blur(4px)" }}>
-                <div style={{ fontSize: "1.7rem", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>{s.n}</div>
+                <div style={{ fontSize: "1.45rem", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>{s.n}</div>
                 <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.09em", color: "rgba(255,255,255,0.62)", marginTop: 7 }}>{s.l}</div>
               </div>
             ))}

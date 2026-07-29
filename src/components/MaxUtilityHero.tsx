@@ -52,7 +52,7 @@ export default function MaxUtilityHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="ed-display"
-            style={{ fontSize: "clamp(3rem, 7vw, 6rem)", lineHeight: 1.02, fontFamily: "var(--font-geist-sans), system-ui, sans-serif", filter: "drop-shadow(0 3px 16px rgba(0,0,0,0.55))" }}
+            style={{ fontSize: "clamp(2.4rem, 5.4vw, 4.4rem)", lineHeight: 1.02, fontFamily: "var(--font-geist-sans), system-ui, sans-serif", filter: "drop-shadow(0 3px 16px rgba(0,0,0,0.55))" }}
           >
             {title === "MaxUtility" ? (
               <span
@@ -76,7 +76,7 @@ export default function MaxUtilityHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-6 leading-relaxed"
-            style={{ fontSize: "1.15rem", color: "rgba(255,255,255,0.95)", maxWidth: "560px", textShadow: "0 1px 12px rgba(0,0,0,0.85)" }}
+            style={{ fontSize: "1.02rem", color: "rgba(255,255,255,0.95)", maxWidth: "560px", textShadow: "0 1px 12px rgba(0,0,0,0.85)" }}
           >
             {subtitle}
           </motion.p>
@@ -90,7 +90,7 @@ export default function MaxUtilityHero({
             <Link
               href="/request-a-consultation"
               className="group inline-flex items-center gap-3 px-8 py-4 transition-transform duration-200 hover:-translate-y-0.5"
-              style={{ background: "#FFFFFF", color: "#0a0f14", fontWeight: 600, fontSize: "15px", borderRadius: "4px" }}
+              style={{ background: "#FFFFFF", color: "#0a0f14", fontWeight: 600, fontSize: "14px", borderRadius: "4px" }}
             >
               <span>Book a demo</span>
               <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
@@ -136,7 +136,7 @@ export default function MaxUtilityHero({
               { n: "24×7", l: "SLA-driven support" },
             ].map((s) => (
               <div key={s.l} className="px-5 py-5" style={{ background: "rgba(8,12,18,0.55)", backdropFilter: "blur(4px)" }}>
-                <div style={{ fontSize: "1.7rem", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>{s.n}</div>
+                <div style={{ fontSize: "1.45rem", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>{s.n}</div>
                 <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.09em", color: "rgba(255,255,255,0.6)", marginTop: 7 }}>{s.l}</div>
               </div>
             ))}

@@ -17,7 +17,7 @@ export default function WhyChoose({ product, reasons }: { product: string; reaso
             <div className="mb-4" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--text-muted)" }}>
               <span style={{ color: "var(--primary)" }}>// </span>Why {product}
             </div>
-            <h2 className="ed-display" style={{ fontSize: "clamp(1.9rem, 3.5vw, 3rem)" }}>Built to deliver, not just to demo.</h2>
+            <h2 className="ed-display" style={{ fontSize: "clamp(1.55rem, 2.9vw, 2.35rem)" }}>Built to deliver, not just to demo.</h2>
           </div>
         </SectionReveal>
 
@@ -28,7 +28,7 @@ export default function WhyChoose({ product, reasons }: { product: string; reaso
                 <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 700, color: "var(--primary)" }}>
                   {String(i + 1).padStart(2, "0")}
                 </div>
-                <h3 className="mt-3 font-bold" style={{ color: "var(--text-primary)", fontSize: "1.15rem", letterSpacing: "-0.01em" }}>{r.title}</h3>
+                <h3 className="mt-3 font-bold" style={{ color: "var(--text-primary)", fontSize: "1.02rem", letterSpacing: "-0.01em" }}>{r.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>{r.body}</p>
               </div>
             </SectionReveal>

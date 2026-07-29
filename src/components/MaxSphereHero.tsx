@@ -41,7 +41,7 @@ export default function MaxSphereHero({ title, subtitle }: Props = {}) {
           <motion.h1
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
             className="ed-display"
-            style={{ fontSize: "clamp(2.85rem, 6.5vw, 5.75rem)", lineHeight: 1.02, fontFamily: "var(--font-geist-sans), system-ui, sans-serif", color: "#fff" }}
+            style={{ fontSize: "clamp(2.4rem, 5.2vw, 4.4rem)", lineHeight: 1.02, fontFamily: "var(--font-geist-sans), system-ui, sans-serif", color: "#fff" }}
           >
             {customTitle ?? (<>MaxSphere <span style={{ color: GOLD }}>One</span></>)}
           </motion.h1>
@@ -49,7 +49,7 @@ export default function MaxSphereHero({ title, subtitle }: Props = {}) {
           <motion.p
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-6 leading-relaxed"
-            style={{ fontSize: "1.15rem", color: "rgba(255,255,255,0.82)", maxWidth: "580px" }}
+            style={{ fontSize: "1.02rem", color: "rgba(255,255,255,0.82)", maxWidth: "580px" }}
           >
             {subtitle || "The super app for real estate — a deployment-ready mobile and web platform that unifies discovery, sales, tenancy, ownership, payments, facilities and community, over the systems you already run."}
           </motion.p>
@@ -58,7 +58,7 @@ export default function MaxSphereHero({ title, subtitle }: Props = {}) {
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
             className="mt-10 flex items-center gap-6 flex-wrap"
           >
-            <Link href="/request-a-consultation" className="group inline-flex items-center gap-3 px-8 py-4 transition-transform duration-200 hover:-translate-y-0.5" style={{ background: GOLD, color: "#0b1020", fontWeight: 600, fontSize: "15px", borderRadius: "4px" }}>
+            <Link href="/request-a-consultation" className="group inline-flex items-center gap-3 px-8 py-4 transition-transform duration-200 hover:-translate-y-0.5" style={{ background: GOLD, color: "#0b1020", fontWeight: 600, fontSize: "14px", borderRadius: "4px" }}>
               <span>Book a demo</span>
               <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
@@ -87,7 +87,7 @@ export default function MaxSphereHero({ title, subtitle }: Props = {}) {
               { n: "7+", l: "Personas, one app" },
             ].map((s) => (
               <div key={s.l} className="px-5 py-5" style={{ background: "rgba(8,12,26,0.62)" }}>
-                <div style={{ fontSize: "1.6rem", fontWeight: 800, letterSpacing: "-0.02em", color: "#fff", lineHeight: 1 }}>{s.n}</div>
+                <div style={{ fontSize: "1.4rem", fontWeight: 800, letterSpacing: "-0.02em", color: "#fff", lineHeight: 1 }}>{s.n}</div>
                 <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.09em", color: "rgba(255,255,255,0.58)", marginTop: 7 }}>{s.l}</div>
               </div>
             ))}

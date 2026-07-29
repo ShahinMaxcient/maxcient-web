@@ -62,7 +62,7 @@ export default function PageHeroView({ title, subtitle, image }: PageHeroProps) 
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="ed-display"
-            style={{ fontSize: "clamp(2.75rem, 6.5vw, 5.5rem)", lineHeight: 1.03, color: "#fff", filter: "drop-shadow(0 3px 16px rgba(0,0,0,0.5))" }}
+            style={{ fontSize: "clamp(2.3rem, 5vw, 4.2rem)", lineHeight: 1.03, color: "#fff", filter: "drop-shadow(0 3px 16px rgba(0,0,0,0.5))" }}
           >
             {title}<span style={{ color: "var(--primary-light)" }}>.</span>
           </motion.h1>
@@ -72,7 +72,7 @@ export default function PageHeroView({ title, subtitle, image }: PageHeroProps) 
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-6 leading-relaxed"
-            style={{ fontSize: "1.15rem", color: "rgba(255,255,255,0.9)", maxWidth: "560px", textShadow: "0 1px 12px rgba(0,0,0,0.6)" }}
+            style={{ fontSize: "1.02rem", color: "rgba(255,255,255,0.9)", maxWidth: "560px", textShadow: "0 1px 12px rgba(0,0,0,0.6)" }}
           >
             {subtitle}
           </motion.p>
@@ -86,7 +86,7 @@ export default function PageHeroView({ title, subtitle, image }: PageHeroProps) 
             <Link
               href="/request-a-consultation"
               className="inline-flex items-center gap-3 px-8 py-4 transition-transform duration-200 hover:-translate-y-0.5"
-              style={{ background: "#FFFFFF", color: "#0a0a12", fontWeight: 600, fontSize: "15px", borderRadius: "4px" }}
+              style={{ background: "#FFFFFF", color: "#0a0a12", fontWeight: 600, fontSize: "14px", borderRadius: "4px" }}
             >
               Get Started
               <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>

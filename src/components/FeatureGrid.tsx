@@ -18,9 +18,9 @@ export default function FeatureGrid({ id, title, subtitle, features }: { id?: st
               <div className="mb-4" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--text-muted)" }}>
                 <span style={{ color: "var(--primary)" }}>// </span>Capabilities
               </div>
-              <h2 className="ed-display" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>{title}</h2>
+              <h2 className="ed-display" style={{ fontSize: "clamp(1.65rem, 3.2vw, 2.6rem)" }}>{title}</h2>
             </div>
-            <p className="leading-relaxed" style={{ fontSize: "1.05rem", color: "var(--text-muted)", maxWidth: "480px" }}>{subtitle}</p>
+            <p className="leading-relaxed" style={{ fontSize: "0.95rem", color: "var(--text-muted)", maxWidth: "480px" }}>{subtitle}</p>
           </div>
         </SectionReveal>
 
@@ -32,7 +32,7 @@ export default function FeatureGrid({ id, title, subtitle, features }: { id?: st
                 onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
               >
                 <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 700, color: "var(--primary)" }}>{String(i + 1).padStart(2, "0")}</div>
-                <h3 className="mt-4 font-bold" style={{ color: "var(--text-primary)", fontSize: "1.05rem", letterSpacing: "-0.01em" }}>{feature.title}</h3>
+                <h3 className="mt-4 font-bold" style={{ color: "var(--text-primary)", fontSize: "0.95rem", letterSpacing: "-0.01em" }}>{feature.title}</h3>
                 <p className="mt-2.5 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>{feature.description}</p>
                 {feature.bullets && feature.bullets.length > 0 && (
                   <ul className="mt-3.5 space-y-1.5">

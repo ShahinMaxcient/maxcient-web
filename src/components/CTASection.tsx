@@ -37,13 +37,13 @@ export default function CTASection({ title, subtitle, phone = "+971 4 329 3710",
       />
 
       <div className="relative max-w-[1100px] mx-auto px-5 sm:px-8 text-center">
-        <h2 className="ed-display" style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)", color: "#FFFFFF" }}>{title}</h2>
-        <p className="mx-auto mt-7 leading-relaxed" style={{ fontSize: "1.15rem", color: "rgba(255,255,255,0.8)", maxWidth: "560px" }}>{subtitle}</p>
+        <h2 className="ed-display" style={{ fontSize: "clamp(2rem, 4.6vw, 3.6rem)", color: "#FFFFFF" }}>{title}</h2>
+        <p className="mx-auto mt-7 leading-relaxed" style={{ fontSize: "1.02rem", color: "rgba(255,255,255,0.8)", maxWidth: "560px" }}>{subtitle}</p>
         <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/request-a-consultation"
             className="inline-flex items-center justify-center gap-3 px-9 py-4 transition-transform duration-200 hover:-translate-y-0.5"
-            style={{ background: "#FFFFFF", color: "#100c20", fontWeight: 600, fontSize: "15px", borderRadius: "4px" }}
+            style={{ background: "#FFFFFF", color: "#100c20", fontWeight: 600, fontSize: "14px", borderRadius: "4px" }}
           >
             {ctaText || "Book a consultation"}
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
@@ -51,7 +51,7 @@ export default function CTASection({ title, subtitle, phone = "+971 4 329 3710",
           <a
             href={telHref}
             className="inline-flex items-center justify-center px-9 py-4 transition-colors duration-200 hover:bg-white/10"
-            style={{ background: "transparent", color: "#FFFFFF", border: "1px solid rgba(255,255,255,0.35)", fontWeight: 600, fontSize: "15px", borderRadius: "4px", fontFamily: "var(--font-geist-mono), monospace", letterSpacing: "0.04em" }}
+            style={{ background: "transparent", color: "#FFFFFF", border: "1px solid rgba(255,255,255,0.35)", fontWeight: 600, fontSize: "14px", borderRadius: "4px", fontFamily: "var(--font-geist-mono), monospace", letterSpacing: "0.04em" }}
           >
             {phone}
           </a>

@@ -37,7 +37,7 @@ export default function Testimonials({ cards, header }: { cards: TestimonialCard
                   <div className="mb-5" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)" }}>
                     <span style={{ color: "var(--primary)" }}>// </span>{c.tag}
                   </div>
-                  <p className="leading-relaxed" style={{ fontSize: "1.35rem", fontWeight: 600, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>
+                  <p className="leading-relaxed" style={{ fontSize: "1.2rem", fontWeight: 600, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>
                     “{c.quote}”
                   </p>
                 </div>
