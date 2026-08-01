@@ -70,7 +70,7 @@ export default function SmartTeams() {
         {/* Strategy / Assembly / Optimization */}
         <section className="py-14 lg:py-16 t-bg-surface">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-3 gap-8">
+            <div className="grid lg:grid-cols-3 gap-8 items-start">
               {guidance.map((item) => (
                 <div key={item.title} className="p-8 rounded-2xl border t-border hover:shadow-lg transition-all flex flex-col">
                   <h3 className="text-lg font-bold t-heading leading-snug">{item.title}</h3>

@@ -54,7 +54,9 @@ export default function ServiceDetail(p: ServiceDetailProps) {
         {/* How we help */}
         <section className="py-14 lg:py-16 t-bg-surface">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-3 gap-8">
+            {/* items-start: cards size to their content so ones with fewer
+                risk callouts don't leave a large blank gap at the bottom. */}
+            <div className="grid lg:grid-cols-3 gap-8 items-start">
               {p.guidance.map((item) => (
                 <div key={item.title} className="p-8 rounded-2xl border t-border hover:shadow-lg transition-all flex flex-col">
                   <h3 className="text-lg font-bold t-heading leading-snug">{item.title}</h3>
@@ -87,7 +89,7 @@ export default function ServiceDetail(p: ServiceDetailProps) {
             </div>
             <div className="space-y-16">
               {p.industries.map((ind, i) => (
-                <div key={ind.name} className="grid lg:grid-cols-2 gap-12 items-center">
+                <div key={ind.name} className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                   <div className={i % 2 === 1 ? "lg:order-2" : ""}>
                     <span className="text-xs font-semibold uppercase tracking-widest text-[var(--accent)]">{ind.name}</span>
                     <h3 className="mt-2 text-2xl font-bold t-heading leading-snug">{ind.heading}</h3>
