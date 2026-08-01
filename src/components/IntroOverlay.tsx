@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 // Cinematic "curtain" easing.
 const EASE = [0.76, 0, 0.24, 1] as const;
-const PANEL_BG = "#120e20"; // deep aubergine ink — matches the brand
+const PANEL_BG = "#F6F4FB"; // lavender-tinted paper — matches the site background
 
 /**
  * First-visit welcome splash. Shows once per browser session: the screen holds
@@ -81,7 +81,7 @@ export default function IntroOverlay() {
       {/* seam accent line at the centre where the doors meet */}
       <motion.div
         className="absolute inset-x-0 top-1/2 origin-center"
-        style={{ height: 1, background: "#a78bfa", boxShadow: "0 0 18px 1px rgba(167,139,250,0.6)" }}
+        style={{ height: 1, background: "#7c3aed", boxShadow: "0 0 14px 1px rgba(124,58,237,0.4)" }}
         initial={{ scaleX: 0, opacity: 0 }}
         animate={{ scaleX: opening ? 1.05 : 1, opacity: opening ? 0 : 0.7 }}
         transition={{ duration: opening ? 0.5 : 0.9, ease: EASE, delay: opening ? 0 : 0.15 }}
@@ -98,11 +98,11 @@ export default function IntroOverlay() {
         {/* soft lavender glow behind the words */}
         <div
           className="absolute"
-          style={{ width: "70vw", maxWidth: 640, height: 320, borderRadius: "50%", background: "radial-gradient(ellipse at center, rgba(124,58,237,0.28), transparent 65%)", filter: "blur(8px)" }}
+          style={{ width: "70vw", maxWidth: 640, height: 320, borderRadius: "50%", background: "radial-gradient(ellipse at center, rgba(124,58,237,0.16), transparent 65%)", filter: "blur(8px)" }}
         />
         <motion.p
           className="relative"
-          style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: 12, fontWeight: 600, letterSpacing: "0.42em", textTransform: "uppercase", color: "#a78bfa", marginBottom: 22, paddingLeft: "0.42em" }}
+          style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: 12, fontWeight: 600, letterSpacing: "0.42em", textTransform: "uppercase", color: "#7c3aed", marginBottom: 22, paddingLeft: "0.42em" }}
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.35 }}
@@ -111,16 +111,16 @@ export default function IntroOverlay() {
         </motion.p>
         <motion.h1
           className="relative"
-          style={{ fontFamily: "var(--font-poppins), var(--font-geist-sans), sans-serif", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.02, color: "#FFFFFF", fontSize: "clamp(2rem, 6.5vw, 3.9rem)" }}
+          style={{ fontFamily: "var(--font-poppins), var(--font-geist-sans), sans-serif", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.02, color: "#14101F", fontSize: "clamp(2rem, 6.5vw, 3.9rem)" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
         >
-          Maxcient Technologies<span style={{ color: "#a78bfa" }}>.</span>
+          Maxcient Technologies<span style={{ color: "#7c3aed" }}>.</span>
         </motion.h1>
         <motion.div
           className="relative"
-          style={{ height: 2, marginTop: 26, borderRadius: 2, background: "linear-gradient(90deg, transparent, #a78bfa, transparent)" }}
+          style={{ height: 2, marginTop: 26, borderRadius: 2, background: "linear-gradient(90deg, transparent, #7c3aed, transparent)" }}
           initial={{ width: 0, opacity: 0 }}
           animate={{ width: 120, opacity: 1 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.9 }}
