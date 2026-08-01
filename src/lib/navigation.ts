@@ -12,6 +12,12 @@ export type NavItem = {
 
 type ProductNav = { title: string; href: string; subItems?: { label: string; href: string }[] | null };
 
+// Short labels for the Services dropdown, keyed by href. Lets a service keep a
+// descriptive title on its homepage card while showing a concise menu label.
+const SERVICE_NAV_LABELS: Record<string, string> = {
+  "/erp-and-crm": "CRM vs ERP",
+};
+
 export async function getNavItems(): Promise<NavItem[]> {
   const [services, industries, products, technologies, hidden] = await Promise.all([
     getServices(),
@@ -29,7 +35,7 @@ export async function getNavItems(): Promise<NavItem[]> {
     {
       label: "Services",
       href: "#",
-      children: services.filter((s) => visible(s.href)).map((s) => ({ label: s.title, href: s.href })),
+      children: services.filter((s) => visible(s.href)).map((s) => ({ label: SERVICE_NAV_LABELS[s.href] ?? s.title, href: s.href })),
     },
     {
       label: "Industries",
