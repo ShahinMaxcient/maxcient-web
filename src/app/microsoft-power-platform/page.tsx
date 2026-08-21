@@ -1,51 +1,48 @@
-import NavbarServer from "@/components/NavbarServer";
-import PageHero from "@/components/PageHero";
-import CTASection from "@/components/CTASection";
-import PageFAQ from "@/components/PageFAQ";
-import Footer from "@/components/Footer";
+import TechnologyDetail from "@/components/TechnologyDetail";
 
-const products = [
-  { name: "Power Apps", desc: "Low-code application development platform for building custom business apps rapidly.", color: "from-purple-500 to-purple-700" },
-  { name: "Power Automate", desc: "Workflow automation across applications and services, reducing manual tasks.", color: "from-blue-500 to-blue-700" },
-  { name: "Power BI", desc: "Data visualization and business analytics with interactive dashboards and reports.", color: "from-yellow-500 to-amber-600" },
-  { name: "Power Virtual Agents", desc: "AI-powered chatbot creation without coding for customer and employee support.", color: "from-green-500 to-green-700" },
-  { name: "Power Pages", desc: "Website creation platform for external users to interact with business data.", color: "from-pink-500 to-pink-700" },
-  { name: "AI Builder", desc: "Add AI capabilities to your apps and workflows with minimal technical expertise.", color: "from-indigo-500 to-indigo-700" },
-  { name: "Dataverse", desc: "Cloud-based secure data storage and management for your business data.", color: "from-teal-500 to-teal-700" },
-  { name: "Connectors", desc: "Integration with hundreds of external services and platforms for seamless data flow.", color: "from-orange-500 to-orange-700" },
-];
-
+// Content mirrors www.maxcient.com/microsoft-power-platform.
 export default function MicrosoftPowerPlatform() {
   return (
-    <>
-      <NavbarServer />
-      <main>
-        <PageHero slug="microsoft-power-platform" title="Microsoft Power Platform" subtitle="Empowering Businesses Through Agile Solutions. Connect data, build apps, automate workflows, and create chatbots — all with low-code tools." image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1519389950473-47ba0277781c.webp" />
-
-        <section className="py-14 lg:py-16 t-bg-surface">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-10">
-              <span className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)]">Products</span>
-              <h2 className="mt-4 text-3xl sm:text-4xl font-bold t-heading">Platform Products</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {products.map((p) => (
-                <div key={p.name} className="p-6 rounded-2xl border t-border hover:shadow-lg transition-all group">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${p.color} flex items-center justify-center text-white font-bold text-sm`}>
-                    {p.name.split(" ").pop()?.slice(0, 2).toUpperCase()}
-                  </div>
-                  <h3 className="mt-4 font-semibold t-heading">{p.name}</h3>
-                  <p className="mt-2 text-sm t-body">{p.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <CTASection title="Empower Your Team with Power Platform" subtitle="Let us help you build custom solutions that drive innovation across your organization." />
-        <PageFAQ slug="microsoft-power-platform" />
-      </main>
-      <Footer />
-    </>
+    <TechnologyDetail
+      slug="microsoft-power-platform"
+      title="Microsoft Power Platform"
+      subtitle="Empowering Businesses Through Agile Solutions."
+      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1519389950473-47ba0277781c.webp"
+      whatIsHeading="What is Microsoft Power Platform?"
+      whatIsBody="The Microsoft Power Platform is a comprehensive suite of business application tools designed to empower organizations with customized app development, data analytics, and process automation."
+      callouts={[
+        { title: "Seamless Integration & Customization", body: "The Power Platform effortlessly integrates with Microsoft 365, Dynamics 365, and Azure, allowing businesses to extend their applications and create custom solutions tailored to their unique requirements." },
+        { title: "Empower Citizen Developers", body: "With its low-code and no-code capabilities, Power Platform democratizes application development. Non-technical users can create apps, automate workflows, and generate business insights without deep coding expertise." },
+        { title: "Accelerated Digital Transformation", body: "By leveraging the Power Platform's analytics, automation, and application development capabilities, organizations can fast-track their digital transformation journey." },
+      ]}
+      servicesHeading="Microsoft Power Platform Services"
+      services={[
+        { title: "Custom App Development", body: "Harness the full potential of Power Platform by building tailored applications that cater specifically to your business needs, ensuring operational efficiency and enhanced user engagement.", bullets: ["Personalized solutions for unique challenges.", "Boost ROI with efficient, custom tools.", "Drive engagement, optimize business processes."] },
+        { title: "Workflow Automation with Power Automate", body: "Streamline business processes by automating repetitive tasks, improving productivity, and ensuring seamless data flow across your applications with Power Automate.", bullets: ["Free up time, focus on core tasks.", "Enhance accuracy, reduce manual errors.", "Connect apps, optimize data usage."] },
+        { title: "Business Analytics with Power BI", body: "Unlock actionable insights from your data by leveraging Power BI's robust analytics capabilities, offering visually appealing dashboards and comprehensive reporting for informed decision-making.", bullets: ["Turn data into strategic assets.", "Enhance clarity with visual representation.", "Stay ahead with data-driven decisions."] },
+      ]}
+      modulesHeading="Power Platform Components"
+      modulesIntro="Build, automate, analyze, and connect — the Power Platform brings low-code tools together into one agile business platform."
+      modules={[
+        { name: "Power Apps", body: "A suite of apps, services, connectors, and a data platform that provides an environment to build custom apps tailored to your business needs without extensive coding." },
+        { name: "Power Automate", body: "An automation tool that enables users to create workflows between applications and services, streamlining repetitive tasks and enhancing data synchronicity across platforms." },
+        { name: "Power BI", body: "A business analytics tool that visualizes data and shares insights across organizations, or embeds them in an app or website, offering comprehensive dashboards and interactive reports." },
+        { name: "Power Virtual Agents", body: "Easily build chatbots to engage with customers and employees, streamlining inquiries and operations without the need for coding or AI expertise." },
+        { name: "Power Pages", body: "Create websites that allow external users to interact with the data stored in the Common Data Service, extending your reach and offering valuable user experiences." },
+        { name: "Copilot Studio", body: "A turnkey solution within Power Platform that empowers users to leverage AI capabilities for enhancing applications with minimal expertise." },
+        { name: "Dataverse", body: "A cloud-based tool that allows users to securely store and manage data used by business applications, ensuring consistency, interoperability, and reliability." },
+        { name: "Connectors", body: "Facilitate integration by connecting with a wide array of external services and platforms, ensuring seamless data flow and improving the overall functionality of applications." },
+      ]}
+      industryIntro="Leveraging Microsoft Power Platform, we've transformed industries from manufacturing to retail. Our deep-rooted expertise understands sector-specific challenges, offering bespoke solutions that drive efficiency and innovation."
+      industryCallouts={[
+        { name: "Manufacturing", body: "Power Platform boosts operations, production, and inventory. Resulting in transparent supply chains and proactive equipment maintenance for manufacturers." },
+        { name: "Real Estate", body: "Power Platform offers advanced property management and customer engagement. Accelerated decisions, seamless tenant interactions, and robust property analytics." },
+        { name: "Retail", body: "Power Platform supports connected retail from supply to customer. Amplifying real-time inventory insights and innovative strategies for dynamic retail." },
+        { name: "Distribution", body: "Power Platform refines supply logistics and inventory oversight. Improving logistical efficiency, relationship management, and precise inventory control." },
+        { name: "Professional Services", body: "Power Platform enhances project management and client rapport. Streamlined processes, elevated client engagements, and robust project oversight deliver excellence." },
+      ]}
+      ctaTitle="Do More with the Power Platform"
+      ctaSubtitle="Talk to our experts about low-code apps, workflow automation, and Power BI analytics built around your business."
+    />
   );
 }
