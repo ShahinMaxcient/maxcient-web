@@ -115,7 +115,7 @@ export default function SmartTeams() {
 
         <CTASection
           title="How We Deliver Smart Teams Services"
-          subtitle="Elevate your vision with our Dedicated Development Team. Our experts seamlessly integrate with your projects, ensuring enhanced collaboration and optimized solutions. Experience the synergy where technical expertise meets business innovation."
+          subtitle="Empowering Streamlined Development Initiatives — Elevate your vision with our Dedicated Development Team. Our experts seamlessly integrate with your projects, ensuring enhanced collaboration and optimized solutions. Experience the synergy where technical expertise meets business innovation."
         />
         <PageFAQ slug="dedicated-development-team" />
       </main>

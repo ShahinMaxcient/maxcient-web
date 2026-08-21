@@ -15,6 +15,8 @@ export type ServiceDetailProps = {
   subtitle: string;
   heroImage: string;
   guidance: Guidance[];
+  /** Optional "Our Process" band heading (e.g. "How We Deliver X Services"). */
+  processHeading?: string;
   industriesIntro: string;
   industries: Industry[];
   techPlatform?: TechPlatform;
@@ -78,6 +80,16 @@ export default function ServiceDetail(p: ServiceDetailProps) {
             </div>
           </div>
         </section>
+
+        {/* Our Process band */}
+        {p.processHeading && (
+          <section className="py-10 lg:py-12 t-bg-surface">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <span className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)]">Our Process</span>
+              <h2 className="mt-3 text-2xl sm:text-3xl font-bold t-heading">{p.processHeading}</h2>
+            </div>
+          </section>
+        )}
 
         {/* Industry Solutions */}
         <section className="py-14 lg:py-16 t-bg-alt">

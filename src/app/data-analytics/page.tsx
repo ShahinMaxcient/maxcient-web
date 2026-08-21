@@ -27,6 +27,7 @@ export default function DataAnalytics() {
           points: ["A picture is worth a thousand words, and missing out on visual insights could mean overlooking potential business goldmines."],
         },
       ]}
+      processHeading="How We Deliver Data Analytics Solutions"
       industriesIntro="Our data analytics solutions decode the signals unique to every sector — turning raw information into decisions that compound into growth."
       industries={[
         {

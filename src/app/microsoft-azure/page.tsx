@@ -9,7 +9,7 @@ export default function MicrosoftAzure() {
       subtitle="Cloud Computing Redefined."
       heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1451187580459-43490279c0fa.webp"
       whatIsHeading="What is Microsoft Azure?"
-      whatIsBody="Microsoft Azure is a comprehensive cloud computing platform by Microsoft, offering a plethora of services ranging from infrastructure-as-a-service (IaaS), platform-as-a-service (PaaS), to software-as-a-service (SaaS)."
+      whatIsBody="Microsoft Azure is a comprehensive cloud computing platform by Microsoft, offering a plethora of services ranging from infrastructure-as-a-service (IaaS), platform-as-a-service (PaaS), to software-as-a-service (SaaS). With Azure, businesses can build, deploy, and manage applications through Microsoft's vast global network of data centers, ensuring scalability, security, and continuous innovation."
       callouts={[
         { title: "Unparalleled Scalability", body: "Azure provides instant scalability, adapting to your business's growing demands, ensuring optimal performance and cost-effectiveness." },
         { title: "Advanced Security Measures", body: "Benefit from Microsoft's multi-layered security features, protecting your data and applications from potential threats and ensuring compliance with industry regulations." },
@@ -22,7 +22,7 @@ export default function MicrosoftAzure() {
         { title: "Azure Security & Compliance Consulting", body: "Safeguard your Azure deployments with our expert-led security assessments and ensure adherence to industry compliance standards.", bullets: ["Minimize downtime, maximize productivity.", "Rely on experts for consistent performance.", "Stay updated, stay competitive."] },
       ]}
       modulesHeading="Microsoft Azure Products & Services"
-      modulesIntro="From compute and storage to identity and serverless, we architect Azure services that scale securely with your business."
+      modulesIntro="Harness the versatility of Azure's diverse product suite."
       modules={[
         { name: "Virtual Machines", body: "Deploy and manage virtualized applications seamlessly, ensuring scalability and high availability for your business-critical applications." },
         { name: "Azure Kubernetes Service (AKS)", body: "Orchestrate containerized applications with efficiency, using Kubernetes management, automated scaling, and integrated developer tools." },

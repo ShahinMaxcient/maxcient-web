@@ -27,6 +27,7 @@ export default function ApplicationDevelopment() {
           points: ["Releasing an application with overlooked flaws can compromise user satisfaction."],
         },
       ]}
+      processHeading="How We Deliver Application Development Services"
       industriesIntro="From factory floors to storefronts, we craft applications tuned to the way each industry actually works — resilient, integrated, and built around your goals."
       industries={[
         {

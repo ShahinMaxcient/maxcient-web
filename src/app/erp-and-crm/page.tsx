@@ -102,13 +102,21 @@ export default function ERPAndCRM() {
           </div>
         </section>
 
+        {/* Our Process band */}
+        <section className="py-10 lg:py-12 t-bg-surface">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)]">Our Process</span>
+            <h2 className="mt-3 text-2xl sm:text-3xl font-bold t-heading">How We Deliver ERP and CRM Services</h2>
+          </div>
+        </section>
+
         {/* Industry Solutions */}
         <section className="py-14 lg:py-16 t-bg-alt">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-12">
               <span className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)]">Industries</span>
               <h2 className="mt-4 text-3xl sm:text-4xl font-bold t-heading">Industry Solutions</h2>
-              <p className="mt-4 t-body leading-relaxed">Our custom ERP &amp; CRM solutions are designed to resonate with specific industry nuances, ensuring seamless integration, enhanced productivity, and a competitive edge for businesses.</p>
+              <p className="mt-4 t-body leading-relaxed">Our custom ERP &amp; CRM solutions are designed to resonate with specific industry nuances, ensuring seamless integration, enhanced productivity, and a competitive edge for businesses. Dive in to explore how our expertise can transform your industry-specific challenges into opportunities.</p>
             </div>
             <div className="space-y-16">
               {industries.map((ind, i) => (

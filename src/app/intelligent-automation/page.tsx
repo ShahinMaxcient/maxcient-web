@@ -27,7 +27,8 @@ export default function IntelligentAutomation() {
           points: ["Disjointed processes can lead to inconsistent outcomes, impacting business performance."],
         },
       ]}
-      industriesIntro="Our intelligent automation solutions adapt to the nuances of every sector — streamlining operations, unlocking efficiency, and giving businesses a competitive edge."
+      processHeading="How We Deliver Intelligent Automation Services"
+      industriesIntro="Our Intelligent Automation services are meticulously crafted to address the distinct demands of each industry, driving operational excellence and increased efficiency. Delve into how our specialized approach can transform your industry-specific hurdles into strategic advantages."
       industries={[
         {
           name: "Manufacturing",
