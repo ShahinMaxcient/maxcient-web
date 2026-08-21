@@ -91,7 +91,9 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
             style={{ fontSize: "clamp(2.4rem, 5.2vw, 4.4rem)", color: "#FFFFFF", lineHeight: 1.04, fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}
           >
             {data.headline.includes("Tech ROI") ? (
-              <>Maximize{" "}<span style={{ position: "relative", display: "inline-block" }}><span style={{ position: "relative", zIndex: 1 }}>Tech</span><span style={{ position: "absolute", left: 0, right: 0, bottom: "10%", height: "26%", background: "var(--primary-light)", transform: "skewX(-3deg)", zIndex: 0, opacity: 0.85 }} /></span>{" "}ROI<span style={{ color: "var(--primary-light)" }}>.</span></>
+              /* Keep the styled "Tech" accent, but render any text after "ROI"
+                 too (e.g. "Maximize Tech ROI with Maxcient"). */
+              <>Maximize{" "}<span style={{ position: "relative", display: "inline-block" }}><span style={{ position: "relative", zIndex: 1 }}>Tech</span><span style={{ position: "absolute", left: 0, right: 0, bottom: "10%", height: "26%", background: "var(--primary-light)", transform: "skewX(-3deg)", zIndex: 0, opacity: 0.85 }} /></span>{" "}ROI{data.headline.split("ROI")[1]?.replace(/\.$/, "") ?? ""}<span style={{ color: "var(--primary-light)" }}>.</span></>
             ) : (
               <>{data.headline}</>
             )}
