@@ -2,6 +2,7 @@
 
 import { useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { RevealGroup, RevealItem } from "./RevealGroup";
 
 function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -36,17 +37,17 @@ export default function SocialProof({ stats, header }: { stats: StatItem[]; head
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style={{ borderTop: "1px solid var(--border)" }}>
+        <RevealGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style={{ borderTop: "1px solid var(--border)" }} stagger={0.09}>
           {stats.map((s, i) => (
-            <div key={s.eyebrow || i} className="py-12 pr-9" style={{ borderRight: i < 3 ? "1px solid var(--border)" : "none" }}>
+            <RevealItem key={s.eyebrow || i} className="py-12 pr-9" style={{ borderRight: i < 3 ? "1px solid var(--border)" : "none" }}>
               <div className="mb-7" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)" }}>{s.eyebrow}</div>
               <div style={{ fontSize: "clamp(2.6rem, 4.6vw, 4rem)", fontWeight: 800, letterSpacing: "-0.045em", lineHeight: 0.9, color: "var(--text-primary)" }}>
                 <AnimatedCounter target={s.value} /><span style={{ color: "var(--primary)" }}>{s.suffix}</span>
               </div>
               <div className="mt-4 text-sm leading-relaxed" style={{ color: "var(--text-muted)", maxWidth: "200px" }}>{s.label}</div>
-            </div>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import SectionReveal from "./SectionReveal";
+import { RevealGroup, RevealItem } from "./RevealGroup";
 import SectionHead from "./SectionHead";
 import Link from "next/link";
 
@@ -48,14 +49,14 @@ export default function Services({ services, header }: { services: ServiceCard[]
             - overflow-y-hidden: kills the implicit vertical scroll that
               overflow-x:auto would otherwise create.
             - Cards are equal-height (image flexes to fill); sm+ restores the grid.
-            Cards are rendered plainly (no per-card reveal): a per-card reveal
-            leaves off-screen carousel cards at opacity:0 (blank) and its
-            translateY adds vertical overflow that can be touch-scrolled. */}
-        <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto overflow-y-hidden sm:overflow-visible snap-x snap-mandatory -mx-5 px-5 sm:mx-0 sm:px-0 pb-1 sm:pb-0 [scrollbar-width:none]">
+            The reveal is driven by RevealGroup on the container rather than a
+            per-card observer — a per-card observer never fires for cards
+            scrolled out of view sideways, leaving them blank when swiped to. */}
+        <RevealGroup className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto overflow-y-hidden sm:overflow-visible snap-x snap-mandatory -mx-5 px-5 sm:mx-0 sm:px-0 pb-1 sm:pb-0 [scrollbar-width:none]">
           {services.map((s) => {
             const ico = pickIcon(s.title);
             return (
-              <div key={s.title} className="snap-start shrink-0 basis-[85%] sm:basis-auto sm:shrink">
+              <RevealItem key={s.title} className="snap-start shrink-0 basis-[85%] sm:basis-auto sm:shrink">
                 <Link href={s.href} className="block h-full">
                   <div
                     className="ed-service-card group relative h-full overflow-hidden flex flex-col"
@@ -99,10 +100,10 @@ export default function Services({ services, header }: { services: ServiceCard[]
                     </div>
                   </div>
                 </Link>
-              </div>
+              </RevealItem>
             );
           })}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

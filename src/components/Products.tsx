@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import SectionReveal from "./SectionReveal";
+import { RevealGroup, RevealItem } from "./RevealGroup";
 import SectionHead from "./SectionHead";
 
 type ProductItem = { num: string; title: string; desc: string; tags: string[]; href: string; image: string };
@@ -73,16 +74,16 @@ export default function Products({ products, header }: { products: ProductItem[]
         </SectionReveal>
 
         {/* Mobile: horizontal snap-scroll carousel (one card per swipe, next
-            card peeks). sm+: responsive grid. Cards render plainly (no per-card
-            reveal) so no card is ever left blank / vertically scrollable
-            (see Services.tsx). */}
-        <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto overflow-y-hidden sm:overflow-visible snap-x snap-mandatory -mx-5 px-5 sm:mx-0 sm:px-0 pb-1 sm:pb-0 [scrollbar-width:none]">
+            card peeks). sm+: responsive grid. The reveal is container-driven
+            (RevealGroup) so carousel cards off-screen sideways still reveal —
+            see Services.tsx. */}
+        <RevealGroup className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto overflow-y-hidden sm:overflow-visible snap-x snap-mandatory -mx-5 px-5 sm:mx-0 sm:px-0 pb-1 sm:pb-0 [scrollbar-width:none]">
           {products.map((p) => (
-            <div key={p.title} className="snap-start shrink-0 basis-[85%] sm:basis-auto sm:shrink">
+            <RevealItem key={p.title} className="snap-start shrink-0 basis-[85%] sm:basis-auto sm:shrink">
               <ProductCard p={p} />
-            </div>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );
