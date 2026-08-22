@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { prisma } from "./prisma";
 import { COLLECTIONS } from "./collections";
 
@@ -19,7 +20,7 @@ export function delegate(model: string): PrismaDelegate {
  * Published items for a collection, ordered. Falls back to the collection's
  * default content if the table is empty or the DB is unreachable.
  */
-export async function getCollectionItems<T = Record<string, unknown>>(key: string): Promise<T[]> {
+async function getCollectionItems__uncached(key: string): Promise<unknown[]> {
   const cfg = COLLECTIONS[key];
   if (!cfg) return [];
   try {
@@ -27,10 +28,10 @@ export async function getCollectionItems<T = Record<string, unknown>>(key: strin
       where: { published: true },
       orderBy: [{ order: "asc" }, { createdAt: "asc" }],
     });
-    if (!rows || rows.length === 0) return cfg.defaults as T[];
-    return rows as T[];
+    if (!rows || rows.length === 0) return cfg.defaults as unknown[];
+    return rows as unknown[];
   } catch {
-    return cfg.defaults as T[];
+    return cfg.defaults as unknown[];
   }
 }
 
@@ -39,4 +40,10 @@ export async function getAllItems(key: string): Promise<Record<string, unknown>[
   const cfg = COLLECTIONS[key];
   if (!cfg) return [];
   return delegate(cfg.model).findMany({ orderBy: [{ order: "asc" }, { createdAt: "asc" }] });
+}
+
+/** Cached worker + a thin generic wrapper, so the type signature is unchanged. */
+const getCollectionItemsCached = cache(getCollectionItems__uncached);
+export async function getCollectionItems<T = Record<string, unknown>>(key: string): Promise<T[]> {
+  return (await getCollectionItemsCached(key)) as T[];
 }

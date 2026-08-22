@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { prisma } from "./prisma";
 
 export type SiteSettings = {
@@ -17,7 +18,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
 
 const SETTINGS_KEY = "site";
 
-export async function getSiteSettings(): Promise<SiteSettings> {
+async function getSiteSettings__uncached(): Promise<SiteSettings> {
   try {
     const row = await prisma.siteSetting.findUnique({ where: { key: SETTINGS_KEY } });
     if (!row?.value || typeof row.value !== "object") return DEFAULT_SETTINGS;
@@ -78,7 +79,7 @@ export const DEFAULT_HERO: HeroSettings = {
   ],
 };
 
-export async function getHeroSettings(): Promise<HeroSettings> {
+async function getHeroSettings__uncached(): Promise<HeroSettings> {
   const hero = await getSettingValue("hero", DEFAULT_HERO);
   // Back-compat: rows saved before multi-image only have `image`.
   if (!Array.isArray(hero.images) || hero.images.length === 0) {
@@ -151,7 +152,7 @@ export const DEFAULT_SECTIONS: SectionHeaders = {
   },
 };
 
-export async function getSectionHeaders(): Promise<SectionHeaders> {
+async function getSectionHeaders__uncached(): Promise<SectionHeaders> {
   return getSettingValue("sections", DEFAULT_SECTIONS);
 }
 
@@ -173,7 +174,7 @@ export const DEFAULT_CTA: CTASettings = {
   ctaText: "Book a consultation",
 };
 
-export async function getCTASettings(): Promise<CTASettings> {
+async function getCTASettings__uncached(): Promise<CTASettings> {
   return getSettingValue("cta", DEFAULT_CTA);
 }
 
@@ -212,6 +213,21 @@ export const DEFAULT_ABOUT: AboutSettings = {
   valuesTitle: "What We Stand For",
 };
 
-export async function getAboutSettings(): Promise<AboutSettings> {
+async function getAboutSettings__uncached(): Promise<AboutSettings> {
   return getSettingValue("about", DEFAULT_ABOUT);
 }
+
+/** Request-level dedupe: repeated calls in one render hit the DB once. */
+export const getSiteSettings = cache(getSiteSettings__uncached);
+
+/** Request-level dedupe: repeated calls in one render hit the DB once. */
+export const getHeroSettings = cache(getHeroSettings__uncached);
+
+/** Request-level dedupe: repeated calls in one render hit the DB once. */
+export const getSectionHeaders = cache(getSectionHeaders__uncached);
+
+/** Request-level dedupe: repeated calls in one render hit the DB once. */
+export const getCTASettings = cache(getCTASettings__uncached);
+
+/** Request-level dedupe: repeated calls in one render hit the DB once. */
+export const getAboutSettings = cache(getAboutSettings__uncached);

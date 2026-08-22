@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { getCollectionItems } from "./content";
 import { getServices } from "./homepage";
 import { getHiddenSlugs } from "./pages";
@@ -18,7 +19,7 @@ const SERVICE_NAV_LABELS: Record<string, string> = {
   "/erp-and-crm": "CRM vs ERP",
 };
 
-export async function getNavItems(): Promise<NavItem[]> {
+async function getNavItems__uncached(): Promise<NavItem[]> {
   const [services, industries, products, technologies, hidden] = await Promise.all([
     getServices(),
     getCollectionItems<{ title: string; href: string }>("industries"),
@@ -60,3 +61,6 @@ export async function getNavItems(): Promise<NavItem[]> {
     { label: "About", href: "/about-us" },
   ];
 }
+
+/** Request-level dedupe: repeated calls in one render hit the DB once. */
+export const getNavItems = cache(getNavItems__uncached);

@@ -1,8 +1,6 @@
-import NavbarServer from "@/components/NavbarServer";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
-import Footer from "@/components/Footer";
 
 export type Callout = { title: string; body: string };
 export type ServiceCard = { title: string; body: string; bullets: string[] };
@@ -39,7 +37,6 @@ function CheckIcon() {
 export default function TechnologyDetail(p: TechnologyDetailProps) {
   return (
     <>
-      <NavbarServer />
       <main>
         <PageHero slug={p.slug} title={p.title} subtitle={p.subtitle} image={p.heroImage} />
 
@@ -131,7 +128,6 @@ export default function TechnologyDetail(p: TechnologyDetailProps) {
         <CTASection title={p.ctaTitle} subtitle={p.ctaSubtitle} />
         <PageFAQ slug={p.slug} />
       </main>
-      <Footer />
     </>
   );
 }

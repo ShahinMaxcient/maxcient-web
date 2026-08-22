@@ -1,6 +1,7 @@
 "use client";
 
 import SectionReveal from "./SectionReveal";
+import BrandMark from "./BrandMark";
 
 type Reason = { title: string; body: string };
 
@@ -15,7 +16,7 @@ export default function WhyChoose({ product, reasons }: { product: string; reaso
         <SectionReveal>
           <div className="mb-12">
             <div className="mb-4" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--text-muted)" }}>
-              Why {product}
+              <BrandMark />Why {product}
             </div>
             <h2 className="ed-display" style={{ fontSize: "clamp(1.55rem, 2.9vw, 2.35rem)" }}>Built to deliver, not just to demo.</h2>
           </div>

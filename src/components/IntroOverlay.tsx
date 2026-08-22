@@ -40,9 +40,42 @@ export default function IntroOverlay() {
     } catch {}
     document.body.style.overflow = "hidden";
     window.scrollTo(0, 0);
-    const t = setTimeout(() => setOpening(true), 1650);
+
+    // Open once the hero behind it is actually painted, rather than on a fixed
+    // timer that can part the doors onto a half-loaded page. Guarded at both
+    // ends: a minimum hold so it never flashes, and a hard cap so a slow or
+    // failed image can never leave a visitor staring at the splash.
+    const MIN_HOLD = 1100;
+    const MAX_WAIT = 6000;
+    const startedAt = performance.now();
+    let done = false;
+    let poll = 0;
+    let capTimer = 0;
+
+    const open = () => {
+      if (done) return;
+      done = true;
+      window.clearInterval(poll);
+      window.clearTimeout(capTimer);
+      const waited = performance.now() - startedAt;
+      window.setTimeout(() => setOpening(true), Math.max(0, MIN_HOLD - waited));
+    };
+
+    const heroReady = () => {
+      const hero = document.querySelector("main section img, main img");
+      // No hero image on this route — nothing to wait for.
+      if (!hero) return document.readyState === "complete";
+      const img = hero as HTMLImageElement;
+      return img.complete && img.naturalWidth > 0;
+    };
+
+    if (heroReady()) open();
+    else poll = window.setInterval(() => { if (heroReady()) open(); }, 100);
+    capTimer = window.setTimeout(open, MAX_WAIT);
+
     return () => {
-      clearTimeout(t);
+      window.clearInterval(poll);
+      window.clearTimeout(capTimer);
       document.body.style.overflow = "";
     };
   }, []);

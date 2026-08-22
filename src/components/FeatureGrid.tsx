@@ -1,6 +1,7 @@
 "use client";
 
 import SectionReveal from "./SectionReveal";
+import BrandMark from "./BrandMark";
 
 interface Feature {
   title: string;
@@ -16,7 +17,7 @@ export default function FeatureGrid({ id, title, subtitle, features }: { id?: st
           <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-20 items-end mb-16">
             <div>
               <div className="mb-4" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--text-muted)" }}>
-                Capabilities
+                <BrandMark />Capabilities
               </div>
               <h2 className="ed-display" style={{ fontSize: "clamp(1.65rem, 3.2vw, 2.6rem)" }}>{title}</h2>
             </div>

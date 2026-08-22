@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { prisma } from "./prisma";
 
 export type PublicPost = {
@@ -25,7 +26,7 @@ function formatDate(d: Date) {
 }
 
 /** Published posts for public listings. Falls back to demo posts if none/DB error. */
-export async function getPublishedPosts(limit?: number): Promise<PublicPost[]> {
+async function getPublishedPosts__uncached(limit?: number): Promise<PublicPost[]> {
   try {
     const rows = await prisma.post.findMany({
       where: { status: "PUBLISHED" },
@@ -48,7 +49,7 @@ export async function getPublishedPosts(limit?: number): Promise<PublicPost[]> {
 }
 
 /** Single published post by slug, or null. */
-export async function getPostBySlug(slug: string): Promise<PublicPost | null> {
+async function getPostBySlug__uncached(slug: string): Promise<PublicPost | null> {
   try {
     const p = await prisma.post.findUnique({ where: { slug } });
     if (!p || p.status !== "PUBLISHED") return null;
@@ -65,3 +66,9 @@ export async function getPostBySlug(slug: string): Promise<PublicPost | null> {
     return null;
   }
 }
+
+/** Request-level dedupe: repeated calls in one render hit the DB once. */
+export const getPublishedPosts = cache(getPublishedPosts__uncached);
+
+/** Request-level dedupe: repeated calls in one render hit the DB once. */
+export const getPostBySlug = cache(getPostBySlug__uncached);

@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { prisma } from "./prisma";
 
 export type ServiceItem = {
@@ -32,7 +33,7 @@ const DEFAULT_TESTIMONIALS: TestimonialItem[] = [
 ];
 
 /** Published homepage service cards, ordered. Falls back to defaults. */
-export async function getServices(): Promise<ServiceItem[]> {
+async function getServices__uncached(): Promise<ServiceItem[]> {
   try {
     const rows = await prisma.service.findMany({
       where: { published: true },
@@ -46,7 +47,7 @@ export async function getServices(): Promise<ServiceItem[]> {
 }
 
 /** Published testimonial cards, ordered. Falls back to defaults. */
-export async function getTestimonials(): Promise<TestimonialItem[]> {
+async function getTestimonials__uncached(): Promise<TestimonialItem[]> {
   try {
     const rows = await prisma.testimonial.findMany({
       where: { published: true },
@@ -58,3 +59,9 @@ export async function getTestimonials(): Promise<TestimonialItem[]> {
     return DEFAULT_TESTIMONIALS;
   }
 }
+
+/** Request-level dedupe: repeated calls in one render hit the DB once. */
+export const getServices = cache(getServices__uncached);
+
+/** Request-level dedupe: repeated calls in one render hit the DB once. */
+export const getTestimonials = cache(getTestimonials__uncached);

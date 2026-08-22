@@ -238,3 +238,36 @@ h1, h2, h3, h4, h5, h6, .ed-display {
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
 }
+
+/* ============================================================
+   ROUTE LOADER — the Maxcient mark with a glossy sweep
+   The PNG is used as a MASK, so its alpha gives the shape and the
+   gradient underneath supplies the colour and the moving highlight.
+   ============================================================ */
+@keyframes mx-gloss {
+  0%   { background-position: 210% 0; }
+  100% { background-position: -110% 0; }
+}
+@keyframes mx-loader-breathe {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
+.mx-loader {
+  width: 78px;
+  height: 62px;
+  -webkit-mask: url("/maxcient-mark.png") center / contain no-repeat;
+  mask: url("/maxcient-mark.png") center / contain no-repeat;
+  background-image: linear-gradient(
+    112deg,
+    #7c3aed 0%, #7c3aed 34%,
+    #efe7ff 47%, #ffffff 50%, #efe7ff 53%,
+    #7c3aed 66%, #7c3aed 100%
+  );
+  background-size: 300% 100%;
+  background-repeat: no-repeat;
+  animation: mx-gloss 1.35s linear infinite, mx-loader-breathe 2.1s ease-in-out infinite;
+  will-change: background-position, transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mx-loader { animation: none; background-position: 50% 0; }
+}

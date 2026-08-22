@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import BrandMark from "./BrandMark";
 
 interface FAQItem {
   question: string;
@@ -16,7 +17,7 @@ export default function PageFAQView({ faqs }: { faqs: FAQItem[] }) {
       <div className="max-w-[1100px] mx-auto px-5 sm:px-8">
         <div className="mb-12">
           <div className="mb-4" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--text-muted)" }}>
-            FAQ
+            <BrandMark />FAQ
           </div>
           <h2 className="ed-display" style={{ fontSize: "clamp(1.65rem, 3.2vw, 2.5rem)" }}>Frequently asked.</h2>
         </div>

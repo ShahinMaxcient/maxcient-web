@@ -1,8 +1,6 @@
-import NavbarServer from "@/components/NavbarServer";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
-import Footer from "@/components/Footer";
 import Image from "next/image";
 
 export type Trend = { title: string; body: string };
@@ -49,7 +47,6 @@ function CheckIcon() {
 export default function IndustryDetail(p: IndustryDetailProps) {
   return (
     <>
-      <NavbarServer />
       <main>
         <PageHero slug={p.slug} title={p.title} subtitle={p.subtitle} image={p.heroImage} />
 
@@ -135,7 +132,6 @@ export default function IndustryDetail(p: IndustryDetailProps) {
         <CTASection title={p.ctaTitle} subtitle={p.ctaSubtitle} />
         <PageFAQ slug={p.slug} />
       </main>
-      <Footer />
     </>
   );
 }

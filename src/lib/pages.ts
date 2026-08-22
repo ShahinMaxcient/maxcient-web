@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { prisma } from "./prisma";
 
 export type FaqItem = { question: string; answer: string };
@@ -56,7 +57,7 @@ function coerceFeatures(value: unknown): FeatureItem[] | null {
  * matching collection item (industry / technology / product / service) is unpublished.
  * Never throws.
  */
-export async function isPageHidden(slug: string): Promise<boolean> {
+async function isPageHidden__uncached(slug: string): Promise<boolean> {
   try {
     const page = await prisma.page.findUnique({ where: { slug }, select: { published: true } });
     if (page && page.published === false) return true;
@@ -75,7 +76,7 @@ export async function isPageHidden(slug: string): Promise<boolean> {
 }
 
 /** Slugs explicitly hidden in Admin → Pages — used to drop them from the navbar. */
-export async function getHiddenSlugs(): Promise<Set<string>> {
+async function getHiddenSlugs__uncached(): Promise<Set<string>> {
   try {
     const rows = await prisma.page.findMany({ where: { published: false }, select: { slug: true } });
     return new Set(rows.map((r) => r.slug));
@@ -85,7 +86,7 @@ export async function getHiddenSlugs(): Promise<Set<string>> {
 }
 
 /** Editable overrides for a service/solution page, or null if none saved. Never throws. */
-export async function getPageOverride(slug: string): Promise<PageOverride | null> {
+async function getPageOverride__uncached(slug: string): Promise<PageOverride | null> {
   try {
     const row = await prisma.page.findUnique({ where: { slug } });
     if (!row) return null;
@@ -107,3 +108,12 @@ export async function getPageOverride(slug: string): Promise<PageOverride | null
     return null;
   }
 }
+
+/** Request-level dedupe: repeated calls in one render hit the DB once. */
+export const isPageHidden = cache(isPageHidden__uncached);
+
+/** Request-level dedupe: repeated calls in one render hit the DB once. */
+export const getHiddenSlugs = cache(getHiddenSlugs__uncached);
+
+/** Request-level dedupe: repeated calls in one render hit the DB once. */
+export const getPageOverride = cache(getPageOverride__uncached);

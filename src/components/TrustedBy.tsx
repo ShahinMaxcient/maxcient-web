@@ -2,6 +2,7 @@
 
 import SectionReveal from "./SectionReveal";
 import InteractiveGrid from "./InteractiveGrid";
+import BrandMark from "./BrandMark";
 
 type ClientItem = { name: string; logo: string };
 type SectionHeaderProps = { eyebrow?: string; title?: string; body?: string };
@@ -15,7 +16,7 @@ export default function TrustedBy({ clients, header }: { clients: ClientItem[]; 
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
           <p className="text-center" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--text-muted)" }}>
-            {header?.title || "Trusted by UAE’s leading enterprises"}
+            <BrandMark />{header?.title || "Trusted by UAE’s leading enterprises"}
           </p>
         </SectionReveal>
 
