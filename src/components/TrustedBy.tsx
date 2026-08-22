@@ -16,17 +16,23 @@ export default function TrustedBy({ clients, header }: { clients: ClientItem[]; 
           </p>
         </SectionReveal>
 
-        <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8">
+        {/* Logos come from many brands with different backgrounds (white,
+            black, brand-coloured blocks), so each sits on its own white tile —
+            uniform and legible against the lavender band. */}
+        <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {clients.map((c, i) => (
-            <SectionReveal key={c.name} delay={i * 0.05}>
-              <div className="flex items-center justify-center" style={{ height: 72, padding: "0 12px" }}>
+            <SectionReveal key={c.name} delay={(i % 5) * 0.05}>
+              <div
+                className="flex items-center justify-center transition-shadow duration-300 hover:shadow-md"
+                style={{ height: 96, padding: "14px 18px", background: "#FFFFFF", border: "1px solid var(--border)", borderRadius: 10 }}
+              >
                 <Image
                   src={c.logo}
                   alt={c.name}
-                  width={170}
-                  height={85}
+                  width={200}
+                  height={100}
                   className="ed-client-logo"
-                  style={{ width: "auto", height: "auto", maxHeight: 48, maxWidth: "100%", objectFit: "contain" }}
+                  style={{ width: "auto", height: "auto", maxHeight: 56, maxWidth: "100%", objectFit: "contain" }}
                 />
               </div>
             </SectionReveal>
