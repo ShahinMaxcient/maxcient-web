@@ -35,7 +35,7 @@ export default function Testimonials({ cards, header }: { cards: TestimonialCard
               <div className="h-full p-8 lg:p-10 flex flex-col justify-between" style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "6px" }}>
                 <div>
                   <div className="mb-5" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)" }}>
-                    <span style={{ color: "var(--primary)" }}>// </span>{c.tag}
+                    {c.tag}
                   </div>
                   <p className="leading-relaxed" style={{ fontSize: "1.2rem", fontWeight: 600, letterSpacing: "-0.01em", color: "var(--text-primary)" }}>
                     “{c.quote}”

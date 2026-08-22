@@ -22,7 +22,7 @@ function BrochureSection() {
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 p-8 sm:p-10 rounded-2xl" style={{ background: "var(--card-bg)", border: "1px solid var(--border)" }}>
           <div>
-            <p className="mb-2" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--primary)" }}>// Product Brochure</p>
+            <p className="mb-2" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--primary)" }}>Product Brochure</p>
             <h2 className="text-2xl sm:text-3xl font-bold t-heading">Take RealtyAI Leasing with you.</h2>
             <p className="mt-2 t-body max-w-[520px]">The full RealtyAI Leasing brochure — the end-to-end leasing lifecycle, AI integration, delivery process, and results.</p>
           </div>

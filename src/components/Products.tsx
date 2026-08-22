@@ -28,13 +28,6 @@ function ProductCard({ p }: { p: ProductItem }) {
             sizes="(max-width: 640px) 82vw, (max-width: 1024px) 50vw, 33vw"
           />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(16,12,32,0.55), rgba(16,12,32,0.06) 60%)" }} />
-          {/* number chip */}
-          <span
-            className="absolute"
-            style={{ left: 16, top: 16, padding: "5px 10px", borderRadius: 8, background: "rgba(255,255,255,0.92)", backdropFilter: "blur(4px)", fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, letterSpacing: "0.06em", color: "var(--text-primary)" }}
-          >
-            {p.num}
-          </span>
           {/* arrow */}
           <span
             className="ed-service-arrow absolute flex items-center justify-center"

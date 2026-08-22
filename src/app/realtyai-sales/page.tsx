@@ -26,7 +26,7 @@ function BrochureSection() {
         >
           <div>
             <p className="mb-2" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--primary)" }}>
-              // Product Brochure
+              Product Brochure
             </p>
             <h2 className="text-2xl sm:text-3xl font-bold t-heading">Take RealtyAI Sales with you.</h2>
             <p className="mt-2 t-body max-w-[520px]">

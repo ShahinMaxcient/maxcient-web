@@ -94,7 +94,7 @@ export default function Services({ services, header }: { services: ServiceCard[]
 
                     {/* body — natural height; the image above flexes to fill */}
                     <div className="flex flex-col" style={{ padding: "22px 24px 24px" }}>
-                      <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)", marginBottom: 8 }}>{s.num}</div>
+                      <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)", marginBottom: 8 }}>{s.num?.replace(/^\s*[A-Za-z]?\/?\d+\s*[—–-]?\s*/, "")}</div>
                       <h3 style={{ fontSize: "1.15rem", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: 10, color: "var(--text-primary)" }}>{s.title}</h3>
                       <p style={{ fontSize: "14px", lineHeight: 1.6, color: "var(--text-muted)" }}>{s.desc}</p>
                     </div>

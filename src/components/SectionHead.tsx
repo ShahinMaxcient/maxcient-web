@@ -30,7 +30,7 @@ export default function SectionHead({
           viewport={{ once: true, margin: "0px 0px -18% 0px" }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <span style={{ color: "var(--primary)" }}>// </span>{eyebrow}
+          {eyebrow}
         </motion.div>
         {typeof title === "string" ? (
           /* String titles get the masked word-by-word reveal. */

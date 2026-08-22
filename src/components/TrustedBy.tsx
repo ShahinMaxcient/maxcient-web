@@ -15,7 +15,7 @@ export default function TrustedBy({ clients, header }: { clients: ClientItem[]; 
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
           <p className="text-center" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--text-muted)" }}>
-            <span style={{ color: "var(--primary)" }}>// </span>{header?.title || "Trusted by UAE’s leading enterprises"}
+            {header?.title || "Trusted by UAE’s leading enterprises"}
           </p>
         </SectionReveal>
 
