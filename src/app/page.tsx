@@ -56,9 +56,11 @@ export default async function Home() {
       <main>
         <Hero data={hero} />
         <Marquee items={marqueeItems.map((m) => m.text)} />
-        <TrustedBy clients={clients} header={sections.trustedBy} />
+        {/* Section order mirrors www.maxcient.com:
+            Services → Industries → Trusted by → Products → Technologies → … */}
         <Services services={services} header={sections.services} />
         <Industries industries={industries} header={sections.industries} />
+        <TrustedBy clients={clients} header={sections.trustedBy} />
         <Products products={products} header={sections.products} />
         <Technologies technologies={technologies} header={sections.technologies} />
         <SocialProof stats={stats} header={sections.stats} />
