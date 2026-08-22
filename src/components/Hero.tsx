@@ -4,11 +4,39 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import AnimatedText from "./AnimatedText";
 import type { HeroSettings } from "@/lib/settings";
 import { DEFAULT_HERO } from "@/lib/settings";
 
 export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
   const telHref = `tel:${data.phone.replace(/[^0-9+]/g, "")}`;
+
+  // Headline split into word nodes so each can be revealed independently,
+  // while keeping the lavender highlight behind "Tech" and the accent period.
+  const dot = <span style={{ color: "var(--primary-light)" }}>.</span>;
+  const headlineWords: React.ReactNode[] = (() => {
+    const h = data.headline ?? "";
+    if (!h.includes("Tech ROI")) {
+      const parts = h.replace(/\.$/, "").split(/\s+/).filter(Boolean);
+      return parts.map((w, i) => (i === parts.length - 1 ? <>{w}{dot}</> : w));
+    }
+    const tail = (h.split("ROI")[1] ?? "").replace(/\.$/, "").trim();
+    const tailWords = tail ? tail.split(/\s+/).filter(Boolean) : [];
+    const nodes: React.ReactNode[] = [
+      "Maximize",
+      <span style={{ position: "relative", display: "inline-block" }}>
+        <span style={{ position: "relative", zIndex: 1 }}>Tech</span>
+        <span style={{ position: "absolute", left: 0, right: 0, bottom: "10%", height: "26%", background: "var(--primary-light)", transform: "skewX(-3deg)", zIndex: 0, opacity: 0.85 }} />
+      </span>,
+    ];
+    if (tailWords.length === 0) {
+      nodes.push(<>ROI{dot}</>);
+    } else {
+      nodes.push("ROI");
+      tailWords.forEach((w, i) => nodes.push(i === tailWords.length - 1 ? <>{w}{dot}</> : w));
+    }
+    return nodes;
+  })();
 
   // Background image(s): animated cross-fade slideshow when more than one.
   const images = (data.images?.length ? data.images : data.image ? [data.image] : []).filter(Boolean);
@@ -72,26 +100,20 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
             {data.tagline}
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
+          <AnimatedText
+            as="h1"
+            words={headlineWords}
+            trigger="mount"
+            delay={0.12}
+            stagger={0.075}
             className="ed-display"
             style={{ fontSize: "clamp(2.4rem, 5.2vw, 4.4rem)", color: "#FFFFFF", lineHeight: 1.04, fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}
-          >
-            {data.headline.includes("Tech ROI") ? (
-              /* Keep the styled "Tech" accent, but render any text after "ROI"
-                 too (e.g. "Maximize Tech ROI with Maxcient"). */
-              <>Maximize{" "}<span style={{ position: "relative", display: "inline-block" }}><span style={{ position: "relative", zIndex: 1 }}>Tech</span><span style={{ position: "absolute", left: 0, right: 0, bottom: "10%", height: "26%", background: "var(--primary-light)", transform: "skewX(-3deg)", zIndex: 0, opacity: 0.85 }} /></span>{" "}ROI{data.headline.split("ROI")[1]?.replace(/\.$/, "") ?? ""}<span style={{ color: "var(--primary-light)" }}>.</span></>
-            ) : (
-              <>{data.headline}</>
-            )}
-          </motion.h1>
+          />
 
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
             className="mt-7 leading-relaxed"
             style={{ fontSize: "1.02rem", color: "rgba(255,255,255,0.82)", maxWidth: "560px" }}
           >
@@ -101,7 +123,7 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="mt-10 flex items-center gap-7 flex-wrap"
           >
             <Link
