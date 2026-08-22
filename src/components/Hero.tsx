@@ -59,17 +59,6 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
         style={{ height: "160px", background: "linear-gradient(to bottom, rgba(16,12,32,0.30), transparent)" }}
       />
 
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
-          maskImage: "radial-gradient(ellipse 90% 80% at 30% 40%, black 30%, transparent 85%)",
-          WebkitMaskImage: "radial-gradient(ellipse 90% 80% at 30% 40%, black 30%, transparent 85%)",
-        }}
-      />
-
       <div className="relative max-w-[1400px] mx-auto px-5 sm:px-8 flex flex-col justify-center" style={{ minHeight: "min(92vh, 900px)", paddingTop: "120px", paddingBottom: "64px" }}>
         <div className="max-w-[760px]">
           <motion.div

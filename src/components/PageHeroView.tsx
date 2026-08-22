@@ -29,18 +29,6 @@ export default function PageHeroView({ title, subtitle, image }: PageHeroProps) 
         }}
       />
 
-      {/* faint grid, masked toward the copy side */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
-          maskImage: "radial-gradient(ellipse 90% 80% at 25% 45%, black 30%, transparent 85%)",
-          WebkitMaskImage: "radial-gradient(ellipse 90% 80% at 25% 45%, black 30%, transparent 85%)",
-        }}
-      />
-
       <div
         className="relative max-w-[1400px] mx-auto px-5 sm:px-8 flex flex-col justify-center"
         style={{ minHeight: "100svh", paddingTop: "128px", paddingBottom: "72px" }}

@@ -24,18 +24,6 @@ export default function CTASection({ title, subtitle, phone = "+971 4 329 3710",
         }}
       />
 
-      {/* faint grid */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
-          maskImage: "radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 80%)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 80%)",
-        }}
-      />
-
       <div className="relative max-w-[1100px] mx-auto px-5 sm:px-8 text-center">
         <h2 className="ed-display" style={{ fontSize: "clamp(2rem, 4.6vw, 3.6rem)", color: "#FFFFFF" }}>{title}</h2>
         <p className="mx-auto mt-7 leading-relaxed" style={{ fontSize: "1.02rem", color: "rgba(255,255,255,0.8)", maxWidth: "560px" }}>{subtitle}</p>
