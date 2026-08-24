@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { markIntroDone } from "@/lib/intro-signal";
 
 // Cinematic "curtain" easing.
 const EASE = [0.76, 0, 0.24, 1] as const;
@@ -20,6 +21,7 @@ export default function IntroOverlay() {
   const finish = useCallback(() => {
     setVisible(false);
     document.body.style.overflow = "";
+    markIntroDone();
   }, []);
 
   useEffect(() => {
@@ -33,6 +35,7 @@ export default function IntroOverlay() {
     }
     if (skip) {
       setVisible(false);
+      markIntroDone();
       return;
     }
     try {
@@ -46,7 +49,7 @@ export default function IntroOverlay() {
     // ends: a minimum hold so it never flashes, and a hard cap so a slow or
     // failed image can never leave a visitor staring at the splash.
     const MIN_HOLD = 1100;
-    const MAX_WAIT = 6000;
+    const MAX_WAIT = 4500;
     const startedAt = performance.now();
     let done = false;
     let poll = 0;
@@ -62,11 +65,17 @@ export default function IntroOverlay() {
     };
 
     const heroReady = () => {
+      // Homepage: the hero's visual is the globe canvas, which fades itself in
+      // once its geometry is built.
+      const canvas = document.querySelector("main section canvas");
+      if (canvas && getComputedStyle(canvas).opacity === "1") return true;
       const hero = document.querySelector("main section img, main img");
-      // No hero image on this route — nothing to wait for.
-      if (!hero) return document.readyState === "complete";
-      const img = hero as HTMLImageElement;
-      return img.complete && img.naturalWidth > 0;
+      if (hero) {
+        const img = hero as HTMLImageElement;
+        return img.complete && img.naturalWidth > 0;
+      }
+      // Nothing to wait on (or the globe is disabled) — go on page load.
+      return !canvas && document.readyState === "complete";
     };
 
     if (heroReady()) open();

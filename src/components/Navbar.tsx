@@ -128,11 +128,12 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Most pages open with a dark/colored hero (homepage image, violet PageHero,
-  // product heroes, consultation gradient) — while the navbar is transparent
-  // over those, force light text + the white logo regardless of theme.
-  // Only these routes have a plain light top in light mode:
-  const PLAIN_TOPS = ["/blog", "/terms-of-use", "/privacy-policy", "/cookie-policy"];
+  // Most pages open with a dark/colored hero (violet PageHero, product heroes,
+  // consultation gradient) — while the navbar is transparent over those, force
+  // light text + the white logo regardless of theme.
+  // These routes have a plain light top instead. "/" is here because the
+  // homepage hero is now the light globe ground, not a dark photograph.
+  const PLAIN_TOPS = ["/", "/blog", "/terms-of-use", "/privacy-policy", "/cookie-policy"];
   const plainTop = PLAIN_TOPS.some((p) => pathname === p || pathname.startsWith(p + "/"));
   const overHero = !plainTop && !scrolled;
   const linkColor = overHero ? "rgba(255,255,255,0.92)" : "var(--nav-text)";

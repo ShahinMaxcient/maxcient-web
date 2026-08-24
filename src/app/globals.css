@@ -248,15 +248,14 @@ h1, h2, h3, h4, h5, h6, .ed-display {
   0%   { background-position: 210% 0; }
   100% { background-position: -110% 0; }
 }
-@keyframes mx-loader-breathe {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.06); }
-}
 .mx-loader {
   width: 78px;
-  height: 62px;
-  -webkit-mask: url("/maxcient-mark.png") center / contain no-repeat;
-  mask: url("/maxcient-mark.png") center / contain no-repeat;
+  height: 63px; /* matches the mark aspect (61:49) */
+  /* Crisp mark derived from the native-resolution wordmark and supersampled,
+     so the browser downscales it (sharp edges) instead of upscaling a blurry
+     source. No breathe/scale pulse — the glossy sweep is the only motion. */
+  -webkit-mask: url("/maxcient-mark-2.png") center / contain no-repeat;
+  mask: url("/maxcient-mark-2.png") center / contain no-repeat;
   background-image: linear-gradient(
     112deg,
     #7c3aed 0%, #7c3aed 34%,
@@ -265,9 +264,19 @@ h1, h2, h3, h4, h5, h6, .ed-display {
   );
   background-size: 300% 100%;
   background-repeat: no-repeat;
-  animation: mx-gloss 1.35s linear infinite, mx-loader-breathe 2.1s ease-in-out infinite;
-  will-change: background-position, transform;
+  animation: mx-gloss 1.35s linear infinite;
+  will-change: background-position;
 }
 @media (prefers-reduced-motion: reduce) {
   .mx-loader { animation: none; background-position: 50% 0; }
+}
+
+/* Hero stat rail on the ink plinth. Dividers must follow the column count,
+   which changes at the `sm` breakpoint — inline styles can't express that. */
+.hero-stat + .hero-stat { border-left: 1px solid rgba(167,139,250,0.16); }
+@media (max-width: 639px) {
+  /* `first:pl-0` only zeroes the first cell; at 2 columns every odd cell
+     starts a row and must align with the headline's left edge. */
+  .hero-stat:nth-child(odd) { border-left: none; padding-left: 0; }
+  .hero-stat:nth-child(n + 3) { border-top: 1px solid rgba(167,139,250,0.16); }
 }
