@@ -7,9 +7,11 @@ export default function DataAnalytics() {
       slug="data-analytics"
       title="Data Analytics"
       subtitle="Transforming Data into Business Intelligence."
-      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1551288049-bebda4e38f71.webp"
+      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-data-analytics.webp"
       guidance={[
         {
+          tag: "Insights",
+          image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/da-guide-insights.webp",
           title: "We Help You Unveil Insights From Your Data",
           body: "In the realm of big data, extracting meaningful information is crucial. Our team of analysts employs state-of-the-art tools and techniques to turn raw data into actionable insights that drive business growth.",
           points: [
@@ -18,16 +20,30 @@ export default function DataAnalytics() {
           ],
         },
         {
+          tag: "Develop",
+          image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/da-guide-develop.webp",
           title: "We Develop Bespoke Data Analytics Solutions",
           body: "Today's dynamic business environment requires tailored data solutions. We develop custom analytics platforms that cater to your specific needs, ensuring you can sift through the noise and get to the information that matters most.",
         },
         {
+          tag: "Visualize",
+          image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/da-guide-visualize.webp",
           title: "We Help Transform Numbers into Visuals",
           body: "Understanding data is easier when it's visual. Our team specializes in creating intuitive data visualization tools that present complex datasets in a clear, comprehensible manner.",
           points: ["A picture is worth a thousand words, and missing out on visual insights could mean overlooking potential business goldmines."],
         },
       ]}
+      guidanceHeading="From raw data to decisions your teams act on"
+      guidanceIntro="We stay with you across the full analytics journey — surfacing the insights hidden in your data, building the models around your business, and turning the numbers into visuals anyone can read."
       processHeading="How We Deliver Data Analytics Solutions"
+      processSteps={[
+        { title: "Assess", body: "We map your data sources, goals and KPIs to understand exactly what decisions the data needs to drive." },
+        { title: "Model & Build", body: "We engineer the pipelines and data models, cleaning and structuring your data into one reliable source of truth." },
+        { title: "Visualize", body: "We turn the numbers into intuitive Power BI dashboards and reports your teams can read at a glance." },
+        { title: "Optimize & Support", body: "We monitor adoption, refine the models and scale the analytics as your data and business grow." },
+      ]}
+      useIndustryTabs
+      showGetInTouch
       industriesIntro="Our data analytics solutions decode the signals unique to every sector — turning raw information into decisions that compound into growth."
       industries={[
         {
