@@ -1,19 +1,18 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import type { CSSProperties, ReactNode } from "react";
+import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 
 /**
- * Scroll-entrance animation, matching the vocabulary maxcient.com uses
- * (fadeInUp / fadeInDown / fadeInLeft / fadeInRight). `direction` is where the
- * element travels FROM:
- *   up    → rises into place (starts lower)   — fadeInUp
- *   down  → drops into place (starts higher)  — fadeInDown
- *   left  → enters from the left              — fadeInLeft
- *   right → enters from the right             — fadeInRight
- *   none  → fade only
- * Reveals once, when scrolled into view. Reduced-motion collapses to a plain
- * fade so the site still animates gently without any movement.
+ * Scroll-entrance animation in maxcient.com's vocabulary (fadeInUp / fadeInDown
+ * / fadeInLeft / fadeInRight). `direction` is where the element travels from.
+ *
+ * Horizontal slides (left/right) only run on lg+ screens, where the section's
+ * 32px gutter absorbs the 28px travel; on narrow screens they fall back to a
+ * vertical rise so a hidden element never pokes past the viewport edge and
+ * creates a horizontal scrollbar. (The page can't simply be clipped — clipping
+ * breaks the IntersectionObserver these animations depend on.) Reduced motion
+ * collapses to a plain fade.
  */
 type Direction = "up" | "down" | "left" | "right" | "none";
 
@@ -23,7 +22,7 @@ export default function Reveal({
   children,
   direction = "up",
   delay = 0,
-  distance = 44,
+  distance,
   duration = 0.7,
   className = "",
   style,
@@ -41,11 +40,24 @@ export default function Reveal({
   const reduce = useReducedMotion();
   const Tag = motion[as] as typeof motion.div;
 
+  // Horizontal slides need desktop room. Default (SSR + mobile) is vertical.
+  const [wide, setWide] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setWide(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  const wantsHorizontal = direction === "left" || direction === "right";
+  const dir: Direction = wantsHorizontal && !wide ? "up" : direction;
+  const d = distance ?? (dir === "left" || dir === "right" ? 28 : 40);
   const offset =
-    direction === "up" ? { y: distance }
-    : direction === "down" ? { y: -distance }
-    : direction === "left" ? { x: -distance }
-    : direction === "right" ? { x: distance }
+    dir === "up" ? { y: d }
+    : dir === "down" ? { y: -d }
+    : dir === "left" ? { x: -d }
+    : dir === "right" ? { x: d }
     : {};
 
   const variants: Variants = reduce

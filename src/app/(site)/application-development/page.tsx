@@ -7,9 +7,11 @@ export default function ApplicationDevelopment() {
       slug="application-development"
       title="Application Development"
       subtitle="Bespoke application solutions tailored to your unique business needs."
-      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1498050108023-c5249f4df085.webp"
+      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-application-development.webp"
       guidance={[
         {
+          tag: "Develop",
+          image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/ad-guide-develop.webp",
           title: "We Help You Develop Robust Applications",
           body: "In the dynamic domain of application development, determining the right blueprint is crucial. Our expertise assists businesses in outlining the perfect development strategy and tools, ensuring the applications built are both resilient and perfectly attuned to business goals.",
           points: [
@@ -18,15 +20,29 @@ export default function ApplicationDevelopment() {
           ],
         },
         {
+          tag: "Build",
+          image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/ad-guide-build.webp",
           title: "We Build Custom Applications for Unique Needs",
           body: "The arena of application development is vast, and generic designs might not address the specialized requirements of every business. Our team meticulously constructs custom applications, focusing on specific functionalities and integrations that resonate with your industry and organizational needs.",
         },
         {
+          tag: "Test",
+          image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/ad-guide-test.webp",
           title: "We Test Your Applications for Optimal Performance",
           body: "The transition from application conception to deployment is multifaceted. We prioritize thorough testing and refinement processes, ensuring that every feature functions as intended and the final product stands out in the competitive market.",
           points: ["Releasing an application with overlooked flaws can compromise user satisfaction."],
         },
       ]}
+      guidanceHeading="Custom applications, built and proven around your needs"
+      guidanceIntro="We take your applications from idea to production — engineering robust foundations, building around your unique requirements, and testing rigorously so they perform under real-world load."
+      processSteps={[
+        { title: "Discover", body: "We work through your goals, users and requirements, then define the architecture and scope of the build." },
+        { title: "Build", body: "We engineer the application to your needs — robust, scalable foundations and the features that matter most." },
+        { title: "Test", body: "We test rigorously across functionality, performance and security so the application is ready for real-world load." },
+        { title: "Launch & Support", body: "We deploy, hand over and stay on to support, monitor and evolve the application as you grow." },
+      ]}
+      useIndustryTabs
+      showGetInTouch
       processHeading="How We Deliver Application Development Services"
       industriesIntro="From factory floors to storefronts, we craft applications tuned to the way each industry actually works — resilient, integrated, and built around your goals."
       industries={[

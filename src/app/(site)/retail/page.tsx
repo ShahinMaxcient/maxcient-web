@@ -7,11 +7,18 @@ export default function Retail() {
       slug="retail"
       title="Retail"
       subtitle="The retail sector is undergoing significant transformation, influenced by evolving technology and changing consumer behaviors. From omnichannel shopping experiences to augmented reality trials, retailers are innovating to offer immersive experiences and remain relevant. At Maxcient, we're positioned to steer businesses through this dynamic retail landscape."
-      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1441986300917-64674bd600d8.webp"
+      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-retail.webp"
       trends={[
         { title: "Omnichannel Shopping", body: "The seamless integration of physical stores with digital platforms ensures that consumers enjoy a consistent shopping experience, irrespective of the channel they choose. This approach helps retailers in connecting with their audience effectively." },
         { title: "Augmented Reality", body: "Harnessing AR & VR technologies, retailers are providing customers with virtual try-ons and immersive product experiences, revolutionizing the way consumers shop." },
         { title: "Personalized Shopping", body: "With the rise of data analytics, retailers are tailoring shopping experiences to individual preferences, leading to enhanced customer loyalty and increased sales." },
+      ]}
+      solutionImages={[
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/retail-sol-1.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/retail-sol-2.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/retail-sol-3.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/retail-sol-4.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/retail-sol-5.webp",
       ]}
       solutionsHeading="Services For Retail Industry"
       solutionsIntro="From storefront design to digital customer experiences, our tailored services transform the retail landscape. We focus on innovation, optimizing operations, and driving excellence across all facets of the retail journey."

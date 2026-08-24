@@ -7,11 +7,18 @@ export default function RealEstate() {
       slug="real-estate"
       title="Real Estate"
       subtitle="The real estate sector is undergoing significant transformation, propelled by societal shifts, technological innovations, and evolving preferences of property buyers. From sustainable construction to the adoption of smart home technologies, real estate developers are innovating to meet contemporary demands. At Maxcient, we're primed to assist businesses in navigating these revolutionary trends."
-      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1560518883-ce09059eeffa.webp"
+      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-real-estate.webp"
       trends={[
         { title: "Proptech-enabled Customer Journey", body: "Real estate companies are utilizing property technology (Proptech) to streamline the buying and selling process. From secure transactions to platforms for efficient property listing and management, these tools are revolutionizing the customer journey." },
         { title: "Market Analytics for Targeted Sales", body: "Leveraging big data and advanced analytics, real estate firms can now predict market trends, identify lucrative investment opportunities, and tailor sales strategies to meet the evolving demands of the market." },
         { title: "Remote Transaction Facilitation", body: "As remote work becomes commonplace, real estate sellers are enabling remote transactions, offering virtual closings and online paperwork processing to accommodate the new wave of digital-first clients." },
+      ]}
+      solutionImages={[
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/real-estate-sol-1.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/real-estate-sol-2.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/real-estate-sol-3.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/real-estate-sol-4.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/real-estate-sol-5.webp",
       ]}
       solutionsHeading="Services For Real Estate Industry"
       solutionsIntro="From conceptualization to final construction, our bespoke services optimize real estate projects, infusing innovation, and enhancing operational efficiency in the property market."

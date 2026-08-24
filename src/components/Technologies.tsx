@@ -3,6 +3,7 @@
 import Link from "next/link";
 import SectionReveal from "./SectionReveal";
 import SectionHead from "./SectionHead";
+import TechIcon, { techBrandColor } from "./TechIcon";
 
 type TechnologyItem = { title: string; description: string; letter: string; href: string };
 
@@ -19,17 +20,19 @@ export default function Technologies({ technologies, header }: { technologies: T
         </SectionReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style={{ borderTop: "1px solid var(--border)", borderLeft: "1px solid var(--border)" }}>
-          {technologies.map((tech, i) => (
+          {technologies.map((tech, i) => {
+            const color = techBrandColor(tech.title);
+            return (
             <SectionReveal key={tech.title} delay={i * 0.06}>
               <Link href={tech.href} className="group block h-full">
                 <div className="h-full p-8 transition-colors duration-300" style={{ borderRight: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}
                   onMouseEnter={(e) => (e.currentTarget.style.background = "var(--surface)")}
                   onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                 >
-                  <div className="flex items-center justify-center transition-colors duration-300"
-                    style={{ width: 56, height: 56, border: "1px solid var(--text-primary)", borderRadius: "4px", fontFamily: "var(--font-geist-mono), monospace", fontWeight: 700, fontSize: "13px", color: "var(--text-primary)" }}
+                  <div className="flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
+                    style={{ width: 56, height: 56, borderRadius: "12px", background: `${color}16`, color, border: `1px solid ${color}2E` }}
                   >
-                    {tech.letter}
+                    <TechIcon name={tech.title} className="w-7 h-7" />
                   </div>
                   <h3 className="mt-6 text-lg font-bold transition-colors group-hover:text-[var(--primary)]" style={{ color: "var(--text-primary)", letterSpacing: "-0.01em" }}>{tech.title}</h3>
                   <p className="mt-2.5 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>{tech.description}</p>
@@ -39,7 +42,8 @@ export default function Technologies({ technologies, header }: { technologies: T
                 </div>
               </Link>
             </SectionReveal>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

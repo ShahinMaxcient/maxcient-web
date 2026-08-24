@@ -7,11 +7,18 @@ export default function Manufacturing() {
       slug="manufacturing"
       title="Manufacturing"
       subtitle="The manufacturing sector is rapidly evolving, influenced by technological advancements and shifting consumer preferences. From sustainable production to the integration of smart technologies, manufacturers are adapting to stay competitive and meet modern demands. At Maxcient, we're poised to guide businesses through these transformative trends."
-      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1581091226825-a6a2a5aee158.webp"
+      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-manufacturing.webp"
       trends={[
         { title: "Digital Twin Technology", body: "Harnessing virtual replicas of physical systems, Digital Twin technology allows manufacturers to simulate, predict, and optimize performance, leading to enhanced product quality and operations." },
         { title: "Smart Manufacturing & IoT", body: "The integration of IoT devices into manufacturing processes, often termed as 'Smart Manufacturing,' enhances production efficiency and improves product quality through real-time monitoring and analytics." },
         { title: "Customization & Personalization", body: "As consumer demand shifts towards personalized products, manufacturers are adopting flexible production systems to accommodate unique specifications without compromising on efficiency." },
+      ]}
+      solutionImages={[
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/manufacturing-sol-1.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/manufacturing-sol-2.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/manufacturing-sol-3.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/manufacturing-sol-4.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/manufacturing-sol-5.webp",
       ]}
       solutionsHeading="Services For Manufacturing Industry"
       solutionsIntro="From strategy to implementation, our tailored services optimize production processes, drive innovation, and elevate operational efficiency in the manufacturing sector."

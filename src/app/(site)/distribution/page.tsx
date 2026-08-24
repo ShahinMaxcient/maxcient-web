@@ -7,11 +7,18 @@ export default function Distribution() {
       slug="distribution"
       title="Distribution"
       subtitle="The wholesale and distribution sector is in the midst of a digital metamorphosis. From streamlined supply chains to predictive inventory management, distributors are leveraging technology to maximize efficiency and meet client demands. At Maxcient, we're strategically aligned to navigate businesses through this dynamic distribution landscape."
-      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1586528116311-ad8dd3c8310d.webp"
+      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-distribution.webp"
       trends={[
         { title: "Integrated Supply Chain Management", body: "With the adoption of digital platforms, wholesalers are ensuring a transparent and efficient flow of goods from manufacturers to retailers, enhancing traceability and reducing lead times." },
         { title: "Predictive Inventory Management", body: "Harnessing data analytics, distributors can now anticipate product demand, optimizing stock levels, reducing holding costs, and preventing stock-outs." },
         { title: "E-commerce & Direct-to-Consumer Models", body: "Wholesalers are increasingly adopting e-commerce platforms and direct-to-consumer models, allowing them to tap into broader markets and offering clients a more streamlined purchasing experience." },
+      ]}
+      solutionImages={[
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/distribution-sol-1.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/distribution-sol-2.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/distribution-sol-3.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/distribution-sol-4.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/distribution-sol-5.webp",
       ]}
       solutionsHeading="Services For Distribution Industry"
       solutionsIntro="From product sourcing to streamlined distribution channels, our specialized services redefine the wholesale market. With an emphasis on efficiency and adaptability, we ensure that businesses stay agile in an ever-changing supply chain landscape."

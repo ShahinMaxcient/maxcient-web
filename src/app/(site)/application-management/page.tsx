@@ -7,9 +7,11 @@ export default function ApplicationManagement() {
       slug="application-management"
       title="Application Management"
       subtitle="Ensuring Optimal Performance & Continuous Improvement."
-      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1558494949-ef010cbdcc31.webp"
+      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-application-management.webp"
       guidance={[
         {
+          tag: "Optimize",
+          image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/am-guide-optimize.webp",
           title: "We Optimize Your Application Landscape",
           body: "In the dynamic domain of application management, the Annual Maintenance Service (AMS) stands out as a beacon of efficiency. Our AMS advisory ensures businesses harness the full potential of modern applications, aligning them seamlessly with the Microsoft roadmap. By leveraging AMS, organizations can attain budgetary savings, replace outdated legacy systems, and foster a robust environment for application growth.",
           points: [
@@ -18,15 +20,29 @@ export default function ApplicationManagement() {
           ],
         },
         {
+          tag: "Strategy",
+          image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/am-guide-strategy.webp",
           title: "We Create Custom AMS Strategies for Sustained Excellence",
           body: "The spectrum of applications is vast, and a one-size-fits-all approach may not address your unique operational challenges. Our dedicated AMS team crafts bespoke maintenance strategies, focusing on specific application needs and the ideal ticketing system, providing a tailored fit for your industry and requirements.",
         },
         {
+          tag: "Harmonize",
+          image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/am-guide-harmonize.webp",
           title: "We Harmonize Your Applications for Consistent Performance",
           body: "Transitioning from standalone maintenance approaches to an integrated AMS can be intricate. We ensure cohesive integration of your applications within the AMS framework, enhancing their performance, and creating a solid foundation for a progressive application ecosystem. This ensures consistent updates, reduced downtimes, and regular training opportunities.",
           points: ["A segmented application maintenance approach can result in disjointed operations."],
         },
       ]}
+      guidanceHeading="Keep every application performing at its best"
+      guidanceIntro="We manage your application landscape end to end — tuning performance, shaping a strategy for sustained excellence, and keeping every system working in concert."
+      processSteps={[
+        { title: "Assess", body: "We review your application landscape, its health, costs and pain points to see exactly where to focus." },
+        { title: "Strategize", body: "We shape a tailored AMS strategy — SLAs, priorities and a roadmap aligned to your business goals." },
+        { title: "Manage", body: "We run day-to-day support, monitoring and maintenance, keeping every application stable and secure." },
+        { title: "Improve", body: "We continuously optimize performance and cost, evolving your applications as your needs change." },
+      ]}
+      useIndustryTabs
+      showGetInTouch
       processHeading="How We Deliver Application Management Service"
       industriesIntro="Our custom ERP & CRM solutions are designed to resonate with specific industry nuances, ensuring seamless integration, enhanced productivity, and a competitive edge for businesses. Dive in to explore how our expertise can transform your industry-specific challenges into opportunities."
       industries={[

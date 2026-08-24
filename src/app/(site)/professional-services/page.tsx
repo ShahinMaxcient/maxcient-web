@@ -7,11 +7,18 @@ export default function ProfessionalServices() {
       slug="professional-services"
       title="Professional Services"
       subtitle="The professional services sector is witnessing a paradigm shift, driven by digital transformation and evolving client expectations. From remote consultations to data-driven insights, service providers are reimagining their offerings to stay ahead in a competitive landscape. At Maxcient, we're adeptly positioned to guide organizations through this dynamic era of service delivery."
-      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1521737711867-e3b97375f902.webp"
+      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-professional-services.webp"
       trends={[
         { title: "Virtual Collaboration & Remote Services", body: "The digital era brings the advantage of connecting with clients virtually, offering services and consultations remotely, and ensuring uninterrupted service delivery, regardless of geographical boundaries." },
         { title: "Data-Driven Decision Making", body: "Leveraging big data and analytics, professional service providers are drawing insights to make informed decisions, optimizing their services, and delivering unparalleled value to clients." },
         { title: "Automation & Process Optimization", body: "To enhance efficiency and ensure timely service delivery, firms are automating repetitive tasks and optimizing workflows using state-of-the-art software solutions." },
+      ]}
+      solutionImages={[
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/professional-services-sol-1.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/professional-services-sol-2.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/professional-services-sol-3.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/professional-services-sol-4.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/professional-services-sol-5.webp",
       ]}
       solutionsHeading="Services For Professional Services"
       solutionsIntro="From client engagement strategies to project execution, our bespoke solutions elevate the professional services sector. We prioritize innovation and precision, ensuring service delivery that exceeds expectations and sets industry benchmarks."

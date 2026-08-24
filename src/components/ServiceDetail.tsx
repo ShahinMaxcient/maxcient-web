@@ -6,6 +6,7 @@ import IndustryTabs from "@/components/IndustryTabs";
 import GetInTouch from "@/components/GetInTouch";
 import Reveal from "@/components/Reveal";
 import { RevealGroup, RevealItem } from "@/components/RevealGroup";
+import ProcessTimeline from "@/components/ProcessTimeline";
 
 export type Guidance = { title: string; body: string; points?: string[]; image?: string; tag?: string };
 export type Industry = { name: string; heading: string; body: string; features: string[] };
@@ -151,17 +152,7 @@ export default function ServiceDetail(p: ServiceDetailProps) {
                 <span className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)]">Our Process</span>
                 {p.processHeading && <h2 className="mt-3 text-3xl sm:text-4xl font-bold t-heading">{p.processHeading}</h2>}
               </Reveal>
-              <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5" stagger={0.1}>
-                {p.processSteps.map((step, i) => (
-                  <RevealItem key={step.title} className="relative p-7 rounded-2xl t-bg-surface border t-border hover:shadow-lg transition-all">
-                    <div className="flex items-center justify-center w-11 h-11 rounded-full mb-5" style={{ background: "var(--primary)", color: "#fff", fontWeight: 700, fontFamily: "var(--font-geist-mono), monospace" }}>
-                      {String(i + 1).padStart(2, "0")}
-                    </div>
-                    <h3 className="text-base font-bold t-heading">{step.title}</h3>
-                    <p className="mt-2.5 text-sm t-body leading-relaxed">{step.body}</p>
-                  </RevealItem>
-                ))}
-              </RevealGroup>
+              <ProcessTimeline steps={p.processSteps} />
             </div>
           </section>
         ) : (

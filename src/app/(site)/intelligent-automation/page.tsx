@@ -7,9 +7,11 @@ export default function IntelligentAutomation() {
       slug="intelligent-automation"
       title="Intelligent Automation"
       subtitle="Revolutionizing Business with Smart Automation."
-      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1485827404703-89b55fcc595e.webp"
+      heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-intelligent-automation.webp"
       guidance={[
         {
+          tag: "Adopt",
+          image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/erp-guide-evaluate.webp",
           title: "We Help You Adopt Smart Automation",
           body: "In the intricate world of intelligent automation, deciphering the starting point can be challenging. Our expertise guides businesses in pinpointing the right automation tools and strategies, ensuring the implemented solutions elevate efficiency and perfectly align with business goals.",
           points: [
@@ -18,15 +20,29 @@ export default function IntelligentAutomation() {
           ],
         },
         {
+          tag: "Design",
+          image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/erp-guide-develop.webp",
           title: "We Design Automation Solutions for Optimal Efficiency",
           body: "The automation landscape is vast, and generic solutions often don't address the specific challenges of every business. Our team crafts custom automation tools, focusing on distinct processes and integrations to ensure seamless operations tailored to your industry and needs.",
         },
         {
+          tag: "Harmonize",
+          image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/erp-guide-implement.webp",
           title: "We Harmonize Your Business Processes for Peak Automation",
           body: "The transition from manual processes to automated workflows is intricate. We ensure a flawless integration of various tools and systems, optimizing the workflow, and laying the groundwork for intelligent automation that propels business growth.",
           points: ["Disjointed processes can lead to inconsistent outcomes, impacting business performance."],
         },
       ]}
+      guidanceHeading="Automation that fits how your business actually runs"
+      guidanceIntro="We stay with you across the automation journey — spotting where smart automation pays off, designing it around your workflows, and connecting your processes so they run as one."
+      processSteps={[
+        { title: "Assess", body: "We map your workflows and pinpoint the repetitive, high-volume tasks where automation returns the most time and value." },
+        { title: "Design", body: "We design the automation around your processes and systems — rules, triggers and integrations tailored to how you work." },
+        { title: "Automate", body: "We build and roll out the automations, connecting your tools so work flows end to end without manual handoffs." },
+        { title: "Optimize", body: "We monitor results, tune the logic and expand automation into new processes as the business grows." },
+      ]}
+      useIndustryTabs
+      showGetInTouch
       processHeading="How We Deliver Intelligent Automation Services"
       industriesIntro="Our Intelligent Automation services are meticulously crafted to address the distinct demands of each industry, driving operational excellence and increased efficiency. Delve into how our specialized approach can transform your industry-specific hurdles into strategic advantages."
       industries={[

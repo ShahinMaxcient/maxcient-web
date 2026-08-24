@@ -280,3 +280,7 @@ h1, h2, h3, h4, h5, h6, .ed-display {
   .hero-stat:nth-child(odd) { border-left: none; padding-left: 0; }
   .hero-stat:nth-child(n + 3) { border-top: 1px solid rgba(167,139,250,0.16); }
 }
+
+/* Technology cards (industry pages): lavender icon badge that fills on hover. */
+.tech-badge { background: var(--surface-alt); color: var(--primary); }
+.group:hover .tech-badge { background: var(--primary); color: #fff; box-shadow: 0 10px 22px -10px rgba(124, 58, 237, 0.55); }
