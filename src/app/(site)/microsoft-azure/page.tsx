@@ -7,6 +7,7 @@ export default function MicrosoftAzure() {
       slug="microsoft-azure"
       title="Microsoft Azure"
       subtitle="Cloud Computing Redefined."
+      description="We design, migrate and run the cloud foundation your business depends on — compute, storage, networking, identity and security, sized to what you actually need. Maxcient handles the move from on-premises, sets up the governance and cost controls, and keeps your Azure estate secure and compliant for UAE and GCC operations."
       heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1451187580459-43490279c0fa.webp"
       whatIsHeading="What is Microsoft Azure?"
       whatIsBody="Microsoft Azure is a comprehensive cloud computing platform by Microsoft, offering a plethora of services ranging from infrastructure-as-a-service (IaaS), platform-as-a-service (PaaS), to software-as-a-service (SaaS). With Azure, businesses can build, deploy, and manage applications through Microsoft's vast global network of data centers, ensuring scalability, security, and continuous innovation."

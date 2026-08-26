@@ -19,29 +19,41 @@ export default function Technologies({ technologies, header }: { technologies: T
           </SectionHead>
         </SectionReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style={{ borderTop: "1px solid var(--border)", borderLeft: "1px solid var(--border)" }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {technologies.map((tech, i) => {
             const color = techBrandColor(tech.title);
             return (
-            <SectionReveal key={tech.title} delay={i * 0.06}>
-              <Link href={tech.href} className="group block h-full">
-                <div className="h-full p-8 transition-colors duration-300" style={{ borderRight: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "var(--surface)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-                >
-                  <div className="flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
-                    style={{ width: 56, height: 56, borderRadius: "12px", background: `${color}16`, color, border: `1px solid ${color}2E` }}
-                  >
-                    <TechIcon name={tech.title} className="w-7 h-7" />
+              <SectionReveal key={tech.title} delay={i * 0.06} className="h-full">
+                <Link href={tech.href} className="mx-tech-card group h-full flex flex-col rounded-2xl overflow-hidden border t-border" style={{ background: "var(--surface)" }}>
+                  {/* Brand-violet panel. The mark sits in a white disc so each
+                      platform keeps its own colour instead of being flattened
+                      to white against the fill. */}
+                  <div className="mx-tech-head flex items-center justify-center">
+                    <span
+                      className="mx-tech-disc flex items-center justify-center rounded-full"
+                      style={{ width: 92, height: 92, background: "#FFFFFF", color, boxShadow: "0 14px 30px -12px rgba(20,16,40,0.45)" }}
+                    >
+                      <TechIcon name={tech.title} className="w-11 h-11" />
+                    </span>
                   </div>
-                  <h3 className="mt-6 text-lg font-bold transition-colors group-hover:text-[var(--primary)]" style={{ color: "var(--text-primary)", letterSpacing: "-0.01em" }}>{tech.title}</h3>
-                  <p className="mt-2.5 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>{tech.description}</p>
-                  <div className="mt-5 inline-flex items-center gap-1.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--primary)" }}>
-                    Explore <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+
+                  <div className="flex flex-col flex-1 p-7">
+                    <h3 className="text-lg font-bold transition-colors group-hover:text-[var(--primary)]" style={{ color: "var(--text-primary)", letterSpacing: "-0.01em" }}>
+                      {tech.title}
+                    </h3>
+                    <p className="mt-2.5 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>{tech.description}</p>
+                    <span
+                      className="mx-tech-cta mt-6 self-start inline-flex items-center gap-2"
+                      style={{ background: "var(--primary)", color: "#fff", fontSize: 13, fontWeight: 600, padding: "10px 18px", borderRadius: 4 }}
+                    >
+                      Learn more
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </span>
                   </div>
-                </div>
-              </Link>
-            </SectionReveal>
+                </Link>
+              </SectionReveal>
             );
           })}
         </div>

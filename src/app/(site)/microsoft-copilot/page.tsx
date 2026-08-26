@@ -7,6 +7,7 @@ export default function MicrosoftCopilot() {
       slug="microsoft-copilot"
       title="Microsoft Copilot"
       subtitle="Ready-made AI assistants, grounded in your Dynamics 365 and Microsoft 365 data."
+      description="We help you switch on the AI assistant already built into the software you license, then extend it where the out-of-the-box answer stops. Maxcient configures Copilot across Dynamics 365, grounds it on your Dataverse and Microsoft 365 content, builds custom agents in Copilot Studio, and puts the permissions and governance in place before anyone starts asking it questions."
       heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/copilot-hero.webp"
       whatIsHeading="What is Microsoft Copilot?"
       whatIsBody="Microsoft Copilot is the ready-made AI assistant experience, not a raw model you assemble yourself. It runs on the same large language models delivered through Azure OpenAI, but grounds every answer in your own business data — your Dataverse CRM and ERP records and your Microsoft Graph emails, files and chats — before it responds. Azure AI Foundry is the pro-developer platform for building custom AI apps from scratch; Copilot, and Copilot Studio, is the packaged, low-code assistant built on top of it. For a Dynamics 365 team, intelligence arrives inside the apps you already use, reflecting your company context rather than generic web answers."

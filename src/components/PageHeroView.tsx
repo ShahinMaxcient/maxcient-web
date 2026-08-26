@@ -20,7 +20,10 @@ interface PageHeroProps {
 export default function PageHeroView({ title, subtitle, image, description }: PageHeroProps) {
   return (
     <section className="relative w-full overflow-hidden" style={{ minHeight: "100svh", background: "#0a0a12" }}>
-      <Image src={image} alt={title} fill priority className="object-cover" sizes="100vw" />
+      {/* Full-bleed and the LCP element, so it earns more than the default 75.
+          82 is the knee of the curve here: it recovers most of the fine detail
+          for ~100KB, where 88 costs a further ~165KB for very little. */}
+      <Image src={image} alt={title} fill priority quality={82} className="object-cover" sizes="100vw" />
 
       {/* Left-anchored gradient keeps the copy legible while the photo shows through on the right */}
       <div

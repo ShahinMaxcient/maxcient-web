@@ -7,6 +7,7 @@ export default function MicrosoftDynamics365() {
       slug="microsoft-dynamics-365"
       title="Microsoft Dynamics 365"
       subtitle="Unifying Business Processes for Excellence."
+      description="We bring sales, service, finance, supply chain and operations onto one connected platform, so your teams stop reconciling systems and start working from a single set of numbers. Maxcient implements, customizes and supports Dynamics 365 for organizations across the UAE and wider GCC — from first rollout through the integrations and training that make it stick."
       heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1451187580459-43490279c0fa.webp"
       whatIsHeading="What is Microsoft Dynamics 365?"
       whatIsBody="Microsoft Dynamics 365 is an integrated suite of business applications, merging both CRM and ERP capabilities to streamline processes, improve customer interactions, and derive actionable insights. Encompassing modules like Sales, Marketing, Finance, and more, it provides holistic solutions tailored for diverse industry needs. Enhanced by AI and data analytics, Dynamics 365 drives businesses towards digital transformation, fostering growth and operational efficiency."

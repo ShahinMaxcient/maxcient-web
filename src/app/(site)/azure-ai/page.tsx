@@ -7,6 +7,7 @@ export default function AzureAI() {
       slug="azure-ai"
       title="Azure AI"
       subtitle="Enterprise AI models, grounded in your Dynamics 365 data."
+      description="We put Microsoft's AI platform to work on your own data rather than the open web. Maxcient selects the right models from the Foundry catalogue, grounds them in your Dataverse and document estate, and builds the retrieval, evaluation and guardrails that make the answers trustworthy — then connects it all into Dynamics 365 and the Power Platform."
       heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1677442136019-21780ecad995.webp"
       whatIsHeading="What is Azure AI?"
       whatIsBody="Azure AI is Microsoft's enterprise platform for building and running AI, unified under Azure AI Foundry (now Microsoft Foundry). It brings together a catalogue of more than 10,000 models — Azure OpenAI's GPT and reasoning families alongside Meta, Mistral, Cohere, DeepSeek and Microsoft's own Phi — with prebuilt services for vision, language, speech, document processing and retrieval. Everything runs inside your Azure tenant, so your data stays governed, isolated and is never used to train the foundation models."

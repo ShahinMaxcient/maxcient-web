@@ -14,6 +14,8 @@ export type TechnologyDetailProps = {
   slug: string;
   title: string;
   subtitle: string;
+  /** Optional 3–5 line supporting paragraph shown in the hero, beneath the tagline. */
+  description?: string;
   heroImage: string;
   whatIsHeading: string;
   whatIsBody: string;
@@ -46,7 +48,7 @@ export default function TechnologyDetail(p: TechnologyDetailProps) {
   return (
     <>
       <main>
-        <PageHero slug={p.slug} title={p.title} subtitle={p.subtitle} image={p.heroImage} />
+        <PageHero slug={p.slug} title={p.title} subtitle={p.subtitle} description={p.description} image={p.heroImage} />
 
         {/* What is X + benefit callouts */}
         <section className="py-14 lg:py-16 t-bg-surface">

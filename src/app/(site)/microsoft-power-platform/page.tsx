@@ -7,6 +7,7 @@ export default function MicrosoftPowerPlatform() {
       slug="microsoft-power-platform"
       title="Microsoft Power Platform"
       subtitle="Empowering Businesses Through Agile Solutions."
+      description="We help your teams build the apps, automations and dashboards they need without waiting on a development backlog. Using Power Apps, Power Automate and Power BI on your governed Dataverse data, Maxcient turns spreadsheets and manual handoffs into working software — with the guardrails that keep a growing low-code estate maintainable."
       heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1519389950473-47ba0277781c.webp"
       whatIsHeading="What is Microsoft Power Platform?"
       whatIsBody="The Microsoft Power Platform is a comprehensive suite of business application tools designed to empower organizations with customized app development, data analytics, and process automation. Comprising Power BI for data visualization, Power Apps for application development, Power Automate for workflow automation, and Power Virtual Agents for AI chatbots, it allows businesses to create tailored solutions without the need for extensive coding. Seamlessly integrating with other Microsoft solutions, the Power Platform transforms data into actionable insights, fostering innovation and enhancing operational efficiency."

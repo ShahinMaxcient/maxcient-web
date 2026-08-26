@@ -285,6 +285,66 @@ h1, h2, h3, h4, h5, h6, .ed-display {
 .tech-badge { background: var(--surface-alt); color: var(--primary); }
 .group:hover .tech-badge { background: var(--primary); color: #fff; box-shadow: 0 10px 22px -10px rgba(124, 58, 237, 0.55); }
 
+/* Product-page "Capabilities" cards: lavender icon badge that fills on hover.
+   Lists run 8-14 items, so each card carries a keyword-matched mark rather than
+   a photograph — see FeatureIcon. */
+.mx-cap { transition: transform .28s cubic-bezier(.22,1,.36,1), box-shadow .28s ease, border-color .28s ease; }
+.mx-cap:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+  box-shadow: 0 22px 44px -26px rgba(20,16,40,0.42);
+}
+.mx-cap-badge {
+  background: var(--surface-alt);
+  color: var(--primary);
+  transition: background-color .28s ease, color .28s ease, box-shadow .28s ease;
+}
+.mx-cap:hover .mx-cap-badge {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 10px 22px -10px rgba(124,58,237,0.6);
+}
+@media (prefers-reduced-motion: reduce) {
+  .mx-cap, .mx-cap-badge { transition: none; }
+  .mx-cap:hover { transform: none; }
+}
+
+/* Home "Technologies" cards: Maxcient-violet panel carrying the platform mark,
+   copy and CTA beneath. Same family as the technology-page module cards. */
+.mx-tech-card { transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease; }
+.mx-tech-card:hover { transform: translateY(-5px); box-shadow: 0 26px 50px -28px rgba(20,16,40,0.45); }
+
+.mx-tech-head {
+  position: relative;
+  min-height: 186px;
+  overflow: hidden;
+  background: linear-gradient(122deg, #5B21B6 0%, #6D28D9 34%, #7C3AED 68%, #A78BFA 100%);
+}
+.mx-tech-head::after {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: repeating-linear-gradient(
+    102deg,
+    rgba(255, 255, 255, 0.07) 0px,
+    rgba(255, 255, 255, 0.07) 26px,
+    rgba(255, 255, 255, 0) 26px,
+    rgba(255, 255, 255, 0) 74px
+  );
+  pointer-events: none;
+}
+.mx-tech-head > * { position: relative; z-index: 1; }
+.mx-tech-disc { transition: transform .3s cubic-bezier(.22,1,.36,1); }
+.mx-tech-card:hover .mx-tech-disc { transform: scale(1.06); }
+.mx-tech-cta { transition: background-color .2s ease, transform .2s ease; }
+.mx-tech-card:hover .mx-tech-cta { background: var(--primary-dark) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mx-tech-card, .mx-tech-disc, .mx-tech-cta { transition: none; }
+  .mx-tech-card:hover { transform: none; }
+  .mx-tech-card:hover .mx-tech-disc { transform: none; }
+}
+
 /* Technology-page "For Your Industry" band. Full-bleed Maxcient violet with a
    soft highlight so the large fill has some depth rather than reading flat. */
 .mx-industry-band {
@@ -393,6 +453,8 @@ h1, h2, h3, h4, h5, h6, .ed-display {
   box-shadow: 0 14px 30px -14px rgba(124, 58, 237, 0.75) !important;
 }
 .mx-orbit-pill:hover > span[aria-hidden="true"] { background: #fff !important; }
+
+
 
 
 

@@ -7,6 +7,7 @@ export default function IoT() {
       slug="iot-internet-of-things"
       title="IoT (Internet of Things)"
       subtitle="Connecting Devices, Transforming Lives."
+      description="We connect the equipment, vehicles and facilities you already own to the systems that run your business. Maxcient builds the sensing, ingestion and analytics layer on Azure IoT, then wires the signal into Dynamics 365 — so a rising temperature or a stalled line becomes a work order, not a phone call after the fact."
       heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1518770660439-4636190af475.webp"
       whatIsHeading="What is IoT?"
       whatIsBody="IoT, or Internet of Things, refers to the interconnected nature of devices and systems that communicate with each other over the internet. Devices, ranging from everyday household items to sophisticated industrial instruments, are embedded with sensors and software, enabling them to collect and exchange data. This integration results in improved efficiency, accuracy, and economic benefit, while providing a platform for innovative applications and services."

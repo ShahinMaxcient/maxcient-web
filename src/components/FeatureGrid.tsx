@@ -2,6 +2,7 @@
 
 import SectionReveal from "./SectionReveal";
 import BrandMark from "./BrandMark";
+import FeatureIcon from "./FeatureIcon";
 
 interface Feature {
   title: string;
@@ -25,15 +26,19 @@ export default function FeatureGrid({ id, title, subtitle, features }: { id?: st
           </div>
         </SectionReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style={{ borderTop: "1px solid var(--border)", borderLeft: "1px solid var(--border)" }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
           {features.map((feature, i) => (
-            <SectionReveal key={i} delay={(i % 4) * 0.06}>
-              <div className="h-full p-7 transition-colors duration-300" style={{ borderRight: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = "var(--surface)")}
-                onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-              >
-                <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 700, color: "var(--primary)" }}>{String(i + 1).padStart(2, "0")}</div>
-                <h3 className="mt-4 font-bold" style={{ color: "var(--text-primary)", fontSize: "0.95rem", letterSpacing: "-0.01em" }}>{feature.title}</h3>
+            <SectionReveal key={i} delay={(i % 4) * 0.06} className="h-full">
+              <div className="mx-cap h-full p-7 rounded-2xl border t-border" style={{ background: "var(--surface)" }}>
+                <div className="flex items-center justify-between">
+                  <span className="mx-cap-badge flex items-center justify-center rounded-xl" style={{ width: 48, height: 48 }}>
+                    <FeatureIcon name={feature.title} />
+                  </span>
+                  <span style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 700, color: "var(--border-strong)" }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <h3 className="mt-5 font-bold" style={{ color: "var(--text-primary)", fontSize: "0.95rem", letterSpacing: "-0.01em" }}>{feature.title}</h3>
                 <p className="mt-2.5 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>{feature.description}</p>
                 {feature.bullets && feature.bullets.length > 0 && (
                   <ul className="mt-3.5 space-y-1.5">
