@@ -285,6 +285,15 @@ h1, h2, h3, h4, h5, h6, .ed-display {
 .tech-badge { background: var(--surface-alt); color: var(--primary); }
 .group:hover .tech-badge { background: var(--primary); color: #fff; box-shadow: 0 10px 22px -10px rgba(124, 58, 237, 0.55); }
 
+/* Technology-page "For Your Industry" band. Full-bleed Maxcient violet with a
+   soft highlight so the large fill has some depth rather than reading flat. */
+.mx-industry-band {
+  position: relative;
+  background:
+    radial-gradient(ellipse 70% 90% at 12% 0%, rgba(167, 139, 250, 0.34) 0%, transparent 62%),
+    linear-gradient(135deg, #5B21B6 0%, #6D28D9 38%, #7C3AED 72%, #8B5CF6 100%);
+}
+
 /* Technology-page "Products & Modules" cards, matching www.maxcient.com:
    a blue→violet gradient panel carrying the module name, body copy beneath. */
 .mx-module { transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease; }
@@ -384,6 +393,7 @@ h1, h2, h3, h4, h5, h6, .ed-display {
   box-shadow: 0 14px 30px -14px rgba(124, 58, 237, 0.75) !important;
 }
 .mx-orbit-pill:hover > span[aria-hidden="true"] { background: #fff !important; }
+
 
 
 

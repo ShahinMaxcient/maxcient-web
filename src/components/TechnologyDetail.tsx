@@ -167,22 +167,35 @@ export default function TechnologyDetail(p: TechnologyDetailProps) {
           </section>
         )}
 
-        {/* For your industry */}
-        <section className="py-14 lg:py-16 t-bg-alt">
+        {/* For your industry — full-bleed colour band, laid out like
+            www.maxcient.com: heading held on the left, sectors running in
+            columns beside it. Their band is Microsoft blue; this one takes the
+            Maxcient violet so it reads as ours rather than borrowed. */}
+        <section id="industries" className="mx-industry-band py-16 lg:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Reveal direction="up" className="text-center max-w-3xl mx-auto mb-10">
-              <span className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)]">For your industry</span>
-              <h2 className="mt-3 text-3xl sm:text-4xl font-bold t-heading">{p.title} across sectors</h2>
-              <p className="mt-4 t-body leading-relaxed">{p.industryIntro}</p>
-            </Reveal>
-            <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch" stagger={0.07}>
-              {p.industryCallouts.map((c) => (
-                <RevealItem key={c.name} className="h-full p-6 rounded-2xl border t-border t-bg-surface">
-                  <div className="text-xs font-semibold uppercase tracking-widest text-[var(--accent)]">{c.name}</div>
-                  <p className="mt-2 text-sm t-body leading-relaxed">{c.body}</p>
-                </RevealItem>
-              ))}
-            </RevealGroup>
+            <div className="grid lg:grid-cols-4 gap-12 lg:gap-14">
+              <Reveal direction="left" className="lg:col-span-1">
+                <h2
+                  className="ed-display"
+                  style={{ fontSize: "clamp(2rem, 3.1vw, 2.9rem)", lineHeight: 1.08, fontWeight: 800, letterSpacing: "-0.025em", color: "#FFFFFF" }}
+                >
+                  {p.title} For Your Industry
+                </h2>
+                <p className="mt-6 leading-relaxed" style={{ fontSize: "1rem", color: "rgba(255,255,255,0.82)" }}>
+                  {p.industryIntro}
+                </p>
+              </Reveal>
+
+              <RevealGroup className="lg:col-span-3 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12" stagger={0.07}>
+                {p.industryCallouts.map((c) => (
+                  <RevealItem key={c.name}>
+                    <span aria-hidden="true" style={{ display: "block", width: 62, height: 3, background: "rgba(255,255,255,0.92)" }} />
+                    <h3 className="mt-6" style={{ fontSize: "1.3rem", fontWeight: 800, letterSpacing: "-0.015em", color: "#FFFFFF" }}>{c.name}</h3>
+                    <p className="mt-5 leading-relaxed" style={{ fontSize: "0.95rem", color: "rgba(255,255,255,0.78)" }}>{c.body}</p>
+                  </RevealItem>
+                ))}
+              </RevealGroup>
+            </div>
           </div>
         </section>
 
