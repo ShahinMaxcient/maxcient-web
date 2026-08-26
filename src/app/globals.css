@@ -285,6 +285,21 @@ h1, h2, h3, h4, h5, h6, .ed-display {
 .tech-badge { background: var(--surface-alt); color: var(--primary); }
 .group:hover .tech-badge { background: var(--primary); color: #fff; box-shadow: 0 10px 22px -10px rgba(124, 58, 237, 0.55); }
 
+/* Product-hero "request a demo" glass card. */
+.mx-demo-card input::placeholder,
+.mx-demo-card textarea::placeholder { color: #8B8698; }
+.mx-demo-card input:focus,
+.mx-demo-card textarea:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.35);
+}
+.mx-demo-submit { transition: background-color .2s ease, transform .2s ease; }
+.mx-demo-submit:hover:not(:disabled) { background: var(--primary-dark) !important; transform: translateY(-1px); }
+@media (prefers-reduced-motion: reduce) {
+  .mx-demo-submit { transition: none; }
+  .mx-demo-submit:hover:not(:disabled) { transform: none; }
+}
+
 /* Product-page "Capabilities" cards: lavender icon badge that fills on hover.
    Lists run 8-14 items, so each card carries a keyword-matched mark rather than
    a photograph — see FeatureIcon. */
@@ -453,6 +468,7 @@ h1, h2, h3, h4, h5, h6, .ed-display {
   box-shadow: 0 14px 30px -14px rgba(124, 58, 237, 0.75) !important;
 }
 .mx-orbit-pill:hover > span[aria-hidden="true"] { background: #fff !important; }
+
 
 
 

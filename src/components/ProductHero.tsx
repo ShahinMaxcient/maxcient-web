@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import HeroDemoCard from "./HeroDemoCard";
 
 type Stat = { n: string; l: string };
 
@@ -16,6 +17,8 @@ interface Props {
   stats: Stat[];
   brochureHref?: string;
   brochureName?: string;
+  /** Product name for the hero demo card. Omit to keep the single-column hero. */
+  demoProduct?: string;
 }
 
 export default function ProductHero({
@@ -28,6 +31,7 @@ export default function ProductHero({
   stats,
   brochureHref,
   brochureName,
+  demoProduct,
 }: Props) {
   return (
     <section className="relative w-full overflow-hidden" style={{ minHeight: "100svh", background: "#0a0a12" }}>
@@ -39,6 +43,7 @@ export default function ProductHero({
       />
 
       <div className="relative max-w-[1400px] mx-auto px-5 sm:px-8 flex flex-col justify-center" style={{ minHeight: "100svh", paddingTop: "128px", paddingBottom: "72px" }}>
+        <div className={demoProduct ? "grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center" : ""}>
         <div className="max-w-[720px]">
           <motion.div
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
@@ -101,6 +106,8 @@ export default function ProductHero({
               </div>
             ))}
           </motion.div>
+        </div>
+        {demoProduct && <HeroDemoCard product={demoProduct} />}
         </div>
       </div>
     </section>

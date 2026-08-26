@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import HeroDemoCard from "./HeroDemoCard";
 
 interface PageHeroProps {
   title: string;
@@ -10,6 +11,8 @@ interface PageHeroProps {
   image: string;
   /** Optional 3–5 line supporting paragraph shown beneath the tagline. */
   description?: string;
+  /** Product name — when set, the hero gains a translucent demo-request card. */
+  demoProduct?: string;
 }
 
 /**
@@ -17,7 +20,7 @@ interface PageHeroProps {
  * The image spans the full viewport width behind the copy, matching the
  * cinematic treatment of the homepage and flagship product heroes.
  */
-export default function PageHeroView({ title, subtitle, image, description }: PageHeroProps) {
+export default function PageHeroView({ title, subtitle, image, description, demoProduct }: PageHeroProps) {
   return (
     <section className="relative w-full overflow-hidden" style={{ minHeight: "100svh", background: "#0a0a12" }}>
       {/* Full-bleed and the LCP element, so it earns more than the default 75.
@@ -38,6 +41,7 @@ export default function PageHeroView({ title, subtitle, image, description }: Pa
         className="relative max-w-[1400px] mx-auto px-5 sm:px-8 flex flex-col justify-center"
         style={{ minHeight: "100svh", paddingTop: "128px", paddingBottom: "72px" }}
       >
+        <div className={demoProduct ? "grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center" : ""}>
         <div className="max-w-[720px]">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -97,6 +101,8 @@ export default function PageHeroView({ title, subtitle, image, description }: Pa
               <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
           </motion.div>
+        </div>
+        {demoProduct && <HeroDemoCard product={demoProduct} />}
         </div>
       </div>
     </section>

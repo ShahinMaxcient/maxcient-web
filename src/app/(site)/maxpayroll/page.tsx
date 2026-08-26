@@ -32,6 +32,7 @@ export default async function MaxPayroll() {
             { n: "WPS", l: "UAE payroll ready" },
             { n: "360°", l: "Workforce visibility" },
           ]}
+          demoProduct="MaxPayroll"
         />
         <PageReasons slug="maxpayroll" product="MaxPayroll" />
         <PageFeatures slug="maxpayroll" id="functionalities" />

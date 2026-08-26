@@ -41,7 +41,9 @@ export default async function MaxSphereOne() {
   return (
     <>
       <main>
-        <MaxSphereHero title={override?.title || undefined} subtitle={override?.subtitle || undefined} />
+        <MaxSphereHero title={override?.title || undefined} subtitle={override?.subtitle || undefined} 
+          demoProduct="MaxSphere One"
+        />
         <PageReasons slug="maxsphere-one" product="MaxSphere One" />
         <PageFeatures slug="maxsphere-one" id="functionalities" />
         <BrochureSection />

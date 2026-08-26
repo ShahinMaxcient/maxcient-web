@@ -60,6 +60,8 @@ export default async function RealtyAiSales() {
           title={override?.title || "RealtyAI Sales"}
           subtitle={override?.subtitle || undefined}
           image={override?.heroImage || "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-realtyai-sales-hero.webp"}
+        
+          demoProduct="RealtyAI Sales"
         />
         <PageReasons slug="realtyai-sales" product="RealtyAI Sales" />
         <PageFeatures slug="realtyai-sales" id="functionalities" />

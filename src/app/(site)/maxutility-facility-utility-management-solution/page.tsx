@@ -63,6 +63,8 @@ export default async function MaxUtility() {
           title={override?.title || "MaxUtility"}
           subtitle={override?.subtitle || undefined}
           image={override?.heroImage || "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/maxutility-hero-utility.webp"}
+        
+          demoProduct="MaxUtility"
         />
         <PageReasons slug="maxutility-facility-utility-management-solution" product="MaxUtility" />
         <PageFeatures slug="maxutility-facility-utility-management-solution" id="functionalities" />

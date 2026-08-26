@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 
-// Public endpoint — accepts submissions from the consultation form.
+// Public endpoint — accepts submissions from the consultation form and the
+// product-page demo cards.
 const leadSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(200),
   email: z.string().trim().email("A valid email is required").max(200),
@@ -10,6 +11,9 @@ const leadSchema = z.object({
   company: z.string().trim().max(200).optional().or(z.literal("")),
   service: z.string().trim().max(200).optional().or(z.literal("")),
   message: z.string().trim().max(5000).optional().or(z.literal("")),
+  // Allowlisted rather than free text: this lands in the admin lead list, so
+  // the client must not be able to write arbitrary values into it.
+  source: z.enum(["consultation-form", "product-demo"]).optional(),
 });
 
 export async function POST(request: Request) {
@@ -38,7 +42,7 @@ export async function POST(request: Request) {
         company: d.company || null,
         service: d.service || null,
         message: d.message || null,
-        source: "consultation-form",
+        source: d.source ?? "consultation-form",
       },
       select: { id: true },
     });

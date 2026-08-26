@@ -63,6 +63,8 @@ export default async function MaxMarina() {
           title={override?.title || "MaxMarina"}
           subtitle={override?.subtitle || undefined}
           image={override?.heroImage || "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/maxmarina-hero-marina.webp"}
+        
+          demoProduct="MaxMarina"
         />
         <PageReasons slug="maxmarina-marina-management-solution" product="MaxMarina" />
         <PageFeatures slug="maxmarina-marina-management-solution" id="functionalities" />

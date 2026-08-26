@@ -54,6 +54,8 @@ export default async function RealtyAiLeasing() {
             { n: "40 days", l: "Lead-to-contract" },
             { n: "70+", l: "Intelligent dashboards" },
           ]}
+        
+          demoProduct="RealtyAI Leasing"
         />
         <PageReasons slug="realtyai-leasing" product="RealtyAI Leasing" />
         <PageFeatures slug="realtyai-leasing" id="functionalities" />

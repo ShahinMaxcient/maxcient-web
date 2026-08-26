@@ -3,8 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import HeroDemoCard from "./HeroDemoCard";
 
 interface Props {
+  /** Product name for the hero demo card. Omit to keep the single-column hero. */
+  demoProduct?: string;
   title?: string;
   subtitle?: string;
   image?: string;
@@ -13,8 +16,7 @@ interface Props {
 export default function MaxUtilityHero({
   title = "MaxUtility",
   subtitle = "Facility & utility management on Microsoft Dynamics 365. Automate the full lifecycle — onboarding, metering, billing, service, and collections — with 360° real-time visibility across assets, meters, and finance.",
-  image = "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/maxutility-hero-utility.webp",
-}: Props) {
+  image = "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/maxutility-hero-utility.webp", demoProduct }: Props) {
   return (
     <section
       className="relative w-full overflow-hidden"
@@ -35,6 +37,7 @@ export default function MaxUtilityHero({
         className="relative max-w-[1400px] mx-auto px-5 sm:px-8 flex flex-col justify-center"
         style={{ minHeight: "100svh", paddingTop: "128px", paddingBottom: "72px" }}
       >
+        <div className={demoProduct ? "grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-center" : ""}>
         <div className="max-w-[720px]">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -141,6 +144,8 @@ export default function MaxUtilityHero({
               </div>
             ))}
           </motion.div>
+        </div>
+        {demoProduct && <HeroDemoCard product={demoProduct} />}
         </div>
       </div>
     </section>
