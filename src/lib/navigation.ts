@@ -16,7 +16,7 @@ type ProductNav = { title: string; href: string; subItems?: { label: string; hre
 // Short labels for the Services dropdown, keyed by href. Lets a service keep a
 // descriptive title on its homepage card while showing a concise menu label.
 const SERVICE_NAV_LABELS: Record<string, string> = {
-  "/erp-and-crm": "CRM vs ERP",
+  "/erp-and-crm": "CRM and ERP",
 };
 
 async function getNavItems__uncached(): Promise<NavItem[]> {

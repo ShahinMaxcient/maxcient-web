@@ -13,7 +13,7 @@ const values = [
 ];
 
 const globalReach = [
-  { stat: "Since 2017", body: "Serving businesses from startups to enterprises across various verticals." },
+  { stat: "Since 2014", body: "Serving businesses from startups to enterprises across various verticals." },
   { stat: "Trusted Partner", body: "Businesses across 3 countries rely on our specialized expertise." },
   { stat: "Celebrating Diversity", body: "Celebrating a multitude of perspectives for richer solutions." },
 ];

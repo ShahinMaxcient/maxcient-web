@@ -73,7 +73,7 @@ export const DEFAULT_HERO: HeroSettings = {
   badge: "Microsoft Solutions Partner",
   image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-skyline.webp",
   images: ["https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-skyline.webp"],
-  tagline: "EST · 2017 — DUBAI · UAE",
+  tagline: "EST · 2014 — DUBAI · UAE",
   stats: [
     { n: "06", l: "Global Offices" },
     { n: "120+", l: "Projects Delivered" },

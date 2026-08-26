@@ -79,10 +79,10 @@ export const COLLECTIONS: Record<string, CollectionConfig> = {
     listColumns: ["order", "label", "value"],
     fields: [
       { name: "label", label: "Label", type: "text", required: true, placeholder: "Founded" },
-      { name: "value", label: "Value", type: "text", required: true, placeholder: "2017" },
+      { name: "value", label: "Value", type: "text", required: true, placeholder: "2014" },
     ],
     defaults: [
-      { label: "Founded", value: "2017", order: 0 },
+      { label: "Founded", value: "2014", order: 0 },
       { label: "Countries", value: "3", order: 1 },
       { label: "Degree Holders", value: "100%", order: 2 },
       { label: "2+ Year Tenure", value: "70%", order: 3 },
@@ -226,7 +226,7 @@ export const COLLECTIONS: Record<string, CollectionConfig> = {
       { name: "label", label: "Label", type: "textarea", required: true },
     ],
     defaults: [
-      { value: 100, suffix: "%", eyebrow: "01 — DELIVERY", label: "On-time project completion across all engagements since 2017.", order: 0 },
+      { value: 100, suffix: "%", eyebrow: "01 — DELIVERY", label: "On-time project completion across all engagements since 2014.", order: 0 },
       { value: 50, suffix: "+", eyebrow: "02 — EXPERIENCE", label: "Years of combined Microsoft Dynamics expertise on the team.", order: 1 },
       { value: 5, suffix: "/5", eyebrow: "03 — RATING", label: "Average client rating across our active engagements.", order: 2 },
       { value: 6, suffix: "", eyebrow: "04 — REACH", label: "Offices across Dubai, Oman, KSA, India, and the UK.", order: 3 },
