@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import HeroDemoCard from "./HeroDemoCard";
+import PartnerBadge from "./PartnerBadge";
 
 interface PageHeroProps {
   title: string;
@@ -90,7 +91,7 @@ export default function PageHeroView({ title, subtitle, image, description, demo
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.36 }}
-            className="mt-10"
+            className="mt-10 flex items-center gap-5 flex-wrap"
           >
             <Link
               href="/request-a-consultation"
@@ -100,6 +101,7 @@ export default function PageHeroView({ title, subtitle, image, description, demo
               Get Started
               <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
+            <PartnerBadge />
           </motion.div>
         </div>
         {demoProduct && <HeroDemoCard product={demoProduct} />}
