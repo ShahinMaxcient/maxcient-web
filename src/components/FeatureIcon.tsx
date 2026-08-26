@@ -28,7 +28,8 @@ export function featureIconKind(name: string): Kind {
   if (/notif|alert|remind/.test(n)) return "bell";
   if (/report|analytic|dashboard|intelligen|insight|forecast|metric|statistic/.test(n)) return "chart";
   if (/contract|certificat|document|agreement|statement|\brecord|renewal|terminat/.test(n)) return "doc";
-  // Sales outranks the marine rules so "Boat Sales & Services" reads as sales.
+  // Sales is tested before the marine rules: a title naming both should read
+  // as sales, not as a map pin.
   if (/sales|\bcrm\b|lead\b|deal\b|pipeline/.test(n)) return "trend";
   if (/navigation|\bmap\b|marina|berth|boat|route/.test(n)) return "map";
   if (/discover|search|listing|catalog|browse/.test(n)) return "search";

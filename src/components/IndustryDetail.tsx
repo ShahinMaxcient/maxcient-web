@@ -3,12 +3,13 @@ import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
 import GetInTouch from "@/components/GetInTouch";
 import IndustryTabs from "@/components/IndustryTabs";
+import Image from "next/image";
 import TechCard from "@/components/TechCard";
 import Reveal from "@/components/Reveal";
 import { RevealGroup, RevealItem } from "@/components/RevealGroup";
 import { getCollectionItems } from "@/lib/content";
 
-export type Trend = { title: string; body: string };
+export type Trend = { title: string; body: string; image?: string };
 export type Solution = { heading: string; body: string; features: string[] };
 export type TechCard = { name: string; body: string };
 
@@ -98,6 +99,32 @@ function resolveTechHref(name: string, techs: { title: string; href: string }[])
   return partial?.href;
 }
 
+/**
+ * Photograph per emerging trend, keyed by the exact trend title.
+ *
+ * An explicit map rather than keyword matching: these titles are close enough
+ * to each other ("Personalized Shopping" / "Omnichannel Shopping") that fuzzy
+ * matching would mispair them, and a wrong photo is worse than none. A trend
+ * with no entry simply renders as before, icon and copy only.
+ */
+const TREND_IMAGES: Record<string, string> = {
+  "Digital Twin Technology": "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/trend-digital-twin.webp",
+  "Smart Manufacturing & IoT": "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/trend-smart-manufacturing.webp",
+  "Customization & Personalization": "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/trend-customization.webp",
+  "Proptech-enabled Customer Journey": "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/trend-proptech.webp",
+  "Market Analytics for Targeted Sales": "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/trend-market-analytics.webp",
+  "Remote Transaction Facilitation": "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/trend-remote-transaction.webp",
+  "Omnichannel Shopping": "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/trend-omnichannel.webp",
+  "Augmented Reality": "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/trend-augmented-reality.webp",
+  "Personalized Shopping": "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/trend-personalized-shopping.webp",
+  "Integrated Supply Chain Management": "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/trend-supply-chain.webp",
+  "Predictive Inventory Management": "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/trend-predictive-inventory.webp",
+  "E-commerce & Direct-to-Consumer Models": "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/trend-ecommerce-d2c.webp",
+  "Virtual Collaboration & Remote Services": "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/trend-virtual-collaboration.webp",
+  "Data-Driven Decision Making": "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/trend-data-driven.webp",
+  "Automation & Process Optimization": "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/trend-automation.webp",
+};
+
 export default async function IndustryDetail(p: IndustryDetailProps) {
   const techs = await getCollectionItems<{ title: string; href: string }>("technologies");
   const images = p.solutionImages && p.solutionImages.length ? p.solutionImages : SOLUTION_IMAGES;
@@ -122,22 +149,35 @@ export default async function IndustryDetail(p: IndustryDetailProps) {
               <h2 className="mt-3 text-3xl sm:text-4xl font-bold t-heading">Trends shaping {p.title}</h2>
             </Reveal>
             <RevealGroup className="grid md:grid-cols-3 gap-6 items-stretch" stagger={0.1}>
-              {p.trends.map((t) => (
-                <RevealItem
-                  key={t.title}
-                  className="group h-full p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_50px_-24px_rgba(124,58,237,0.45)]"
-                  style={{ background: "linear-gradient(158deg, var(--surface-alt) 0%, #E4D9FB 100%)", border: "1px solid var(--border-strong)" }}
-                >
-                  <div
-                    className="flex items-center justify-center w-12 h-12 rounded-xl mb-6 transition-transform duration-300 group-hover:scale-105"
-                    style={{ background: "var(--primary)", color: "#fff", boxShadow: "0 10px 22px -10px rgba(124,58,237,0.65)" }}
+              {p.trends.map((t) => {
+                const img = t.image ?? TREND_IMAGES[t.title];
+                return (
+                  <RevealItem
+                    key={t.title}
+                    className="group h-full flex flex-col rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_50px_-24px_rgba(124,58,237,0.45)]"
+                    style={{ background: "linear-gradient(158deg, var(--surface-alt) 0%, #E4D9FB 100%)", border: "1px solid var(--border-strong)" }}
                   >
-                    <TrendIcon name={t.title} />
-                  </div>
-                  <h3 className="text-lg font-bold t-heading leading-snug">{t.title}</h3>
-                  <p className="mt-3 text-sm t-body leading-relaxed">{t.body}</p>
-                </RevealItem>
-              ))}
+                    {img && (
+                      <div className="relative w-full" style={{ aspectRatio: "16 / 10" }}>
+                        {/* Decorative: the heading beside it already names the trend. */}
+                        <Image src={img} alt="" fill sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+                      </div>
+                    )}
+                    <div className={`flex flex-col flex-1 px-8 pb-8 ${img ? "pt-0" : "pt-8"}`}>
+                      {/* The badge straddles the photo's lower edge, which ties
+                          the image to the card instead of stacking two blocks. */}
+                      <div
+                        className={`flex items-center justify-center w-12 h-12 rounded-xl mb-5 transition-transform duration-300 group-hover:scale-105 ${img ? "-mt-6 relative z-10" : ""}`}
+                        style={{ background: "var(--primary)", color: "#fff", boxShadow: "0 10px 22px -10px rgba(124,58,237,0.65)" }}
+                      >
+                        <TrendIcon name={t.title} />
+                      </div>
+                      <h3 className="text-lg font-bold t-heading leading-snug">{t.title}</h3>
+                      <p className="mt-3 text-sm t-body leading-relaxed">{t.body}</p>
+                    </div>
+                  </RevealItem>
+                );
+              })}
             </RevealGroup>
           </div>
         </section>

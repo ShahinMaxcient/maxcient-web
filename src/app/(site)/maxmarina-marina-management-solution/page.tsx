@@ -11,7 +11,7 @@ import { getPageOverride, isPageHidden } from "@/lib/pages";
 export const metadata: Metadata = {
   title: "MaxMarina | Smart Marina Management Solution | Maxcient",
   description:
-    "MaxMarina unifies berth management, boat sales, billing, and guest experiences on Microsoft Dynamics 365 — 30% faster berth assignments and 18% revenue growth.",
+    "MaxMarina unifies berth leasing, contracts and renewals, billing, and guest experiences on Microsoft Dynamics 365 — 30% faster berth assignments and 18% revenue growth.",
 };
 
 function BrochureSection() {

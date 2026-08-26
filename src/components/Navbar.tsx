@@ -146,6 +146,11 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
     !!item.children?.some((c) => onRoute(c.href) || c.children?.some((g) => onRoute(g.href)));
 
   const linkColor = overHero ? "rgba(255,255,255,0.92)" : "var(--nav-text)";
+  // The mobile panel is transparent inside the capsule, so its text has to
+  // follow the same ink/paper switch the desktop links do.
+  const mTitle = overHero ? "#FFFFFF" : "var(--text-primary)";
+  const mBody = overHero ? "rgba(255,255,255,0.78)" : "var(--text-muted)";
+  const mRule = overHero ? "rgba(255,255,255,0.18)" : "var(--border)";
 
   return (
     <motion.header
@@ -161,7 +166,9 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
       <nav
         className="max-w-[1320px] mx-auto px-4 sm:px-6 transition-all duration-300"
         style={{
-          borderRadius: 999,
+          // A 999px radius on a tall open menu reads as a lozenge, not a panel,
+          // so the pill squares off to a rounded rectangle while it is open.
+          borderRadius: mobileMenuOpen ? 20 : 999,
           background: overHero ? "rgba(18,14,30,0.44)" : "rgba(252,251,254,0.88)",
           border: `1px solid ${overHero ? "rgba(255,255,255,0.16)" : "var(--border)"}`,
           backdropFilter: "blur(18px)",
@@ -307,8 +314,8 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden mt-2 mb-4 p-4 overflow-hidden"
-              style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "6px" }}
+              className="lg:hidden overflow-hidden py-3"
+              style={{ borderTop: `1px solid ${overHero ? "rgba(255,255,255,0.16)" : "var(--border)"}` }}
             >
               {navItems.map((item) => (
                 <div key={item.label}>
@@ -317,7 +324,7 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
                       <button
                         onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
                         className="w-full flex items-center justify-between py-3"
-                        style={{ fontFamily: "var(--font-geist-sans), system-ui, sans-serif", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--text-primary)" }}
+                        style={{ fontFamily: "var(--font-geist-sans), system-ui, sans-serif", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.08em", color: mTitle }}
                       >
                         {item.label}
                         <svg className={`w-4 h-4 transition-transform ${mobileExpanded === item.label ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
@@ -328,15 +335,15 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
                             <div key={child.label}>
                               {child.children && child.children.length > 0 ? (
                                 <>
-                                  <div className="py-2 text-sm font-semibold" style={{ color: "var(--text-secondary)" }}>{child.label}</div>
-                                  <div className="pl-3 border-l" style={{ borderColor: "var(--border)" }}>
+                                  <div className="py-2 text-sm font-semibold" style={{ color: mTitle }}>{child.label}</div>
+                                  <div className="pl-3 border-l" style={{ borderColor: mRule }}>
                                     {child.children.map((sub) => (
-                                      <Link key={sub.label} href={sub.href} className="block py-1.5 text-[14px]" style={{ color: "var(--text-muted)", opacity: 0.85 }} onClick={() => setMobileMenuOpen(false)}>{sub.label}</Link>
+                                      <Link key={sub.label} href={sub.href} className="block py-1.5 text-[14px]" style={{ color: mBody, opacity: 0.85 }} onClick={() => setMobileMenuOpen(false)}>{sub.label}</Link>
                                     ))}
                                   </div>
                                 </>
                               ) : (
-                                <Link href={child.href} className="block py-2 text-sm" style={{ color: "var(--text-muted)" }} onClick={() => setMobileMenuOpen(false)}>{child.label}</Link>
+                                <Link href={child.href} className="block py-2 text-sm" style={{ color: mBody }} onClick={() => setMobileMenuOpen(false)}>{child.label}</Link>
                               )}
                             </div>
                           ))}
@@ -344,11 +351,11 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
                       )}
                     </>
                   ) : (
-                    <Link href={item.href} className="block py-3" style={{ fontFamily: "var(--font-geist-sans), system-ui, sans-serif", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--text-primary)" }} onClick={() => setMobileMenuOpen(false)}>{item.label}</Link>
+                    <Link href={item.href} className="block py-3" style={{ fontFamily: "var(--font-geist-sans), system-ui, sans-serif", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.08em", color: mTitle }} onClick={() => setMobileMenuOpen(false)}>{item.label}</Link>
                   )}
                 </div>
               ))}
-              <Link href="/request-a-consultation" className="mt-4 block w-full text-center px-6 py-3" style={{ background: "var(--text-primary)", color: "var(--background)", fontFamily: "var(--font-geist-sans), system-ui, sans-serif", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.08em", borderRadius: "4px" }} onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
+              <Link href="/request-a-consultation" className="mt-4 block w-full text-center px-6 py-3" style={{ background: "linear-gradient(110deg, var(--primary-light) 0%, var(--primary) 55%, var(--primary-dark) 100%)", color: "#FFFFFF", fontFamily: "var(--font-geist-sans), system-ui, sans-serif", fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", borderRadius: 999 }} onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
             </motion.div>
           )}
         </AnimatePresence>

@@ -270,6 +270,11 @@ h1, h2, h3, h4, h5, h6, .ed-display {
 @media (prefers-reduced-motion: reduce) {
   .mx-loader { animation: none; background-position: 50% 0; }
 }
+/* The route loader is centred in a near-full-height panel, where a 78px mark
+   dominates a phone screen. */
+@media (max-width: 639px) {
+  .mx-loader { width: 56px; height: 45px; }
+}
 
 /* Hero stat rail on the ink plinth. Dividers must follow the column count,
    which changes at the `sm` breakpoint — inline styles can't express that. */
@@ -524,6 +529,7 @@ h1, h2, h3, h4, h5, h6, .ed-display {
   box-shadow: 0 14px 30px -14px rgba(124, 58, 237, 0.75) !important;
 }
 .mx-orbit-pill:hover > span[aria-hidden="true"] { background: #fff !important; }
+
 
 
 
