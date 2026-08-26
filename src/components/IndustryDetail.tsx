@@ -3,9 +3,10 @@ import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
 import GetInTouch from "@/components/GetInTouch";
 import IndustryTabs from "@/components/IndustryTabs";
-import TechIcon from "@/components/TechIcon";
+import TechCard from "@/components/TechCard";
 import Reveal from "@/components/Reveal";
 import { RevealGroup, RevealItem } from "@/components/RevealGroup";
+import { getCollectionItems } from "@/lib/content";
 
 export type Trend = { title: string; body: string };
 export type Solution = { heading: string; body: string; features: string[] };
@@ -76,7 +77,29 @@ function TrendIcon({ name }: { name: string }) {
   return <svg {...p}><path d="M23 6l-9.5 9.5-5-5L1 18" /><path d="M17 6h6v6" /></svg>;
 }
 
-export default function IndustryDetail(p: IndustryDetailProps) {
+/**
+ * Resolve a platform name to its technology page.
+ *
+ * Industry pages name platforms in their own words — "IoT (Internet of Things)"
+ * where the collection says "IoT", "Microsoft Power Platform" where it says
+ * "Power Platform" — so an exact match is not enough. Compare on alphanumerics
+ * only, prefer an exact hit, then fall back to the longest containment so the
+ * broadest sensible match wins. Anything unmatched simply gets no link, which
+ * is also what keeps unpublished platforms from being linked.
+ */
+function resolveTechHref(name: string, techs: { title: string; href: string }[]): string | undefined {
+  const norm = (x: string) => x.toLowerCase().replace(/[^a-z0-9]/g, "");
+  const n = norm(name);
+  const exact = techs.find((t) => norm(t.title) === n);
+  if (exact) return exact.href;
+  const partial = techs
+    .filter((t) => { const c = norm(t.title); return c.length > 2 && (n.includes(c) || c.includes(n)); })
+    .sort((a, b) => norm(b.title).length - norm(a.title).length)[0];
+  return partial?.href;
+}
+
+export default async function IndustryDetail(p: IndustryDetailProps) {
+  const techs = await getCollectionItems<{ title: string; href: string }>("technologies");
   const images = p.solutionImages && p.solutionImages.length ? p.solutionImages : SOLUTION_IMAGES;
   const solutionTabs = p.solutions.map((s, i) => ({
     name: PILLAR_LABELS[i] ?? `Solution ${i + 1}`,
@@ -143,15 +166,8 @@ export default function IndustryDetail(p: IndustryDetailProps) {
               </Reveal>
               <RevealGroup className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch" stagger={0.08}>
                 {p.techCards.map((c) => (
-                  <RevealItem
-                    key={c.name}
-                    className="group h-full p-7 rounded-2xl border t-border t-bg-surface hover:-translate-y-1 hover:shadow-[0_20px_44px_-24px_rgba(20,16,40,0.4)] transition-all duration-300"
-                  >
-                    <div className="tech-badge flex items-center justify-center w-12 h-12 rounded-xl mb-5 transition-all duration-300">
-                      <TechIcon name={c.name} />
-                    </div>
-                    <h3 className="text-lg font-bold t-heading leading-snug">{c.name}</h3>
-                    <p className="mt-3 text-sm t-body leading-relaxed">{c.body}</p>
+                  <RevealItem key={c.name} className="h-full">
+                    <TechCard title={c.name} description={c.body} href={resolveTechHref(c.name, techs)} />
                   </RevealItem>
                 ))}
               </RevealGroup>

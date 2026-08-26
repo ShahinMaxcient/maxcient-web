@@ -13,7 +13,7 @@
  */
 export default function HeroCurves() {
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+    <div className="mx-hero-curves absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
       <svg
         className="absolute inset-0 w-full h-full"
         viewBox="0 0 1440 800"

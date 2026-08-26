@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import StatNumber from "./StatNumber";
 import HeroDemoCard from "./HeroDemoCard";
 
 type Stat = { n: string; l: string };
@@ -101,7 +102,7 @@ export default function ProductHero({
           >
             {stats.map((s) => (
               <div key={s.l} className="px-5 py-5" style={{ background: "rgba(8,8,18,0.6)", backdropFilter: "blur(4px)" }}>
-                <div style={{ fontSize: "1.45rem", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}>{s.n}</div>
+                <div style={{ fontSize: "1.45rem", fontWeight: 800, letterSpacing: "-0.02em", color: "#FFFFFF", lineHeight: 1 }}><StatNumber value={s.n} /></div>
                 <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.09em", color: "rgba(255,255,255,0.62)", marginTop: 7 }}>{s.l}</div>
               </div>
             ))}

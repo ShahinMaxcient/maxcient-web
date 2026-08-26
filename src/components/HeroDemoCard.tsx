@@ -69,9 +69,10 @@ export default function HeroDemoCard({
     border: "1px solid rgba(255,255,255,0.5)",
     borderRadius: 4,
     padding: "11px 13px",
-    fontSize: 14,
     color: "#14101F",
     outline: "none",
+    // font-size lives in CSS, not here: phones need >=16px to stop iOS zooming
+    // on focus, and an inline style cannot carry a media query.
   };
 
   return (

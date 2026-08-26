@@ -11,10 +11,13 @@ export default function AnimatedCounter({
   target,
   suffix = "",
   duration = 1800,
+  grouped = false,
 }: {
   target: number;
   suffix?: string;
   duration?: number;
+  /** Thousands separators while counting, so "55,000+" doesn't jump to "55000+". */
+  grouped?: boolean;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true });
@@ -36,5 +39,6 @@ export default function AnimatedCounter({
   }, [isInView, target, reduce, duration]);
 
   // Reduced motion renders the final figure outright rather than ticking to it.
-  return <span ref={ref}>{reduce ? target : count}{suffix}</span>;
+  const shown = reduce ? target : count;
+  return <span ref={ref}>{grouped ? shown.toLocaleString("en-US") : shown}{suffix}</span>;
 }

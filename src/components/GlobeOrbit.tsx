@@ -46,12 +46,13 @@ export default function GlobeOrbit({ items = SERVICES }: { items?: OrbitItem[] }
   const pausedRef = useRef(false);
 
   // Mirrors HeroGlobe's gating: no globe (reduced motion) means nothing to
-  // orbit, and below lg the sphere is too small to ring without crowding it.
+  // orbit. Phones keep the ring, but on compact pills — see `small` below.
   const [show, setShow] = useState(false);
+  const [small, setSmall] = useState(false);
   useEffect(() => {
     const rm = window.matchMedia("(prefers-reduced-motion: reduce)");
     const sm = window.matchMedia("(max-width: 1023px)");
-    const sync = () => setShow(!rm.matches && !sm.matches);
+    const sync = () => { setShow(!rm.matches); setSmall(sm.matches); };
     sync();
     rm.addEventListener("change", sync);
     sm.addEventListener("change", sync);
@@ -108,7 +109,7 @@ export default function GlobeOrbit({ items = SERVICES }: { items?: OrbitItem[] }
 
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [show, items]);
+  }, [show, small, items]);
 
   if (!show) return null;
 
@@ -127,21 +128,21 @@ export default function GlobeOrbit({ items = SERVICES }: { items?: OrbitItem[] }
           onBlur={() => { pausedRef.current = false; }}
           className="mx-orbit-pill pointer-events-auto absolute left-1/2 top-1/2 inline-flex items-center gap-2 whitespace-nowrap"
           style={{
-            padding: "7px 14px",
+            padding: small ? "5px 10px" : "7px 14px",
             borderRadius: 999,
             background: "rgba(255,255,255,0.94)",
             border: "1px solid var(--border-strong)",
             boxShadow: "0 10px 26px -16px rgba(20,16,40,0.55)",
             backdropFilter: "blur(4px)",
             WebkitBackdropFilter: "blur(4px)",
-            fontSize: 12,
+            fontSize: small ? 10.5 : 12,
             fontWeight: 600,
             letterSpacing: "-0.005em",
             color: "var(--text-primary)",
             willChange: "transform, opacity",
           }}
         >
-          <span aria-hidden="true" style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--primary)", flexShrink: 0 }} />
+          <span aria-hidden="true" style={{ width: small ? 5 : 6, height: small ? 5 : 6, borderRadius: "50%", background: "var(--primary)", flexShrink: 0 }} />
           {it.label}
         </Link>
       ))}

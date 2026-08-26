@@ -137,24 +137,41 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
   const PLAIN_TOPS = ["/", "/blog", "/terms-of-use", "/privacy-policy", "/cookie-policy"];
   const plainTop = PLAIN_TOPS.some((p) => pathname === p || pathname.startsWith(p + "/"));
   const overHero = !plainTop && !scrolled;
+  // A top-level item counts as active when the route is its own page or any
+  // page beneath it — so "Technologies" stays lit while you read Azure AI.
+  const onRoute = (href?: string) =>
+    !!href && href !== "#" && (href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/"));
+  const isActive = (item: NavItem) =>
+    onRoute(item.href) ||
+    !!item.children?.some((c) => onRoute(c.href) || c.children?.some((g) => onRoute(g.href)));
+
   const linkColor = overHero ? "rgba(255,255,255,0.92)" : "var(--nav-text)";
-  const markBg = overHero ? "#FFFFFF" : "var(--text-primary)";
-  const markFg = overHero ? "#14101F" : "var(--background)";
 
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-      style={
-        scrolled
-          ? { background: "var(--nav-bg)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", borderBottom: "1px solid var(--border)" }
-          : { background: "transparent", borderBottom: "1px solid transparent" }
-      }
+      className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6"
+      style={{ paddingTop: "14px" }}
     >
-      <nav className="max-w-[1400px] mx-auto px-5 sm:px-8">
-        <div className="flex items-center justify-between h-[72px]">
+      {/* Floating capsule. It keeps a surface at all times rather than fading
+          to transparent over dark heroes — a pill with no fill has no shape —
+          so the glass simply switches from ink to paper. */}
+      <nav
+        className="max-w-[1320px] mx-auto px-4 sm:px-6 transition-all duration-300"
+        style={{
+          borderRadius: 999,
+          background: overHero ? "rgba(18,14,30,0.44)" : "rgba(252,251,254,0.88)",
+          border: `1px solid ${overHero ? "rgba(255,255,255,0.16)" : "var(--border)"}`,
+          backdropFilter: "blur(18px)",
+          WebkitBackdropFilter: "blur(18px)",
+          boxShadow: overHero
+            ? "0 18px 44px -20px rgba(0,0,0,0.6)"
+            : "0 14px 34px -18px rgba(20,16,40,0.28)",
+        }}
+      >
+        <div className="flex items-center justify-between h-[62px]">
           {/* Logo */}
           <Link href="/" className="flex items-center" aria-label="Maxcient home">
             {overHero ? (
@@ -189,22 +206,39 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
           </Link>
 
           {/* Center nav */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-stretch gap-1 h-full">
             {navItems.map((item) => (
               <div
                 key={item.label}
-                className="relative"
+                className="relative h-full flex items-center"
                 onMouseEnter={() => item.children && setOpenDropdown(item.label)}
                 onMouseLeave={() => setOpenDropdown(null)}
               >
+                {isActive(item) && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-0 left-1/2 -translate-x-1/2"
+                    style={{
+                      width: "56%", height: 3, borderRadius: 999,
+                      background: overHero ? "#FFFFFF" : "var(--primary)",
+                      boxShadow: overHero
+                        ? "0 0 12px 1px rgba(255,255,255,0.65)"
+                        : "0 0 12px 1px rgba(124,58,237,0.55)",
+                    }}
+                  />
+                )}
                 <Link
                   href={item.href}
                   onClick={(e) => item.children && e.preventDefault()}
+                  aria-current={isActive(item) ? "page" : undefined}
                   className="px-4 py-2 flex items-center gap-1.5 transition-colors duration-150 hover:opacity-100"
                   style={{
                     fontFamily: "var(--font-geist-sans), system-ui, sans-serif",
-                    fontSize: "12px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em",
-                    color: linkColor, borderRadius: "4px",
+                    fontSize: "12px",
+                    fontWeight: isActive(item) ? 700 : 500,
+                    textTransform: "uppercase", letterSpacing: "0.08em",
+                    color: isActive(item) ? (overHero ? "#FFFFFF" : "var(--primary)") : linkColor,
+                    borderRadius: "4px",
                   }}
                 >
                   {item.label}
@@ -239,15 +273,15 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
           <div className="hidden lg:flex items-center gap-3">
             <Link
               href="/request-a-consultation"
-              className="group inline-flex items-center gap-2 px-5 py-2.5 transition-all duration-200"
+              className="mx-nav-cta group inline-flex items-center gap-2 px-6 py-2.5"
               style={{
-                background: markBg, color: markFg,
+                background: "linear-gradient(110deg, var(--primary-light) 0%, var(--primary) 55%, var(--primary-dark) 100%)",
+                color: "#FFFFFF",
                 fontFamily: "var(--font-geist-sans), system-ui, sans-serif",
-                fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em",
-                borderRadius: "4px",
+                fontSize: "12px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em",
+                borderRadius: 999,
+                boxShadow: "0 10px 24px -10px rgba(124,58,237,0.75)",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "var(--primary)")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = markBg)}
             >
               Get Started
               <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

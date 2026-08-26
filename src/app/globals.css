@@ -285,6 +285,44 @@ h1, h2, h3, h4, h5, h6, .ed-display {
 .tech-badge { background: var(--surface-alt); color: var(--primary); }
 .group:hover .tech-badge { background: var(--primary); color: #fff; box-shadow: 0 10px 22px -10px rgba(124, 58, 237, 0.55); }
 
+/* Demo-card field sizing. Compact on desktop, but iOS Safari zooms the whole
+   page when a focused control renders below 16px — so phones get 16px. This
+   lives here rather than in the component's inline style, which cannot carry a
+   media query (and would out-specify this rule if it did). */
+.mx-demo-card input,
+.mx-demo-card textarea { font-size: 14px; }
+@media (max-width: 767px) {
+  .mx-demo-card input,
+  .mx-demo-card textarea { font-size: 16px; }
+}
+
+/* Hero light-trails on small screens.
+   `slice` scales to cover, so a full-height layer on a 375px viewport blows the
+   1440-wide viewBox up ~4x and leaves only a fifth of each curve visible — the
+   trails stop reading as sweeps and become steep stray lines. Bounding the
+   layer's height near the globe keeps the scale close to 1:1 horizontally, so
+   the whole curve is on screen. */
+@media (max-width: 1023px) {
+  .mx-hero-curves { top: 52%; height: 210px; bottom: auto; }
+}
+
+/* Navbar gradient CTA. The gradient is oversized and slid on hover, which
+   reads as a sheen travelling the pill rather than a flat colour swap. */
+.mx-nav-cta {
+  background-size: 160% 100% !important;
+  background-position: 0% 50%;
+  transition: background-position .45s ease, box-shadow .25s ease, transform .2s ease;
+}
+.mx-nav-cta:hover {
+  background-position: 100% 50%;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px -10px rgba(124, 58, 237, 0.9) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mx-nav-cta { transition: none; }
+  .mx-nav-cta:hover { transform: none; }
+}
+
 /* Hero light-trails: a bright packet sweeping along each curve. The paths
    carry pathLength="1", so one keyframe drives curves of any real length. */
 @keyframes hc-travel {
@@ -486,6 +524,10 @@ h1, h2, h3, h4, h5, h6, .ed-display {
   box-shadow: 0 14px 30px -14px rgba(124, 58, 237, 0.75) !important;
 }
 .mx-orbit-pill:hover > span[aria-hidden="true"] { background: #fff !important; }
+
+
+
+
 
 
 
