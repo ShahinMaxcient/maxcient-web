@@ -290,6 +290,13 @@ h1, h2, h3, h4, h5, h6, .ed-display {
 .tech-badge { background: var(--surface-alt); color: var(--primary); }
 .group:hover .tech-badge { background: var(--primary); color: #fff; box-shadow: 0 10px 22px -10px rgba(124, 58, 237, 0.55); }
 
+/* Home "Industries" bento titles. The feature card only becomes larger at lg,
+   where its row-span applies, so its title only grows there too. */
+.mx-ind-title { font-size: 1.5rem; }
+@media (min-width: 1024px) {
+  .mx-ind-title-big { font-size: 2.5rem; }
+}
+
 /* Demo-card field sizing. Compact on desktop, but iOS Safari zooms the whole
    page when a focused control renders below 16px — so phones get 16px. This
    lives here rather than in the component's inline style, which cannot carry a

@@ -21,6 +21,10 @@ export default function Industries({ industries, header }: { industries: Industr
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3.5 lg:auto-rows-[180px]">
           {industries.map((ind, i) => {
+            // `big` only means anything at lg, where the bento spans apply —
+            // every span here is lg:-prefixed. The size therefore lives in CSS
+            // behind the same breakpoint; as an inline style it made one card's
+            // title larger on phones, where all five cards are the same size.
             const big = ind.span.includes("row-span-2");
             return (
             <SectionReveal key={ind.title} delay={i * 0.06} className={ind.span}>
@@ -29,7 +33,12 @@ export default function Industries({ industries, header }: { industries: Industr
                   <Image src={ind.image} alt={ind.title} fill className="object-cover transition-transform duration-700 group-hover:scale-[1.07]" />
                   <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,10,10,0.78) 0%, transparent 60%)" }} />
                   <div className="absolute bottom-0 left-0 p-7">
-                    <div style={{ fontSize: big ? "2.5rem" : "1.5rem", fontWeight: 700, letterSpacing: "-0.025em", color: "#F5F2EB", lineHeight: 1 }}>{ind.title}</div>
+                    <div
+                      className={`mx-ind-title${big ? " mx-ind-title-big" : ""}`}
+                      style={{ fontWeight: 700, letterSpacing: "-0.025em", color: "#F5F2EB", lineHeight: 1 }}
+                    >
+                      {ind.title}
+                    </div>
                   </div>
                 </div>
               </Link>
