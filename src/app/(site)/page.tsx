@@ -10,9 +10,10 @@ import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Blog from "@/components/Blog";
 import LinkedInPosts from "@/components/LinkedInPosts";
+import FloatingActions from "@/components/FloatingActions";
 import CTASection from "@/components/CTASection";
 import { getPublishedPosts } from "@/lib/posts";
-import { getSiteSettings, getHeroSettings, getSectionHeaders, getCTASettings, getLinkedinPosts } from "@/lib/settings";
+import { getSiteSettings, getHeroSettings, getSectionHeaders, getCTASettings, getLinkedinPosts, getWhoWeAre } from "@/lib/settings";
 import { getServices, getTestimonials } from "@/lib/homepage";
 import { getCollectionItems } from "@/lib/content";
 import { getHiddenSlugs } from "@/lib/pages";
@@ -23,7 +24,7 @@ import { getHiddenSlugs } from "@/lib/pages";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const [posts, settings, hero, sections, cta, servicesAll, testimonials, industriesAll, productsAll, technologiesAll, clients, stats, faqs, marqueeItems, hidden, linkedinPosts] =
+  const [posts, settings, hero, sections, cta, servicesAll, testimonials, industriesAll, productsAll, technologiesAll, clients, stats, faqs, marqueeItems, hidden, linkedinPosts, whoWeAre] =
     await Promise.all([
       getPublishedPosts(4),
       getSiteSettings(),
@@ -41,6 +42,7 @@ export default async function Home() {
       getCollectionItems<{ text: string }>("marquee"),
       getHiddenSlugs(),
       getLinkedinPosts(),
+      getWhoWeAre(),
     ]);
 
   // Drop cards whose detail page has been hidden in Admin → Pages.
@@ -63,7 +65,7 @@ export default async function Home() {
         <Products products={products} header={sections.products} />
         <Technologies technologies={technologies} header={sections.technologies} />
         <SocialProof stats={stats} header={sections.stats} />
-        <Testimonials cards={testimonials} header={sections.testimonials} />
+        <Testimonials cards={testimonials} header={sections.testimonials} whoWeAre={whoWeAre} />
         <FAQ faqs={faqs} header={sections.faq} />
         <Blog posts={posts} header={sections.blog} />
         <LinkedInPosts posts={linkedinPosts} companyUrl={settings.linkedinUrl} />
@@ -75,6 +77,7 @@ export default async function Home() {
           ctaText={cta.ctaText}
         />
       </main>
+      <FloatingActions phone={settings.whatsappNumber || settings.contactPhone} />
     </>
   );
 }

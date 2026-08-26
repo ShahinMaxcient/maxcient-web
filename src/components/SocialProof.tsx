@@ -1,23 +1,8 @@
 "use client";
 
-import { useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
 import { RevealGroup, RevealItem } from "./RevealGroup";
 import BrandMark from "./BrandMark";
-
-function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    if (!isInView) return;
-    let start = 0;
-    const duration = 1800;
-    const step = (ts: number) => { if (!start) start = ts; const p = Math.min((ts - start) / duration, 1); setCount(Math.floor((1 - Math.pow(1 - p, 3)) * target)); if (p < 1) requestAnimationFrame(step); };
-    requestAnimationFrame(step);
-  }, [isInView, target]);
-  return <span ref={ref}>{count}{suffix}</span>;
-}
+import AnimatedCounter from "./AnimatedCounter";
 
 type StatItem = { eyebrow: string; value: number; suffix: string; label: string };
 type SectionHeaderProps = { eyebrow?: string; title?: string; body?: string };

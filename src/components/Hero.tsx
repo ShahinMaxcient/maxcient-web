@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import HeroGlobe from "./HeroGlobe";
+import GlobeOrbit from "./GlobeOrbit";
 import type { HeroSettings } from "@/lib/settings";
 import { DEFAULT_HERO } from "@/lib/settings";
 
@@ -189,6 +190,17 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
               transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             >
               <HeroGlobe />
+            </motion.div>
+            {/* Service labels riding an orbit around the sphere (lg+ only).
+                pointer-events-none so this overlay never steals the globe's
+                drag-to-spin; the pills re-enable events on themselves. */}
+            <motion.div
+              className="absolute inset-0 pointer-events-none"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <GlobeOrbit />
             </motion.div>
           </div>
         </div>

@@ -6,6 +6,7 @@ import {
     Scene, PerspectiveCamera, WebGLRenderer, SphereGeometry, MeshBasicMaterial,
     Color, Mesh, Group, InstancedMesh, Matrix4, Raycaster, Vector2,
     TubeGeometry, CatmullRomCurve3, Vector3, CanvasTexture,
+    Sprite, SpriteMaterial,
 } from "three";
 import { geoEquirectangular, geoPath } from "d3-geo";
 
@@ -64,6 +65,41 @@ function latLngToPosition(lat: number, lng: number) {
     const la = lat * (Math.PI / 180);
     const ln = lng * (Math.PI / 180);
     return { x: Math.cos(la) * Math.sin(ln), y: Math.sin(la), z: Math.cos(la) * Math.cos(ln) };
+}
+
+/**
+ * Classic teardrop map pin, drawn once to a canvas and reused as a sprite
+ * texture for every office. A sprite (rather than a mesh) keeps the pin facing
+ * the camera and standing upright wherever it sits on the sphere, which is how
+ * a map pin is expected to read — a mesh would tilt away with the surface.
+ */
+function makePinTexture(color: string): CanvasTexture {
+    const S = 128;
+    const canvas = document.createElement("canvas");
+    canvas.width = S; canvas.height = S;
+    const ctx = canvas.getContext("2d")!;
+
+    const cx = S / 2, cy = S * 0.37, r = S * 0.235, tipY = S * 0.93;
+    // Tangent angle from the tip to the head, so the shoulders meet the circle
+    // cleanly instead of showing a crease.
+    const a = Math.asin(Math.min(1, r / (tipY - cy)));
+
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, Math.PI / 2 + a, Math.PI / 2 - a + Math.PI * 2, false);
+    ctx.lineTo(cx, tipY);
+    ctx.closePath();
+    ctx.fill();
+
+    // Punch the hole that makes it read as a pin rather than a balloon.
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.beginPath();
+    ctx.arc(cx, cy, r * 0.4, 0, Math.PI * 2);
+    ctx.fill();
+
+    const tex = new CanvasTexture(canvas);
+    tex.needsUpdate = true;
+    return tex;
 }
 
 export interface Marker { lat: number; lng: number }
@@ -202,6 +238,10 @@ export default function Globe({
         }
 
         let disposed = false;
+        // Pins are faded out as they rotate to the far side — the sphere is
+        // transparent, so without this they would show through from behind.
+        const pinSprites: Sprite[] = [];
+        let pinTexture: CanvasTexture | null = null;
 
         const loadWorldData = async () => {
             try {
@@ -259,14 +299,28 @@ export default function Globe({
                 }
 
                 if (markerConfig.markers?.length && !disposed) {
-                    const g = new SphereGeometry(0.01 * markerRadiusMultiplier, 12, 12);
-                    const m = new MeshBasicMaterial({ color: new Color(markerConfig.color) });
+                    pinTexture = makePinTexture(markerConfig.color);
+                    // Height relative to the globe, so the pins keep their
+                    // proportions at any `scale`. `size` still tunes them.
+                    const pinHeight = globeRadius * 0.17 * markerRadiusMultiplier;
                     for (const mk of markerConfig.markers) {
                         if (typeof mk?.lat !== "number" || typeof mk?.lng !== "number") continue;
                         const p = latLngToPosition(mk.lat, mk.lng);
-                        const mesh = new Mesh(g, m);
-                        mesh.position.set(p.x * globeRadius * 1.02, p.y * globeRadius * 1.02, p.z * globeRadius * 1.02);
-                        globeGroup.add(mesh);
+                        const sprite = new Sprite(new SpriteMaterial({
+                            map: pinTexture,
+                            transparent: true,
+                            // Drawn over the dot field rather than z-fighting with
+                            // it; the far side is handled by the opacity fade.
+                            depthTest: false,
+                            depthWrite: false,
+                        }));
+                        // Anchor the tip (not the centre) to the coordinate.
+                        sprite.center.set(0.5, 0.05);
+                        sprite.scale.set(pinHeight, pinHeight, 1);
+                        sprite.position.set(p.x * globeRadius, p.y * globeRadius, p.z * globeRadius);
+                        sprite.renderOrder = 10;
+                        globeGroup.add(sprite);
+                        pinSprites.push(sprite);
                     }
                 }
 
@@ -278,6 +332,7 @@ export default function Globe({
             }
         };
 
+        const pinWorldPos = new Vector3();
         const rotation = { x: initialLongitudeRad, y: initialLatitudeRad };
         const targetRotation = { x: initialLongitudeRad, y: initialLatitudeRad };
         const velocity = { x: 0, y: 0 };
@@ -303,6 +358,21 @@ export default function Globe({
             rotation.y = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, rotation.y));
             globeGroup.rotation.y = rotation.x;
             globeGroup.rotation.x = rotation.y;
+
+            if (pinSprites.length > 0) {
+                globeGroup.updateMatrixWorld();
+                for (const s of pinSprites) {
+                    s.getWorldPosition(pinWorldPos);
+                    // +z faces the camera. Hold full opacity across the visible
+                    // face, then fade out through the rim.
+                    const nz = pinWorldPos.z / globeRadius;
+                    const o = Math.max(0, Math.min(1, (nz + 0.15) / 0.35));
+                    const mat = s.material as SpriteMaterial;
+                    mat.opacity = o;
+                    s.visible = o > 0.01;
+                }
+            }
+
             renderer.render(scene, camera);
             raf = requestAnimationFrame(animate);
         };
@@ -358,6 +428,8 @@ export default function Globe({
             canvas.removeEventListener("mousedown", onDown);
             canvas.removeEventListener("mousemove", onMouseMove);
             ro.disconnect();
+            for (const s of pinSprites) (s.material as SpriteMaterial).dispose();
+            pinTexture?.dispose();
             renderer.dispose();
             if (canvas.parentNode === container) container.removeChild(canvas);
         };

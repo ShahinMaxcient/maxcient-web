@@ -137,17 +137,29 @@ export default function TechnologyDetail(p: TechnologyDetailProps) {
 
         {/* Modules / products grid */}
         {p.modules.length > 0 && (
-          <section className="py-14 lg:py-16 t-bg-surface">
+          <section id="modules" className="py-14 lg:py-16 t-bg-surface">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <Reveal direction="up" className="text-center max-w-3xl mx-auto mb-10">
                 <h2 className="text-3xl sm:text-4xl font-bold t-heading">{p.modulesHeading}</h2>
                 {p.modulesIntro && <p className="mt-4 t-body leading-relaxed">{p.modulesIntro}</p>}
               </Reveal>
+              {/* Gradient-headed module cards, mirroring www.maxcient.com. The
+                  header is a CSS gradient rather than the baked-in artwork the
+                  reference uses, so the module name stays real text — crisp at
+                  any size, selectable, and translatable. */}
               <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch" stagger={0.07}>
                 {p.modules.map((m) => (
-                  <RevealItem key={m.name} className="h-full p-6 rounded-2xl border t-border t-bg-alt hover:shadow-lg transition-all">
-                    <h3 className="text-base font-bold t-heading">{m.name}</h3>
-                    <p className="mt-2.5 text-sm t-body leading-relaxed">{m.body}</p>
+                  <RevealItem
+                    key={m.name}
+                    className="mx-module h-full flex flex-col rounded-2xl overflow-hidden border t-border"
+                    style={{ background: "var(--surface)" }}
+                  >
+                    <div className="mx-module-head flex items-center justify-center text-center px-6">
+                      <h3 style={{ color: "#FFFFFF", fontWeight: 800, fontSize: "clamp(1.25rem, 2vw, 1.7rem)", lineHeight: 1.12, letterSpacing: "-0.02em", textShadow: "0 2px 14px rgba(20,16,40,0.28)" }}>
+                        {m.name}
+                      </h3>
+                    </div>
+                    <p className="p-6 text-sm t-body leading-relaxed">{m.body}</p>
                   </RevealItem>
                 ))}
               </RevealGroup>

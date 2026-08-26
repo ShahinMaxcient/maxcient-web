@@ -4,6 +4,8 @@ import { prisma } from "./prisma";
 export type SiteSettings = {
   contactEmail: string;
   contactPhone: string;
+  /** WhatsApp number for the floating chat button. Digits/“+” only, any format. */
+  whatsappNumber: string;
   linkedinUrl: string;
   footerTagline: string;
 };
@@ -11,6 +13,7 @@ export type SiteSettings = {
 export const DEFAULT_SETTINGS: SiteSettings = {
   contactEmail: "hello@maxcient.com",
   contactPhone: "+971 4 329 3710",
+  whatsappNumber: "+971 4 329 3710",
   linkedinUrl: "https://www.linkedin.com/company/maxcient",
   footerTagline:
     "Talk to us about how Maxcient can help you realize business value faster with end-to-end solutions and cloud services. Microsoft Solutions Partner, headquartered in Dubai.",
@@ -231,6 +234,28 @@ export const getCTASettings = cache(getCTASettings__uncached);
 
 /** Request-level dedupe: repeated calls in one render hit the DB once. */
 export const getAboutSettings = cache(getAboutSettings__uncached);
+
+/** Image + experience badge for the homepage "Who We Are" section. */
+export type WhoWeAre = {
+  image: string;
+  badgeValue: number;
+  badgeSuffix: string;
+  badgeLabel: string;
+};
+
+export const DEFAULT_WHO_WE_ARE: WhoWeAre = {
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/who-we-are.webp",
+  badgeValue: 500,
+  badgeSuffix: "+",
+  badgeLabel: "Person Years Experience",
+};
+
+async function getWhoWeAre__uncached(): Promise<WhoWeAre> {
+  const v = await getSettingValue<Partial<WhoWeAre>>("home.whoWeAre", DEFAULT_WHO_WE_ARE);
+  return { ...DEFAULT_WHO_WE_ARE, ...(v || {}) };
+}
+/** Request-level dedupe: repeated calls in one render hit the DB once. */
+export const getWhoWeAre = cache(getWhoWeAre__uncached);
 
 async function getLinkedinPosts__uncached(): Promise<string[]> {
   const v = await getSettingValue<{ urls: string[] }>("home.linkedinPosts", { urls: [] });

@@ -284,3 +284,108 @@ h1, h2, h3, h4, h5, h6, .ed-display {
 /* Technology cards (industry pages): lavender icon badge that fills on hover. */
 .tech-badge { background: var(--surface-alt); color: var(--primary); }
 .group:hover .tech-badge { background: var(--primary); color: #fff; box-shadow: 0 10px 22px -10px rgba(124, 58, 237, 0.55); }
+
+/* Technology-page "Products & Modules" cards, matching www.maxcient.com:
+   a blue→violet gradient panel carrying the module name, body copy beneath. */
+.mx-module { transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease; }
+.mx-module:hover { transform: translateY(-5px); box-shadow: 0 24px 48px -26px rgba(20,16,40,0.42); }
+
+.mx-module-head {
+  position: relative;
+  min-height: 168px;
+  padding-block: 28px;
+  overflow: hidden;
+  background: linear-gradient(118deg, #1E48D8 0%, #2F5BF5 34%, #6E4BEA 68%, #B98CF6 100%);
+}
+/* Faint diagonal rays, as on the reference artwork. */
+.mx-module-head::after {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: repeating-linear-gradient(
+    102deg,
+    rgba(255, 255, 255, 0.075) 0px,
+    rgba(255, 255, 255, 0.075) 26px,
+    rgba(255, 255, 255, 0) 26px,
+    rgba(255, 255, 255, 0) 74px
+  );
+  pointer-events: none;
+}
+.mx-module-head > * { position: relative; z-index: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mx-module { transition: none; }
+  .mx-module:hover { transform: none; }
+}
+
+/* "Who We Are" value pair: stacked with a rule between on phones, side by side
+   with a vertical rule from `sm` up. Divider direction changes with the column
+   count, which an inline style can't express. */
+.wwa-grid > * + * { border-top: 1px solid var(--border); }
+@media (min-width: 640px) {
+  .wwa-grid > * + * { border-top: 0; border-left: 1px solid var(--border); }
+}
+
+/* Floating action buttons (WhatsApp / back-to-top). */
+.mx-fab { transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease; }
+.mx-fab:hover { transform: translateY(-2px); }
+
+/* WhatsApp button: a soft green pulse ring plus a periodic glossy sweep, the
+   same treatment as the loader mark. Both live on pseudo-elements so the
+   button itself (and its hover lift) stays untouched. */
+.mx-wa { position: relative; overflow: hidden; isolation: isolate; }
+.mx-wa::before {
+  content: "";
+  position: absolute;
+  top: -60%; bottom: -60%;
+  left: -140%;
+  width: 55%;
+  transform: rotate(22deg);
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
+  animation: mx-wa-gloss 3.4s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes mx-wa-gloss {
+  0%       { left: -140%; }
+  38%, 100% { left: 190%; }
+}
+/* Pulse ring — rendered by a sibling-free ::after ring that grows and fades.
+   overflow:hidden clips ::before but would clip the ring too, so the ring
+   uses box-shadow spread instead of scale outside the bounds. */
+.mx-wa::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  animation: mx-wa-pulse 2.6s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes mx-wa-pulse {
+  0%   { box-shadow: inset 0 0 0 0 rgba(255,255,255,0.35); }
+  60%  { box-shadow: inset 0 0 0 6px rgba(255,255,255,0); }
+  100% { box-shadow: inset 0 0 0 6px rgba(255,255,255,0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mx-fab { transition: none; }
+  .mx-fab:hover { transform: none; }
+  .mx-wa::before, .mx-wa::after { animation: none; display: none; }
+}
+
+/* Hero globe orbit pills. transform/opacity are driven per-frame from JS, so
+   only the colour properties may transition — animating transform here would
+   fight the rAF loop and smear the orbit. */
+.mx-orbit-pill {
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+.mx-orbit-pill:hover {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: #fff !important;
+  box-shadow: 0 14px 30px -14px rgba(124, 58, 237, 0.75) !important;
+}
+.mx-orbit-pill:hover > span[aria-hidden="true"] { background: #fff !important; }
+
+
+
+
+

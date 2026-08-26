@@ -98,7 +98,9 @@ export default function InteractiveGrid({
     if (!host) return;
     const measure = () => {
       const w = host.clientWidth || 1;
-      setCols(w < 290 ? 2 : w < 440 ? 3 : w < 620 ? 4 : w < 820 ? 5 : columns);
+      // Phones get two logos per row: at three the marks were shrinking below
+      // the point where a wordmark stays legible.
+      setCols(w < 440 ? 2 : w < 560 ? 3 : w < 700 ? 4 : w < 820 ? 5 : columns);
     };
     measure();
     const ro = new ResizeObserver(measure);
