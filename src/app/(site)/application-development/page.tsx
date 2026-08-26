@@ -7,6 +7,7 @@ export default function ApplicationDevelopment() {
       slug="application-development"
       title="Application Development"
       subtitle="Bespoke application solutions tailored to your unique business needs."
+      description="We design and build custom applications around the way you actually work — from Power Platform low-code apps to full-stack web and mobile solutions. Maxcient engineers software that fits your processes instead of forcing you to adapt, integrates cleanly with Dynamics 365, and grows into a genuine strategic asset."
       heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-application-development.webp"
       guidance={[
         {

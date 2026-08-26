@@ -104,6 +104,7 @@ export default function ERPAndCRM() {
           slug="erp-and-crm"
           title="ERP and CRM"
           subtitle="Setting the stage for your exponential growth."
+          description="We bring your customer relationships and core operations onto one connected Microsoft Dynamics 365 platform, with sales, service, finance and supply chain sharing a single source of truth. From first implementation to deep customization, Maxcient helps UAE and GCC teams replace disconnected systems with unified CRM and ERP that scales as you grow."
           image={`${IMG}/hero-erp-crm.webp`}
         />
 

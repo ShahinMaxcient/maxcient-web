@@ -8,6 +8,8 @@ interface PageHeroProps {
   title: string;
   subtitle: string;
   image: string;
+  /** Optional 3–5 line supporting paragraph shown beneath the tagline. */
+  description?: string;
 }
 
 /**
@@ -15,7 +17,7 @@ interface PageHeroProps {
  * The image spans the full viewport width behind the copy, matching the
  * cinematic treatment of the homepage and flagship product heroes.
  */
-export default function PageHeroView({ title, subtitle, image }: PageHeroProps) {
+export default function PageHeroView({ title, subtitle, image, description }: PageHeroProps) {
   return (
     <section className="relative w-full overflow-hidden" style={{ minHeight: "100svh", background: "#0a0a12" }}>
       <Image src={image} alt={title} fill priority className="object-cover" sizes="100vw" />
@@ -65,10 +67,22 @@ export default function PageHeroView({ title, subtitle, image }: PageHeroProps) 
             {subtitle}
           </motion.p>
 
+          {description && (
+            <motion.p
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.28 }}
+              className="mt-5 leading-relaxed"
+              style={{ fontSize: "0.95rem", color: "rgba(255,255,255,0.74)", maxWidth: "600px", textShadow: "0 1px 12px rgba(0,0,0,0.55)" }}
+            >
+              {description}
+            </motion.p>
+          )}
+
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            transition={{ duration: 0.7, delay: 0.36 }}
             className="mt-10"
           >
             <Link

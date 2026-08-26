@@ -80,6 +80,7 @@ export default function SmartTeams() {
         <PageHero slug="dedicated-development-team"
           title="Smart Teams"
           subtitle="Building Specialized Teams for Your Unique Goals."
+          description="We extend your engineering capacity with dedicated, specialist teams that plug straight into your stack, tools and delivery rhythm. Whether you need a full offshore development centre, targeted team augmentation or DevOps expertise, Maxcient assembles the right people and takes complete responsibility for delivery."
           image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1522071820081-009f0129c71c.webp"
         />
 

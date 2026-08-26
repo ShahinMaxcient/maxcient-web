@@ -17,6 +17,8 @@ export type ServiceDetailProps = {
   slug: string;
   title: string;
   subtitle: string;
+  /** Optional 3–5 line supporting paragraph shown in the hero, beneath the tagline. */
+  description?: string;
   heroImage: string;
   guidance: Guidance[];
   /** Small intro shown above the guidance rows (only when guidance has images). */
@@ -74,7 +76,7 @@ export default function ServiceDetail(p: ServiceDetailProps) {
   return (
     <>
       <main>
-        <PageHero slug={p.slug} title={p.title} subtitle={p.subtitle} image={p.heroImage} />
+        <PageHero slug={p.slug} title={p.title} subtitle={p.subtitle} description={p.description} image={p.heroImage} />
 
         {/* How we help */}
         {guidanceHasImages ? (

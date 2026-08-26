@@ -7,6 +7,7 @@ export default function ApplicationManagement() {
       slug="application-management"
       title="Application Management"
       subtitle="Ensuring Optimal Performance & Continuous Improvement."
+      description="We keep your business-critical applications fast, secure and reliable long after go-live. Maxcient provides proactive monitoring, support, updates and performance tuning — resolving issues before they reach your users and evolving your applications continuously as your needs change."
       heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-application-management.webp"
       guidance={[
         {

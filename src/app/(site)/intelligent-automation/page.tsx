@@ -7,6 +7,7 @@ export default function IntelligentAutomation() {
       slug="intelligent-automation"
       title="Intelligent Automation"
       subtitle="Revolutionizing Business with Smart Automation."
+      description="We combine robotic process automation, AI and the Microsoft Power Platform to lift manual, repetitive work off your team. Maxcient maps your processes, automates the ones that drain time and cause errors, and connects them across Dynamics 365 — so your people focus on decisions while the workflows run themselves."
       heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-intelligent-automation.webp"
       guidance={[
         {

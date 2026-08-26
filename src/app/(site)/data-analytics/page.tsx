@@ -7,6 +7,7 @@ export default function DataAnalytics() {
       slug="data-analytics"
       title="Data Analytics"
       subtitle="Transforming Data into Business Intelligence."
+      description="We turn scattered operational data into clear, decision-ready insight with Microsoft Power BI and the Azure data stack. Maxcient builds the dashboards, models and predictive analytics that surface what matters — giving leaders across the UAE and GCC a live, trusted view of performance to act on with confidence."
       heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-data-analytics.webp"
       guidance={[
         {

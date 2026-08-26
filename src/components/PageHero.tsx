@@ -6,11 +6,13 @@ interface PageHeroProps {
   title: string;
   subtitle: string;
   image: string;
+  /** Optional 3–5 line supporting paragraph shown beneath the tagline. */
+  description?: string;
   /** When set, admin overrides for this page slug replace the defaults below. */
   slug?: string;
 }
 
-export default async function PageHero({ title, subtitle, image, slug }: PageHeroProps) {
+export default async function PageHero({ title, subtitle, image, description, slug }: PageHeroProps) {
   if (slug && (await isPageHidden(slug))) notFound();
   const override = slug ? await getPageOverride(slug) : null;
   return (
@@ -18,6 +20,7 @@ export default async function PageHero({ title, subtitle, image, slug }: PageHer
       title={override?.title || title}
       subtitle={override?.subtitle || subtitle}
       image={override?.heroImage || image}
+      description={override?.intro || description}
     />
   );
 }
