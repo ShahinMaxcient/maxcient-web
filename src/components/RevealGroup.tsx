@@ -18,7 +18,7 @@ export function RevealGroup({
   children,
   className = "",
   style,
-  stagger = 0.07,
+  stagger = 0.09,
   delay = 0,
 }: {
   children: ReactNode;
@@ -60,8 +60,8 @@ export function RevealItem({
   const item: Variants = reduce
     ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.4 } } }
     : {
-        hidden: { opacity: 0, y: 28, scale: 0.98 },
-        show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.65, ease: EASE } },
+        hidden: { opacity: 0, y: 44, scale: 0.96 },
+        show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.7, ease: EASE } },
       };
   return (
     <motion.div className={className} style={style} variants={item}>

@@ -1,11 +1,15 @@
 // Each technology's brand colour, for the colourful home "Technologies" grid.
+// The AI check runs before the Azure check so "Azure AI" gets the AI colour
+// while plain "Microsoft Azure" stays cloud-blue.
 export function techBrandColor(name: string): string {
   const n = name.toLowerCase();
   if (n.includes("power bi")) return "#F2C811";
   if (n.includes("power platform") || n.includes("power apps") || n.includes("power automate")) return "#742774";
   if (n.includes("dynamics")) return "#0B53CE";
+  if (n.includes("dataverse")) return "#6366F1";
+  if (n.includes("copilot")) return "#2563EB";
+  if (n.includes("azure ai") || n.includes("openai") || n.includes("gpt") || n.includes("ai builder") || n.includes("cognitive") || /\bai\b/.test(n)) return "#14B8A6";
   if (n.includes("azure") || n.includes("cloud")) return "#0089D6";
-  if (n.includes("openai") || n.includes("gpt") || n.includes("copilot") || n.includes("ai builder") || /\bai\b/.test(n)) return "#10A37F";
   if (n.includes("iot") || n.includes("internet of things")) return "#16A34A";
   if (n.includes("automation") || n.includes("rpa")) return "#0EA5E9";
   return "#7c3aed";
@@ -22,10 +26,14 @@ export default function TechIcon({ name, className = "w-6 h-6" }: { name: string
     return <svg {...p}><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" /></svg>;
   if (n.includes("dynamics"))
     return <svg {...p}><rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" /><rect x="3" y="14" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" /></svg>;
+  if (n.includes("dataverse"))
+    return <svg {...p}><ellipse cx="12" cy="5" rx="8" ry="3" /><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5" /><path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" /></svg>;
+  if (n.includes("copilot"))
+    return <svg {...p}><ellipse cx="12" cy="6.6" rx="2.5" ry="4.3" /><ellipse cx="12" cy="17.4" rx="2.5" ry="4.3" /><ellipse cx="6.6" cy="12" rx="4.3" ry="2.5" /><ellipse cx="17.4" cy="12" rx="4.3" ry="2.5" /><circle cx="12" cy="12" r="1.5" /></svg>;
+  if (n.includes("azure ai") || n.includes("openai") || n.includes("gpt") || n.includes("ai builder") || n.includes("cognitive") || /\bai\b/.test(n))
+    return <svg {...p}><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15l-1.9-4.1L5.5 9l4.6-1.4L12 3z" /><path d="M18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9L18 15z" /></svg>;
   if (n.includes("azure") || n.includes("cloud"))
     return <svg {...p}><path d="M17.5 19a4.5 4.5 0 0 0 .5-8.97A6 6 0 0 0 6.2 9.2 4 4 0 0 0 7 17h10.5z" /></svg>;
-  if (n.includes("openai") || n.includes("gpt") || n.includes("copilot") || n.includes("ai builder") || /\bai\b/.test(n))
-    return <svg {...p}><path d="M12 3l1.9 4.6L18.5 9l-4.6 1.9L12 15l-1.9-4.1L5.5 9l4.6-1.4L12 3z" /><path d="M18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9L18 15z" /></svg>;
   if (n.includes("iot") || n.includes("internet of things"))
     return <svg {...p}><rect x="8" y="8" width="8" height="8" rx="1.5" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1" /></svg>;
   if (n.includes("automation") || n.includes("rpa"))

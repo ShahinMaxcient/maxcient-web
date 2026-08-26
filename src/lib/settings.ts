@@ -231,3 +231,10 @@ export const getCTASettings = cache(getCTASettings__uncached);
 
 /** Request-level dedupe: repeated calls in one render hit the DB once. */
 export const getAboutSettings = cache(getAboutSettings__uncached);
+
+async function getLinkedinPosts__uncached(): Promise<string[]> {
+  const v = await getSettingValue<{ urls: string[] }>("home.linkedinPosts", { urls: [] });
+  return Array.isArray(v?.urls) ? v.urls.filter(Boolean) : [];
+}
+/** Request-level dedupe: repeated calls in one render hit the DB once. */
+export const getLinkedinPosts = cache(getLinkedinPosts__uncached);

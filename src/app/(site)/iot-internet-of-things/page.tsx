@@ -10,6 +10,7 @@ export default function IoT() {
       heroImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1518770660439-4636190af475.webp"
       whatIsHeading="What is IoT?"
       whatIsBody="IoT, or Internet of Things, refers to the interconnected nature of devices and systems that communicate with each other over the internet. Devices, ranging from everyday household items to sophisticated industrial instruments, are embedded with sensors and software, enabling them to collect and exchange data. This integration results in improved efficiency, accuracy, and economic benefit, while providing a platform for innovative applications and services."
+      whatIsImage="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/iot-whatis.webp"
       callouts={[
         { title: "Enhanced Efficiency", body: "IoT automates tasks and processes, leading to significant time and cost savings. Intelligent devices can optimize resource use and reduce wastage." },
         { title: "Real-time Data Access", body: "IoT devices provide real-time data insights, facilitating timely decision-making and proactive interventions, elevating the user experience." },
@@ -20,6 +21,11 @@ export default function IoT() {
         { title: "IoT Consultation", body: "Our experts assess your business needs, recommending tailored IoT solutions that align with your goals, ensuring optimal performance.", bullets: ["Make informed decisions with expert guidance.", "Achieve faster ROI with strategic implementation.", "Future-proof your business with IoT."] },
         { title: "Device Integration & Management", body: "We seamlessly integrate IoT devices into your existing infrastructure and offer comprehensive device management, maintaining a smooth operation.", bullets: ["Simplify complex integration processes.", "Enjoy uninterrupted business operations.", "Maximize device efficiency and lifespan."] },
         { title: "Data Analytics & Insight Generation", body: "Harness the power of IoT data with our advanced analytics services. We translate raw data into actionable insights for informed decision-making.", bullets: ["Turn data into your competitive advantage.", "Drive innovations with data-backed insights.", "Optimize operations with real-time analytics."] },
+      ]}
+      serviceImages={[
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/iot-svc-1.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/iot-svc-2.webp",
+        "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/iot-svc-3.webp",
       ]}
       modulesHeading="IoT Products & Solutions"
       modulesIntro="From sensors and wearables to industrial and fleet systems, we build connected solutions tailored to your environment."
