@@ -72,7 +72,7 @@ export default async function RealtyAiSales() {
           image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-realtyai-sales-hero.webp"
         />
         <PageFAQ slug="realtyai-sales" />
-        <ProductExtras />
+        <ProductExtras slug="realtyai-sales" />
       </main>
     </>
   );

@@ -53,7 +53,7 @@ export default async function MaxSphereOne() {
           image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-maxsphere-one.webp"
         />
         <PageFAQ slug="maxsphere-one" />
-        <ProductExtras />
+        <ProductExtras slug="maxsphere-one" />
       </main>
     </>
   );

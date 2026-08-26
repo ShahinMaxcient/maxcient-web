@@ -19,7 +19,7 @@ export default function EInvoiceConnector() {
           image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-e-invoice-connector.webp"
         />
         <ComingSoon product="the E-Invoice Connector" />
-        <ProductExtras />
+        <ProductExtras slug="e-invoice-connector" />
       </main>
     </>
   );

@@ -21,7 +21,7 @@ export default function RealtyAiFm() {
           demoProduct="RealtyAI FM"
         />
         <ComingSoon product="RealtyAI FM" />
-        <ProductExtras />
+        <ProductExtras slug="realtyai-fm" />
       </main>
     </>
   );

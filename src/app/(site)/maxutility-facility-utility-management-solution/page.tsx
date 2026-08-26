@@ -75,7 +75,7 @@ export default async function MaxUtility() {
           image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/maxutility-cta-dam.webp"
         />
         <PageFAQ slug="maxutility-facility-utility-management-solution" />
-        <ProductExtras />
+        <ProductExtras slug="maxutility-facility-utility-management-solution" />
       </main>
     </>
   );

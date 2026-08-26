@@ -257,6 +257,30 @@ async function getWhoWeAre__uncached(): Promise<WhoWeAre> {
 /** Request-level dedupe: repeated calls in one render hit the DB once. */
 export const getWhoWeAre = cache(getWhoWeAre__uncached);
 
+/**
+ * Which client logos appear on which product page, keyed by page slug.
+ *
+ * Empty by default and empty for any slug not listed: pairing a named company
+ * with a product asserts a real business relationship, so it is configured
+ * rather than guessed. Editable via the `product.clients` setting.
+ */
+export type ProductClientMap = Record<string, string[]>;
+
+export const DEFAULT_PRODUCT_CLIENTS: ProductClientMap = {};
+
+async function getProductClientsMap__uncached(): Promise<ProductClientMap> {
+  const v = await getSettingValue<ProductClientMap>("product.clients", DEFAULT_PRODUCT_CLIENTS);
+  return v && typeof v === "object" ? v : DEFAULT_PRODUCT_CLIENTS;
+}
+/** Request-level dedupe: repeated calls in one render hit the DB once. */
+export const getProductClientsMap = cache(getProductClientsMap__uncached);
+
+export async function getProductClients(slug: string): Promise<string[]> {
+  const map = await getProductClientsMap();
+  const list = map[slug];
+  return Array.isArray(list) ? list.filter((s) => typeof s === "string" && s.trim()) : [];
+}
+
 async function getLinkedinPosts__uncached(): Promise<string[]> {
   const v = await getSettingValue<{ urls: string[] }>("home.linkedinPosts", { urls: [] });
   return Array.isArray(v?.urls) ? v.urls.filter(Boolean) : [];

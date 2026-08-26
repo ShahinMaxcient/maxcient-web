@@ -42,7 +42,7 @@ export default async function MaxPayroll() {
           image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-maxpayroll-hero.webp"
         />
         <PageFAQ slug="maxpayroll" />
-        <ProductExtras />
+        <ProductExtras slug="maxpayroll" />
       </main>
     </>
   );

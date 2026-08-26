@@ -2,6 +2,7 @@ import PageHero from "@/components/PageHero";
 import PageFeatures from "@/components/PageFeatures";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
+import ProductClients from "@/components/ProductClients";
 
 export default function SmartFees() {
   return (
@@ -11,6 +12,7 @@ export default function SmartFees() {
           demoProduct="SmartFees"
         />
         <PageFeatures slug="smartfees-school-admin-solution" />
+        <ProductClients slug="smartfees-school-admin-solution" />
         <CTASection title="Streamline School Finances" subtitle="Discover how SmartFees can transform your school's financial operations." />
         <PageFAQ slug="smartfees-school-admin-solution" />
       </main>

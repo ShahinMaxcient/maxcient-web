@@ -66,7 +66,7 @@ export default async function RealtyAiLeasing() {
           image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/products-realtyai-leasing-hero.webp"
         />
         <PageFAQ slug="realtyai-leasing" />
-        <ProductExtras />
+        <ProductExtras slug="realtyai-leasing" />
       </main>
     </>
   );

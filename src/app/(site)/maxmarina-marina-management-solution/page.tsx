@@ -75,7 +75,7 @@ export default async function MaxMarina() {
           image="https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/maxmarina-cta-voyage.webp"
         />
         <PageFAQ slug="maxmarina-marina-management-solution" />
-        <ProductExtras />
+        <ProductExtras slug="maxmarina-marina-management-solution" />
       </main>
     </>
   );

@@ -2,6 +2,7 @@ import PageHero from "@/components/PageHero";
 import PageFeatures from "@/components/PageFeatures";
 import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
+import ProductClients from "@/components/ProductClients";
 
 export default function MaxPayroll() {
   return (
@@ -11,6 +12,7 @@ export default function MaxPayroll() {
           demoProduct="MaxPayroll"
         />
         <PageFeatures slug="maxpayroll-hr-management-solution-2" />
+        <ProductClients slug="maxpayroll-hr-management-solution-2" />
         <CTASection title="Transform Your HR Operations" subtitle="See how MaxPayroll can streamline your workforce management." />
         <PageFAQ slug="maxpayroll-hr-management-solution-2" />
       </main>

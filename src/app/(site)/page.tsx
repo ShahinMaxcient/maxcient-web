@@ -10,7 +10,6 @@ import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Blog from "@/components/Blog";
 import LinkedInPosts from "@/components/LinkedInPosts";
-import FloatingActions from "@/components/FloatingActions";
 import CTASection from "@/components/CTASection";
 import { getPublishedPosts } from "@/lib/posts";
 import { getSiteSettings, getHeroSettings, getSectionHeaders, getCTASettings, getLinkedinPosts, getWhoWeAre } from "@/lib/settings";
@@ -77,7 +76,6 @@ export default async function Home() {
           ctaText={cta.ctaText}
         />
       </main>
-      <FloatingActions phone={settings.whatsappNumber || settings.contactPhone} />
     </>
   );
 }
