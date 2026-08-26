@@ -285,6 +285,24 @@ h1, h2, h3, h4, h5, h6, .ed-display {
 .tech-badge { background: var(--surface-alt); color: var(--primary); }
 .group:hover .tech-badge { background: var(--primary); color: #fff; box-shadow: 0 10px 22px -10px rgba(124, 58, 237, 0.55); }
 
+/* Hero light-trails: a bright packet sweeping along each curve. The paths
+   carry pathLength="1", so one keyframe drives curves of any real length. */
+@keyframes hc-travel {
+  from { stroke-dashoffset: 1; }
+  to   { stroke-dashoffset: 0; }
+}
+.hc-spark {
+  animation-name: hc-travel;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: stroke-dashoffset;
+}
+/* A light that never stops travelling is exactly what this setting asks us to
+   drop — the trails stay, only the motion goes. */
+@media (prefers-reduced-motion: reduce) {
+  .hc-sparks { display: none; }
+}
+
 /* Product-hero "request a demo" glass card. */
 .mx-demo-card input::placeholder,
 .mx-demo-card textarea::placeholder { color: #8B8698; }
@@ -468,6 +486,7 @@ h1, h2, h3, h4, h5, h6, .ed-display {
   box-shadow: 0 14px 30px -14px rgba(124, 58, 237, 0.75) !important;
 }
 .mx-orbit-pill:hover > span[aria-hidden="true"] { background: #fff !important; }
+
 
 
 

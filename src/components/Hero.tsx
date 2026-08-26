@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import HeroGlobe from "./HeroGlobe";
 import GlobeOrbit from "./GlobeOrbit";
+import HeroCurves from "./HeroCurves";
 import type { HeroSettings } from "@/lib/settings";
 import { DEFAULT_HERO } from "@/lib/settings";
 
@@ -51,29 +52,22 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
           its dark-text branch and the black globe graticule stay readable;
           the dark shade goes underneath instead (see the plinth below). */}
       <div className="relative">
-        {/* Light aurora-mesh backdrop (one image). Deliberately abstract and
-            pale, not a photo: it keeps the right-centre light so the globe's
-            black graticule stays readable, and stays light enough for the
-            dark navbar links and the intro-splash seam. */}
+        {/* Shaded backdrop — a soft brand-lavender wash, not a photograph. The
+            colour is weighted to the right so the copy column stays near paper
+            (dark headline keeps its contrast) and the globe sits on a pale
+            ground: a real skyline here turned its dots to noise. Baked flat
+            into the file, so it costs one 15KB paint. */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage: "url('/hero-bg.webp')",
+            backgroundImage: "url('/hero-shade.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         />
-        {/* Faint grid, so the empty space reads as designed rather than blank */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(124,58,237,0.055) 1px, transparent 1px), linear-gradient(to bottom, rgba(124,58,237,0.055) 1px, transparent 1px)",
-            backgroundSize: "72px 72px",
-            maskImage: "radial-gradient(ellipse 82% 64% at 50% 36%, #000 30%, transparent 78%)",
-            WebkitMaskImage: "radial-gradient(ellipse 82% 64% at 50% 36%, #000 30%, transparent 78%)",
-          }}
-        />
+
+        {/* Light trails sweeping edge to edge, behind the globe */}
+        <HeroCurves />
 
       <div
         className="relative max-w-[1400px] mx-auto px-5 sm:px-8 flex flex-col justify-center"
