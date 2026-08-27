@@ -46,7 +46,7 @@ export default function MaxSphereHero({ title, subtitle, demoProduct }: Props = 
           <motion.h1
             initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
             className="ed-display"
-            style={{ fontSize: "clamp(2.4rem, 5.2vw, 4.4rem)", lineHeight: 1.02, fontFamily: "var(--font-geist-sans), system-ui, sans-serif", color: "#fff" }}
+            style={{ fontSize: "clamp(2.4rem, 5.2vw, 4.4rem)", lineHeight: 1.02, fontFamily: "var(--font-display), var(--font-geist-sans), system-ui, sans-serif", color: "#fff" }}
           >
             {customTitle ?? (<>MaxSphere <span style={{ color: GOLD }}>One</span></>)}
           </motion.h1>

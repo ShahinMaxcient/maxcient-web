@@ -92,11 +92,11 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
             <h1
               className="ed-display"
               style={{
-                fontSize: "clamp(2.2rem, 4.4vw, 3.7rem)",
+                fontSize: "clamp(2rem, 7vw, 3.7rem)",
                 lineHeight: "1.06em",
                 fontWeight: 800,
                 letterSpacing: "-0.03em",
-                fontFamily: "var(--font-geist-sans), system-ui, sans-serif",
+                fontFamily: "var(--font-display), var(--font-geist-sans), system-ui, sans-serif",
                 color: "#14101F",
                 margin: 0,
               }}
@@ -241,7 +241,7 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
           /* The marquee below is rotate(-1.5deg) with margin -12px, so one of
              its top corners sits ~19px lower than its layout box. The extra
              bottom padding keeps ink — not paper — behind that wedge. */
-          style={{ paddingTop: 30, paddingBottom: 64 }}
+          style={{ paddingTop: "clamp(22px, 4vw, 30px)", paddingBottom: "clamp(34px, 7vw, 64px)" }}
         >
           <div className="grid grid-cols-2 sm:grid-cols-4" style={{ maxWidth: "880px" }}>
             {data.stats.map((s) => (

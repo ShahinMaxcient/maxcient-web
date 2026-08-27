@@ -178,7 +178,7 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
             : "0 14px 34px -18px rgba(20,16,40,0.28)",
         }}
       >
-        <div className="flex items-center justify-between h-[62px]">
+        <div className="flex items-center justify-between h-[52px] sm:h-[62px]">
           {/* Logo */}
           <Link href="/" className="flex items-center" aria-label="Maxcient home">
             {overHero ? (
@@ -188,7 +188,7 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
                 width={206}
                 height={28}
                 priority
-                className="h-[22px] sm:h-[23px] w-auto"
+                className="h-[19px] sm:h-[23px] w-auto"
               />
             ) : (
               <>
@@ -198,7 +198,7 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
                   width={206}
                   height={28}
                   priority
-                  className="nav-logo-light h-[22px] sm:h-[23px] w-auto"
+                  className="nav-logo-light h-[19px] sm:h-[23px] w-auto"
                 />
                 <Image
                   src="/maxcient-logo-white.png"
@@ -206,7 +206,7 @@ export default function Navbar({ navItems = DEFAULT_NAV }: { navItems?: NavItem[
                   width={206}
                   height={28}
                   priority
-                  className="nav-logo-dark h-[22px] sm:h-[23px] w-auto"
+                  className="nav-logo-dark h-[19px] sm:h-[23px] w-auto"
                 />
               </>
             )}

@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
-import { Inter, Poppins, JetBrains_Mono } from "next/font/google";
+import { Inter, Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import ScrollToTop from "@/components/ScrollToTop";
 import IntroOverlay from "@/components/IntroOverlay";
 
-// Matches www.maxcient.com typography: Poppins for headings, Inter for body.
-// Inter is aliased to --font-geist-sans so existing components pick it up;
-// Poppins is exposed as --font-poppins and applied to headings in globals.css.
+// Typography: Bricolage Grotesque for headings, Inter for body. Bricolage is a
+// characterful grotesque — it gives the display type a designed, non-generic
+// voice, away from the Poppins/Inter pairing every template ships with. Inter
+// is aliased to --font-geist-sans so existing components pick it up; Bricolage
+// is exposed as --font-display and applied to headings in globals.css.
 const inter = Inter({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-display",
   subsets: ["latin"],
   weight: ["500", "600", "700", "800"],
 });
@@ -52,7 +54,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-theme="light"
-      className={`${inter.variable} ${poppins.variable} ${jetbrainsMono.variable} antialiased`}
+      className={`${inter.variable} ${bricolage.variable} ${jetbrainsMono.variable} antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-screen flex flex-col">

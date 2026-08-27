@@ -63,7 +63,7 @@ export default function RealtyAiSalesHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="ed-display"
-            style={{ fontSize: "clamp(2.3rem, 5vw, 4.2rem)", lineHeight: 1.03, fontFamily: "var(--font-geist-sans), system-ui, sans-serif", color: "#fff", filter: "drop-shadow(0 3px 16px rgba(0,0,0,0.5))" }}
+            style={{ fontSize: "clamp(2.3rem, 5vw, 4.2rem)", lineHeight: 1.03, fontFamily: "var(--font-display), var(--font-geist-sans), system-ui, sans-serif", color: "#fff", filter: "drop-shadow(0 3px 16px rgba(0,0,0,0.5))" }}
           >
             {title === "RealtyAI Sales" ? (
               <>

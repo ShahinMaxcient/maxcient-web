@@ -42,10 +42,10 @@ export default function SectionHead({
             text={title}
             delay={0.08}
             className="ed-display"
-            style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.9rem)", color: dark ? "var(--background)" : "var(--text-primary)" }}
+            style={{ fontSize: "clamp(1.55rem, 5.5vw, 2.9rem)", color: dark ? "var(--background)" : "var(--text-primary)" }}
           />
         ) : (
-          <h2 className="ed-display" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.9rem)", color: dark ? "var(--background)" : "var(--text-primary)" }}>
+          <h2 className="ed-display" style={{ fontSize: "clamp(1.55rem, 5.5vw, 2.9rem)", color: dark ? "var(--background)" : "var(--text-primary)" }}>
             {title}
           </h2>
         )}

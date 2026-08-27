@@ -191,10 +191,10 @@ html { scroll-padding-top: 88px; }
   color: var(--text-muted);
 }
 
-/* Match www.maxcient.com: Poppins for headings (body stays Inter).
+/* Bricolage Grotesque for headings (body stays Inter).
    The hero headline pins its own font inline so it stays unchanged. */
 h1, h2, h3, h4, h5, h6, .ed-display {
-  font-family: var(--font-poppins), var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
 }
 
 .ed-display {

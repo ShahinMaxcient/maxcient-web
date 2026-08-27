@@ -56,7 +56,7 @@ export default function MaxMarinaHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="ed-display"
-            style={{ fontSize: "clamp(2.4rem, 5.4vw, 4.4rem)", lineHeight: 1.02, fontFamily: "var(--font-geist-sans), system-ui, sans-serif", filter: "drop-shadow(0 3px 16px rgba(0,0,0,0.55))" }}
+            style={{ fontSize: "clamp(2.4rem, 5.4vw, 4.4rem)", lineHeight: 1.02, fontFamily: "var(--font-display), var(--font-geist-sans), system-ui, sans-serif", filter: "drop-shadow(0 3px 16px rgba(0,0,0,0.55))" }}
           >
             {title === "MaxMarina" ? (
               <span

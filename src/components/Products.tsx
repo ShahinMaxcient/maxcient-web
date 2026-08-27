@@ -70,7 +70,7 @@ export default function Products({ products, header }: { products: ProductItem[]
             card peeks). sm+: responsive grid. The reveal is container-driven
             (RevealGroup) so carousel cards off-screen sideways still reveal —
             see Services.tsx. */}
-        <RevealGroup className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto overflow-y-hidden sm:overflow-visible snap-x snap-mandatory -mx-5 px-5 sm:mx-0 sm:px-0 pb-1 sm:pb-0 [scrollbar-width:none]">
+        <RevealGroup className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto overflow-y-hidden sm:overflow-visible snap-x snap-mandatory scroll-pl-5 sm:scroll-pl-0 -mx-5 px-5 sm:mx-0 sm:px-0 pb-1 sm:pb-0 [scrollbar-width:none]">
           {products.map((p) => (
             <RevealItem key={p.title} className="snap-start shrink-0 basis-[85%] sm:basis-auto sm:shrink">
               <ProductCard p={p} />

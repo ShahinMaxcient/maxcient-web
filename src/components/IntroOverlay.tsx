@@ -149,7 +149,7 @@ export default function IntroOverlay() {
         </p>
         <h1
           className="relative"
-          style={{ fontFamily: "var(--font-poppins), var(--font-geist-sans), sans-serif", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.02, color: "#14101F", fontSize: "clamp(1.6rem, 7vw, 3.9rem)" }}
+          style={{ fontFamily: "var(--font-display), var(--font-geist-sans), sans-serif", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.02, color: "#14101F", fontSize: "clamp(1.6rem, 7vw, 3.9rem)" }}
         >
           Maxcient Technologies<span style={{ color: "#7c3aed" }}>.</span>
         </h1>

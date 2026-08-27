@@ -52,7 +52,7 @@ export default function Services({ services, header }: { services: ServiceCard[]
             The reveal is driven by RevealGroup on the container rather than a
             per-card observer — a per-card observer never fires for cards
             scrolled out of view sideways, leaving them blank when swiped to. */}
-        <RevealGroup className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto overflow-y-hidden sm:overflow-visible snap-x snap-mandatory -mx-5 px-5 sm:mx-0 sm:px-0 pb-1 sm:pb-0 [scrollbar-width:none]">
+        <RevealGroup className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto overflow-y-hidden sm:overflow-visible snap-x snap-mandatory scroll-pl-5 sm:scroll-pl-0 -mx-5 px-5 sm:mx-0 sm:px-0 pb-1 sm:pb-0 [scrollbar-width:none]">
           {services.map((s) => {
             const ico = pickIcon(s.title);
             return (
