@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function ComingSoon({ product }: { product: string }) {
   return (
-    <section className="py-24 lg:py-32" style={{ background: "var(--background)" }}>
+    <section className="py-16 lg:py-32" style={{ background: "var(--background)" }}>
       <div className="max-w-[720px] mx-auto px-5 sm:px-8 text-center">
         <p style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--primary)" }}>
           // Coming Soon

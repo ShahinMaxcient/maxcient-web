@@ -21,7 +21,9 @@ export default function SectionHead({
   dark?: boolean;
 }) {
   return (
-    <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-20 items-end mb-16">
+    /* mb-10 on phones: with sections stacked single-column, the desktop 64px
+       head-to-content gap read as a hole in the page. */
+    <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-20 items-end mb-10 lg:mb-16">
       <div>
         <motion.div
           className="mb-4"

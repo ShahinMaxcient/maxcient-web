@@ -17,9 +17,9 @@ function ProductCard({ p }: { p: ProductItem }) {
         className="ed-service-card relative h-full overflow-hidden flex flex-col"
         style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "12px" }}
       >
-        {/* image header. Mobile: flex-1 so the image absorbs any extra card
-            height (equal-height cards, no blank space). sm+: fixed 16/10. */}
-        <div className="relative w-full overflow-hidden flex-1 min-h-[180px] sm:flex-none sm:min-h-0 sm:aspect-[16/10]">
+        {/* image header — fixed 16/10 at every size, matching Services: a
+            flexing image made photo heights differ card-to-card on mobile. */}
+        <div className="relative w-full overflow-hidden shrink-0 aspect-[16/10]">
           <Image
             src={p.image}
             alt={p.title}
@@ -37,8 +37,8 @@ function ProductCard({ p }: { p: ProductItem }) {
           </span>
         </div>
 
-        {/* body — natural height; the image above flexes to fill */}
-        <div className="flex flex-col" style={{ padding: "22px 24px 24px" }}>
+        {/* body — flex-1 so equal-height cards absorb slack here, not in the photo */}
+        <div className="flex flex-col flex-1" style={{ padding: "22px 24px 24px" }}>
           <h3 style={{ fontSize: "1.3rem", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 10, color: "var(--text-primary)" }}>
             {p.title}<span style={{ color: "var(--primary)" }}>.</span>
           </h3>
@@ -58,7 +58,7 @@ export default function Products({ products, header }: { products: ProductItem[]
   // Show every product (order is admin-controlled — products arrive pre-sorted
   // by `order`). No "see more" gating.
   return (
-    <section id="products" className="pt-20 lg:pt-28 pb-12 lg:pb-16" style={{ background: "var(--background)" }}>
+    <section id="products" className="pt-14 lg:pt-28 pb-8 lg:pb-16" style={{ background: "var(--background)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
           <SectionHead eyebrow={header?.eyebrow || "Proprietary Products"} title={header?.title || "Software we built."}>

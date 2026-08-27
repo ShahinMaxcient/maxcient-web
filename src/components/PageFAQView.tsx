@@ -13,7 +13,7 @@ export default function PageFAQView({ faqs }: { faqs: FAQItem[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-20 lg:py-24" style={{ background: "var(--surface-alt)" }}>
+    <section className="py-14 lg:py-24" style={{ background: "var(--surface-alt)" }}>
       <div className="max-w-[1100px] mx-auto px-5 sm:px-8">
         <div className="mb-12">
           <div className="mb-4" style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--text-muted)" }}>

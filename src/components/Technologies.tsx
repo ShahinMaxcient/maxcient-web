@@ -10,7 +10,7 @@ type SectionHeaderProps = { eyebrow?: string; title?: string; body?: string };
 
 export default function Technologies({ technologies, header }: { technologies: TechnologyItem[]; header?: SectionHeaderProps }) {
   return (
-    <section id="technologies" className="pt-12 lg:pt-16 pb-20 lg:pb-28" style={{ background: "var(--background)" }}>
+    <section id="technologies" className="pt-8 lg:pt-16 pb-14 lg:pb-28" style={{ background: "var(--background)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
           <SectionHead eyebrow={header?.eyebrow || "Tech Stack"} title={header?.title || "Platforms we master."}>

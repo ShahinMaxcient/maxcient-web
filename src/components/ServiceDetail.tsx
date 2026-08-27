@@ -81,7 +81,7 @@ export default function ServiceDetail(p: ServiceDetailProps) {
         {/* How we help */}
         {guidanceHasImages ? (
           // Editorial alternating image/text rows (mirrors maxcient.com).
-          <section className="py-16 lg:py-24 t-bg-surface">
+          <section className="py-12 lg:py-24 t-bg-surface">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {(p.guidanceHeading || p.guidanceIntro) && (
                 <Reveal direction="up" className="max-w-3xl mb-14 lg:mb-20">
@@ -148,7 +148,7 @@ export default function ServiceDetail(p: ServiceDetailProps) {
 
         {/* Our Process band */}
         {p.processSteps && p.processSteps.length > 0 ? (
-          <section className="py-16 lg:py-20 t-bg-alt">
+          <section className="py-12 lg:py-20 t-bg-alt">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <Reveal direction="up" className="text-center max-w-2xl mx-auto mb-12">
                 <span className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)]">Our Process</span>
@@ -169,7 +169,7 @@ export default function ServiceDetail(p: ServiceDetailProps) {
         )}
 
         {/* Industry Solutions */}
-        <section className="py-16 lg:py-24 t-bg-surface">
+        <section className="py-12 lg:py-24 t-bg-surface">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Reveal direction="up" className="text-center max-w-3xl mx-auto mb-12 lg:mb-14">
               <span className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)]">Who we work with</span>

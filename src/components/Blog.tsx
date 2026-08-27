@@ -37,7 +37,7 @@ export default function Blog({ posts, header }: { posts: BlogPost[]; header?: Se
   if (!posts || posts.length === 0) return null;
 
   return (
-    <section id="blog" className="py-20 lg:py-28" style={{ background: "var(--surface-alt)" }}>
+    <section id="blog" className="py-14 lg:py-28" style={{ background: "var(--surface-alt)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
           <SectionHead eyebrow={header?.eyebrow || "Journal"} title={header?.title || "Latest thinking."}>

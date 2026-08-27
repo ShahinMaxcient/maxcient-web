@@ -10,7 +10,7 @@ type SectionHeaderProps = { eyebrow?: string; title?: string; body?: string };
 export default function TrustedBy({ clients, header }: { clients: ClientItem[]; header?: SectionHeaderProps }) {
   return (
     <section
-      className="py-14 lg:py-16"
+      className="py-10 lg:py-16"
       style={{ background: "var(--surface-alt)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}
     >
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">

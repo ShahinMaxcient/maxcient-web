@@ -38,7 +38,7 @@ export default function LinkedInPosts({
   if (srcs.length === 0) return null;
 
   return (
-    <section id="linkedin" className="pt-12 lg:pt-16 pb-20 lg:pb-28" style={{ background: "var(--surface-alt)" }}>
+    <section id="linkedin" className="pt-8 lg:pt-16 pb-14 lg:pb-28" style={{ background: "var(--surface-alt)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
           <SectionHead eyebrow={header?.eyebrow || "LinkedIn"} title={header?.title || "Latest on LinkedIn."}>

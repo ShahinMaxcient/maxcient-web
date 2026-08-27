@@ -12,7 +12,7 @@ export default function FAQ({ faqs, header }: { faqs: FaqItem[]; header?: Sectio
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-20 lg:py-28" style={{ background: "var(--background)" }}>
+    <section id="faq" className="py-14 lg:py-28" style={{ background: "var(--background)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
           <SectionHead eyebrow={header?.eyebrow || "FAQ"} title={header?.title || "Questions, answered."}>

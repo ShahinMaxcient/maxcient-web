@@ -148,7 +148,7 @@ export default async function IndustryDetail(p: IndustryDetailProps) {
         <PageHero slug={p.slug} title={p.title} subtitle={p.subtitle} image={p.heroImage} />
 
         {/* Emerging trends */}
-        <section className="py-16 lg:py-20 t-bg-surface">
+        <section className="py-12 lg:py-20 t-bg-surface">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Reveal direction="up" className="text-center max-w-2xl mx-auto mb-12">
               <span className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)]">Emerging Trends</span>
@@ -189,7 +189,7 @@ export default async function IndustryDetail(p: IndustryDetailProps) {
         </section>
 
         {/* Service-solution blocks — interactive tabs (mirrors maxcient.com) */}
-        <section className="py-16 lg:py-24 t-bg-alt">
+        <section className="py-12 lg:py-24 t-bg-alt">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Reveal direction="up" className="text-center max-w-3xl mx-auto mb-12 lg:mb-14">
               <span className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)]">What we do</span>
@@ -204,7 +204,7 @@ export default async function IndustryDetail(p: IndustryDetailProps) {
 
         {/* Technology platforms — the header's technology list, industry-tinted */}
         {techItems.length > 0 && (
-          <section className="py-16 lg:py-20 t-bg-surface">
+          <section className="py-12 lg:py-20 t-bg-surface">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <Reveal direction="up" className="text-center max-w-2xl mx-auto mb-12">
                 <span className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)]">Technologies</span>
@@ -222,7 +222,7 @@ export default async function IndustryDetail(p: IndustryDetailProps) {
         )}
 
         {/* Value band */}
-        <section className="py-16 lg:py-20 t-bg-alt">
+        <section className="py-12 lg:py-20 t-bg-alt">
           <Reveal direction="up" className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl sm:text-4xl font-bold t-heading">{p.valueTitle}</h2>
             <p className="mt-5 t-body leading-relaxed">{p.valueBody}</p>

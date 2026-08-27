@@ -12,7 +12,7 @@ interface Feature {
 
 export default function FeatureGrid({ id, title, subtitle, features }: { id?: string; title: string; subtitle: string; features: Feature[] }) {
   return (
-    <section id={id} className="py-20 lg:py-24" style={{ background: "var(--background)", scrollMarginTop: "88px" }}>
+    <section id={id} className="py-14 lg:py-24" style={{ background: "var(--background)", scrollMarginTop: "88px" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
           <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-20 items-end mb-16">

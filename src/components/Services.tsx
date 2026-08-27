@@ -36,7 +36,7 @@ type SectionHeaderProps = { eyebrow?: string; title?: string; body?: string };
 
 export default function Services({ services, header }: { services: ServiceCard[]; header?: SectionHeaderProps }) {
   return (
-    <section id="services" className="py-20 lg:py-28" style={{ background: "var(--background)" }}>
+    <section id="services" className="py-14 lg:py-28" style={{ background: "var(--background)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
           <SectionHead eyebrow={header?.eyebrow || "Our Services"} title={header?.title || "Six capabilities, one partner."}>
@@ -62,10 +62,11 @@ export default function Services({ services, header }: { services: ServiceCard[]
                     className="ed-service-card group relative h-full overflow-hidden flex flex-col"
                     style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: "12px" }}
                   >
-                    {/* image header. Mobile: flex-1 so the image absorbs any
-                        extra card height (equal-height cards, no blank space).
-                        sm+: fixed 16/9 aspect for a uniform grid. */}
-                    <div className="relative w-full overflow-hidden flex-1 min-h-[170px] sm:flex-none sm:min-h-0 sm:aspect-[16/9]">
+                    {/* image header — fixed 16/9 at every size. Letting the
+                        image flex to absorb card-height differences made each
+                        card's photo a different height in the mobile carousel;
+                        the body (flex-1) absorbs the slack instead. */}
+                    <div className="relative w-full overflow-hidden shrink-0 aspect-[16/9]">
                       <Image
                         src={ico.img}
                         alt={s.title}
@@ -92,8 +93,9 @@ export default function Services({ services, header }: { services: ServiceCard[]
                       </span>
                     </div>
 
-                    {/* body — natural height; the image above flexes to fill */}
-                    <div className="flex flex-col" style={{ padding: "22px 24px 24px" }}>
+                    {/* body — flex-1 so equal-height cards absorb slack here,
+                        not in the photo */}
+                    <div className="flex flex-col flex-1" style={{ padding: "22px 24px 24px" }}>
                       <div style={{ fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", color: "var(--text-muted)", marginBottom: 8 }}>{s.num?.replace(/^\s*[A-Za-z]?\/?\d+\s*[—–-]?\s*/, "")}</div>
                       <h3 style={{ fontSize: "1.15rem", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: 10, color: "var(--text-primary)" }}>{s.title}</h3>
                       <p style={{ fontSize: "14px", lineHeight: 1.6, color: "var(--text-muted)" }}>{s.desc}</p>

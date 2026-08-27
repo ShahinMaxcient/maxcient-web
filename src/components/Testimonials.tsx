@@ -57,7 +57,7 @@ export default function Testimonials({
   whoWeAre?: WhoWeAreProps;
 }) {
   return (
-    <section id="who-we-are" className="py-20 lg:py-28" style={{ background: "var(--background)" }}>
+    <section id="who-we-are" className="py-14 lg:py-28" style={{ background: "var(--background)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Copy + values */}

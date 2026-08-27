@@ -81,7 +81,7 @@ export default function TechnologyDetail(p: TechnologyDetailProps) {
         </section>
 
         {/* Services */}
-        <section className="py-14 lg:py-20 t-bg-alt">
+        <section className="py-12 lg:py-20 t-bg-alt">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Reveal direction="up" className="text-center max-w-2xl mx-auto mb-12 lg:mb-14">
               <span className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)]">Our services</span>
@@ -173,7 +173,7 @@ export default function TechnologyDetail(p: TechnologyDetailProps) {
             www.maxcient.com: heading held on the left, sectors running in
             columns beside it. Their band is Microsoft blue; this one takes the
             Maxcient violet so it reads as ours rather than borrowed. */}
-        <section id="industries" className="mx-industry-band py-16 lg:py-24">
+        <section id="industries" className="mx-industry-band py-12 lg:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-4 gap-12 lg:gap-14">
               <Reveal direction="left" className="lg:col-span-1">

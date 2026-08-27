@@ -12,7 +12,7 @@ const cleanLabel = (s?: string) => s?.replace(/^\s*[A-Za-z]?\/?\d+\s*[—–-]?\
 
 export default function SocialProof({ stats, header }: { stats: StatItem[]; header?: SectionHeaderProps }) {
   return (
-    <section id="about" className="py-20 lg:py-28 relative overflow-hidden" style={{ background: "var(--surface-alt)" }}>
+    <section id="about" className="py-14 lg:py-28 relative overflow-hidden" style={{ background: "var(--surface-alt)" }}>
       {/* No bloom here. The band already reads as its own moment from the
           --surface-alt fill and its hard top edge; the blurred violet ellipse
           that used to sit here spilled diagonally across the section and was

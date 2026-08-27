@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function CTASection({ title, subtitle, phone = "+971 4 329 3710", image, ctaText }: { title: string; subtitle: string; phone?: string; image?: string; ctaText?: string }) {
   const telHref = `tel:${phone.replace(/[^0-9+]/g, "")}`;
   return (
-    <section className="relative overflow-hidden" style={{ background: "#100c20", padding: "128px 0" }}>
+    <section className="relative overflow-hidden" style={{ background: "#100c20", padding: "clamp(72px, 14vw, 128px) 0" }}>
       <Image
         src={image || "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1451187580459-43490279c0fa.webp"}
         alt=""

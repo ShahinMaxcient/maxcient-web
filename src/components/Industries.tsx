@@ -11,7 +11,7 @@ type SectionHeaderProps = { eyebrow?: string; title?: string; body?: string };
 
 export default function Industries({ industries, header }: { industries: IndustryItem[]; header?: SectionHeaderProps }) {
   return (
-    <section id="industries" className="py-20 lg:py-28" style={{ background: "var(--surface-alt)" }}>
+    <section id="industries" className="py-14 lg:py-28" style={{ background: "var(--surface-alt)" }}>
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8">
         <SectionReveal>
           <SectionHead eyebrow={header?.eyebrow || "Industries"} title={header?.title || "Sectors we know cold."}>
