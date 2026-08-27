@@ -79,24 +79,19 @@ function TrendIcon({ name }: { name: string }) {
 }
 
 /**
- * Resolve a platform name to its technology page.
+ * Match an industry page's hand-written platform card to a technology from the
+ * shared collection (the same list the header menu shows).
  *
  * Industry pages name platforms in their own words — "IoT (Internet of Things)"
  * where the collection says "IoT", "Microsoft Power Platform" where it says
  * "Power Platform" — so an exact match is not enough. Compare on alphanumerics
  * only, prefer an exact hit, then fall back to the longest containment so the
- * broadest sensible match wins. Anything unmatched simply gets no link, which
- * is also what keeps unpublished platforms from being linked.
+ * broadest sensible match wins.
  */
-function resolveTechHref(name: string, techs: { title: string; href: string }[]): string | undefined {
+function matchesTech(cardName: string, techTitle: string): boolean {
   const norm = (x: string) => x.toLowerCase().replace(/[^a-z0-9]/g, "");
-  const n = norm(name);
-  const exact = techs.find((t) => norm(t.title) === n);
-  if (exact) return exact.href;
-  const partial = techs
-    .filter((t) => { const c = norm(t.title); return c.length > 2 && (n.includes(c) || c.includes(n)); })
-    .sort((a, b) => norm(b.title).length - norm(a.title).length)[0];
-  return partial?.href;
+  const n = norm(cardName), c = norm(techTitle);
+  return c.length > 2 && (n === c || n.includes(c) || c.includes(n));
 }
 
 /**
@@ -126,7 +121,18 @@ const TREND_IMAGES: Record<string, string> = {
 };
 
 export default async function IndustryDetail(p: IndustryDetailProps) {
-  const techs = await getCollectionItems<{ title: string; href: string }>("technologies");
+  const techs = await getCollectionItems<{ title: string; description: string; href: string }>("technologies");
+
+  // The Technologies section mirrors the header menu: it lists exactly the
+  // technologies in the shared collection, in the same order — so adding or
+  // retiring one in Admin updates every industry page too (Dataverse lingered
+  // here for weeks after it left the header). Each page's hand-tailored copy
+  // is kept where it matches; a technology without tailored copy (e.g. a newly
+  // added one) falls back to its own collection description.
+  const techItems = techs.map((t) => {
+    const tailored = p.techCards.find((c) => matchesTech(c.name, t.title));
+    return { title: t.title, description: tailored?.body ?? t.description, href: t.href };
+  });
   const images = p.solutionImages && p.solutionImages.length ? p.solutionImages : SOLUTION_IMAGES;
   const solutionTabs = p.solutions.map((s, i) => ({
     name: PILLAR_LABELS[i] ?? `Solution ${i + 1}`,
@@ -196,8 +202,8 @@ export default async function IndustryDetail(p: IndustryDetailProps) {
           </div>
         </section>
 
-        {/* Technology platforms */}
-        {p.techCards.length > 0 && (
+        {/* Technology platforms — the header's technology list, industry-tinted */}
+        {techItems.length > 0 && (
           <section className="py-16 lg:py-20 t-bg-surface">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <Reveal direction="up" className="text-center max-w-2xl mx-auto mb-12">
@@ -205,9 +211,9 @@ export default async function IndustryDetail(p: IndustryDetailProps) {
                 <h2 className="mt-3 text-3xl sm:text-4xl font-bold t-heading">Platforms we leverage for {p.title}</h2>
               </Reveal>
               <RevealGroup className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch" stagger={0.08}>
-                {p.techCards.map((c) => (
-                  <RevealItem key={c.name} className="h-full">
-                    <TechCard title={c.name} description={c.body} href={resolveTechHref(c.name, techs)} />
+                {techItems.map((c) => (
+                  <RevealItem key={c.title} className="h-full">
+                    <TechCard title={c.title} description={c.description} href={c.href} />
                   </RevealItem>
                 ))}
               </RevealGroup>
