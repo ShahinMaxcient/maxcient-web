@@ -52,17 +52,20 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
           its dark-text branch and the black globe graticule stay readable;
           the dark shade goes underneath instead (see the plinth below). */}
       <div className="relative">
-        {/* Shaded backdrop — a soft brand-lavender wash, not a photograph. The
-            colour is weighted to the right so the copy column stays near paper
-            (dark headline keeps its contrast) and the globe sits on a pale
-            ground: a real skyline here turned its dots to noise. Baked flat
-            into the file, so it costs one 15KB paint. */}
+        {/* Shaded backdrop — a straight directional sweep, tinted at the copy
+            column and clearing to white under the globe.
+
+            This replaces hero-shade.webp, which carried the same tint but as a
+            curved, feathered blot across the frame. Full-bleed and first on the
+            page, that shape read as a wash of spilled ink rather than as
+            lighting. A linear gradient anchored to the edges gives the same
+            depth with nothing for the eye to mistake for a stain — and costs a
+            paint instead of an image request. */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage: "url('/hero-shade.webp')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            background:
+              "linear-gradient(100deg, rgba(167,139,250,0.13) 0%, rgba(167,139,250,0.05) 32%, rgba(255,255,255,0.55) 60%, #FFFFFF 100%)",
           }}
         />
 
@@ -172,11 +175,9 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
             className="relative mx-auto w-full max-w-[380px] lg:max-w-[600px]"
             style={{ aspectRatio: "1 / 1", maxHeight: 600 }}
           >
-            {/* Lavender bloom behind the sphere, so it sits in light rather than floating */}
-            <div
-              className="absolute pointer-events-none"
-              style={{ inset: "-12%", background: "radial-gradient(circle at 50% 50%, rgba(167,139,250,0.30) 0%, rgba(167,139,250,0.12) 40%, transparent 68%)" }}
-            />
+            {/* No bloom behind the sphere. On neutral paper a soft violet
+                circle behind violet dots is just a smudge; the globe carries
+                its own light. */}
             <motion.div
               className="absolute inset-0"
               initial={{ opacity: 0, scale: 0.94 }}
@@ -219,7 +220,9 @@ export default function Hero({ data = DEFAULT_HERO }: { data?: HeroSettings }) {
             bottom: "100%",
             height: 88,
             background:
-              "radial-gradient(ellipse 44% 100% at 20% 100%, rgba(124,58,237,0.13) 0%, transparent 72%), linear-gradient(to top, rgba(20,16,31,0.11) 0%, rgba(20,16,31,0.045) 38%, transparent 100%)",
+              /* Neutral fade only. The violet ellipse that used to ride along
+                 with it pooled on the paper just above the seam. */
+              "linear-gradient(to top, rgba(20,16,31,0.11) 0%, rgba(20,16,31,0.045) 38%, transparent 100%)",
           }}
         />
         <div

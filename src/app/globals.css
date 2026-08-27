@@ -5,17 +5,19 @@
 
 /* ============================================================
    MAXCIENT — EDITORIAL 3D THEME
-   Light (lavender-tinted) default + aubergine-ink dark mode.
-   Brand lavender #a78bfa, featured heavily in large fills.
+   Neutral paper + aubergine ink, with brand lavender as the accent.
+   Brand lavender #a78bfa, used in *contained* fills — hard-edged bands,
+   cards and type. The ground stays neutral so the violet reads as brand
+   colour rather than as a stain bleeding through the page.
    Inter for type, JetBrains Mono for labels.
    ============================================================ */
 
 /* ===== LIGHT MODE (default) — Editorial lavender ===== */
 :root, [data-theme="light"] {
-  --background: #F6F4FB;        /* lavender-tinted paper */
+  --background: #F7F7F8;        /* neutral paper — the violet needs a neutral to sit against */
   --foreground: #14101F;        /* aubergine ink */
-  --surface: #FCFBFE;           /* card paper */
-  --surface-alt: #ECE6FA;       /* lavender section band */
+  --surface: #FFFFFF;           /* card paper */
+  --surface-alt: #ECE6FA;       /* lavender section band — kept: a hard-edged, deliberate fill */
 
   --primary: #7c3aed;           /* readable lavender (text + medium fills) */
   --primary-light: #a78bfa;     /* EXACT brand lavender (large bright fills) */
@@ -30,21 +32,21 @@
   --text-secondary: #2A2440;
   --text-muted: #6E6880;
 
-  --border: rgba(124, 58, 237, 0.14);
-  --border-strong: rgba(124, 58, 237, 0.28);
+  --border: rgba(20, 16, 31, 0.10);
+  --border-strong: rgba(20, 16, 31, 0.18);
 
-  --card-bg: #FCFBFE;
+  --card-bg: #FCFCFD;
   --card-hover: #FFFFFF;
-  --glass-bg: rgba(246, 244, 251, 0.82);
-  --glass-border: rgba(124, 58, 237, 0.14);
+  --glass-bg: rgba(247, 247, 248, 0.82);
+  --glass-border: rgba(20, 16, 31, 0.10);
   --glow-color: rgba(124, 58, 237, 0.07);
 
-  --hero-overlay: rgba(246, 244, 251, 0.85);
-  --nav-bg: rgba(246, 244, 251, 0.85);
+  --hero-overlay: rgba(247, 247, 248, 0.85);
+  --nav-bg: rgba(247, 247, 248, 0.85);
   --nav-text: #2A2440;
   --nav-text-hero: #14101F;
 
-  --shadow: 0 1px 0 rgba(124,58,237,0.05), 0 12px 30px rgba(124, 58, 237, 0.08);
+  --shadow: 0 1px 0 rgba(20, 16, 31, 0.04), 0 12px 30px rgba(20, 16, 31, 0.09);
   --shadow-hard: 6px 6px 0 #14101F;
 }
 

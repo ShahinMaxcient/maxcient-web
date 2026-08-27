@@ -92,7 +92,7 @@ export default function GetInTouch({
           </Reveal>
 
           {/* Right: request form */}
-          <Reveal direction="right" delay={0.1} className="rounded-2xl p-7 lg:p-9" style={{ background: "#FCFBFE", boxShadow: "0 40px 80px -40px rgba(0,0,0,0.5)" }}>
+          <Reveal direction="right" delay={0.1} className="rounded-2xl p-7 lg:p-9" style={{ background: "#FFFFFF", boxShadow: "0 40px 80px -40px rgba(0,0,0,0.5)" }}>
             {status === "success" ? (
               <div className="py-6">
                 <h3 className="text-2xl font-bold t-heading">Thank you!</h3>

@@ -6,7 +6,7 @@ import { markIntroDone } from "@/lib/intro-signal";
 
 // Cinematic "curtain" easing.
 const EASE = [0.76, 0, 0.24, 1] as const;
-const PANEL_BG = "#F6F4FB"; // lavender-tinted paper — matches the site background
+const PANEL_BG = "#F7F7F8"; // neutral paper — matches the site background
 
 /**
  * First-visit welcome splash. Shows once per browser session: the screen holds
@@ -137,11 +137,8 @@ export default function IntroOverlay() {
         animate={{ opacity: opening ? 0 : 1, y: opening ? -18 : 0 }}
         transition={{ duration: opening ? 0.45 : 0.6, ease: "easeOut" }}
       >
-        {/* soft lavender glow behind the words */}
-        <div
-          className="absolute"
-          style={{ width: "70vw", maxWidth: 640, height: 320, borderRadius: "50%", background: "radial-gradient(ellipse at center, rgba(124,58,237,0.16), transparent 65%)", filter: "blur(8px)" }}
-        />
+        {/* No glow behind the words — a blurred violet ellipse on the light
+            splash panel is the site's first impression, and it read as a stain. */}
         {/* Label is rendered statically (no entrance fade/delay) so it shows
             the instant the splash appears — only the reveal is animated. */}
         <p

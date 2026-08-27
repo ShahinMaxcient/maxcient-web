@@ -13,17 +13,10 @@ const cleanLabel = (s?: string) => s?.replace(/^\s*[A-Za-z]?\/?\d+\s*[—–-]?\
 export default function SocialProof({ stats, header }: { stats: StatItem[]; header?: SectionHeaderProps }) {
   return (
     <section id="about" className="py-20 lg:py-28 relative overflow-hidden" style={{ background: "var(--surface-alt)" }}>
-      {/* soft lavender bloom so the band reads as its own moment on the page */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute"
-        style={{
-          top: "-30%", left: "50%", transform: "translateX(-50%)",
-          width: "min(1100px, 120%)", height: "70%",
-          background: "radial-gradient(ellipse at center, rgba(124,58,237,0.10), transparent 70%)",
-          filter: "blur(10px)",
-        }}
-      />
+      {/* No bloom here. The band already reads as its own moment from the
+          --surface-alt fill and its hard top edge; the blurred violet ellipse
+          that used to sit here spilled diagonally across the section and was
+          the most visible "stain" on the page. */}
 
       <div className="max-w-[1400px] mx-auto px-5 sm:px-8 relative">
         <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-20 items-end mb-14">
