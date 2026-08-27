@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getPublishedPosts } from "@/lib/posts";
 
-export const dynamic = "force-dynamic";
+// Cached; admin saves revalidate (see app/layout.tsx).
 
 export const metadata: Metadata = {
   title: "Journal | Maxcient Technologies",

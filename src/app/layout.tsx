@@ -31,14 +31,17 @@ export const metadata: Metadata = {
     "Unlock business value with Maxcient's enterprise-grade solutions tailored for UAE and GCC markets.",
 };
 
-// Render every route dynamically (server-rendered on each request) so admin
-// edits always show instantly and the build never queries the database — which
-// also keeps Vercel deploys fast. Applies to all nested segments.
-export const dynamic = "force-dynamic";
-
-// Pages are statically cached and served instantly from the CDN. Every admin
-// save calls revalidatePath(...), which rebuilds the affected pages with fresh
-// database content immediately — fast for visitors, current for editors.
+// Pages are cached and served from the CDN, then re-rendered on demand.
+// Freshness comes from two directions: every admin save calls
+// revalidatePath(..., "layout"), which purges the cache immediately — so
+// editors still see their changes at once — and the 5-minute window below
+// catches anything written to the database outside the admin (or a render
+// that cached fallback defaults during a DB blip). This replaced
+// force-dynamic, which was invoking a function + ~a dozen DB queries on
+// EVERY page view (age: 0, x-vercel-cache: MISS) for content that changes
+// a few times a week. Admin routes stay fully dynamic via their own
+// segment config; anything reading cookies()/headers() opts out anyway.
+export const revalidate = 300;
 
 export default function RootLayout({
   children,

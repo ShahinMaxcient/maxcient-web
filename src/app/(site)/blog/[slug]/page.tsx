@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import CTASection from "@/components/CTASection";
 import { getPostBySlug } from "@/lib/posts";
 
-export const dynamic = "force-dynamic";
+// Cached; admin saves revalidate (see app/layout.tsx).
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;

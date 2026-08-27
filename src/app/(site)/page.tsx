@@ -17,10 +17,8 @@ import { getServices, getTestimonials } from "@/lib/homepage";
 import { getCollectionItems } from "@/lib/content";
 import { getHiddenSlugs } from "@/lib/pages";
 
-// The homepage is CMS-driven (hero image, sections, products). Render it fresh
-// on each request so admin edits always show and never fall back to a stale,
-// build-time-cached default.
-export const dynamic = "force-dynamic";
+// CMS-driven, but cached: admin saves purge via revalidatePath and the root
+// layout's revalidate window handles out-of-band DB edits (see app/layout.tsx).
 
 export default async function Home() {
   const [posts, settings, hero, sections, cta, servicesAll, testimonials, industriesAll, productsAll, technologiesAll, clients, stats, faqs, marqueeItems, hidden, linkedinPosts, whoWeAre] =
