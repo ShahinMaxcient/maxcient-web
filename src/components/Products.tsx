@@ -42,8 +42,19 @@ function ProductCard({ p }: { p: ProductItem }) {
           <h3 style={{ fontSize: "1.3rem", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 10, color: "var(--text-primary)" }}>
             {p.title}<span style={{ color: "var(--primary)" }}>.</span>
           </h3>
-          <p style={{ fontSize: "14px", lineHeight: 1.6, color: "var(--text-muted)", marginBottom: 16 }}>{p.desc}</p>
-          <div className="flex flex-wrap gap-2">
+          <p style={{ fontSize: "14px", lineHeight: 1.6, color: "var(--text-muted)" }}>{p.desc}</p>
+          {/* mt-auto pins the tags to the bottom of the card.
+              Cards in a row are equal height, but the descriptions are not —
+              41 characters for RealtyAI against 130 for MaxMarina, which is
+              about three lines apart on a phone. Without this the slack piled
+              up *below* the tags, so the short cards ended with a block of
+              empty white and the tag rows sat at a different height on every
+              card. Now the gap goes above them and every card's tags line up.
+              pt-4 keeps a minimum gap for the tallest card, where there is no
+              slack left for mt-auto to distribute — padding rather than a
+              margin, since an inline marginTop would out-specify mt-auto and
+              stop it working at all. */}
+          <div className="mt-auto flex flex-wrap gap-2 pt-4">
             {p.tags.slice(0, 4).map((t) => (
               <span key={t} style={{ padding: "5px 11px", border: "1px solid var(--border-strong)", borderRadius: "100px", fontFamily: "var(--font-geist-mono), monospace", fontSize: "12px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--text-secondary)" }}>{t}</span>
             ))}
