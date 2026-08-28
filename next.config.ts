@@ -33,20 +33,18 @@ const LEGACY_REDIRECTS: { source: string; destination: string }[] = [
   { source: "/metform-form/:slug*", destination: "/request-a-consultation" },
   { source: "/tag/:slug*", destination: "/blog" },
 
-  // Root-level posts whose content was not carried over. Sending them to the
-  // blog index keeps the URL alive and passes some authority on, which is
-  // strictly better than a 404 for both search engines and anyone following
-  // an old link. If any of these are re-published later, point them at the
-  // real article instead.
-  { source: "/unlocking-success-the-role-of-data-driven-business-operations", destination: "/blog" },
-  { source: "/dynamics-365-is-the-first-choice-for-increasing-speed-to-the-market", destination: "/blog" },
-  { source: "/what-are-the-benefits-of-offshore-software-development-services", destination: "/blog" },
-  { source: "/improve-your-global-brand-value-with-cloud-technology", destination: "/blog" },
-  { source: "/discover-the-types-and-essence-of-offshore-software-development", destination: "/blog" },
-  { source: "/why-should-you-use-cloud-based-bi-for-demand-forecasting-and-accurate-decision-making", destination: "/blog" },
-  { source: "/how-to-be-accurate-with-your-erp-implementation-cost-estimations", destination: "/blog" },
-  { source: "/4-ways-power-automate-can-boost-productivity-in-facility-management", destination: "/blog" },
-  { source: "/how-to-choose-an-offshore-software-development-company", destination: "/blog" },
+  // The remaining root-level posts. Their content was migrated from the live
+  // WordPress site keeping the original slug, so each points at its own
+  // article rather than the blog index.
+  { source: "/unlocking-success-the-role-of-data-driven-business-operations", destination: "/blog/unlocking-success-the-role-of-data-driven-business-operations" },
+  { source: "/dynamics-365-is-the-first-choice-for-increasing-speed-to-the-market", destination: "/blog/dynamics-365-is-the-first-choice-for-increasing-speed-to-the-market" },
+  { source: "/what-are-the-benefits-of-offshore-software-development-services", destination: "/blog/what-are-the-benefits-of-offshore-software-development-services" },
+  { source: "/improve-your-global-brand-value-with-cloud-technology", destination: "/blog/improve-your-global-brand-value-with-cloud-technology" },
+  { source: "/discover-the-types-and-essence-of-offshore-software-development", destination: "/blog/discover-the-types-and-essence-of-offshore-software-development" },
+  { source: "/why-should-you-use-cloud-based-bi-for-demand-forecasting-and-accurate-decision-making", destination: "/blog/why-should-you-use-cloud-based-bi-for-demand-forecasting-and-accurate-decision-making" },
+  { source: "/how-to-be-accurate-with-your-erp-implementation-cost-estimations", destination: "/blog/how-to-be-accurate-with-your-erp-implementation-cost-estimations" },
+  { source: "/4-ways-power-automate-can-boost-productivity-in-facility-management", destination: "/blog/4-ways-power-automate-can-boost-productivity-in-facility-management" },
+  { source: "/how-to-choose-an-offshore-software-development-company", destination: "/blog/how-to-choose-an-offshore-software-development-company" },
 ];
 
 const nextConfig: NextConfig = {

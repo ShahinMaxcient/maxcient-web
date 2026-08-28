@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
+import { notifyNewLead } from "@/lib/notify";
 
 // Public endpoint — accepts submissions from the consultation form and the
 // product-page demo cards.
@@ -44,8 +45,18 @@ export async function POST(request: Request) {
         message: d.message || null,
         source: d.source ?? "consultation-form",
       },
-      select: { id: true },
+      select: {
+        id: true, name: true, email: true, phone: true,
+        company: true, service: true, message: true, source: true,
+      },
     });
+
+    // Awaited, not fire-and-forget: a serverless function can be frozen the
+    // moment it responds, which would drop a pending send. notifyNewLead
+    // never throws and is inert without its env vars, so this cannot fail the
+    // request — the lead is already committed either way.
+    await notifyNewLead(lead);
+
     return NextResponse.json({ ok: true, id: lead.id }, { status: 201 });
   } catch (err) {
     console.error("Failed to create lead:", err);
