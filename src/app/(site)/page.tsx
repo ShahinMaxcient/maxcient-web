@@ -31,7 +31,7 @@ export default async function Home() {
       getServices(),
       getTestimonials(),
       getCollectionItems<{ title: string; num: string; href: string; image: string; span: string }>("industries"),
-      getCollectionItems<{ num: string; title: string; desc: string; tags: string[]; href: string; image: string }>("products"),
+      getCollectionItems<{ num: string; title: string; desc: string; tags: string[]; href: string; image: string; subItems?: { href: string; label: string; desc?: string; tags?: string[]; image?: string }[] | null }>("products"),
       getCollectionItems<{ title: string; description: string; letter: string; href: string }>("technologies"),
       getCollectionItems<{ name: string; logo: string }>("clients"),
       getCollectionItems<{ eyebrow: string; value: number; suffix: string; label: string }>("stats"),
@@ -46,7 +46,26 @@ export default async function Home() {
   const visible = (href: string) => !hidden.has(href.replace(/^\//, "").split("#")[0]);
   const services = servicesAll.filter((s) => visible(s.href));
   const industries = industriesAll.filter((i) => visible(i.href));
-  const products = productsAll.filter((p) => visible(p.href));
+  // "RealtyAI" and "E-Invoice Connector" are families, not single products —
+  // the home grid shows each of their sub-products as its own card, while the
+  // nav keeps them grouped under the family name. A product with no sub-items
+  // shows as itself. Each sub carries its own image/desc/tags (set in Admin),
+  // falling back to the parent's. Visibility is checked per resulting href, so
+  // hiding a sub-page in Admin → Pages still drops just that card.
+  const products = productsAll
+    .flatMap((p) => {
+      const subs = Array.isArray(p.subItems) ? p.subItems.filter((s) => s?.href && s?.label) : [];
+      if (subs.length === 0) return [p];
+      return subs.map((s) => ({
+        num: p.num,
+        title: s.label,
+        desc: s.desc || p.desc,
+        tags: s.tags && s.tags.length ? s.tags : p.tags,
+        href: s.href,
+        image: s.image || p.image,
+      }));
+    })
+    .filter((p) => visible(p.href));
   const technologies = technologiesAll.filter((t) => visible(t.href));
 
   return (
