@@ -7,6 +7,18 @@ import GetInTouch from "@/components/GetInTouch";
 import Reveal from "@/components/Reveal";
 import ProcessTimeline from "@/components/ProcessTimeline";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "erp-and-crm",
+    title: "CRM and ERP Solutions",
+    description:
+      "Integrated Microsoft Dynamics 365 CRM and ERP implementation for UAE and GCC businesses — unifying sales, finance, supply chain and operations.",
+  });
+
 const IMG = "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site";
 
 // The three ways we help — each now an alternating image/text row so the page

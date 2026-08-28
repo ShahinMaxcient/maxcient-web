@@ -3,6 +3,18 @@ import { getCollectionItems } from "@/lib/content";
 import { getSiteSettings } from "@/lib/settings";
 import { getServices } from "@/lib/homepage";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "request-a-consultation",
+    title: "Request a Consultation",
+    description:
+      "Talk to Maxcient's UAE-based certified consultants about CRM, ERP and Dynamics 365. Book a free consultation for your business.",
+  });
+
 type OfficeRow = { region: string; city: string; address: string };
 
 function groupOffices(rows: OfficeRow[]) {

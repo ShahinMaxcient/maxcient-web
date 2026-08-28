@@ -1,5 +1,18 @@
 import ServiceDetail from "@/components/ServiceDetail";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "intelligent-automation",
+    title: "Intelligent Automation Services",
+    description:
+      "Automate workflows with Power Automate and AI. Reduce manual effort, cut errors and speed up operations across your Dynamics 365 estate.",
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-intelligent-automation.webp",
+  });
+
 // Content mirrors www.maxcient.com/intelligent-automation.
 export default function IntelligentAutomation() {
   return (

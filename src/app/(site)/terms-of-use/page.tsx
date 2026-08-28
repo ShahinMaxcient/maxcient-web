@@ -1,3 +1,14 @@
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "terms-of-use",
+    title: "Terms of Use",
+    description:
+      "The terms governing your use of the Maxcient Technologies website and services.",
+  });
+
 
 export default function TermsOfUse() {
   return (

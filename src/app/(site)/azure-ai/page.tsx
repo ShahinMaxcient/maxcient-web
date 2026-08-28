@@ -1,5 +1,18 @@
 import TechnologyDetail from "@/components/TechnologyDetail";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "azure-ai",
+    title: "Azure AI Services",
+    description:
+      "Azure OpenAI, vision, language and document intelligence connected directly into your Dynamics 365 CRM and ERP for real business outcomes.",
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1677442136019-21780ecad995.webp",
+  });
+
 // Microsoft Azure AI — content researched for the Dynamics 365 / Power Platform stack.
 export default function AzureAI() {
   return (

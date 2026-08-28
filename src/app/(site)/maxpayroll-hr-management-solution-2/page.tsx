@@ -4,6 +4,18 @@ import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
 import ProductClients from "@/components/ProductClients";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "maxpayroll-hr-management-solution-2",
+    title: "MaxPayroll — HR and Payroll",
+    description:
+      "HR and payroll management on Microsoft Dynamics 365, WPS-ready and built for the diverse workforces of UAE and GCC employers.",
+  });
+
 export default function MaxPayroll() {
   return (
     <>

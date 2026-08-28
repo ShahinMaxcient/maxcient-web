@@ -1,5 +1,18 @@
 import TechnologyDetail from "@/components/TechnologyDetail";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "microsoft-power-platform",
+    title: "Microsoft Power Platform Solutions",
+    description:
+      "Power Apps, Power Automate and Power BI — low-code apps, automated workflows and analytics built on your Dynamics 365 data.",
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1519389950473-47ba0277781c.webp",
+  });
+
 // Content mirrors www.maxcient.com/microsoft-power-platform.
 export default function MicrosoftPowerPlatform() {
   return (

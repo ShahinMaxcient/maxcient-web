@@ -1,5 +1,18 @@
 import ServiceDetail from "@/components/ServiceDetail";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "application-development",
+    title: "Custom Application Development",
+    description:
+      "Bespoke business applications built on Microsoft Power Platform and Azure, designed around how your teams actually work in the UAE and GCC.",
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-application-development.webp",
+  });
+
 // Content mirrors www.maxcient.com/application-development.
 export default function ApplicationDevelopment() {
   return (

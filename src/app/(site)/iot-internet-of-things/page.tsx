@@ -1,5 +1,18 @@
 import TechnologyDetail from "@/components/TechnologyDetail";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "iot-internet-of-things",
+    title: "IoT Solutions for Enterprise",
+    description:
+      "Connected devices, real-time monitoring and predictive maintenance — IoT integrated with Dynamics 365 and Azure for UAE operations.",
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1518770660439-4636190af475.webp",
+  });
+
 // Content mirrors www.maxcient.com/iot-internet-of-things.
 export default function IoT() {
   return (

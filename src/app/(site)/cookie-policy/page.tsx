@@ -1,3 +1,14 @@
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "cookie-policy",
+    title: "Cookie Policy",
+    description:
+      "How Maxcient Technologies uses cookies and browser storage on this website.",
+  });
+
 
 export default function CookiePolicy() {
   return (

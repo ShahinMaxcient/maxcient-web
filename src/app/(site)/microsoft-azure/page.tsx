@@ -1,5 +1,18 @@
 import TechnologyDetail from "@/components/TechnologyDetail";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "microsoft-azure",
+    title: "Microsoft Azure Cloud Services",
+    description:
+      "Azure cloud architecture, migration and managed infrastructure for UAE and GCC enterprises — secure, scalable and cost-controlled.",
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1451187580459-43490279c0fa.webp",
+  });
+
 // Content mirrors www.maxcient.com/microsoft-azure.
 export default function MicrosoftAzure() {
   return (

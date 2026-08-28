@@ -1,5 +1,18 @@
 import ServiceDetail from "@/components/ServiceDetail";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "data-analytics",
+    title: "Data Analytics & Business Intelligence",
+    description:
+      "Turn enterprise data into decisions with Power BI and Azure analytics. Dashboards, forecasting and reporting for UAE and GCC businesses.",
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-data-analytics.webp",
+  });
+
 // Content mirrors www.maxcient.com/data-analytics.
 export default function DataAnalytics() {
   return (

@@ -5,6 +5,18 @@ import Image from "next/image";
 import { getAboutSettings } from "@/lib/settings";
 import { getCollectionItems } from "@/lib/content";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "about-us",
+    title: "About Maxcient",
+    description:
+      "A digital enabler for the UAE and GCC since 2014. Microsoft Solutions Partner delivering Dynamics 365, Power Platform and Azure from Dubai.",
+  });
+
 // Content mirrors www.maxcient.com/about-us.
 const values = [
   { title: "Integrity", description: "Upholding the highest standards in all our actions and decisions." },

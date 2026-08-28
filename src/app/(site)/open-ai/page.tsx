@@ -1,5 +1,18 @@
 import TechnologyDetail from "@/components/TechnologyDetail";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "open-ai",
+    title: "OpenAI Integration Services",
+    description:
+      "Bring GPT models into your enterprise systems — grounded, governed and integrated with Dynamics 365 and the Power Platform.",
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1677442136019-21780ecad995.webp",
+  });
+
 // Content mirrors www.maxcient.com/open-ai.
 export default function OpenAI() {
   return (

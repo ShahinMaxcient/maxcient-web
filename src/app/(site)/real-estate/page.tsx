@@ -1,5 +1,18 @@
 import IndustryDetail from "@/components/IndustryDetail";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "real-estate",
+    title: "Dynamics 365 for Real Estate",
+    description:
+      "Property, leasing and facility management on Microsoft Dynamics 365, built for UAE and GCC developers, brokers and asset owners.",
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-real-estate.webp",
+  });
+
 // Content mirrors www.maxcient.com/real-estate.
 export default function RealEstate() {
   return (

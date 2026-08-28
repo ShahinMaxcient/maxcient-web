@@ -1,5 +1,18 @@
 import TechnologyDetail from "@/components/TechnologyDetail";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "microsoft-dynamics-365",
+    title: "Microsoft Dynamics 365 Partner in UAE",
+    description:
+      "Dynamics 365 implementation, customization and support across CRM and ERP — sales, service, finance, supply chain and operations, unified.",
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/photo-1451187580459-43490279c0fa.webp",
+  });
+
 // Content mirrors www.maxcient.com/microsoft-dynamics-365.
 export default function MicrosoftDynamics365() {
   return (

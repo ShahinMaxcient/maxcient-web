@@ -3,6 +3,7 @@ import { Inter, Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import ScrollToTop from "@/components/ScrollToTop";
 import IntroOverlay from "@/components/IntroOverlay";
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 // Typography: Bricolage Grotesque for headings, Inter for body. Bricolage is a
 // characterful grotesque — it gives the display type a designed, non-generic
@@ -28,9 +29,42 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Maxcient Technologies | Enterprise Solutions for UAE & GCC",
+  // metadataBase makes every relative canonical/og URL below resolve to the
+  // real domain. Without it Next emits relative og:url values, which most
+  // social crawlers ignore.
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Maxcient Technologies | Enterprise Solutions for UAE & GCC",
+    // Pages that set a bare title get the brand appended automatically;
+    // pages using pageMetadata() supply their own full string.
+    template: "%s",
+  },
   description:
     "Unlock business value with Maxcient's enterprise-grade solutions tailored for UAE and GCC markets.",
+  applicationName: SITE_NAME,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    locale: "en_AE",
+    url: "/",
+    title: "Maxcient Technologies | Enterprise Solutions for UAE & GCC",
+    description:
+      "Unlock business value with Maxcient's enterprise-grade solutions tailored for UAE and GCC markets.",
+    images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Maxcient Technologies | Enterprise Solutions for UAE & GCC",
+    description:
+      "Unlock business value with Maxcient's enterprise-grade solutions tailored for UAE and GCC markets.",
+    images: [DEFAULT_OG_IMAGE],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
 };
 
 // Pages are cached and served from the CDN, then re-rendered on demand.

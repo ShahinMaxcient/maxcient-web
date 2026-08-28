@@ -4,6 +4,18 @@ import CTASection from "@/components/CTASection";
 import PageFAQ from "@/components/PageFAQ";
 import ProductClients from "@/components/ProductClients";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "smartfees-school-admin-solution",
+    title: "SmartFees — School Fee Management",
+    description:
+      "School administration on Microsoft Dynamics 365 — fee invoicing, expense tracking and payroll for educational institutions in the UAE.",
+  });
+
 export default function SmartFees() {
   return (
     <>

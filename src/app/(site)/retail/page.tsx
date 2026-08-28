@@ -1,5 +1,18 @@
 import IndustryDetail from "@/components/IndustryDetail";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "retail",
+    title: "Dynamics 365 for Retail",
+    description:
+      "Unified commerce on Microsoft Dynamics 365 — POS, inventory, loyalty and omnichannel experiences for retailers across the UAE and GCC.",
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-retail.webp",
+  });
+
 // Content mirrors www.maxcient.com/retail.
 export default function Retail() {
   return (

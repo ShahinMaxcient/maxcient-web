@@ -1,5 +1,18 @@
 import TechnologyDetail from "@/components/TechnologyDetail";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "microsoft-copilot",
+    title: "Microsoft Copilot for Business",
+    description:
+      "Microsoft's AI assistant grounded in your own Dataverse and Microsoft 365 data, with custom agents built in Copilot Studio.",
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/copilot-hero.webp",
+  });
+
 // Microsoft Copilot — content researched for the Dynamics 365 / Power Platform stack.
 export default function MicrosoftCopilot() {
   return (

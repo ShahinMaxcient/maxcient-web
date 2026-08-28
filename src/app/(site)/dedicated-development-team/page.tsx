@@ -5,6 +5,18 @@ import FramedImage from "@/components/FramedImage";
 import Reveal from "@/components/Reveal";
 import { RevealGroup, RevealItem } from "@/components/RevealGroup";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "dedicated-development-team",
+    title: "Smart Teams — Dedicated Developers",
+    description:
+      "Dedicated Microsoft-certified development teams that extend your in-house capability, scaled to your roadmap and managed end to end.",
+  });
+
 const BASE = "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site";
 
 // Content mirrors www.maxcient.com/dedicated-development-team (Smart Teams).

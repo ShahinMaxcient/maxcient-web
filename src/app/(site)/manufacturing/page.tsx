@@ -1,5 +1,18 @@
 import IndustryDetail from "@/components/IndustryDetail";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "manufacturing",
+    title: "Dynamics 365 for Manufacturing",
+    description:
+      "Smart factory solutions on Microsoft Dynamics 365 — production planning, inventory, quality and supply chain visibility for UAE manufacturers.",
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-manufacturing.webp",
+  });
+
 // Content mirrors www.maxcient.com/manufacturing.
 export default function Manufacturing() {
   return (

@@ -1,5 +1,18 @@
 import IndustryDetail from "@/components/IndustryDetail";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "distribution",
+    title: "Dynamics 365 for Distribution",
+    description:
+      "Supply chain, warehouse and predictive inventory management on Microsoft Dynamics 365 for wholesalers and distributors in the UAE.",
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-distribution.webp",
+  });
+
 // Content mirrors www.maxcient.com/distribution.
 export default function Distribution() {
   return (

@@ -1,5 +1,18 @@
 import ServiceDetail from "@/components/ServiceDetail";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "application-management",
+    title: "Application Management Services",
+    description:
+      "Managed support, monitoring and continuous improvement for your Dynamics 365 and Power Platform applications, delivered from Dubai.",
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-application-management.webp",
+  });
+
 // Content mirrors www.maxcient.com/application-management.
 export default function ApplicationManagement() {
   return (

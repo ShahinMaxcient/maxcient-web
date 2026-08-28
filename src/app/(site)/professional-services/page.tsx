@@ -1,5 +1,18 @@
 import IndustryDetail from "@/components/IndustryDetail";
 
+
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "professional-services",
+    title: "Dynamics 365 for Professional Services",
+    description:
+      "Project accounting, resource planning and client management on Microsoft Dynamics 365 for consultancies and service firms in the GCC.",
+  image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/hero-professional-services.webp",
+  });
+
 // Content mirrors www.maxcient.com/professional-services.
 export default function ProfessionalServices() {
   return (

@@ -1,3 +1,14 @@
+import { pageMetadata } from "@/lib/seo";
+
+// Unique title/description per page; Admin → Pages can override both.
+export const generateMetadata = () =>
+  pageMetadata({
+    slug: "privacy-policy",
+    title: "Privacy Policy",
+    description:
+      "How Maxcient Technologies collects, uses and protects personal information submitted through this website.",
+  });
+
 
 export default function PrivacyPolicy() {
   return (
