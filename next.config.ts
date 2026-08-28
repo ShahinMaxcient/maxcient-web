@@ -25,6 +25,14 @@ const LEGACY_REDIRECTS: { source: string; destination: string }[] = [
   { source: "/attaining-operational-flexibility-during-uncertain-times", destination: "/blog/operational-flexibility-during-uncertain-times" },
   { source: "/how-to-bring-about-rapid-growth-and-flexibility-with-power-platform", destination: "/blog/rapid-growth-with-power-platform" },
 
+  // WordPress archive and plugin routes. Wildcards rather than the five
+  // exact URLs found in the wp-sitemap, because WordPress generates these
+  // patterns open-endedly and an unlisted one would otherwise 404.
+  { source: "/category/:slug*", destination: "/blog" },
+  { source: "/author/:slug*", destination: "/blog" },
+  { source: "/metform-form/:slug*", destination: "/request-a-consultation" },
+  { source: "/tag/:slug*", destination: "/blog" },
+
   // Root-level posts whose content was not carried over. Sending them to the
   // blog index keeps the URL alive and passes some authority on, which is
   // strictly better than a 404 for both search engines and anyone following
