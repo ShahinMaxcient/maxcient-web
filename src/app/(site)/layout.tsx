@@ -2,6 +2,7 @@ import NavbarServer from "@/components/NavbarServer";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
 import { getSiteSettings } from "@/lib/settings";
+import OrganizationSchema from "@/components/OrganizationSchema";
 
 /**
  * Shell for every public page. The header and footer live here rather than in
@@ -14,6 +15,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   const settings = await getSiteSettings();
   return (
     <>
+      <OrganizationSchema />
       <NavbarServer />
       {children}
       <Footer />
