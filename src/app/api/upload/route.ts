@@ -3,18 +3,27 @@ import { createClient } from "@supabase/supabase-js";
 import sharp from "sharp";
 import { auth } from "@/auth";
 
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-);
-
 const BUCKET = "uploads";
+
+// Instantiate the Supabase client lazily, inside the handler. At module scope
+// it ran during Next's build-time "collect page data" pass, where the env vars
+// may be absent, and createClient throws "supabaseUrl is required." — failing
+// the whole build. Deferring it to request time means the build never needs
+// the credentials, only the running function does.
+function getSupabase() {
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) throw new Error("Supabase environment variables are not configured");
+  return createClient(url, key);
+}
 
 export async function POST(req: NextRequest) {
   const session = await auth();
   if (!session?.user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const supabase = getSupabase();
 
   const form = await req.formData();
   const file = form.get("file") as File | null;
