@@ -41,8 +41,11 @@ const CSS = `
 .${NS}-shadow {
   box-shadow: 2px 2px 5px var(--ag-shadow), 3px 3px 10px var(--ag-shadow), 6px 6px 20px var(--ag-shadow);
 }
-.${NS}-card img { opacity: .72; transition: all ${DURATION}ms; shape-rendering: geometricPrecision; }
-.${NS}-card:hover img { opacity: 1; }
+/* Full strength at rest. These are client logos in their own brand colours,
+   and dimming them to .72 made the wall read as washed-out — the colour is
+   the point. Hover still lifts and nudges the tile; it just no longer
+   doubles as the only way to see a logo properly. */
+.${NS}-card img { opacity: 1; transition: all ${DURATION}ms; shape-rendering: geometricPrecision; }
 .${NS}-small { transform: scale(1.05) translate(-5px) translateY(-5px) translateZ(0); }
 .${NS}-big   { transform: scale(1.15) translate(-20px) translateY(-20px) translateZ(15px); }
 .${NS}-glow-big   { animation: ${NS}-glow 1.5s ease-in-out infinite alternate; }
@@ -54,11 +57,6 @@ const CSS = `
 @keyframes ${NS}-glow-sm {
   0% { filter: drop-shadow(0 0 2px var(--ag-glow-start)); }
   to { filter: drop-shadow(0 1px var(--ag-glow-blur-small) var(--ag-glow-start)); }
-}
-/* Touch devices have no hover, so the dim-until-hover state would strand the
-   logos permanently faded — show them at full strength instead. */
-@media (hover: none) {
-  .${NS}-card img { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
   .${NS}-card, .${NS}-card img { transition: none !important; }
