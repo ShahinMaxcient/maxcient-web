@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   // social crawlers ignore.
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Maxcient Technologies | Enterprise Solutions for UAE & GCC",
+    default: "Maxcient Technologies",
     // Pages that set a bare title get the brand appended automatically;
     // pages using pageMetadata() supply their own full string.
     template: "%s",
@@ -48,14 +48,14 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     locale: "en_AE",
     url: "/",
-    title: "Maxcient Technologies | Enterprise Solutions for UAE & GCC",
+    title: "Maxcient Technologies",
     description:
       "Unlock business value with Maxcient's enterprise-grade solutions tailored for UAE and GCC markets.",
     images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: SITE_NAME }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Maxcient Technologies | Enterprise Solutions for UAE & GCC",
+    title: "Maxcient Technologies",
     description:
       "Unlock business value with Maxcient's enterprise-grade solutions tailored for UAE and GCC markets.",
     images: [DEFAULT_OG_IMAGE],
