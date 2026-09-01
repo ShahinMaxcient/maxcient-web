@@ -59,6 +59,13 @@ const nextConfig: NextConfig = {
     // `quality` prop to the nearest allowed value — so 82 has to be declared
     // here or the full-bleed heroes quietly render at 75 again.
     qualities: [75, 82],
+    // Optimised images carried Next's default 60-second TTL, so the CDN sent
+    // `max-age=0, must-revalidate` and every repeat visitor re-validated all
+    // 16 images on every page view. The source files are content-addressed
+    // (Supabase upload paths carry a timestamp, /public assets are versioned
+    // by deploy), so a long TTL cannot serve a stale image — replacing one
+    // means a new URL. A year of caching removes those round trips entirely.
+    minimumCacheTTL: 31536000,
     // Default ladder jumps 2048 -> 3840, so a 1440px screen at 2x DPR (needing
     // ~2880) is handed a 3840 file — on the full-bleed heroes that was ~400KB
     // of pixels it never displays. The two extra rungs keep the same sharpness
