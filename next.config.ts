@@ -52,7 +52,25 @@ const nextConfig: NextConfig = {
     // permanent: true emits 308, which Google treats exactly as a 301 and
     // which preserves the request method. Next normalises the trailing slash
     // the old WordPress URLs carried before matching, so "/foo/" hits "/foo".
-    return LEGACY_REDIRECTS.map((r) => ({ ...r, permanent: true }));
+    return [
+      // Send the Vercel deployment domain to the real one. The *.vercel.app
+      // host serves the identical site, so without this it competes with
+      // maxcient.com in search results as duplicate content, and any link
+      // shared from it keeps people off the branded domain. Canonical tags
+      // already point home; this makes the redirect explicit.
+      //
+      // Scoped by host so it only fires on *.vercel.app — the rule must never
+      // match requests already arriving on maxcient.com, or every page would
+      // redirect to itself forever. Preview deployments match too, which is
+      // intended: they should not be reachable or indexable either.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "(?<sub>.*)\\.vercel\\.app" }],
+        destination: "https://www.maxcient.com/:path*",
+        permanent: true,
+      },
+      ...LEGACY_REDIRECTS.map((r) => ({ ...r, permanent: true })),
+    ];
   },
   images: {
     // Next 16 narrowed the default to [75] and silently coerces any other
