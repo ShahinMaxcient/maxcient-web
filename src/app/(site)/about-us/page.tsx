@@ -19,9 +19,21 @@ export const generateMetadata = () =>
 
 // Content mirrors www.maxcient.com/about-us.
 const values = [
-  { title: "Integrity", description: "Upholding the highest standards in all our actions and decisions." },
-  { title: "Innovation", description: "Pioneering solutions for tomorrow's challenges today." },
-  { title: "Collaboration", description: "Working together to achieve greater results." },
+  {
+    title: "Integrity",
+    description: "Upholding the highest standards in all our actions and decisions.",
+    image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/value-integrity-1788268479000.webp",
+  },
+  {
+    title: "Innovation",
+    description: "Pioneering solutions for tomorrow's challenges today.",
+    image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/value-innovation-1788268479000.webp",
+  },
+  {
+    title: "Collaboration",
+    description: "Working together to achieve greater results.",
+    image: "https://kitfuqlhhtcqepgwgbkp.supabase.co/storage/v1/object/public/uploads/site/value-collaboration-1788268479000.webp",
+  },
 ];
 
 const globalReach = [
@@ -79,9 +91,23 @@ export default async function AboutUs() {
             </div>
             <div className="grid md:grid-cols-3 gap-8">
               {values.map((v) => (
-                <div key={v.title} className="p-8 rounded-2xl border t-border t-bg-surface hover:shadow-lg transition-all text-center">
-                  <h3 className="text-xl font-bold t-heading">{v.title}</h3>
-                  <p className="mt-4 t-body leading-relaxed">{v.description}</p>
+                <div key={v.title} className="rounded-2xl border t-border t-bg-surface overflow-hidden hover:shadow-lg transition-all">
+                  {/* Photo header, matching the service and product cards. A
+                      fixed 16/10 keeps all three the same height regardless of
+                      how the source images crop. */}
+                  <div className="relative w-full aspect-[16/10] overflow-hidden">
+                    <Image
+                      src={v.image}
+                      alt=""
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  </div>
+                  <div className="p-8 text-center">
+                    <h3 className="text-xl font-bold t-heading">{v.title}</h3>
+                    <p className="mt-4 t-body leading-relaxed">{v.description}</p>
+                  </div>
                 </div>
               ))}
             </div>
