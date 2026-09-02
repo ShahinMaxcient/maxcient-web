@@ -28,10 +28,30 @@ export default function HeroGlobe() {
     const rm = window.matchMedia("(prefers-reduced-motion: reduce)");
     const sm = window.matchMedia("(max-width: 1023px)");
     const sync = () => setState({ on: !rm.matches, small: sm.matches });
-    sync();
+
+    // Wait for the browser to go idle before mounting. The three.js chunk is
+    // by far the largest asset on the page, and starting it during hydration
+    // made it compete for bandwidth in exactly the window where React is
+    // attaching its handlers — so a click on a nav link did nothing until it
+    // finished. Deferring to idle changes nothing about how the globe looks
+    // or behaves; it just stops it blocking the page becoming interactive.
+    //
+    // requestIdleCallback is unsupported in Safari, hence the timeout branch.
+    // The 2000ms deadline is a ceiling, not a delay: on a fast connection idle
+    // arrives in a few hundred milliseconds.
+    const hasIdle = typeof window.requestIdleCallback === "function";
+    const handle = hasIdle
+      ? window.requestIdleCallback(sync, { timeout: 2000 })
+      : window.setTimeout(sync, 400);
+
     rm.addEventListener("change", sync);
     sm.addEventListener("change", sync);
-    return () => { rm.removeEventListener("change", sync); sm.removeEventListener("change", sync); };
+    return () => {
+      if (hasIdle) window.cancelIdleCallback(handle);
+      else window.clearTimeout(handle);
+      rm.removeEventListener("change", sync);
+      sm.removeEventListener("change", sync);
+    };
   }, []);
 
   if (!state.on) return null;
