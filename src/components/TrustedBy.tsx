@@ -1,5 +1,3 @@
-"use client";
-
 import SectionReveal from "./SectionReveal";
 import InteractiveGrid from "./InteractiveGrid";
 import BrandMark from "./BrandMark";

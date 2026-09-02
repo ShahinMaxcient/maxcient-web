@@ -1,5 +1,3 @@
-"use client";
-
 const DEFAULT_ITEMS = ["DYNAMICS 365", "POWER PLATFORM", "AZURE", "OPENAI", "IoT"];
 
 export default function Marquee({ items = DEFAULT_ITEMS }: { items?: string[] }) {

@@ -1,5 +1,3 @@
-"use client";
-
 import SectionReveal from "./SectionReveal";
 import SectionHead from "./SectionHead";
 import TechCard from "./TechCard";

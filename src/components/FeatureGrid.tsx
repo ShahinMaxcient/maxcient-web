@@ -1,5 +1,3 @@
-"use client";
-
 import SectionReveal from "./SectionReveal";
 import BrandMark from "./BrandMark";
 import FeatureIcon from "./FeatureIcon";

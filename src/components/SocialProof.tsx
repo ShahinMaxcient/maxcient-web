@@ -1,5 +1,3 @@
-"use client";
-
 import { RevealGroup, RevealItem } from "./RevealGroup";
 import BrandMark from "./BrandMark";
 import AnimatedCounter from "./AnimatedCounter";
