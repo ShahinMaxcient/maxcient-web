@@ -40,7 +40,12 @@ function ProductCard({ p }: { p: ProductItem }) {
           <h3 style={{ fontSize: "1.3rem", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.15, marginBottom: 10, color: "var(--text-primary)" }}>
             {p.title}<span style={{ color: "var(--primary)" }}>.</span>
           </h3>
-          <p style={{ fontSize: "14px", lineHeight: 1.6, color: "var(--text-muted)" }}>{p.desc}</p>
+          {/* Clamped to three lines. Descriptions run from 38 to 130
+              characters, and because the cards are equal height the longest
+              one set the height for all nine — 477px on a phone, leaving 90px
+              of blank space inside the short ones. Three lines is enough for a
+              card; the full text is on the product page. */}
+          <p className="line-clamp-3" style={{ fontSize: "14px", lineHeight: 1.6, color: "var(--text-muted)" }}>{p.desc}</p>
           {/* mt-auto pins the tags to the bottom of the card.
               Cards in a row are equal height, but the descriptions are not —
               41 characters for RealtyAI against 130 for MaxMarina, which is
