@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { notifyNewLead } from "@/lib/notify";
+import { rateLimit, clientIp } from "@/lib/rate-limit";
 
 // Public endpoint — accepts submissions from the consultation form and the
 // product-page demo cards.
@@ -17,7 +18,24 @@ const leadSchema = z.object({
   source: z.enum(["consultation-form", "product-demo"]).optional(),
 });
 
+// Two limits, because neither alone is enough. The in-memory one is fast and
+// catches a flood against a single warm instance, but serverless scales out so
+// it cannot see the whole picture. The database check closes that gap using
+// data already stored — no IPs are persisted for this.
+const IP_LIMIT = 5;                 // submissions per IP
+const IP_WINDOW_MS = 10 * 60 * 1000; // per 10 minutes
+const SAME_EMAIL_COOLDOWN_MS = 60 * 1000;
+
 export async function POST(request: Request) {
+  const ip = clientIp(request);
+  const limited = rateLimit(`leads:${ip}`, IP_LIMIT, IP_WINDOW_MS);
+  if (!limited.ok) {
+    return NextResponse.json(
+      { error: "Too many requests. Please try again shortly." },
+      { status: 429, headers: { "Retry-After": String(limited.retryAfter) } },
+    );
+  }
+
   let body: unknown;
   try {
     body = await request.json();
@@ -34,11 +52,30 @@ export async function POST(request: Request) {
   }
 
   const d = parsed.data;
+  const email = d.email.toLowerCase();
+
   try {
+    // Cross-instance guard: the same address cannot submit twice inside a
+    // minute. Uses the existing createdAt index, and a failure here must never
+    // block a genuine submission, so it is wrapped rather than allowed to throw.
+    const recent = await prisma.lead
+      .findFirst({
+        where: { email, createdAt: { gt: new Date(Date.now() - SAME_EMAIL_COOLDOWN_MS) } },
+        select: { id: true },
+      })
+      .catch(() => null);
+
+    if (recent) {
+      return NextResponse.json(
+        { error: "We already have your request. We'll be in touch shortly." },
+        { status: 429, headers: { "Retry-After": "60" } },
+      );
+    }
+
     const lead = await prisma.lead.create({
       data: {
         name: d.name,
-        email: d.email.toLowerCase(),
+        email,
         phone: d.phone || null,
         company: d.company || null,
         service: d.service || null,
