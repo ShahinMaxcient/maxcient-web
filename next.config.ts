@@ -47,6 +47,46 @@ const LEGACY_REDIRECTS: { source: string; destination: string }[] = [
   { source: "/how-to-choose-an-offshore-software-development-company", destination: "/blog/how-to-choose-an-offshore-software-development-company" },
 ];
 
+/**
+ * Content-Security-Policy.
+ *
+ * Deliberately not nonce-based. A nonce must be unique per response, which
+ * means rendering every request — and the public pages are ISR-cached, which
+ * took TTFB from ~1.6s to a few milliseconds. Trading that away for a stricter
+ * script-src is the wrong call for a marketing site, so this policy is written
+ * to be genuinely useful without one.
+ *
+ * What it stops: scripts loaded from any other origin, eval, <base> injection,
+ * form posts redirected to an attacker's host, plugins, and framing. What it
+ * does not stop: an injected *inline* <script>, because Next's own hydration
+ * payload is inline and cannot be permitted without permitting that too. React
+ * escapes interpolated values and nothing here passes user input to
+ * dangerouslySetInnerHTML, so that path is closed at the source instead.
+ */
+const CSP = [
+  "default-src 'self'",
+  // 'unsafe-inline' is required for Next's inline hydration script. This still
+  // blocks <script src> from any other origin, and omitting 'unsafe-eval'
+  // blocks eval outright.
+  "script-src 'self' 'unsafe-inline'",
+  // React writes style={{...}} as element style attributes, which cannot carry
+  // a nonce.
+  "style-src 'self' 'unsafe-inline'",
+  // Supabase serves every photo and logo; unsplash is allowed by the
+  // remotePatterns below. blob:/data: cover the image optimiser and canvas.
+  "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com",
+  // Fonts are self-hosted through next/font, so no external font origin.
+  "font-src 'self' data:",
+  "connect-src 'self' https://*.supabase.co",
+  // three.js can create workers from a blob URL.
+  "worker-src 'self' blob:",
+  "frame-ancestors 'none'",
+  "base-uri 'none'",
+  "form-action 'self'",
+  "object-src 'none'",
+  "upgrade-insecure-requests",
+].join("; ");
+
 const nextConfig: NextConfig = {
   async redirects() {
     // permanent: true emits 308, which Google treats exactly as a 301 and
@@ -89,6 +129,7 @@ const nextConfig: NextConfig = {
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           // The site asks for none of these; deny them explicitly.
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+          { key: "Content-Security-Policy", value: CSP },
         ],
       },
       {
