@@ -3,6 +3,8 @@ import { Inter, Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import ScrollToTop from "@/components/ScrollToTop";
 import IntroOverlay from "@/components/IntroOverlay";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 // Typography: Bricolage Grotesque for headings, Inter for body. Bricolage is a
@@ -95,6 +97,13 @@ export default function RootLayout({
         <ScrollToTop />
         {children}
         <IntroOverlay />
+        {/* Both inject a small script from Vercel's own domain and send
+            beacons back to it, which is why the CSP names va.vercel-scripts.com
+            in script-src and vitals.vercel-insights.com in connect-src. They
+            set no cookies and collect no personal data, so they do not change
+            the consent position. */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

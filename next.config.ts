@@ -68,7 +68,8 @@ const CSP = [
   // 'unsafe-inline' is required for Next's inline hydration script. This still
   // blocks <script src> from any other origin, and omitting 'unsafe-eval'
   // blocks eval outright.
-  "script-src 'self' 'unsafe-inline'",
+  // va.vercel-scripts.com serves the Analytics and Speed Insights beacons.
+  "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com",
   // React writes style={{...}} as element style attributes, which cannot carry
   // a nonce.
   "style-src 'self' 'unsafe-inline'",
@@ -77,7 +78,8 @@ const CSP = [
   "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com",
   // Fonts are self-hosted through next/font, so no external font origin.
   "font-src 'self' data:",
-  "connect-src 'self' https://*.supabase.co",
+  // vitals.vercel-insights.com receives the Web Vitals measurements.
+  "connect-src 'self' https://*.supabase.co https://va.vercel-scripts.com https://vitals.vercel-insights.com",
   // three.js can create workers from a blob URL.
   "worker-src 'self' blob:",
   "frame-ancestors 'none'",
