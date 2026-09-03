@@ -72,6 +72,32 @@ const nextConfig: NextConfig = {
       ...LEGACY_REDIRECTS.map((r) => ({ ...r, permanent: true })),
     ];
   },
+  async headers() {
+    // Vercel already sends HSTS. These cover the rest of the standard set;
+    // without them the site can be framed by another origin, and browsers are
+    // free to MIME-sniff responses and leak full URLs in the Referer header.
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          // Clickjacking: nothing here should ever be embedded in a frame.
+          { key: "X-Frame-Options", value: "DENY" },
+          // Stop browsers second-guessing Content-Type.
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          // Send the origin to other sites, the full URL only to ourselves,
+          // so admin paths never leak in an outbound Referer.
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          // The site asks for none of these; deny them explicitly.
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+        ],
+      },
+      {
+        // Admin is behind auth and must never be cached by a proxy or indexed.
+        source: "/admin/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+    ];
+  },
   images: {
     // Next 16 narrowed the default to [75] and silently coerces any other
     // `quality` prop to the nearest allowed value — so 82 has to be declared
