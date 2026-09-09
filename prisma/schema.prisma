@@ -45,6 +45,19 @@ model Lead {
   message   String?
   source    String     @default("consultation-form")
   status    LeadStatus @default(NEW)
+
+  // Apollo.io enrichment. All nullable: enrichment is best-effort and must
+  // never be a condition of accepting a lead. enrichedAt records that we
+  // asked, so a lead Apollo had nothing for is not retried on every view.
+  enrichedAt       DateTime?
+  jobTitle         String?
+  linkedinUrl      String?
+  companyName      String?
+  companyDomain    String?
+  companyIndustry  String?
+  companySize      Int?
+  personLocation   String?
+
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 

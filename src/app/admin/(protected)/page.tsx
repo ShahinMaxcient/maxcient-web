@@ -90,6 +90,38 @@ export default async function AdminDashboard() {
                       {lead.company && (
                         <div className="text-xs mt-0.5" style={{ color: "var(--text-muted)" }}>{lead.company}</div>
                       )}
+                      {/* Apollo enrichment: shown only when the lookup returned
+                          something. The role/company line here is Apollo's, next
+                          to the company the visitor typed above. */}
+                      {(lead.jobTitle || lead.companyName || lead.companyIndustry || lead.personLocation || lead.linkedinUrl) && (
+                        <div className="mt-2 text-xs space-y-0.5" style={{ color: "var(--text-muted)" }}>
+                          {(lead.jobTitle || lead.companyName) && (
+                            <div style={{ color: "var(--text-secondary)" }}>
+                              {[lead.jobTitle, lead.companyName].filter(Boolean).join(" · ")}
+                            </div>
+                          )}
+                          {(lead.companyIndustry || lead.companySize || lead.personLocation) && (
+                            <div>
+                              {[
+                                lead.companyIndustry,
+                                lead.companySize ? `${lead.companySize.toLocaleString()} staff` : null,
+                                lead.personLocation,
+                              ].filter(Boolean).join(" · ")}
+                            </div>
+                          )}
+                          {lead.linkedinUrl && (
+                            <a
+                              href={lead.linkedinUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hover:underline"
+                              style={{ color: "var(--primary)" }}
+                            >
+                              LinkedIn ↗
+                            </a>
+                          )}
+                        </div>
+                      )}
                     </td>
                     <td className="px-4 py-3 align-top">
                       <a href={`mailto:${lead.email}`} className="hover:underline" style={{ color: "var(--primary)" }}>{lead.email}</a>

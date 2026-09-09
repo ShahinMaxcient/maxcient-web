@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import type { LeadEnrichment } from "@/lib/apollo";
 
 /**
  * Email notification for new leads.
@@ -21,6 +22,8 @@ type LeadEmail = {
   service?: string | null;
   message?: string | null;
   source: string;
+  // Apollo lookup result, or null when enrichment was disabled or found nothing.
+  enrichment?: LeadEnrichment | null;
 };
 
 const escapeHtml = (s: string) =>
@@ -33,6 +36,18 @@ function row(label: string, value?: string | null) {
     <td style="padding:6px 0;color:#14101F;font:400 14px system-ui,sans-serif">${escapeHtml(value)}</td>
   </tr>`;
 }
+
+/** A row whose value is a clickable link (used for LinkedIn / company domain). */
+function linkRow(label: string, href?: string | null, text?: string | null) {
+  if (!href) return "";
+  const url = /^https?:\/\//i.test(href) ? href : `https://${href}`;
+  return `<tr>
+    <td style="padding:6px 14px 6px 0;color:#6E6880;font:600 13px system-ui,sans-serif;vertical-align:top;white-space:nowrap">${label}</td>
+    <td style="padding:6px 0;font:400 14px system-ui,sans-serif"><a href="${escapeHtml(url)}" style="color:#7c3aed">${escapeHtml(text || href)}</a></td>
+  </tr>`;
+}
+
+const num = (n: number) => new Intl.NumberFormat("en-GB").format(n);
 
 /**
  * Send the notification. Never throws: the caller has already saved the lead,
@@ -50,6 +65,36 @@ export async function notifyNewLead(lead: LeadEmail): Promise<void> {
   const label = lead.source === "product-demo" ? "Demo request" : "Consultation request";
   const subject = `${label}: ${lead.name}${lead.service ? ` — ${lead.service}` : ""}`;
 
+  // Apollo enrichment, rendered only when it actually returned something.
+  const e = lead.enrichment;
+  const hasEnrichment = !!e && Object.values(e).some((v) => v != null);
+  const enrichmentHtml = hasEnrichment
+    ? `<div style="margin-top:18px;padding-top:16px;border-top:1px solid rgba(20,16,31,0.10)">
+      <p style="margin:0 0 8px;color:#6E6880;font:600 13px system-ui,sans-serif">Apollo enrichment</p>
+      <table style="border-collapse:collapse;width:100%">
+        ${row("Role", e!.jobTitle)}
+        ${row("Company", e!.companyName)}
+        ${row("Industry", e!.companyIndustry)}
+        ${row("Size", e!.companySize != null ? `${num(e!.companySize)} employees` : null)}
+        ${row("Location", e!.personLocation)}
+        ${linkRow("Website", e!.companyDomain)}
+        ${linkRow("LinkedIn", e!.linkedinUrl, "View profile")}
+      </table>
+    </div>`
+    : "";
+  const enrichmentText = hasEnrichment
+    ? [
+        "\nApollo enrichment:",
+        e!.jobTitle ? `Role: ${e!.jobTitle}` : "",
+        e!.companyName ? `Company: ${e!.companyName}` : "",
+        e!.companyIndustry ? `Industry: ${e!.companyIndustry}` : "",
+        e!.companySize != null ? `Size: ${num(e!.companySize)} employees` : "",
+        e!.personLocation ? `Location: ${e!.personLocation}` : "",
+        e!.companyDomain ? `Website: ${e!.companyDomain}` : "",
+        e!.linkedinUrl ? `LinkedIn: ${e!.linkedinUrl}` : "",
+      ].filter(Boolean).join("\n")
+    : "";
+
   const html = `<div style="background:#F7F7F8;padding:28px">
   <div style="max-width:560px;margin:0 auto;background:#fff;border:1px solid rgba(20,16,31,0.10);border-radius:10px;padding:26px 28px">
     <p style="margin:0 0 4px;font:600 12px system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#7c3aed">${escapeHtml(label)}</p>
@@ -60,6 +105,7 @@ export async function notifyNewLead(lead: LeadEmail): Promise<void> {
       ${row("Company", lead.company)}
       ${row("Interest", lead.service)}
     </table>
+    ${enrichmentHtml}
     ${lead.message ? `<div style="margin-top:18px;padding-top:16px;border-top:1px solid rgba(20,16,31,0.10)">
       <p style="margin:0 0 6px;color:#6E6880;font:600 13px system-ui,sans-serif">Message</p>
       <p style="margin:0;color:#14101F;font:400 14px/1.6 system-ui,sans-serif;white-space:pre-wrap">${escapeHtml(lead.message)}</p>
@@ -77,6 +123,7 @@ export async function notifyNewLead(lead: LeadEmail): Promise<void> {
     lead.phone ? `Phone: ${lead.phone}` : "",
     lead.company ? `Company: ${lead.company}` : "",
     lead.service ? `Interest: ${lead.service}` : "",
+    enrichmentText,
     lead.message ? `\nMessage:\n${lead.message}` : "",
     `\nReference ${lead.id}`,
   ].filter(Boolean).join("\n");

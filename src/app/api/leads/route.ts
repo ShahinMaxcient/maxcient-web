@@ -1,7 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { notifyNewLead } from "@/lib/notify";
+import { enrichLead } from "@/lib/apollo";
 import { rateLimit, clientIp } from "@/lib/rate-limit";
 
 // Public endpoint — accepts submissions from the consultation form and the
@@ -88,11 +89,31 @@ export async function POST(request: Request) {
       },
     });
 
-    // Awaited, not fire-and-forget: a serverless function can be frozen the
-    // moment it responds, which would drop a pending send. notifyNewLead
-    // never throws and is inert without its env vars, so this cannot fail the
-    // request — the lead is already committed either way.
-    await notifyNewLead(lead);
+    // The lead is committed, so the visitor gets their response now. Apollo
+    // enrichment and the notification email run in after(), which Vercel keeps
+    // the function alive to complete — the visitor never waits on a third-party
+    // lookup, and the email still sends reliably rather than being dropped when
+    // the function freezes. after() runs even if this block later throws.
+    after(async () => {
+      // enrichLead is inert without APOLLO_API_KEY and never throws; it returns
+      // null when enrichment is disabled or the call could not complete, and an
+      // object (fields possibly null) when Apollo was actually queried.
+      const enrichment = await enrichLead(lead.email);
+
+      if (enrichment) {
+        // Stamp enrichedAt whenever we asked, so a lead Apollo had nothing for
+        // reads as "enriched, no match" rather than "never enriched". A write
+        // failure here must not stop the email going out.
+        await prisma.lead
+          .update({ where: { id: lead.id }, data: { enrichedAt: new Date(), ...enrichment } })
+          .catch((err) => console.error("Failed to store lead enrichment:", err));
+      }
+
+      // Fold whatever Apollo returned into the email so the notification is
+      // useful on its own. notifyNewLead never throws and is inert without its
+      // env vars.
+      await notifyNewLead({ ...lead, enrichment });
+    });
 
     return NextResponse.json({ ok: true, id: lead.id }, { status: 201 });
   } catch (err) {
