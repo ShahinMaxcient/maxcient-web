@@ -2,6 +2,7 @@ import NavbarServer from "@/components/NavbarServer";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
 import ContactCenterChat from "@/components/ContactCenterChat";
+import ChatTeaser from "@/components/ChatTeaser";
 import { getSiteSettings } from "@/lib/settings";
 import OrganizationSchema from "@/components/OrganizationSchema";
 
@@ -26,6 +27,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
           support widget. Being in this layout also means it persists across
           client navigations instead of remounting on every page change. */}
       <ContactCenterChat />
+      <ChatTeaser />
     </>
   );
 }
