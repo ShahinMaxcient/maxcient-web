@@ -16,9 +16,16 @@ import { useEffect, useState } from "react";
  * so there is one chat, not a fake one that has to hand over.
  */
 
-// Long enough that the visitor has settled into a page. Microsoft's proactive
-// chat tends to fire much sooner, which is what makes it feel like an advert.
-const DELAY_MS = 25_000;
+// The teaser appears as soon as the widget can actually handle a click, rather
+// than after a fixed delay. A fixed delay is a guess racing the widget: too
+// short and the teaser is skipped because the SDK has not arrived, too long and
+// the visitor has already scrolled past. The widget loads on browser idle, so
+// its readiness is the only honest signal of when this is safe to show.
+const POLL_MS = 400;
+const GIVE_UP_MS = 20_000;
+
+// A breath after the launcher appears, so the two do not pop in together.
+const SETTLE_MS = 1_200;
 
 // sessionStorage, not localStorage: suppressed for this visit, but someone
 // returning next week is a new conversation and should see it again.
@@ -66,12 +73,9 @@ export default function ChatTeaser() {
   useEffect(() => {
     if (wasDismissed()) return;
 
-    const timer = window.setTimeout(() => {
-      // Never show a teaser that cannot open anything. The widget loads on
-      // browser idle, so by this point it is either present or it failed, and
-      // in the failure case staying silent is the right behaviour.
-      if (!getSdk()) return;
+    let settle = 0;
 
+    const show = () => {
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       // Reduced motion starts already "entered", so there is nothing to animate.
       setState({ visible: true, entered: reduce, reduceMotion: reduce });
@@ -79,7 +83,20 @@ export default function ChatTeaser() {
         // Next frame, so the transition has a start state to animate from.
         requestAnimationFrame(() => setState((s) => ({ ...s, entered: true })));
       }
-    }, DELAY_MS);
+    };
+
+    // Watch for the widget rather than guessing how long it will take. If it
+    // never loads, this simply gives up — a teaser that cannot open anything is
+    // worse than no teaser, so staying silent is the right failure mode.
+    const startedAt = Date.now();
+    const poll = window.setInterval(() => {
+      if (getSdk()) {
+        window.clearInterval(poll);
+        settle = window.setTimeout(show, SETTLE_MS);
+      } else if (Date.now() - startedAt > GIVE_UP_MS) {
+        window.clearInterval(poll);
+      }
+    }, POLL_MS);
 
     // If the visitor opens the chat themselves, the teaser has served its
     // purpose and would otherwise sit on top of the open panel.
@@ -91,7 +108,8 @@ export default function ChatTeaser() {
     events.forEach((e) => window.addEventListener(e, hide));
 
     return () => {
-      window.clearTimeout(timer);
+      window.clearInterval(poll);
+      window.clearTimeout(settle);
       events.forEach((e) => window.removeEventListener(e, hide));
     };
   }, []);
