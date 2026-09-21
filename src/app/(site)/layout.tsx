@@ -1,6 +1,7 @@
 import NavbarServer from "@/components/NavbarServer";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
+import ContactCenterChat from "@/components/ContactCenterChat";
 import { getSiteSettings } from "@/lib/settings";
 import OrganizationSchema from "@/components/OrganizationSchema";
 
@@ -20,6 +21,11 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       {children}
       <Footer />
       <FloatingActions phone={settings.whatsappNumber || settings.contactPhone} />
+      {/* Live chat. Mounted here rather than in the root layout so it loads on
+          public pages only — the admin dashboard has no use for a customer
+          support widget. Being in this layout also means it persists across
+          client navigations instead of remounting on every page change. */}
+      <ContactCenterChat />
     </>
   );
 }

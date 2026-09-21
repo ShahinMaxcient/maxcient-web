@@ -63,23 +63,59 @@ const LEGACY_REDIRECTS: { source: string; destination: string }[] = [
  * escapes interpolated values and nothing here passes user input to
  * dangerouslySetInnerHTML, so that path is closed at the source instead.
  */
+/**
+ * Dynamics 365 Contact Center live chat.
+ *
+ * The widget is loaded by src/components/ContactCenterChat.tsx and pulls from
+ * several Microsoft origins, none of which the policy below would otherwise
+ * permit. Named here once and reused across the directives that need them, so
+ * a region change is a single edit.
+ *
+ * OC_CDN / OC_BLOB are the UAE regional bootstrapper hosts taken from the
+ * widget snippet — OC_BLOB is the fallback the component switches to when the
+ * CDN is unreachable. OC_HUB is the org's Omnichannel endpoint; the chat
+ * itself runs over a websocket to it, hence the wss: entry, and a missing
+ * wss: is the classic cause of a chat that connects and then immediately
+ * dies. ACS is Azure Communication Services, which carries the messages.
+ */
+const OC_CDN = "https://oc-cdn-ocuae-uae.azureedge.net";
+const OC_BLOB = "https://ocprodocuaeuaegs.blob.core.windows.net";
+const OC_HUB = "https://*.omnichannelengagementhub.com";
+const OC_HUB_WSS = "wss://*.omnichannelengagementhub.com";
+const ACS = "https://*.communication.azure.com";
+const ACS_WSS = "wss://*.communication.azure.com";
+// Microsoft's telemetry collector for the widget. Chat works perfectly well
+// with this blocked — it is usage reporting, not function — but the widget
+// retries it every few seconds, which fills the console with CSP errors on
+// every visitor's browser. Allowed to stop that noise. Remove it if the
+// outbound telemetry is unwanted; nothing breaks except the quiet console.
+const MS_TELEMETRY = "https://browser.pipe.aria.microsoft.com";
+
 const CSP = [
   "default-src 'self'",
   // 'unsafe-inline' is required for Next's inline hydration script. This still
   // blocks <script src> from any other origin, and omitting 'unsafe-eval'
   // blocks eval outright.
   // va.vercel-scripts.com serves the Analytics and Speed Insights beacons.
-  "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com",
+  `script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com ${OC_CDN} ${OC_BLOB} ${OC_HUB}`,
   // React writes style={{...}} as element style attributes, which cannot carry
   // a nonce.
-  "style-src 'self' 'unsafe-inline'",
+  `style-src 'self' 'unsafe-inline' ${OC_CDN}`,
   // Supabase serves every photo and logo; unsplash is allowed by the
   // remotePatterns below. blob:/data: cover the image optimiser and canvas.
-  "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com",
-  // Fonts are self-hosted through next/font, so no external font origin.
-  "font-src 'self' data:",
+  // The chat widget serves its own icons and agent avatars.
+  `img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com ${OC_CDN} ${OC_BLOB} ${OC_HUB}`,
+  // Fonts are self-hosted through next/font, so no external font origin except
+  // the chat widget's own icon font.
+  `font-src 'self' data: ${OC_CDN}`,
   // vitals.vercel-insights.com receives the Web Vitals measurements.
-  "connect-src 'self' https://*.supabase.co https://va.vercel-scripts.com https://vitals.vercel-insights.com",
+  `connect-src 'self' https://*.supabase.co https://va.vercel-scripts.com https://vitals.vercel-insights.com ${OC_CDN} ${OC_BLOB} ${OC_HUB} ${OC_HUB_WSS} ${ACS} ${ACS_WSS} ${MS_TELEMETRY}`,
+  // The chat widget renders itself inside an iframe served from the CDN, not
+  // from the org endpoint as you might expect. Without this it inherits
+  // default-src 'self' and the widget never appears at all.
+  `frame-src 'self' ${OC_CDN} ${OC_BLOB} ${OC_HUB}`,
+  // Notification sound for incoming messages.
+  `media-src 'self' data: ${OC_CDN}`,
   // three.js can create workers from a blob URL.
   "worker-src 'self' blob:",
   "frame-ancestors 'none'",

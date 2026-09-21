@@ -46,6 +46,13 @@ export default function FloatingActions({ phone }: { phone?: string }) {
   return (
     <div
       className="fixed z-40 flex flex-row items-center gap-3"
+      // Lifted clear of the Dynamics 365 chat launcher, which Microsoft pins to
+      // the bottom-right corner and whose position is not ours to move. Without
+      // this the WhatsApp button and the chat launcher sit on top of each other.
+      //
+      // Back to the original corner offset. The Dynamics 365 chat launcher used
+      // to sit here too and had to be worked around, but globals.css now pins
+      // it to the bottom-left, so this corner is ours again.
       style={{ right: "clamp(14px, 2vw, 24px)", bottom: "clamp(14px, 2vw, 24px)" }}
     >
       {/* Reserved slot: the button keeps its box whether or not it is shown, so
