@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 /**
- * Floating back-to-top + WhatsApp pair, pinned bottom-right and sitting side by
- * side: back-to-top on the left, WhatsApp on the right (outermost corner).
+ * Floating back-to-top + WhatsApp pair, pinned bottom-left and sitting side by
+ * side: WhatsApp in the outermost corner, back-to-top on its inner side.
  *
  * Both slots are always laid out, and the back-to-top only animates its own
  * opacity/scale. Mounting it on scroll instead would re-flow the row and shove
@@ -45,15 +45,16 @@ export default function FloatingActions({ phone }: { phone?: string }) {
 
   return (
     <div
-      className="fixed z-40 flex flex-row items-center gap-3"
-      // Lifted clear of the Dynamics 365 chat launcher, which Microsoft pins to
-      // the bottom-right corner and whose position is not ours to move. Without
-      // this the WhatsApp button and the chat launcher sit on top of each other.
+      // Bottom-left. The Dynamics 365 chat launcher owns the bottom-right —
+      // Microsoft's default position, left as is rather than overridden — so
+      // these two take the opposite corner.
       //
-      // Back to the original corner offset. The Dynamics 365 chat launcher used
-      // to sit here too and had to be worked around, but globals.css now pins
-      // it to the bottom-left, so this corner is ours again.
-      style={{ right: "clamp(14px, 2vw, 24px)", bottom: "clamp(14px, 2vw, 24px)" }}
+      // flex-row-reverse mirrors the pair so WhatsApp stays in the outermost
+      // position, which is what the slot layout below was designed around: the
+      // reserved back-to-top slot sits on the inner side, so it can appear and
+      // disappear without ever shifting WhatsApp.
+      className="fixed z-40 flex flex-row-reverse items-center gap-3"
+      style={{ left: "clamp(14px, 2vw, 24px)", bottom: "clamp(14px, 2vw, 24px)" }}
     >
       {/* Reserved slot: the button keeps its box whether or not it is shown, so
           the WhatsApp button beside it never shifts. */}
