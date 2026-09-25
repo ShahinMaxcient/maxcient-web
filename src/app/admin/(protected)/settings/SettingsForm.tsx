@@ -54,9 +54,15 @@ export default function SettingsForm({ initial, cta }: { initial: SiteSettings; 
               <input id="contactPhone" name="contactPhone" defaultValue={initial.contactPhone} style={inputStyle} />
             </div>
           </div>
-          <div>
-            <label style={labelStyle} htmlFor="linkedinUrl">LinkedIn URL</label>
-            <input id="linkedinUrl" name="linkedinUrl" defaultValue={initial.linkedinUrl} style={inputStyle} placeholder="https://www.linkedin.com/company/…" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label style={labelStyle} htmlFor="whatsappNumber">WhatsApp number</label>
+              <input id="whatsappNumber" name="whatsappNumber" defaultValue={initial.whatsappNumber} style={inputStyle} placeholder="Blank uses the contact phone" />
+            </div>
+            <div>
+              <label style={labelStyle} htmlFor="linkedinUrl">LinkedIn URL</label>
+              <input id="linkedinUrl" name="linkedinUrl" defaultValue={initial.linkedinUrl} style={inputStyle} placeholder="https://www.linkedin.com/company/…" />
+            </div>
           </div>
           <div>
             <label style={labelStyle} htmlFor="footerTagline">Footer tagline</label>

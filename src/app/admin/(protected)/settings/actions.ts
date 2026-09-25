@@ -9,6 +9,8 @@ import { SETTINGS_KEY } from "@/lib/settings";
 const settingsSchema = z.object({
   contactEmail: z.string().trim().email("Enter a valid email."),
   contactPhone: z.string().trim().min(1, "Phone is required."),
+  // Feeds the floating WhatsApp button; blank falls back to contactPhone.
+  whatsappNumber: z.string().trim().regex(/^[\d\s()+-]*$/, "WhatsApp number may only contain digits, spaces, +, - and brackets."),
   linkedinUrl: z.string().trim().url("Enter a valid URL.").or(z.literal("")),
   footerTagline: z.string().trim().min(1, "Footer tagline is required."),
 });
