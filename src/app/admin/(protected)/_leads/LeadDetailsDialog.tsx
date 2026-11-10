@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { LEAD_STATUS_COLORS, LEAD_STATUS_LABELS } from "@/lib/lead-query";
+import { LEAD_STATUS_COLORS, LEAD_STATUS_LABELS, LEAD_STATUS_TEXT_COLORS } from "@/lib/lead-query";
 import type { LeadRow } from "./types";
 
 /**
@@ -13,6 +13,10 @@ import type { LeadRow } from "./types";
  */
 export default function LeadDetailsDialog({ lead, onClose }: { lead: LeadRow | null; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null);
+  // Whether the current click started on the backdrop. A text selection that
+  // starts in the message and is released over the backdrop also ends in a
+  // click on the <dialog> element, and must not close it.
+  const pressedOnBackdrop = useRef(false);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -40,9 +44,14 @@ export default function LeadDetailsDialog({ lead, onClose }: { lead: LeadRow | n
         setCopied(false);
         onClose();
       }}
-      // Clicking the backdrop (the dialog element itself, outside the panel) closes it.
+      // Clicking the backdrop (the dialog element itself, outside the panel)
+      // closes it, but only when the press started there too.
+      onPointerDown={(e) => {
+        pressedOnBackdrop.current = e.target === e.currentTarget;
+      }}
       onClick={(e) => {
-        if (e.target === e.currentTarget) e.currentTarget.close();
+        if (pressedOnBackdrop.current && e.target === e.currentTarget) e.currentTarget.close();
+        pressedOnBackdrop.current = false;
       }}
       aria-labelledby="lead-details-title"
       className="m-auto w-[min(720px,calc(100vw-2rem))] max-h-[calc(100vh-2rem)] rounded-xl p-0 backdrop:bg-black/50"
@@ -54,7 +63,7 @@ export default function LeadDetailsDialog({ lead, onClose }: { lead: LeadRow | n
             <div className="min-w-0">
               <h2 id="lead-details-title" className="text-lg font-bold break-words">{lead.name}</h2>
               <div className="mt-1 flex flex-wrap items-center gap-2 text-xs" style={{ color: "var(--text-muted)" }}>
-                <span className="inline-flex items-center gap-1.5 font-semibold" style={{ color: LEAD_STATUS_COLORS[lead.status] }}>
+                <span className="inline-flex items-center gap-1.5 font-semibold" style={{ color: LEAD_STATUS_TEXT_COLORS[lead.status] }}>
                   <span aria-hidden className="w-2 h-2 rounded-full" style={{ background: LEAD_STATUS_COLORS[lead.status] }} />
                   {LEAD_STATUS_LABELS[lead.status]}
                 </span>

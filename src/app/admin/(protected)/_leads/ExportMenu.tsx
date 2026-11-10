@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import type { LeadQuery } from "@/lib/lead-query";
 import { useToast } from "./toast";
 
@@ -23,6 +23,11 @@ function filenameFrom(disposition: string | null): string | null {
  * The file is built on the server, so "all" really means all rows, not just
  * the page in the table. It is fetched rather than linked so a failure can be
  * reported in a notification instead of leaving a broken download.
+ *
+ * A disclosure (a button that shows a panel of ordinary buttons), not an ARIA
+ * menu: role="menu" promises arrow-key navigation that a three-item list does
+ * not need. Escape, or choosing an option, closes it and returns focus to the
+ * Export button; tabbing out of it closes it too.
  */
 export default function ExportMenu({
   selectedIds,
@@ -40,16 +45,21 @@ export default function ExportMenu({
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const panelId = useId();
   const toast = useToast();
 
-  // Close on a click outside or on Escape while open.
+  // Close on a click outside, or on Escape (returning focus to the button).
   useEffect(() => {
     if (!open) return;
     const onPointer = (e: PointerEvent) => {
       if (!rootRef.current?.contains(e.target as Node)) setOpen(false);
     };
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        triggerRef.current?.focus();
+      }
     };
     document.addEventListener("pointerdown", onPointer);
     document.addEventListener("keydown", onKey);
@@ -61,6 +71,9 @@ export default function ExportMenu({
 
   async function run(body: ExportBody, expected: number) {
     setOpen(false);
+    // Keep focus on the Export button, which shows the progress, rather than
+    // losing it with the panel.
+    triggerRef.current?.focus();
     setBusy(true);
     try {
       const res = await fetch(ENDPOINT, {
@@ -115,14 +128,25 @@ export default function ExportMenu({
     "w-full text-left px-3 py-2 rounded-md text-sm disabled:opacity-50 disabled:cursor-not-allowed enabled:hover:bg-[var(--surface-alt)]";
 
   return (
-    <div ref={rootRef} className="relative">
+    <div
+      ref={rootRef}
+      className="relative"
+      onBlur={(e) => {
+        if (open && !e.currentTarget.contains(e.relatedTarget as Node | null)) setOpen(false);
+      }}
+    >
       <button
+        ref={triggerRef}
         type="button"
-        onClick={() => setOpen((o) => !o)}
-        disabled={busy}
-        aria-haspopup="menu"
+        onClick={() => {
+          if (!busy) setOpen((o) => !o);
+        }}
+        // aria-disabled rather than disabled, so the button keeps focus while
+        // the file is prepared.
+        aria-disabled={busy}
         aria-expanded={open}
-        className="inline-flex items-center gap-2 text-sm font-medium px-3 py-2 rounded-md disabled:opacity-60 disabled:cursor-wait"
+        aria-controls={panelId}
+        className="inline-flex items-center gap-2 text-sm font-medium px-3 py-2 rounded-md aria-disabled:opacity-60 aria-disabled:cursor-wait"
         style={{ background: "var(--text-primary)", color: "var(--background)" }}
       >
         <svg aria-hidden className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -136,14 +160,12 @@ export default function ExportMenu({
 
       {open && (
         <div
-          role="menu"
-          aria-label="Export to Excel"
+          id={panelId}
           className="absolute right-0 mt-2 w-72 p-1.5 rounded-lg shadow-lg z-20"
           style={{ background: "var(--card-bg)", border: "1px solid var(--border)", color: "var(--text-primary)" }}
         >
           <button
             type="button"
-            role="menuitem"
             className={itemClass}
             disabled={selectedIds.length === 0}
             onClick={() => run({ scope: "selected", ids: selectedIds }, selectedIds.length)}
@@ -158,8 +180,7 @@ export default function ExportMenu({
           {filtersActive && (
             <button
               type="button"
-              role="menuitem"
-              className={itemClass}
+                className={itemClass}
               disabled={matching === 0}
               onClick={() => run({ scope: "filtered", query: filteredQuery }, matching)}
             >
@@ -171,7 +192,6 @@ export default function ExportMenu({
           )}
           <button
             type="button"
-            role="menuitem"
             className={itemClass}
             disabled={total === 0}
             onClick={() => run({ scope: "all" }, total)}

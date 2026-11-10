@@ -27,9 +27,22 @@ function uaeTime(date: Date | null): Date | undefined {
   return date ? new Date(date.getTime() + UAE_OFFSET_MS) : undefined;
 }
 
+// write-excel-file 4.1.1 de-duplicates text through a plain object, so a cell
+// whose whole text is an Object.prototype member name ("constructor",
+// "toString", "__proto__"…) looks up the inherited member instead of a
+// string index and corrupts the file. Leads are typed by the public, so one
+// such submission would break every export that included it. A trailing
+// zero-width space makes the text a different key without changing what
+// Excel displays.
+const PROTOTYPE_KEYS = new Set(Object.getOwnPropertyNames(Object.prototype));
+
+function safeKey(value: string): string {
+  return PROTOTYPE_KEYS.has(value) ? `${value}\u200B` : value;
+}
+
 function text(value: string | null | undefined): string | undefined {
   if (!value) return undefined;
-  return value.length > EXCEL_CELL_LIMIT ? `${value.slice(0, EXCEL_CELL_LIMIT - 1)}…` : value;
+  return safeKey(value.length > EXCEL_CELL_LIMIT ? `${value.slice(0, EXCEL_CELL_LIMIT - 1)}…` : value);
 }
 
 const header = (title: string) => ({
@@ -56,7 +69,7 @@ const columns: Column<Lead>[] = [
   { header: header("Service"), cell: (l) => ({ value: text(l.service), ...top }), width: 20 },
   {
     header: header("Source"),
-    cell: (l) => ({ value: LEAD_SOURCE_LABELS[l.source as LeadSourceValue] ?? l.source, ...top }),
+    cell: (l) => ({ value: text(LEAD_SOURCE_LABELS[l.source as LeadSourceValue] ?? l.source), ...top }),
     width: 18,
   },
   // The complete message, wrapped. Excel caps the visible row height, but the

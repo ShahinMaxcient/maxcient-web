@@ -2,7 +2,7 @@ import { z } from "zod";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { buildLeadsWorkbook } from "@/lib/leads-export";
-import { leadOrderBy, leadWhere, parseLeadQuery } from "@/lib/lead-query";
+import { compareLeadsByName, leadOrderBy, leadWhere, parseLeadQuery } from "@/lib/lead-query";
 
 /**
  * Excel export for the admin Leads page.
@@ -69,6 +69,8 @@ export async function POST(request: Request) {
     }
 
     const leads = await prisma.lead.findMany({ where, orderBy: leadOrderBy(query), take: MAX_ROWS });
+    // Match the table, which orders names in code (see compareLeadsByName).
+    if (query.sort === "name") leads.sort(compareLeadsByName(query.dir));
     const workbook = await buildLeadsWorkbook(leads);
 
     const date = new Date().toISOString().slice(0, 10);

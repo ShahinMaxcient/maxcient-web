@@ -21,12 +21,23 @@ export const LEAD_STATUS_LABELS: Record<LeadStatusValue, string> = {
   LOST: "Lost",
 };
 
+// Dots and borders.
 export const LEAD_STATUS_COLORS: Record<LeadStatusValue, string> = {
   NEW: "#7c3aed",
   CONTACTED: "#2563eb",
   QUALIFIED: "#0891b2",
   WON: "#059669",
   LOST: "#9ca3af",
+};
+
+// The same hues dark enough to be read as text on the light card background
+// (at least 4.5:1, WCAG AA). The lighter colours above fail as text.
+export const LEAD_STATUS_TEXT_COLORS: Record<LeadStatusValue, string> = {
+  NEW: "#6d28d9",
+  CONTACTED: "#1d4ed8",
+  QUALIFIED: "#0e7490",
+  WON: "#047857",
+  LOST: "#4b5563",
 };
 
 // Mirrors the allowlist in the public /api/leads schema.
@@ -132,7 +143,12 @@ export function leadWhere(query: Pick<LeadQuery, "q" | "status" | "source">): Pr
   if (query.status) where.status = query.status;
   if (query.source) where.source = query.source;
   if (query.q) {
-    const contains = { contains: query.q, mode: "insensitive" as const };
+    // Prisma passes the term into ILIKE '%term%' unescaped, so a % or _ typed
+    // by the admin would act as a wildcard: "_" matched every lead, and
+    // "john_doe" also matched "john.doe". Backslash is Postgres's default
+    // LIKE escape character.
+    const term = query.q.replace(/[\\%_]/g, (c) => `\\${c}`);
+    const contains = { contains: term, mode: "insensitive" as const };
     // Everything an admin is likely to remember about a lead, including the
     // message body and what Apollo returned.
     where.OR = [
@@ -147,6 +163,27 @@ export function leadWhere(query: Pick<LeadQuery, "q" | "status" | "source">): Pr
     ];
   }
   return where;
+}
+
+// Alphabetical as people expect it: case and accents ignored ("ahmed" next to
+// "Ahmed", not after "Zainab") and numbers in order ("Lead 2" before
+// "Lead 10"). The database's own ORDER BY compares character codes.
+const nameCollator = new Intl.Collator("en", { sensitivity: "base", numeric: true });
+
+type NameSortable = { id: string; name: string; createdAt: Date };
+
+/**
+ * Orders leads by name for the Name column. Done in code rather than SQL
+ * because Prisma cannot sort case-insensitively; lead volumes are small
+ * enough to sort the matching ids in memory. Ties fall back to the same
+ * newest-first, then id, order as leadOrderBy.
+ */
+export function compareLeadsByName<T extends NameSortable>(dir: "asc" | "desc") {
+  const sign = dir === "asc" ? 1 : -1;
+  return (a: T, b: T) =>
+    sign * nameCollator.compare(a.name, b.name) ||
+    b.createdAt.getTime() - a.createdAt.getTime() ||
+    (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
 }
 
 /**

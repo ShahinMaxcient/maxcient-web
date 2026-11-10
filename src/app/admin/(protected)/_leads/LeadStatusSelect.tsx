@@ -1,8 +1,8 @@
 "use client";
 
-import { useOptimistic, useTransition } from "react";
+import { useOptimistic, useRef, useTransition } from "react";
 import { LEAD_STATUSES, LEAD_STATUS_COLORS, LEAD_STATUS_LABELS, isLeadStatus, type LeadStatusValue } from "@/lib/lead-query";
-import { updateLeadStatus } from "../actions";
+import { saveLeadStatus } from "./save-status";
 import { useToast } from "./toast";
 
 /**
@@ -16,6 +16,14 @@ import { useToast } from "./toast";
  * useOptimistic shows the new status at once. When the action returns, the
  * revalidated page supplies the saved status as the prop; if the save failed,
  * the optimistic value is dropped and the row shows the stored status again.
+ *
+ * The select stays enabled while saving. With the keyboard, Up and Down on a
+ * closed select change the value on every press in some browsers; disabling
+ * it after the first press would drop focus and swallow the rest. Each change
+ * is saved, and Next.js runs Server Actions one at a time in the order they
+ * were made, so the database ends on the last choice. Only the last change of
+ * a quick series is reported, and its Undo returns to the status from before
+ * the series began.
  */
 export default function LeadStatusSelect({
   leadId,
@@ -32,13 +40,22 @@ export default function LeadStatusSelect({
   const [shown, setShown] = useOptimistic(status);
   const [saving, startTransition] = useTransition();
   const toast = useToast();
+  // The newest change, so older saves still in flight stay quiet.
+  const latestChange = useRef(0);
+  // The status before the current series of changes, for Undo.
+  const seriesStart = useRef<LeadStatusValue | null>(null);
 
   function change(next: LeadStatusValue) {
-    const previous = shown;
-    if (next === previous) return;
+    if (next === shown) return;
+    const changeId = ++latestChange.current;
+    if (seriesStart.current === null) seriesStart.current = shown;
+    const previous = seriesStart.current;
+
     startTransition(async () => {
       setShown(next);
-      const result = await updateLeadStatus(leadId, next);
+      const result = await saveLeadStatus(leadId, next);
+      if (changeId !== latestChange.current) return;
+      seriesStart.current = null;
       if (result.ok) onChanged(previous, result.status);
       else toast.error(`${leadName}: ${result.error}`);
     });
@@ -49,14 +66,12 @@ export default function LeadStatusSelect({
       <span aria-hidden className="w-2 h-2 rounded-full shrink-0" style={{ background: LEAD_STATUS_COLORS[shown] }} />
       <select
         value={shown}
-        // Disabled while saving, so two quick changes cannot race each other
-        // to the database and leave it on whichever request landed last.
-        disabled={saving}
         onChange={(e) => {
           if (isLeadStatus(e.target.value)) change(e.target.value);
         }}
         aria-label={`Status for ${leadName}`}
-        className="px-2 py-1.5 rounded-md text-xs font-medium outline-none disabled:opacity-60 disabled:cursor-wait"
+        aria-busy={saving}
+        className="px-2 py-1.5 rounded-md text-xs font-medium"
         style={{ background: "var(--surface)", color: "var(--text-primary)", border: "1px solid var(--border)" }}
       >
         {LEAD_STATUSES.map((s) => (
@@ -64,7 +79,7 @@ export default function LeadStatusSelect({
         ))}
       </select>
       {saving && (
-        <span className="text-xs" style={{ color: "var(--text-muted)" }} aria-live="polite">
+        <span className="text-xs" style={{ color: "var(--text-muted)" }}>
           Saving…
         </span>
       )}
