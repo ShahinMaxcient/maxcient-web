@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import Link from "next/link";
 import { auth, signOut } from "@/auth";
 import AdminNav from "./AdminNav";
+import MobileAdminNav from "./MobileAdminNav";
 
 // Every admin route reads live data and must never be statically cached.
 export const dynamic = "force-dynamic";
@@ -68,7 +69,7 @@ export default async function ProtectedAdminLayout({ children }: { children: Rea
               </span>
             </Link>
             <div className="hidden lg:block" />
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-4">
               <span className="text-sm hidden sm:inline" style={{ color: "var(--text-muted)" }}>
                 {session.user.email}
               </span>
@@ -86,11 +87,9 @@ export default async function ProtectedAdminLayout({ children }: { children: Rea
                   Sign out
                 </button>
               </form>
+              {/* Below lg the sidebar is hidden; the nav opens from here instead. */}
+              <MobileAdminNav />
             </div>
-          </div>
-          {/* Mobile nav */}
-          <div className="lg:hidden px-5 pb-3 overflow-x-auto">
-            <AdminNav />
           </div>
         </header>
         <main className="flex-1 px-5 sm:px-8 py-8 max-w-[1200px] w-full mx-auto">{children}</main>

@@ -46,11 +46,11 @@ const GROUPS: Group[] = [
   },
 ];
 
-export default function AdminNav() {
+export default function AdminNav({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
 
   return (
-    <nav className="flex flex-col gap-5">
+    <nav aria-label="Admin" className="flex flex-col gap-5">
       {GROUPS.map((group) => (
         <div key={group.title}>
           <div
@@ -68,6 +68,8 @@ export default function AdminNav() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  onNavigate={onNavigate}
+                  aria-current={active ? "page" : undefined}
                   className="flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium transition-colors"
                   style={{
                     background: active ? "var(--text-primary)" : "transparent",
