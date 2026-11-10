@@ -128,7 +128,7 @@ export default function HeroDemoCard({
           </div>
           <div className="mt-4">
             <label htmlFor={`demo-msg-${product}`} style={label}>Message</label>
-            <textarea id={`demo-msg-${product}`} name="message" rows={4} placeholder="Message" style={{ ...field, resize: "vertical", minHeight: 104 }} />
+            <textarea id={`demo-msg-${product}`} name="message" rows={4} maxLength={5000} placeholder="Message" style={{ ...field, resize: "vertical", minHeight: 104 }} />
           </div>
 
           {state === "error" && error && (

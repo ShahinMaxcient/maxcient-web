@@ -13,7 +13,14 @@ const leadSchema = z.object({
   phone: z.string().trim().max(50).optional().or(z.literal("")),
   company: z.string().trim().max(200).optional().or(z.literal("")),
   service: z.string().trim().max(200).optional().or(z.literal("")),
-  message: z.string().trim().max(5000).optional().or(z.literal("")),
+  // Line endings are normalised before the length check: a browser may send
+  // each line break as \r\n, and the form's maxLength of 5,000 counts it as
+  // one character, so a message at the limit would otherwise be rejected.
+  // The textareas carry the same maxLength, so a visitor cannot type past it.
+  message: z.preprocess(
+    (v) => (typeof v === "string" ? v.replace(/\r\n?/g, "\n") : v),
+    z.string().trim().max(5000),
+  ).optional().or(z.literal("")),
   // Allowlisted rather than free text: this lands in the admin lead list, so
   // the client must not be able to write arbitrary values into it.
   source: z.enum(["consultation-form", "product-demo"]).optional(),

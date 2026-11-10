@@ -109,7 +109,7 @@ export default function ConsultationForm({ serviceOptions = DEFAULT_SERVICES }: 
         </div>
         <div>
           <label htmlFor="message" className="block text-sm font-medium t-label mb-2">Message</label>
-          <textarea id="message" name="message" rows={4} className="w-full px-4 py-3 rounded-xl t-input outline-none transition-all resize-none" placeholder="Tell us about your project..." />
+          <textarea id="message" name="message" rows={4} maxLength={5000} className="w-full px-4 py-3 rounded-xl t-input outline-none transition-all resize-none" placeholder="Tell us about your project..." />
         </div>
 
         {status === "error" && (

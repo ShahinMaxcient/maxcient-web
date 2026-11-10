@@ -116,7 +116,7 @@ export default function GetInTouch({
                   </div>
                   <div>
                     <label htmlFor="git-message" className="block text-sm font-medium t-label mb-1.5">Message</label>
-                    <textarea id="git-message" name="message" rows={4} className="w-full px-4 py-3 rounded-xl t-input outline-none transition-all resize-none" placeholder="How can we help?" />
+                    <textarea id="git-message" name="message" rows={4} maxLength={5000} className="w-full px-4 py-3 rounded-xl t-input outline-none transition-all resize-none" placeholder="How can we help?" />
                   </div>
                   {status === "error" && <p className="text-sm" style={{ color: "#dc2626" }} role="alert">{error}</p>}
                   <button
