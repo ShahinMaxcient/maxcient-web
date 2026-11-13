@@ -1,7 +1,7 @@
-import { redirect } from "next/navigation";
 import { ReactNode } from "react";
 import Link from "next/link";
-import { auth, signOut } from "@/auth";
+import { signOut } from "@/auth";
+import { requireAdmin } from "@/lib/admin-auth";
 import AdminNav from "./AdminNav";
 import MobileAdminNav from "./MobileAdminNav";
 
@@ -10,10 +10,9 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function ProtectedAdminLayout({ children }: { children: ReactNode }) {
-  const session = await auth();
-  if (!session?.user) {
-    redirect("/admin/login");
-  }
+  // Not the only check: a layout does not stop its page from rendering, so
+  // every page under here calls requireAdmin() itself (see src/lib/admin-auth.ts).
+  const session = await requireAdmin();
 
   return (
     <div className="min-h-screen flex" style={{ background: "var(--background)" }}>

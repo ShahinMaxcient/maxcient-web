@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import DeleteButton from "./DeleteButton";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
@@ -9,6 +10,7 @@ function formatDate(d: Date) {
 }
 
 export default async function BlogAdmin() {
+  await requireAdmin();
   const posts = await prisma.post.findMany({ orderBy: { updatedAt: "desc" } });
 
   return (

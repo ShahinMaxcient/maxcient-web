@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { COLLECTION_LIST } from "@/lib/collections";
 import { delegate } from "@/lib/content";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
 export default async function ContentIndex() {
+  await requireAdmin();
   const counts = await Promise.all(
     COLLECTION_LIST.map(async (c) => {
       try {

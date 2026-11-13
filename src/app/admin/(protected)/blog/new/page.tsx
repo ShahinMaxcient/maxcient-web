@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { createPost } from "../actions";
 import PostForm from "../PostForm";
+import { requireAdmin } from "@/lib/admin-auth";
 
-export default function NewPostPage() {
+export default async function NewPostPage() {
+  await requireAdmin();
   return (
     <div>
       <div className="mb-6">

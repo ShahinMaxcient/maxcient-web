@@ -2,10 +2,12 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { KNOWN_PAGES } from "@/lib/known-pages";
 import { resetPage, setPageVisibility } from "./actions";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
 export default async function PagesAdmin() {
+  await requireAdmin();
   const overrides = await prisma.page.findMany({ select: { slug: true, published: true } });
   const customized = new Set(overrides.map((o) => o.slug));
   const hidden = new Set(overrides.filter((o) => o.published === false).map((o) => o.slug));

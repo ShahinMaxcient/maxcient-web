@@ -3,10 +3,12 @@ import { notFound } from "next/navigation";
 import { COLLECTIONS } from "@/lib/collections";
 import { delegate } from "@/lib/content";
 import CollectionForm from "../../../CollectionForm";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
 export default async function EditItem({ params }: { params: Promise<{ type: string; id: string }> }) {
+  await requireAdmin();
   const { type, id } = await params;
   const cfg = COLLECTIONS[type];
   if (!cfg) notFound();

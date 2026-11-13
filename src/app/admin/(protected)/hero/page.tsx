@@ -1,9 +1,11 @@
 import { getHeroSettings } from "@/lib/settings";
 import HeroForm from "./HeroForm";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
 export default async function HeroAdmin() {
+  await requireAdmin();
   const hero = await getHeroSettings();
   return (
     <div>

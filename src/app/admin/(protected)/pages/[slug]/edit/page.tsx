@@ -3,10 +3,12 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getKnownPage } from "@/lib/known-pages";
 import PageEditor from "../../PageEditor";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
 export default async function EditPagePage({ params }: { params: Promise<{ slug: string }> }) {
+  await requireAdmin();
   const { slug } = await params;
   const known = getKnownPage(slug);
   if (!known) notFound();

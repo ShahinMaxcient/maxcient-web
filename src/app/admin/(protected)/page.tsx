@@ -12,6 +12,7 @@ import {
 } from "@/lib/lead-query";
 import LeadsView from "./_leads/LeadsView";
 import type { LeadRow } from "./_leads/types";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
@@ -43,6 +44,7 @@ export default async function AdminLeadsPage({
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
+  await requireAdmin();
   const query = parseLeadQuery(await searchParams);
   const where = leadWhere(query);
 

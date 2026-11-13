@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import RowDelete from "./RowDelete";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomepageAdmin() {
+  await requireAdmin();
   const [services, testimonials] = await Promise.all([
     prisma.service.findMany({ orderBy: [{ order: "asc" }, { createdAt: "asc" }] }),
     prisma.testimonial.findMany({ orderBy: [{ order: "asc" }, { createdAt: "asc" }] }),

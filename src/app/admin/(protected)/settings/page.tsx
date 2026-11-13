@@ -1,9 +1,11 @@
 import { getSiteSettings, getCTASettings } from "@/lib/settings";
 import SettingsForm from "./SettingsForm";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
 export default async function SettingsAdmin() {
+  await requireAdmin();
   const [settings, cta] = await Promise.all([getSiteSettings(), getCTASettings()]);
 
   return (

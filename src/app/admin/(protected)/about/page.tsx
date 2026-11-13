@@ -1,9 +1,11 @@
 import { getAboutSettings } from "@/lib/settings";
 import AboutForm from "./AboutForm";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
 export default async function AboutAdmin() {
+  await requireAdmin();
   const about = await getAboutSettings();
   return (
     <div>

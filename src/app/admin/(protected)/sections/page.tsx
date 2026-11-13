@@ -1,9 +1,11 @@
 import { getSectionHeaders } from "@/lib/settings";
 import SectionsForm from "./SectionsForm";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
 export default async function SectionsAdmin() {
+  await requireAdmin();
   const sections = await getSectionHeaders();
   return (
     <div>

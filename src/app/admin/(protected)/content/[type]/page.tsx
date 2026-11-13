@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { COLLECTIONS } from "@/lib/collections";
 import { getAllItems } from "@/lib/content";
 import RowDelete from "../RowDelete";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,7 @@ function cell(value: unknown): string {
 }
 
 export default async function CollectionList({ params }: { params: Promise<{ type: string }> }) {
+  await requireAdmin();
   const { type } = await params;
   const cfg = COLLECTIONS[type];
   if (!cfg) notFound();

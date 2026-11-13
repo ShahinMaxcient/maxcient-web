@@ -1,7 +1,9 @@
 import Link from "next/link";
 import TestimonialForm from "../../TestimonialForm";
+import { requireAdmin } from "@/lib/admin-auth";
 
-export default function NewTestimonialPage() {
+export default async function NewTestimonialPage() {
+  await requireAdmin();
   return (
     <div>
       <div className="mb-6">

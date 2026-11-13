@@ -1,7 +1,9 @@
 import Link from "next/link";
 import ServiceForm from "../../ServiceForm";
+import { requireAdmin } from "@/lib/admin-auth";
 
-export default function NewServicePage() {
+export default async function NewServicePage() {
+  await requireAdmin();
   return (
     <div>
       <div className="mb-6">

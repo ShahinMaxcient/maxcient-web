@@ -2,8 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { COLLECTIONS } from "@/lib/collections";
 import CollectionForm from "../../CollectionForm";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export default async function NewItem({ params }: { params: Promise<{ type: string }> }) {
+  await requireAdmin();
   const { type } = await params;
   const cfg = COLLECTIONS[type];
   if (!cfg) notFound();
